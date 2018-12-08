@@ -3,15 +3,21 @@
 #include "../../Shared/src/Network/TcpClientBase.h"
 #include "LocalTcpServer.h"
 
+#include <thread>
+#include <chrono>
 using namespace DDRFramework;
+using namespace std;
 int main()
 {
 
-	std::make_shared<LocalTcpServer>(88)->Start();
-	//std::make_shared<TcpServerBase>(88)->Start();
+	//std::make_shared<LocalTcpServer>(88)->Start();
+	std::make_shared<TcpServerBase>(88)->Start();
 
 
+	while (true)
+	{
 
-	char q = getchar();
+		std::this_thread::sleep_for(chrono::seconds(1));
+	}
 	return 0;
 }
