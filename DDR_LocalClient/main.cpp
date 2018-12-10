@@ -69,7 +69,7 @@ int main()
 	//auto spClient = std::make_shared<TcpClientBase>();
 	auto spClient = std::make_shared<LocalTcpClient>();
 
-	spClient->Start(1);
+	spClient->Start(4);
 	for (int i = 0 ; i < 1;i++)
 	{
 		DoOnce(spClient);

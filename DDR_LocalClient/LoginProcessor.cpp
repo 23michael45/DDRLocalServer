@@ -7,6 +7,7 @@ using namespace DDRCommProto;
 
 LoginProcessor::LoginProcessor()
 {
+	m_RecvCount = 0;
 }
 
 
@@ -22,6 +23,11 @@ void LoginProcessor::Process(std::shared_ptr<TcpSocketContainer> spSockContainer
 
 	respLogin_eLoginRetCode retcode = pRaw->retcode();
 
+	m_RecvCount++;
 
-	//DebugLog("\nLogin :%i", retcode);
+	if (m_RecvCount % 100 == 0)
+	{
+		DebugLog("\n--------------------------------------------Login :%i", retcode);
+
+	}
 }

@@ -14,6 +14,9 @@ public:
 	~LoginProcessor();
 
 	virtual void Process(std::shared_ptr<TcpSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg);
+
+private:
+	int m_RecvCount;
 };
 
 #endif // LoginProcessor_h__
