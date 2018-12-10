@@ -63,13 +63,15 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 	spClient.reset();
 }
 
+
+
 int main()
 {
 
 	//auto spClient = std::make_shared<TcpClientBase>();
 	auto spClient = std::make_shared<LocalTcpClient>();
-
-	spClient->Start(4);
+	
+	spClient->Start(1);
 	for (int i = 0 ; i < 1;i++)
 	{
 		DoOnce(spClient);
