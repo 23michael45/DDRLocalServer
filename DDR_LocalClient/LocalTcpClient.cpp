@@ -16,7 +16,7 @@ LocalTcpClient::~LocalTcpClient()
 
 std::shared_ptr<TcpClientSessionBase> LocalTcpClient::BindSerializerDispatcher()
 {
-	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, LocalClientDispatcher)
+	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, LocalClientDispatcher,BaseHeadRuleRouter)
 		return spTcpClientSessionBase;
 }
 void LocalTcpClient::OnConnected(TcpSocketContainer& container)
