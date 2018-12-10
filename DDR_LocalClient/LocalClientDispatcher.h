@@ -6,7 +6,7 @@
 class LocalClientDispatcher : public DDRFramework::BaseMessageDispatcher
 {
 public:
-	LocalClientDispatcher(std::shared_ptr<DDRFramework::TcpSocketContainer> sp);
+	LocalClientDispatcher();
 	~LocalClientDispatcher();
 };
 

@@ -6,7 +6,7 @@
 using namespace DDRCommProto;
 using namespace DDRFramework;
 
-LocalServerDispatcher::LocalServerDispatcher(std::shared_ptr<TcpSocketContainer> sp) : BaseMessageDispatcher::BaseMessageDispatcher(sp)
+LocalServerDispatcher::LocalServerDispatcher()
 {
 	reqLogin rspSignin;
 	m_ProcessorMap[rspSignin.GetTypeName()] = std::make_shared<LoginProcessor>();

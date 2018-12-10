@@ -10,8 +10,8 @@ using namespace std;
 int main()
 {
 
-	//std::make_shared<LocalTcpServer>(88)->Start();
-	std::make_shared<TcpServerBase>(88)->Start();
+	std::make_shared<LocalTcpServer>(88)->Start(1);
+	//std::make_shared<TcpServerBase>(88)->Start();
 
 
 	while (true)

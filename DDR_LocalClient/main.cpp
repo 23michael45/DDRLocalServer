@@ -14,51 +14,68 @@ using namespace std;
 char gQuit = 0;
 
 
-void DoOnce()
+void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 {
 
-	auto spClient = std::make_shared<TcpClientBase>();
-	//auto spClient = std::make_shared<LocalTcpClient>();
-	spClient->Start("127.0.0.1", "88");
+	std::this_thread::sleep_for(chrono::seconds(2));
+	spClient->Connect("127.0.0.1", "88");
 
 	std::thread t = std::thread(std::bind([](std::shared_ptr<TcpClientBase> spClient) {
 
 
-		for (int i = 0; i < 1000;)
+		for (int j = 0; j < 2;)
 		{
-
-			//std::this_thread::sleep_for(chrono::seconds(1));
-
-			reqLogin req;
-			req.set_username("michaelmichaelmichaelmichaelmichael");
-
-			if (spClient && spClient->IsConnected())
+			try
 			{
-				spClient->Send(req);
-				i++;
-			}
-			
-		}
-		spClient->Stop();
 
-		DebugLog("\nspClient Use Count:%i", spClient.use_count());
+				for (int i = 0; i < 10000;)
+				{
+
+					//std::this_thread::sleep_for(chrono::seconds(1));
+
+					auto spreq = std::make_shared<reqLogin>();
+					spreq->set_username("michaelmichaelmichaelmichaelmichaelmichaelmichaelmichaelmichaelmichael");
+
+					if (spClient && spClient->IsConnected())
+					{
+						spClient->Send(spreq);
+						i++;
+					}
+					spreq.reset();
+				}
+			}
+			catch (asio::system_error* e)
+			{
+				break;
+			}
+
+
+			std::this_thread::sleep_for(chrono::seconds(10));
+		}
 
 	}, spClient));
-	t.detach();
+	t.join();
+
+	getchar();
+
+	std::this_thread::sleep_for(chrono::seconds(2));
+	spClient->Disconnect();
 	spClient.reset();
 }
 
 int main()
 {
-	for (int i = 0 ; i < 1000;i++)
+
+	//auto spClient = std::make_shared<TcpClientBase>();
+	auto spClient = std::make_shared<LocalTcpClient>();
+
+	spClient->Start(1);
+	for (int i = 0 ; i < 1;i++)
 	{
-		DoOnce();
+		DoOnce(spClient);
 		std::this_thread::sleep_for(chrono::seconds(1));
 	}
 
-	while (true)
-	{
-		std::this_thread::sleep_for(chrono::seconds(1));
-	}
+	spClient->Stop();
 	return 0;
 }

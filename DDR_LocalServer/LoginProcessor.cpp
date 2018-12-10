@@ -23,11 +23,11 @@ void LoginProcessor::Process(std::shared_ptr<TcpSocketContainer> spSockContainer
 	std::string name = pRaw->username();
 
 
-	respLogin rsp;
-	rsp.set_retcode(respLogin_eLoginRetCode_success);
+	auto sprsp = std::make_shared<respLogin>();
+	sprsp->set_retcode(respLogin_eLoginRetCode_success);
 
-	spSockContainer->Send(rsp);
+	spSockContainer->Send(sprsp);
 
-	DebugLog("\nLogin %s:" ,name.c_str());
+	//DebugLog("\nLogin %s:" ,name.c_str());
 	
 }

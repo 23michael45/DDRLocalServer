@@ -8,7 +8,7 @@
 class LocalServerDispatcher : public DDRFramework::BaseMessageDispatcher
 {
 public:
-	LocalServerDispatcher(std::shared_ptr<DDRFramework::TcpSocketContainer> sp);
+	LocalServerDispatcher();
 	~LocalServerDispatcher();
 };
 

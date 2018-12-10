@@ -6,7 +6,7 @@
 using namespace DDRCommProto;
 using namespace DDRFramework;
 
-LocalClientDispatcher::LocalClientDispatcher(std::shared_ptr<TcpSocketContainer> sp) : BaseMessageDispatcher::BaseMessageDispatcher(sp)
+LocalClientDispatcher::LocalClientDispatcher()
 {
 
 	respLogin respLogin;
