@@ -70,8 +70,8 @@ void TcpServer()
 
 int main()
 {
-	TcpServer();
-	//UdpServer();
+	//TcpServer();
+	UdpServer();
 	
 	getchar();
 	return 0;
