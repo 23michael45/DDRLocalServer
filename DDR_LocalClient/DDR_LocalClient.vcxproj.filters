@@ -84,6 +84,18 @@
     <ClCompile Include="LocalTcpClient.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalClientUdpDispatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LocalClientUdpProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -135,6 +147,18 @@
       <Filter>Shared\Network</Filter>
     </ClInclude>
     <ClInclude Include="LocalTcpClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\BaseSocketContainer.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalClientUdpDispatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LocalClientUdpProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

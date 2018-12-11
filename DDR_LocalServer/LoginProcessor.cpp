@@ -14,7 +14,7 @@ LoginProcessor::~LoginProcessor()
 {
 }
 
-void LoginProcessor::Process(std::shared_ptr<TcpSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 	auto bodytype = spHeader->bodytype();
 
@@ -29,5 +29,10 @@ void LoginProcessor::Process(std::shared_ptr<TcpSocketContainer> spSockContainer
 	spSockContainer->Send(sprsp);
 
 	//DebugLog("\nLogin %s:" ,name.c_str());
+
+
+}
+void LoginProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+{
 	
 }

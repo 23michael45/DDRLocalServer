@@ -157,18 +157,23 @@
   <ItemGroup>
     <ClCompile Include="..\..\Shared\proto\BaseCmd.pb.cc" />
     <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\MessageSerializer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\TcpClientBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\TcpSocketContainer.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinystr.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="HeartBeatProcessor.cpp" />
     <ClCompile Include="LocalServerDispatcher.cpp" />
     <ClCompile Include="LocalServerHeadRuleRouter.cpp" />
+    <ClCompile Include="LocalServerUdpDispatcher.cpp" />
+    <ClCompile Include="LocalServerUdpProcessor.cpp" />
     <ClCompile Include="LocalTcpServer.cpp" />
     <ClCompile Include="LoginProcessor.cpp" />
     <ClCompile Include="main.cpp" />
@@ -178,18 +183,23 @@
     <ClInclude Include="..\..\Shared\src\FSM\FSM.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseMessageDispatcher.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseProcessor.h" />
+    <ClInclude Include="..\..\Shared\src\Network\BaseSocketContainer.h" />
     <ClInclude Include="..\..\Shared\src\Network\MessageSerializer.h" />
     <ClInclude Include="..\..\Shared\src\Network\Singleton.h" />
     <ClInclude Include="..\..\Shared\src\Network\TcpClientBase.h" />
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h" />
     <ClInclude Include="..\..\Shared\src\Network\TcpSocketContainer.h" />
+    <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h" />
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
+    <ClInclude Include="HeartBeatProcessor.h" />
     <ClInclude Include="LocalServerDispatcher.h" />
     <ClInclude Include="LocalServerHeadRuleRouter.h" />
+    <ClInclude Include="LocalServerUdpDispatcher.h" />
+    <ClInclude Include="LocalServerUdpProcessor.h" />
     <ClInclude Include="LocalTcpServer.h" />
     <ClInclude Include="LoginProcessor.h" />
   </ItemGroup>

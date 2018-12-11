@@ -3,7 +3,7 @@
 #include "../../Shared/src/Network/TcpClientBase.h"
 #include "../../Shared/proto/BaseCmd.pb.h"
 #include "../../Shared/src/Utility/DDRMacro.h"
-
+#include "LocalClientUdpDispatcher.h"
 #include <thread>
 #include <chrono>
 #include "LocalTcpClient.h"
@@ -67,6 +67,20 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 
 int main()
 {
+	auto spUdp = std::make_shared<UdpSocketBase>();
+
+	spUdp->Start();
+	spUdp->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
+
+	spUdp->StartReceive(28888);
+
+
+	std::this_thread::sleep_for(chrono::seconds(1000));
+
+	spUdp->StopReceive();
+	spUdp->Stop();
+	spUdp.reset();
+
 
 	//auto spClient = std::make_shared<TcpClientBase>();
 	auto spClient = std::make_shared<LocalTcpClient>();

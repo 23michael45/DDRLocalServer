@@ -1,16 +1,18 @@
-#ifndef LoginProcessor_h__
-#define LoginProcessor_h__
+#ifndef LocadClientUdpProcessor_h__
+#define LocadClientUdpProcessor_h__
+
+
 
 #include "../../Shared/src/Network/BaseProcessor.h"
 #include "../../Shared/src/Network/TcpSocketContainer.h"
 
 
 
-class LoginProcessor : public DDRFramework::BaseProcessor
+class LocalClientUdpProcessor : public DDRFramework::BaseProcessor
 {
 public:
-	LoginProcessor();
-	~LoginProcessor();
+	LocalClientUdpProcessor();
+	~LocalClientUdpProcessor();
 
 
 	virtual void Process(std::shared_ptr<DDRFramework::BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override;
@@ -19,4 +21,4 @@ public:
 };
 
 
-#endif // LoginProcessor_h__
+#endif // LocadClientUdpProcessor_h__

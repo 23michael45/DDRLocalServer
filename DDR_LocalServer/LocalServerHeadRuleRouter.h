@@ -8,7 +8,7 @@ public:
 	LocalServerHeadRuleRouter();
 	~LocalServerHeadRuleRouter();
 
-	virtual bool IgnoreBody(std::shared_ptr<TcpSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader) override;
+	virtual bool IgnoreBody(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader) override;
 };
 
 
