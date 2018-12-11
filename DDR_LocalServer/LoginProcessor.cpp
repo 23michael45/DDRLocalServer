@@ -28,11 +28,14 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 	spSockContainer->Send(sprsp);
 
+
+
 	//DebugLog("\nLogin %s:" ,name.c_str());
 
 
 }
 void LoginProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
+	std::this_thread::sleep_for(std::chrono::seconds(10000));
 	
 }

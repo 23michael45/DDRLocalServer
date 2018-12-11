@@ -1,0 +1,5 @@
+<Root>
+    <LocalServerConfig>
+        <Element ID="1" Port="88" ServerName="LocalServerV2" ThreadCount="4" />
+    </LocalServerConfig>
+</Root>

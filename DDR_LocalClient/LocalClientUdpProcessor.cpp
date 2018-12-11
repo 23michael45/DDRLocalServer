@@ -18,17 +18,16 @@ void LocalClientUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 {
 	auto bodytype = spHeader->bodytype();
 
-	reqLogin* pRaw = reinterpret_cast<reqLogin*>(spMsg.get());
+	broadcastServerInformation* pRaw = reinterpret_cast<broadcastServerInformation*>(spMsg.get());
 
-	std::string name = pRaw->username();
+	std::string name = pRaw->servername();
+	std::string ips;
+	for (auto ip : pRaw->ips())
+	{
+		ips += ":" + ip;
+	}
 
-
-	auto sprsp = std::make_shared<respLogin>();
-	sprsp->set_retcode(respLogin_eLoginRetCode_success);
-
-	spSockContainer->Send(sprsp);
-
-	//DebugLog("\nLogin %s:" ,name.c_str());
+	DebugLog("\nReceive Server Broadcast %s: %s" ,name.c_str(),ips.c_str());
 
 
 }

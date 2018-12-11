@@ -63,9 +63,7 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 	spClient.reset();
 }
 
-
-
-int main()
+void UdpClient()
 {
 	auto spUdp = std::make_shared<UdpSocketBase>();
 
@@ -80,18 +78,29 @@ int main()
 	spUdp->StopReceive();
 	spUdp->Stop();
 	spUdp.reset();
+}
 
+void TcpClient()
+{
 
 	//auto spClient = std::make_shared<TcpClientBase>();
 	auto spClient = std::make_shared<LocalTcpClient>();
-	
+
 	spClient->Start(1);
-	for (int i = 0 ; i < 1;i++)
+	for (int i = 0; i < 1; i++)
 	{
 		DoOnce(spClient);
 		std::this_thread::sleep_for(chrono::seconds(1));
 	}
 
 	spClient->Stop();
+}
+
+int main()
+{
+	TcpClient();
+	//UdpClient();
+
+
 	return 0;
 }
