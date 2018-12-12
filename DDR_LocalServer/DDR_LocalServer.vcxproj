@@ -158,6 +158,14 @@
     <ClCompile Include="..\..\Shared\proto\BaseCmd.pb.cc" />
     <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\connection.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\connection_manager.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\http_server.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\mime_types.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\reply.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\request_handler.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\request_parser.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\MessageSerializer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\TcpClientBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp" />
@@ -165,6 +173,9 @@
     <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_reader.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_value.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_writer.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinystr.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
@@ -184,6 +195,16 @@
     <ClInclude Include="..\..\Shared\src\Network\BaseMessageDispatcher.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseProcessor.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseSocketContainer.h" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer.h" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\connection.hpp" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\connection_manager.hpp" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\header.hpp" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\http_server.hpp" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\mime_types.hpp" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\reply.hpp" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\request.hpp" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\request_handler.hpp" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\request_parser.hpp" />
     <ClInclude Include="..\..\Shared\src\Network\MessageSerializer.h" />
     <ClInclude Include="..\..\Shared\src\Network\Singleton.h" />
     <ClInclude Include="..\..\Shared\src\Network\TcpClientBase.h" />
@@ -193,6 +214,7 @@
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h" />
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
     <ClInclude Include="HeartBeatProcessor.h" />
@@ -202,6 +224,9 @@
     <ClInclude Include="LocalServerUdpProcessor.h" />
     <ClInclude Include="LocalTcpServer.h" />
     <ClInclude Include="LoginProcessor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Shared\thirdparty\jsoncpp\src\json_valueiterator.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
