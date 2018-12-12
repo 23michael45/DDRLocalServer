@@ -7,7 +7,7 @@
 class HeartBeatProcessor : public DDRFramework::BaseProcessor
 {
 public:
-	HeartBeatProcessor();
+	HeartBeatProcessor(DDRFramework::BaseMessageDispatcher& dispatcher);
 	~HeartBeatProcessor();
 
 

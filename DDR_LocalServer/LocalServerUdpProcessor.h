@@ -11,13 +11,12 @@
 class LocalServerUdpProcessor : public DDRFramework::BaseProcessor
 {
 public:
-	LocalServerUdpProcessor();
+	LocalServerUdpProcessor(DDRFramework::BaseMessageDispatcher& dispatcher);
 	~LocalServerUdpProcessor();
 
 
 	virtual void Process(std::shared_ptr<DDRFramework::BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override;
 
-	virtual void AsyncProcess(std::shared_ptr<DDRFramework::BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override;
 };
 
 

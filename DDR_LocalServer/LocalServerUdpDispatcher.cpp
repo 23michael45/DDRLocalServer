@@ -10,7 +10,7 @@ LocalServerUdpDispatcher::LocalServerUdpDispatcher()
 {
 
 	broadcastServerInformation bcServerInfo;
-	m_ProcessorMap[bcServerInfo.GetTypeName()] = std::make_shared<LocalServerUdpProcessor>();
+	m_ProcessorMap[bcServerInfo.GetTypeName()] = std::make_shared<LocalServerUdpProcessor>(*this);
 }
 
 

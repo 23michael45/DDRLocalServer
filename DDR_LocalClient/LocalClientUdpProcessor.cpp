@@ -5,7 +5,7 @@
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
-LocalClientUdpProcessor::LocalClientUdpProcessor()
+LocalClientUdpProcessor::LocalClientUdpProcessor(BaseMessageDispatcher& dispatcher) :BaseProcessor(dispatcher)
 {
 }
 
@@ -29,9 +29,5 @@ void LocalClientUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 
 	DebugLog("\nReceive Server Broadcast %s: %s" ,name.c_str(),ips.c_str());
 
-
-}
-void LocalClientUdpProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
-{
 
 }

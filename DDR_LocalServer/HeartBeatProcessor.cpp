@@ -1,11 +1,12 @@
 #include "HeartBeatProcessor.h"
 #include "../../Shared/proto/BaseCmd.pb.h"
 #include "../../Shared/src/Utility/DDRMacro.h"
+#include "BaseClientBehavior.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
 
-HeartBeatProcessor::HeartBeatProcessor()
+HeartBeatProcessor::HeartBeatProcessor(BaseMessageDispatcher& dispatcher) : BaseProcessor::BaseProcessor(dispatcher)
 {
 }
 
@@ -29,4 +30,6 @@ void HeartBeatProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCont
 
 	spSockContainer->Send(sprsp);
 
+	std::shared_ptr<BaseClientBehavior> spBehavior = std::dynamic_pointer_cast<BaseClientBehavior>(spSockContainer->m_spTcpSocketContainer->GetBehavior());
+	spBehavior->ResetHeartBeat();
 }

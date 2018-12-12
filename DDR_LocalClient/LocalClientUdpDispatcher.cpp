@@ -9,7 +9,7 @@ LocalClientUdpDispatcher::LocalClientUdpDispatcher()
 {
 
 	broadcastServerInformation bcClientInfo;
-	m_ProcessorMap[bcClientInfo.GetTypeName()] = std::make_shared<LocalClientUdpProcessor>();
+	m_ProcessorMap[bcClientInfo.GetTypeName()] = std::make_shared<LocalClientUdpProcessor>(*this);
 }
 
 

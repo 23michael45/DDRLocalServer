@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Shared\proto\BaseCmd.pb.cc" />
     <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\HttpServer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\HttpServer\connection.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="BaseClientBehavior.cpp" />
     <ClCompile Include="HeartBeatProcessor.cpp" />
     <ClCompile Include="LocalServerDispatcher.cpp" />
     <ClCompile Include="LocalServerHeadRuleRouter.cpp" />
@@ -192,6 +194,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Shared\proto\BaseCmd.pb.h" />
     <ClInclude Include="..\..\Shared\src\FSM\FSM.h" />
+    <ClInclude Include="..\..\Shared\src\Logic\BaseBehavior.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseMessageDispatcher.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseProcessor.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseSocketContainer.h" />
@@ -213,10 +216,12 @@
     <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h" />
+    <ClInclude Include="..\..\Shared\src\Utility\Timer.hpp" />
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h" />
     <ClInclude Include="..\..\Shared\thirdparty\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
+    <ClInclude Include="BaseClientBehavior.h" />
     <ClInclude Include="HeartBeatProcessor.h" />
     <ClInclude Include="LocalServerDispatcher.h" />
     <ClInclude Include="LocalServerHeadRuleRouter.h" />

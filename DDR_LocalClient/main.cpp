@@ -44,7 +44,7 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 					spreq.reset();
 				}
 			}
-			catch (asio::system_error* e)
+			catch (asio::system_error& e)
 			{
 				break;
 			}

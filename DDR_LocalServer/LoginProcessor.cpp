@@ -2,10 +2,11 @@
 #include <memory>
 #include "../../Shared/proto/BaseCmd.pb.h"
 #include "../../Shared/src/Utility/DDRMacro.h"
+#include "BaseClientBehavior.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
-LoginProcessor::LoginProcessor()
+LoginProcessor::LoginProcessor(BaseMessageDispatcher& dispatcher):BaseProcessor::BaseProcessor(dispatcher)
 {
 }
 
@@ -29,13 +30,14 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	spSockContainer->Send(sprsp);
 
 
+	auto spClientBehavior = std::make_shared<BaseClientBehavior>();
+	spSockContainer->m_spTcpSocketContainer->BindBehavior(spClientBehavior);
 
-	//DebugLog("\nLogin %s:" ,name.c_str());
+	DebugLog("\nLogin %s:" ,name.c_str());
 
 
 }
-void LoginProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+void LoginProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer,std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
-	std::this_thread::sleep_for(std::chrono::seconds(10000));
-	
+	//std::this_thread::sleep_for(std::chrono::seconds(10));
 }

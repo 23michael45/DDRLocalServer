@@ -67,11 +67,65 @@ void TcpServer()
 
 
 }
+void TimerHandle(const asio::error_code& ec)
+{
+	DebugLog("\nTimer Handle");
+}
+void TimerHandleStop(const asio::error_code& ec)
+{
+	DebugLog("\nTimer Handle");
+}
+void SteadyTimer()
+{
+	asio::io_service ioservice1;
+	asio::io_service ioservice2;
+
+	asio::steady_timer timer1{ ioservice1, std::chrono::seconds{5} };
+	timer1.async_wait([](const asio::error_code &ec)
+	{ 
+		if (!ec)
+		{
+			std::cout << "3 sec\n";
+		}
+		else
+		{
+
+			std::cout << "timer error\n";
+
+		}
+	});
+
+	std::shared_ptr<asio::steady_timer> timer2 = std::make_shared<asio::steady_timer>( ioservice2, std::chrono::seconds{5} );
+
+
+	timer2->async_wait([](const asio::error_code &ec)
+	{
+		if (!ec)
+		{
+			std::cout << "3 sec\n";
+		}
+		else
+		{
+			std::cout << "timer error\n";
+
+		}
+	});
+
+	std::thread thread1{ [&ioservice1]() { ioservice1.run(); } };
+	std::thread thread2{ [&ioservice2]() { ioservice2.run(); } };
+	thread1.join();
+	thread2.join();
+
+}
 
 int main()
 {
-	//TcpServer();
-	UdpServer();
+	//SteadyTimer();
+
+
+
+	TcpServer();
+	//UdpServer();
 	
 	getchar();
 	return 0;

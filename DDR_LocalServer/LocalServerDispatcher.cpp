@@ -9,11 +9,11 @@ using namespace DDRFramework;
 
 LocalServerDispatcher::LocalServerDispatcher()
 {
-	heartBeat heartBeat;
-	m_ProcessorMap[heartBeat.GetTypeName()] = std::make_shared<HeartBeatProcessor>();
+	heartBeat hBeat;
+	m_ProcessorMap[hBeat.GetTypeName()] = std::make_shared<HeartBeatProcessor>(*this);
 
 	reqLogin rspSignin;
-	m_ProcessorMap[rspSignin.GetTypeName()] = std::make_shared<LoginProcessor>();
+	m_ProcessorMap[rspSignin.GetTypeName()] = std::make_shared<LoginProcessor>(*this);
 
 }
 

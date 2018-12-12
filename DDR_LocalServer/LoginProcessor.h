@@ -9,7 +9,7 @@
 class LoginProcessor : public DDRFramework::BaseProcessor
 {
 public:
-	LoginProcessor();
+	LoginProcessor(DDRFramework::BaseMessageDispatcher& dispatcher);
 	~LoginProcessor();
 
 

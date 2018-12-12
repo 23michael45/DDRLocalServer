@@ -5,7 +5,7 @@
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
-LoginProcessor::LoginProcessor()
+LoginProcessor::LoginProcessor(BaseMessageDispatcher& dispatcher) :BaseProcessor(dispatcher)
 {
 	m_RecvCount = 0;
 }
