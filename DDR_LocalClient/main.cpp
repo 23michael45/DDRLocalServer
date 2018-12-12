@@ -98,8 +98,8 @@ void TcpClient()
 
 int main()
 {
-	//TcpClient();
-	UdpClient();
+	TcpClient();
+	//UdpClient();
 
 
 	return 0;

@@ -13,7 +13,7 @@ public:
 	LoginProcessor(BaseMessageDispatcher& dispatcher);
 	~LoginProcessor();
 
-	virtual void Process(std::shared_ptr<TcpSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg);
+	virtual void Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override;
 
 private:
 	int m_RecvCount;

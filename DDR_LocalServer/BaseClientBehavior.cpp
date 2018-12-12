@@ -8,7 +8,6 @@ BaseClientBehavior::BaseClientBehavior()
 {
 }
 
-
 BaseClientBehavior::~BaseClientBehavior()
 {
 	DebugLog("\nBaseClientBehavior Destroy")

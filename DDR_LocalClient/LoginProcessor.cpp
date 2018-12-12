@@ -15,7 +15,7 @@ LoginProcessor::~LoginProcessor()
 {
 }
 
-void LoginProcessor::Process(std::shared_ptr<TcpSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 
 	respLogin* pRaw = reinterpret_cast<respLogin*>(spMsg.get());

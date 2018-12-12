@@ -26,6 +26,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 	auto sprsp = std::make_shared<respLogin>();
 	sprsp->set_retcode(respLogin_eLoginRetCode_success);
+	sprsp->set_uid(1);
 
 	spSockContainer->Send(sprsp);
 
