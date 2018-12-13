@@ -13,6 +13,7 @@ public:
 	~LocalTcpClient();
 
 	void OnConnected(TcpSocketContainer& container) override;
+	void OnDisconnect(TcpSocketContainer& container) override;
 
 	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
 

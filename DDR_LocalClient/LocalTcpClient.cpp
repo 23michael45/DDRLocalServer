@@ -3,9 +3,11 @@
 #include "../../Shared/src/Network/MessageSerializer.h"
 #include "../../Shared/src/Network/BaseMessageDispatcher.h"
 #include "LocalClientDispatcher.h"
+#include "LocalClientUdpDispatcher.h"
 
 
 #include "../../Shared/proto/BaseCmd.pb.h"
+#include "GlobalManager.h"
 using namespace DDRCommProto;
 
 LocalTcpClient::LocalTcpClient()
@@ -36,7 +38,17 @@ void LocalTcpClient::OnConnected(TcpSocketContainer& container)
 	spreq.reset();
 
 }
+void LocalTcpClient::OnDisconnect(TcpSocketContainer& container)
+{
+	TcpClientBase::OnDisconnect(container);
 
+
+
+	GlobalManager::Instance()->CreateUdp();
+	GlobalManager::Instance()->GetUdpClient()->Start();
+	GlobalManager::Instance()->GetUdpClient()->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
+	GlobalManager::Instance()->GetUdpClient()->StartReceive(28888);
+}
 
 void LocalTcpClient::StartHeartBeat()
 {
