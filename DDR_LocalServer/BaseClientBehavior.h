@@ -9,15 +9,14 @@ public:
 	BaseClientBehavior();
 	~BaseClientBehavior();
 
-	virtual void OnStart(DDRFramework::TcpSocketContainer& container) override;
-	virtual void Update(DDRFramework::TcpSocketContainer& container) override;
-	virtual void OnStop(DDRFramework::TcpSocketContainer& container) override;
+	virtual void OnStart(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer) override;
+	virtual void Update(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer) override;
+	virtual void OnStop(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer) override;
 
-	void ResetHeartBeat();
+	void ResetHeartBeat(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer);
 protected:
-	void HeartBeatTimeout(DDRFramework::timer_id id);
+	void HeartBeatTimeout(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer);
 
-	void ThreadEntry();
 
 	DDRFramework::Timer m_Timer;
 	DDRFramework::timer_id m_HeartBeatTimerID;

@@ -31,5 +31,9 @@ void HeartBeatProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCont
 	spSockContainer->Send(sprsp);
 
 	std::shared_ptr<BaseClientBehavior> spBehavior = std::dynamic_pointer_cast<BaseClientBehavior>(spSockContainer->m_spTcpSocketContainer->GetBehavior());
-	spBehavior->ResetHeartBeat();
+	if (spBehavior)
+	{
+		auto spContainer = spSockContainer->m_spTcpSocketContainer;
+		spBehavior->ResetHeartBeat(spContainer);
+	}
 }
