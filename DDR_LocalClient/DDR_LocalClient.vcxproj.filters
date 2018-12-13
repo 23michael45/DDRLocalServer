@@ -96,6 +96,9 @@
     <ClCompile Include="LocalClientUdpProcessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GlobalManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -128,9 +131,6 @@
     <ClInclude Include="..\..\Shared\src\FSM\FSM.h">
       <Filter>Shared\FSM</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\src\Network\Singleton.h">
-      <Filter>Shared\Network</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\src\Network\BaseProcessor.h">
       <Filter>Shared\Network</Filter>
     </ClInclude>
@@ -159,6 +159,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LocalClientUdpProcessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\Singleton.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

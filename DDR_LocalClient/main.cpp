@@ -7,6 +7,7 @@
 #include <thread>
 #include <chrono>
 #include "LocalTcpClient.h"
+#include "GlobalManager.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -62,24 +63,6 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 	spClient->Disconnect();
 	spClient.reset();
 }
-
-void UdpClient()
-{
-	auto spUdp = std::make_shared<UdpSocketBase>();
-
-	spUdp->Start();
-	spUdp->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
-
-	spUdp->StartReceive(28888);
-
-
-	std::this_thread::sleep_for(chrono::seconds(1000));
-
-	spUdp->StopReceive();
-	spUdp->Stop();
-	spUdp.reset();
-}
-
 void TcpClient()
 {
 
@@ -95,12 +78,25 @@ void TcpClient()
 
 	spClient->Stop();
 }
+void UdpClient()
+{
+
+	GlobalManager::Instance()->CreateUdp();
+	GlobalManager::Instance()->GetUdpClient()->Start();
+	GlobalManager::Instance()->GetUdpClient()->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
+	GlobalManager::Instance()->GetUdpClient()->StartReceive(28888);
+
+
+}
+
 
 int main()
 {
-	TcpClient();
-	//UdpClient();
+	UdpClient();
 
-
+	while (!gQuit)
+	{
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+	}
 	return 0;
 }

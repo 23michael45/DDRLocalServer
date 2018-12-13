@@ -8,11 +8,12 @@ using namespace DDRCommProto;
 LocalClientUdpDispatcher::LocalClientUdpDispatcher()
 {
 
-	broadcastServerInformation bcClientInfo;
+	bcLSAddr bcClientInfo;
 	m_ProcessorMap[bcClientInfo.GetTypeName()] = std::make_shared<LocalClientUdpProcessor>(*this);
 }
 
 
 LocalClientUdpDispatcher::~LocalClientUdpDispatcher()
 {
+	DebugLog("\nLocalClientUdpDispatcher Destroy");
 }

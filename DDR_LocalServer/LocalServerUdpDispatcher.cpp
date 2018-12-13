@@ -9,7 +9,7 @@ using namespace DDRCommProto;
 LocalServerUdpDispatcher::LocalServerUdpDispatcher()
 {
 
-	broadcastServerInformation bcServerInfo;
+	bcLSAddr bcServerInfo;
 	m_ProcessorMap[bcServerInfo.GetTypeName()] = std::make_shared<LocalServerUdpProcessor>(*this);
 }
 

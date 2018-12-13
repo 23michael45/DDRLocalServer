@@ -2,9 +2,10 @@
 #define LocalTcpClient_h__
 
 #include "../../Shared/src/Network/TcpClientBase.h"
+#include "../../Shared/src/Utility/Singleton.h"
 
 using namespace DDRFramework;
-class LocalTcpClient : public TcpClientBase
+class LocalTcpClient : public TcpClientBase 
 {
 public:
 	LocalTcpClient();
