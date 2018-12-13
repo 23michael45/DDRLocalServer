@@ -2,6 +2,7 @@
 #include <memory>
 #include "../../Shared/proto/BaseCmd.pb.h"
 #include "../../Shared/src/Utility/DDRMacro.h"
+#include "GlobalManager.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -24,6 +25,9 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	respLogin_eLoginRetCode retcode = pRaw->retcode();
 
 	m_RecvCount++;
+
+
+	GlobalManager::Instance()->GetTcpClient()->StartHeartBeat();
 
 	if (m_RecvCount % 100 == 0)
 	{

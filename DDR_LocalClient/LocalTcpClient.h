@@ -3,6 +3,7 @@
 
 #include "../../Shared/src/Network/TcpClientBase.h"
 #include "../../Shared/src/Utility/Singleton.h"
+#include "../../Shared/src/Utility/Timer.hpp"
 
 using namespace DDRFramework;
 class LocalTcpClient : public TcpClientBase 
@@ -18,6 +19,21 @@ public:
 	auto shared_from_base() {
 		return std::static_pointer_cast<LocalTcpClient>(shared_from_this());
 	}
+
+
+	void StartHeartBeat();
+	void StopHeartBeat();
+
+
+
+private:
+	void SendHeartBeatOnce(timer_id id);
+
+
+
+
+	DDRFramework::Timer m_Timer;
+	DDRFramework::timer_id m_HeartBeatTimerID;
 };
 
 

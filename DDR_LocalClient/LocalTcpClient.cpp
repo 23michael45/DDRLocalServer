@@ -36,3 +36,30 @@ void LocalTcpClient::OnConnected(TcpSocketContainer& container)
 	spreq.reset();
 
 }
+
+
+void LocalTcpClient::StartHeartBeat()
+{
+	/*m_HeartBeatTimerID = m_Timer.add(std::chrono::seconds(1) , [](timer_id id)
+	{
+
+	});*/
+
+	m_HeartBeatTimerID = m_Timer.add(std::chrono::seconds(1), std::bind(&LocalTcpClient::SendHeartBeatOnce, shared_from_base(),std::placeholders::_1), std::chrono::seconds(1));
+}
+void LocalTcpClient::StopHeartBeat()
+{
+	m_Timer.remove(m_HeartBeatTimerID);
+}
+void LocalTcpClient::SendHeartBeatOnce(timer_id id)
+{
+	heartBeat hb;
+	auto sphb = std::make_shared<heartBeat>();
+	sphb->set_whatever("hb");
+
+	if (m_spClient && m_spClient->IsConnected())
+	{
+		m_spClient->Send(sphb);
+	}
+	sphb.reset();
+}
