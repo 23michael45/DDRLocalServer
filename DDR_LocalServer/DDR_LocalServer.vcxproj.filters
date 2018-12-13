@@ -150,6 +150,9 @@
     <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp">
       <Filter>Shared\Network</Filter>
     </ClCompile>
+    <ClCompile Include="GlobalManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -262,6 +265,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\Timer.hpp">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

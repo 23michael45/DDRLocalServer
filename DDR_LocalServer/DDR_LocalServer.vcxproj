@@ -182,6 +182,7 @@
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="BaseClientBehavior.cpp" />
+    <ClCompile Include="GlobalManager.cpp" />
     <ClCompile Include="HeartBeatProcessor.cpp" />
     <ClCompile Include="LocalServerDispatcher.cpp" />
     <ClCompile Include="LocalServerHeadRuleRouter.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
     <ClInclude Include="BaseClientBehavior.h" />
+    <ClInclude Include="GlobalManager.h" />
     <ClInclude Include="HeartBeatProcessor.h" />
     <ClInclude Include="LocalServerDispatcher.h" />
     <ClInclude Include="LocalServerHeadRuleRouter.h" />
