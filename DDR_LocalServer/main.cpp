@@ -58,8 +58,8 @@ void TcpServer()
 	std::string servername = loader.GetValue("ServerName");
 	std::string threadCount = loader.GetValue("ThreadCount");
 
-	loader.SetValue(std::string("ServerName"), std::string("LocalServerV2"));
-	loader.DoSave();
+	//loader.SetValue(std::string("ServerName"), std::string("LocalServerV2"));
+	//loader.DoSave();
 
 	std::make_shared<LocalTcpServer>(std::stoi(port))->Start(std::stoi(threadCount));
 	std::make_shared<TcpServerBase>(88)->Start();
