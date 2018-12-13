@@ -27,8 +27,6 @@ public:
 	std::shared_ptr<LocalTcpClient> GetTcpClient();
 	std::shared_ptr<UdpSocketBase> GetUdpClient();
 
-
-
 private:
 
 	void OnUdpDisconnect(UdpSocketBase& container);

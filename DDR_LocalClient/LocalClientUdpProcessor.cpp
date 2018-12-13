@@ -32,7 +32,7 @@ void LocalClientUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 	for (auto ip : pRaw->ips())
 	{
 		ips += ":" + ip;
-		if (ip.find("192.168.1.") > 0)
+		if (ip.find("192.168.1.") != std::string::npos)
 		{
 			conntectip = ip;
 		}
@@ -60,10 +60,7 @@ void LocalClientUdpProcessor::TcpClientStart(std::string serverip, int serverpor
 		std::ostringstream strport;
 		strport << serverport;
 		const std::string sPort(strport.str());
-		//GlobalManager::Instance()->GetTcpClient()->Connect(serverip, sPort);
-
-		//test code
-		GlobalManager::Instance()->GetTcpClient()->Connect("127.0.0.1", "88");
+		GlobalManager::Instance()->GetTcpClient()->Connect(serverip, sPort);
 
 	}
 

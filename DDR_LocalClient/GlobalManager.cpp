@@ -11,7 +11,6 @@ GlobalManager::~GlobalManager()
 void GlobalManager::CreateUdp()
 {
 	m_spUdpClient = std::make_shared<UdpSocketBase>();
-	//UdpSocketBase& udp = *(m_spUdpClient.get());
 	m_spUdpClient->BindOnDisconnect(std::bind(&GlobalManager::OnUdpDisconnect, this, std::placeholders::_1));
 
 }
