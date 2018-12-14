@@ -22,9 +22,9 @@ void GlobalManager::StartTcpServer()
 {
 
 	XmlLoader loader("Config/LocalServerConfig.xml");
-	std::string port = loader.GetValue("Port");
+	std::string port = loader.GetValue("TcpPort");
 	std::string servername = loader.GetValue("ServerName");
-	std::string threadCount = loader.GetValue("ThreadCount");
+	std::string threadCount = loader.GetValue("ServerThreadCount");
 
 	//loader.SetValue(std::string("ServerName"), std::string("LocalServerV2"));
 	//loader.DoSave();
@@ -51,7 +51,7 @@ void GlobalManager::StartUdpServer()
 
 
 		XmlLoader loader("Config/LocalServerConfig.xml");
-		std::string port = loader.GetValue("Port");
+		std::string port = loader.GetValue("UdpPort");
 		bc->set_port(std::stoi(port));
 
 		asio::io_service io_service;
