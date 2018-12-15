@@ -26,16 +26,16 @@ std::shared_ptr<TcpSessionBase> LocalTcpServer::BindSerializerDispatcher()
 }
 
 
-std::shared_ptr<TcpSessionBase> LocalTcpServer::GetTcpSessionByIP(std::string ip)
+std::shared_ptr<TcpSessionBase> LocalTcpServer::GetTcpSessionBySocket(tcp::socket* pSocket)
 {
-	if (m_SessionMap.find(ip) != m_SessionMap.end())
+	if (m_SessionMap.find(pSocket) != m_SessionMap.end())
 	{
-		return m_SessionMap[ip];
+		return m_SessionMap[pSocket];
 	}
 	return nullptr;
 }
 
-std::map<std::string, std::shared_ptr<TcpSessionBase>>& LocalTcpServer::GetTcpSocketContainerMap()
+std::map<tcp::socket*, std::shared_ptr<TcpSessionBase>>& LocalTcpServer::GetTcpSocketContainerMap()
 {
 	return m_SessionMap;
 }

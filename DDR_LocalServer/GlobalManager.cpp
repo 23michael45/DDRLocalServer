@@ -52,7 +52,8 @@ void GlobalManager::StartUdpServer()
 
 		XmlLoader loader("Config/LocalServerConfig.xml");
 		std::string port = loader.GetValue("UdpPort");
-		bc->set_port(std::stoi(port));
+		std::string tcpport = loader.GetValue("TcpPort");
+		bc->set_port(std::stoi(tcpport));
 
 		asio::io_service io_service;
 		tcp::resolver resolver(io_service);
@@ -72,7 +73,7 @@ void GlobalManager::StartUdpServer()
 		m_spUdpServer->Start();
 		m_spUdpServer->GetSerializer()->BindDispatcher(std::make_shared<LocalServerUdpDispatcher>());
 
-		m_spUdpServer->StartBroadcast(28888, bc, 2000);
+		m_spUdpServer->StartBroadcast(std::stoi(port), bc, 2000);
 		//spUdp->StartReceive(28888);
 
 

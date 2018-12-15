@@ -17,8 +17,8 @@ public:
 
 	virtual std::shared_ptr<TcpSessionBase> BindSerializerDispatcher();
 
-	std::shared_ptr<TcpSessionBase> GetTcpSessionByIP(std::string ip);
-	std::map<std::string,std::shared_ptr<TcpSessionBase>>& GetTcpSocketContainerMap();
+	std::shared_ptr<TcpSessionBase> GetTcpSessionBySocket(tcp::socket* pSocket);
+	std::map<tcp::socket*,std::shared_ptr<TcpSessionBase>>& GetTcpSocketContainerMap();
 
 
 	auto shared_from_base() {
