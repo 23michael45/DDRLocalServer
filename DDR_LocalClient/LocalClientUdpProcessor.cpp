@@ -24,12 +24,12 @@ void LocalClientUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 
 	bcLSAddr* pRaw = reinterpret_cast<bcLSAddr*>(spMsg.get());
 
-	std::string name = pRaw->name();
+	std::string name = pRaw->lsinfo().name();
 	std::string ips;
-	int port = pRaw->port();
+	int port = pRaw->lsinfo().port();
 
 	std::string conntectip;
-	for (auto ip : pRaw->ips())
+	for (auto ip : pRaw->lsinfo().ips())
 	{
 		ips += ":" + ip;
 		if (ip.find("192.168.1.") != std::string::npos)

@@ -46,39 +46,46 @@ void GlobalManager::StopTcpServer()
 
 void GlobalManager::StartUdpServer()
 {
-		auto bc = std::make_shared<bcLSAddr>();
-		bc->set_name("ServerNameRobotX");
+
+	XmlLoader loader("Config/LocalServerConfig.xml");
+	std::string port = loader.GetValue("UdpPort");
+	std::string tcpport = loader.GetValue("TcpPort");
 
 
-		XmlLoader loader("Config/LocalServerConfig.xml");
-		std::string port = loader.GetValue("UdpPort");
-		std::string tcpport = loader.GetValue("TcpPort");
-		bc->set_port(std::stoi(tcpport));
-
-		asio::io_service io_service;
-		tcp::resolver resolver(io_service);
-		tcp::resolver::query query(asio::ip::host_name(), "");
-		tcp::resolver::iterator iter = resolver.resolve(query);
-		tcp::resolver::iterator end; // End marker.
+	auto bc = std::make_shared<bcLSAddr>();
 
 
-		while (iter != end)
-		{
-			tcp::endpoint ep = *iter++;
-			bc->add_ips(ep.address().to_string());
-		}
-
-		m_spUdpServer = std::make_shared<UdpSocketBase>();
-
-		m_spUdpServer->Start();
-		m_spUdpServer->GetSerializer()->BindDispatcher(std::make_shared<LocalServerUdpDispatcher>());
-
-		m_spUdpServer->StartBroadcast(std::stoi(port), bc, 2000);
-		//spUdp->StartReceive(28888);
+	bcLSAddr_ServerInfo lsinfo;
+	lsinfo.set_name("ServerNameRobotX");
+	lsinfo.set_port(std::stoi(tcpport));
 
 
-		//spUdp->StopReceive();
-		
+	asio::io_service io_service;
+	tcp::resolver resolver(io_service);
+	tcp::resolver::query query(asio::ip::host_name(), "");
+	tcp::resolver::iterator iter = resolver.resolve(query);
+	tcp::resolver::iterator end; // End marker.
+
+
+	while (iter != end)
+	{
+		tcp::endpoint ep = *iter++;
+		lsinfo.add_ips(ep.address().to_string());
+	}
+
+	bc->set_allocated_lsinfo(&lsinfo);
+
+	m_spUdpServer = std::make_shared<UdpSocketBase>();
+
+	m_spUdpServer->Start();
+	m_spUdpServer->GetSerializer()->BindDispatcher(std::make_shared<LocalServerUdpDispatcher>());
+
+	m_spUdpServer->StartBroadcast(std::stoi(port), bc, 2000);
+	//spUdp->StartReceive(28888);
+
+
+	//spUdp->StopReceive();
+
 }
 void GlobalManager::StopUdpServer()
 {

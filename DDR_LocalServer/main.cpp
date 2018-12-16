@@ -3,6 +3,7 @@
 #include "../../Shared/src/Network/TcpClientBase.h"
 #include "LocalTcpServer.h"
 #include "../../Shared/src/Utility/XmlLoader.h"
+#include "../../Shared/src/Utility/MiniDump.h"
 #include "../../Shared/src/Network/UdpSocketBase.h"
 #include "LocalServerUdpDispatcher.h"
 #include "GlobalManager.h"
@@ -16,10 +17,14 @@ using namespace std;
 
 char gQuit = 0;
 
+
 int main()
 {
+	InitMinDump();
+
 	GlobalManager::Instance()->StartTcpServer();
 	GlobalManager::Instance()->StartUdpServer();
+
 
 	while (!gQuit)
 	{
