@@ -46,6 +46,15 @@
     <Filter Include="Servers">
       <UniqueIdentifier>{7e96e48d-10e8-4c94-979c-0f94e322d576}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shared\Thirdparty\curl">
+      <UniqueIdentifier>{1c3b33b9-9dc4-4917-91cc-68f0a86a10d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\curl\lib">
+      <UniqueIdentifier>{0e838573-44c7-4205-b387-0578a0d686de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\curl-asio">
+      <UniqueIdentifier>{1fe027bd-1750-4cc1-95e8-03ec6fedd200}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -186,6 +195,420 @@
     </ClCompile>
     <ClCompile Include="Processors\AlarmProcessor.cpp">
       <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\amigaos.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\asyn-ares.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\asyn-thread.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\base64.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\conncache.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\connect.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\content_encoding.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\cookie.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_addrinfo.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_ctype.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_des.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_endian.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_fnmatch.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_gethostname.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_gssapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_memrchr.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_multibyte.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_ntlm_core.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_ntlm_wb.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_path.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_range.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_rtmp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_sasl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_threads.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\dict.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\doh.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\dotdot.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\easy.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\escape.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\file.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\fileinfo.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\formdata.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ftp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ftplistparser.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\getenv.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\getinfo.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\gopher.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hash.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hmac.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostasyn.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostcheck.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostip.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostip4.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostip6.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostsyn.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_chunks.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_digest.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_negotiate.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_ntlm.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_proxy.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http2.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\idn_win32.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\if2ip.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\imap.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\inet_ntop.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\inet_pton.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\krb5.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ldap.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\llist.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\md4.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\md5.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\memdebug.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\mime.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\mprintf.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\multi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\netrc.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\non-ascii.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\nonblock.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\nwlib.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\nwos.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\openldap.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\parsedate.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\pingpong.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\pipeline.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\pop3.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\progress.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\psl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\rand.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\rtsp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\security.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\select.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\sendf.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\setopt.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\sha256.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\share.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\slist.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\smb.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\smtp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\socks.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\socks_gssapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\socks_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\speedcheck.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\splay.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ssh.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ssh-libssh.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strcase.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strdup.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strerror.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strtok.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strtoofft.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\system_win32.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\telnet.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\tftp.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\timeval.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\transfer.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\url.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\urlapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\version.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\warnless.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\wildcard.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\x509asn1.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\cleartext.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\cram.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\digest.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\digest_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\krb5_gssapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\krb5_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\ntlm.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\ntlm_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\oauth2.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\spnego_gssapi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\spnego_sspi.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\vauth.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\cyassl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\darwinssl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\gskit.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\gtls.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\mbedtls.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\mesalink.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\nss.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\openssl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\polarssl.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\polarssl_threadlock.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\schannel.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\schannel_verify.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\vtls.c">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -338,6 +761,9 @@
     </ClInclude>
     <ClInclude Include="Processors\AlarmProcessor.h">
       <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\curl-asio\curl-asio.hpp">
+      <Filter>Shared\Thirdparty\curl-asio</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

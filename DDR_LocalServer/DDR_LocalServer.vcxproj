@@ -81,7 +81,7 @@
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -149,11 +149,12 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Debug\Conf
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>PROTOBUF_USE_DLLS;_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE ;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;PROTOBUF_USE_DLLS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;libcurl_EXPORTS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../Shared/Thirdparty/curl/include;$(ProjectDir)../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../Shared/Thirdparty/curl/;$(ProjectDir)../../Shared/Thirdparty/curl-asio/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -190,6 +191,144 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\amigaos.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\asyn-ares.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\asyn-thread.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\base64.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\conncache.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\connect.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\content_encoding.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\cookie.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_addrinfo.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_ctype.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_des.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_endian.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_fnmatch.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_gethostname.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_gssapi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_memrchr.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_multibyte.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_ntlm_core.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_ntlm_wb.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_path.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_range.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_rtmp.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_sasl.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_sspi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\curl_threads.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\dict.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\doh.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\dotdot.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\easy.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\escape.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\file.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\fileinfo.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\formdata.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ftp.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ftplistparser.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\getenv.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\getinfo.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\gopher.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hash.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hmac.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostasyn.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostcheck.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostip.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostip4.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostip6.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\hostsyn.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http2.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_chunks.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_digest.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_negotiate.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_ntlm.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\http_proxy.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\idn_win32.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\if2ip.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\imap.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\inet_ntop.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\inet_pton.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\krb5.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ldap.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\llist.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\md4.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\md5.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\memdebug.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\mime.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\mprintf.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\multi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\netrc.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\non-ascii.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\nonblock.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\nwlib.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\nwos.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\openldap.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\parsedate.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\pingpong.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\pipeline.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\pop3.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\progress.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\psl.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\rand.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\rtsp.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\security.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\select.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\sendf.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\setopt.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\sha256.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\share.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\slist.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\smb.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\smtp.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\socks.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\socks_gssapi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\socks_sspi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\speedcheck.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\splay.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ssh-libssh.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\ssh.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strcase.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strdup.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strerror.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strtok.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\strtoofft.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\system_win32.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\telnet.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\tftp.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\timeval.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\transfer.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\url.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\urlapi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\cleartext.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\cram.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\digest.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\digest_sspi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\krb5_gssapi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\krb5_sspi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\ntlm.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\ntlm_sspi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\oauth2.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\spnego_gssapi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\spnego_sspi.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vauth\vauth.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\version.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\cyassl.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\darwinssl.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\gskit.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\gtls.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\mbedtls.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\mesalink.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\nss.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\openssl.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\polarssl.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\polarssl_threadlock.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\schannel.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\schannel_verify.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\vtls\vtls.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\warnless.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\wildcard.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\curl\lib\x509asn1.c" />
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_reader.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_value.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_writer.cpp" />
@@ -247,6 +386,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.h" />
     <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.h" />
     <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3ext.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\curl-asio\curl-asio.hpp" />
     <ClInclude Include="..\..\Shared\thirdparty\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
