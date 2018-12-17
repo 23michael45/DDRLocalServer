@@ -148,6 +148,7 @@ bool DBManager::Open(std::string& filename)
 bool DBManager::Remove(std::string& filename)
 {
 	remove(filename.c_str());
+	return true;
 }
 
 
@@ -359,4 +360,5 @@ bool DBManager::CodeSample()
 	//	<< " rows in emp table in ";
 	//cout << tmEnd - tmStart << " seconds (that was even faster!)" << endl;
 	//cout << endl << "End of tests" << endl;
+	return false;
 }
