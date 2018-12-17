@@ -180,6 +180,8 @@
     <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\MiniDump.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.c" />
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_reader.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_value.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_writer.cpp" />
@@ -226,6 +228,9 @@
     <ClInclude Include="..\..\Shared\src\Utility\MiniDump.h" />
     <ClInclude Include="..\..\Shared\src\Utility\Timer.hpp" />
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3ext.h" />
     <ClInclude Include="..\..\Shared\thirdparty\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />

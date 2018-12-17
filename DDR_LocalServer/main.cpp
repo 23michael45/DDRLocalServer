@@ -17,6 +17,11 @@ using namespace std;
 
 char gQuit = 0;
 
+#include "../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
+#include <ctime>
+#include <iostream>
+
+using namespace std;
 
 int main()
 {

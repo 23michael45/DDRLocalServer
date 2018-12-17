@@ -43,6 +43,9 @@
     <Filter Include="Shared\Logic">
       <UniqueIdentifier>{11cc90f6-4094-462c-b0b9-924beae2cfbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shared\Thirdparty\cppsqlite">
+      <UniqueIdentifier>{42b4a83a-5570-4bd6-b131-2136a88506d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -155,6 +158,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\src\Utility\MiniDump.cpp">
       <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.cpp">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.c">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +283,15 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\MiniDump.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.h">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.h">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3ext.h">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

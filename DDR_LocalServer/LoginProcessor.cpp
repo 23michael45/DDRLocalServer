@@ -22,12 +22,19 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	reqLogin* pRaw = reinterpret_cast<reqLogin*>(spMsg.get());
 
 	std::string name = pRaw->username();
+	reqLogin_eCltType type = pRaw->type();
+	std::string robotID = pRaw->robotid();
+	std::string robotPWD = pRaw->robotpwd();
+	int cltOpLv = pRaw->cltoplv();
+	int UID = pRaw->uid();
+
+
+
 
 
 	auto sprsp = std::make_shared<respLogin>();
 	sprsp->set_retcode(respLogin_eLoginRetCode_success);
 	sprsp->set_uid(1);
-
 	spSockContainer->Send(sprsp);
 
 
