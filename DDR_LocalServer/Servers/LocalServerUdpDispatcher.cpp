@@ -1,8 +1,8 @@
 #include "LocalServerUdpDispatcher.h"
-#include "LocalServerUdpProcessor.h"
-#include "../../Shared/proto/BaseCmd.pb.h"
-#include "LoginProcessor.h"
-#include "HeartBeatProcessor.h"
+#include "../Processors/LocalServerUdpProcessor.h"
+#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "../Processors/LoginProcessor.h"
+#include "../Processors/HeartBeatProcessor.h"
 
 
 using namespace DDRCommProto;

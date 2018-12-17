@@ -1,12 +1,12 @@
-#include "../../Shared/src/Network/MessageSerializer.h"
-#include "../../Shared/src/Network/TcpServerBase.h"
-#include "../../Shared/src/Network/TcpClientBase.h"
-#include "LocalTcpServer.h"
-#include "../../Shared/src/Utility/XmlLoader.h"
-#include "../../Shared/src/Utility/MiniDump.h"
-#include "../../Shared/src/Network/UdpSocketBase.h"
-#include "LocalServerUdpDispatcher.h"
-#include "GlobalManager.h"
+#include "../../../Shared/src/Network/MessageSerializer.h"
+#include "../../../Shared/src/Network/TcpServerBase.h"
+#include "../../../Shared/src/Network/TcpClientBase.h"
+#include "Servers/LocalTcpServer.h"
+#include "../../../Shared/src/Utility/XmlLoader.h"
+#include "../../../Shared/src/Utility/MiniDump.h"
+#include "../../../Shared/src/Network/UdpSocketBase.h"
+#include "Servers/LocalServerUdpDispatcher.h"
+#include "Managers/GlobalManager.h"
 
 #include <thread>
 #include <chrono>
@@ -17,7 +17,7 @@ using namespace std;
 
 char gQuit = 0;
 
-#include "../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
+#include "../../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
 #include <ctime>
 #include <iostream>
 

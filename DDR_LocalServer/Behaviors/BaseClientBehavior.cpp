@@ -1,6 +1,6 @@
-#include "BaseClientBehavior.h"
-#include "../../Shared/src/Network/TcpSocketContainer.h"
-#include "../../Shared/src/Utility/DDRMacro.h"
+#include "../Behaviors/BaseClientBehavior.h"
+#include "../../../Shared/src/Network/TcpSocketContainer.h"
+#include "../../../Shared/src/Utility/DDRMacro.h"
 #include <chrono>
 #include <thread>
 

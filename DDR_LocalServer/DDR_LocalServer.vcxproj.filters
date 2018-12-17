@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Shared">
       <UniqueIdentifier>{f6df96da-85b1-4e24-9fd6-cc034a054cc5}</UniqueIdentifier>
     </Filter>
@@ -45,6 +33,18 @@
     </Filter>
     <Filter Include="Shared\Thirdparty\cppsqlite">
       <UniqueIdentifier>{42b4a83a-5570-4bd6-b131-2136a88506d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Processors">
+      <UniqueIdentifier>{638d8b09-6714-489c-b322-11f528f3d6c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Behaviors">
+      <UniqueIdentifier>{b9e30628-3028-4414-b504-550afc68bc9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{a9769105-ad81-4f40-8ce9-2ef22099cddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Servers">
+      <UniqueIdentifier>{7e96e48d-10e8-4c94-979c-0f94e322d576}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,32 +84,8 @@
     <ClCompile Include="..\..\Shared\src\Network\TcpSocketContainer.cpp">
       <Filter>Shared\Network</Filter>
     </ClCompile>
-    <ClCompile Include="LocalServerDispatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LocalTcpServer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LoginProcessor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LocalServerHeadRuleRouter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HeartBeatProcessor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp">
       <Filter>Shared\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="LocalServerUdpProcessor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LocalServerUdpDispatcher.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp">
       <Filter>Shared\Network</Filter>
@@ -147,14 +123,8 @@
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_writer.cpp">
       <Filter>Shared\Thirdparty\jsoncpp</Filter>
     </ClCompile>
-    <ClCompile Include="BaseClientBehavior.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp">
       <Filter>Shared\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalManager.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\src\Utility\MiniDump.cpp">
       <Filter>Shared\Utility</Filter>
@@ -164,6 +134,58 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.c">
       <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Behaviors\BaseClientBehavior.cpp">
+      <Filter>Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\GlobalManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\HeartBeatProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\LocalServerUdpProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\LoginProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\TalkProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Servers\LocalServerDispatcher.cpp">
+      <Filter>Servers</Filter>
+    </ClCompile>
+    <ClCompile Include="Servers\LocalServerHeadRuleRouter.cpp">
+      <Filter>Servers</Filter>
+    </ClCompile>
+    <ClCompile Include="Servers\LocalServerUdpDispatcher.cpp">
+      <Filter>Servers</Filter>
+    </ClCompile>
+    <ClCompile Include="Servers\LocalTcpServer.cpp">
+      <Filter>Servers</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\CmdProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\FileAddressProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\FileProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\StatusProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\TalkHBProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\TextChatProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\AlarmProcessor.cpp">
+      <Filter>Processors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,29 +231,8 @@
     <ClInclude Include="..\..\Shared\src\Network\TcpSocketContainer.h">
       <Filter>Shared\Network</Filter>
     </ClInclude>
-    <ClInclude Include="LocalServerDispatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LocalTcpServer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LoginProcessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LocalServerHeadRuleRouter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HeartBeatProcessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h">
       <Filter>Shared\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="LocalServerUdpProcessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LocalServerUdpDispatcher.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Network\BaseSocketContainer.h">
       <Filter>Shared\Network</Filter>
@@ -272,14 +273,8 @@
     <ClInclude Include="..\..\Shared\src\Logic\BaseBehavior.h">
       <Filter>Shared\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="BaseClientBehavior.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\Timer.hpp">
       <Filter>Shared\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalManager.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\MiniDump.h">
       <Filter>Shared\Utility</Filter>
@@ -292,6 +287,57 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3ext.h">
       <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviors\BaseClientBehavior.h">
+      <Filter>Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\GlobalManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\HeartBeatProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\LocalServerUdpProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\LoginProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\TalkProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Servers\LocalServerDispatcher.h">
+      <Filter>Servers</Filter>
+    </ClInclude>
+    <ClInclude Include="Servers\LocalServerHeadRuleRouter.h">
+      <Filter>Servers</Filter>
+    </ClInclude>
+    <ClInclude Include="Servers\LocalServerUdpDispatcher.h">
+      <Filter>Servers</Filter>
+    </ClInclude>
+    <ClInclude Include="Servers\LocalTcpServer.h">
+      <Filter>Servers</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\CmdProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\FileAddressProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\FileProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\StatusProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\TalkHBProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\TextChatProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\AlarmProcessor.h">
+      <Filter>Processors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

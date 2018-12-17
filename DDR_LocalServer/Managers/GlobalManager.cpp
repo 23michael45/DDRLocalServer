@@ -1,15 +1,15 @@
 #include "GlobalManager.h"
 
 
-#include "../../Shared/src/Utility/XmlLoader.h"
-#include "LocalServerUdpDispatcher.h"
+#include "../../../Shared/src/Utility/XmlLoader.h"
+#include "../Servers/LocalServerUdpDispatcher.h"
 #include <thread>
 #include <chrono>
 #include <iostream>
 #include <fstream>
 
-#include "../../Shared/proto/BaseCmd.pb.h"
-#include "../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
+#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "../../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
 using namespace DDRCommProto;
 using namespace std;
 
@@ -57,13 +57,14 @@ void GlobalManager::StartUdpServer()
 	XmlLoader loader("Config/LocalServerConfig.xml");
 	std::string port = loader.GetValue("UdpPort");
 	std::string tcpport = loader.GetValue("TcpPort");
+	std::string servername = loader.GetValue("ServerName");
 
 
 	auto bc = std::make_shared<bcLSAddr>();
 
 
 	bcLSAddr_ServerInfo lsinfo;
-	lsinfo.set_name("ServerNameRobotX");
+	lsinfo.set_name(servername);
 	lsinfo.set_port(std::stoi(tcpport));
 
 
@@ -157,6 +158,7 @@ bool DBManager::CreateUserTable()
 		m_DB.execDML("create table user(username string, userpwd string,priority int);");
 		int nRows = 0;
 		nRows = m_DB.execDML("insert into user values ('admin', 'admin',0);");
+		nRows = m_DB.execDML("insert into user values ('lsm', 'lsm',0);");
 		/*nRows = m_DB.execDML("insert into user values ('administrator', 'admin',99);");
 		nRows = m_DB.execDML("update user set priority = 99 where username = 'admin';");
 		nRows = m_DB.execDML("delete from user where username = 'administrator';");*/

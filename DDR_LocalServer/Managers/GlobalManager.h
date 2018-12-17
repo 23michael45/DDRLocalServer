@@ -1,11 +1,11 @@
 #ifndef GlobalManager_h__
 #define GlobalManager_h__
 
-#include "../../Shared/src/Network/UdpSocketBase.h"
-#include "../../Shared/src/Utility/Singleton.h"
-#include "../../Shared/src/Utility/XmlLoader.h"
-#include "../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
-#include "LocalTcpServer.h"
+#include "../../../Shared/src/Network/UdpSocketBase.h"
+#include "../../../Shared/src/Utility/Singleton.h"
+#include "../../../Shared/src/Utility/XmlLoader.h"
+#include "../../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
+#include "../Servers/LocalTcpServer.h"
 
 using namespace DDRFramework;
 class DBManager;

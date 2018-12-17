@@ -1,6 +1,6 @@
 #ifndef LocalServerHeadRuleRouter_h__
 #define LocalServerHeadRuleRouter_h__
-#include "../../Shared/src/Network/BaseProcessor.h"
+#include "../../../Shared/src/Network/BaseProcessor.h"
 using namespace DDRFramework;
 class LocalServerHeadRuleRouter : public BaseHeadRuleRouter
 {

@@ -1,8 +1,8 @@
 #include "LocalServerDispatcher.h"
 
-#include "../../Shared/proto/BaseCmd.pb.h"
-#include "LoginProcessor.h"
-#include "HeartBeatProcessor.h"
+#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "../Processors/LoginProcessor.h"
+#include "../Processors/HeartBeatProcessor.h"
 
 using namespace DDRCommProto;
 using namespace DDRFramework;

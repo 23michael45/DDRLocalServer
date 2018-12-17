@@ -189,16 +189,24 @@
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
-    <ClCompile Include="BaseClientBehavior.cpp" />
-    <ClCompile Include="GlobalManager.cpp" />
-    <ClCompile Include="HeartBeatProcessor.cpp" />
-    <ClCompile Include="LocalServerDispatcher.cpp" />
-    <ClCompile Include="LocalServerHeadRuleRouter.cpp" />
-    <ClCompile Include="LocalServerUdpDispatcher.cpp" />
-    <ClCompile Include="LocalServerUdpProcessor.cpp" />
-    <ClCompile Include="LocalTcpServer.cpp" />
-    <ClCompile Include="LoginProcessor.cpp" />
+    <ClCompile Include="Behaviors\BaseClientBehavior.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Managers\GlobalManager.cpp" />
+    <ClCompile Include="Processors\AlarmProcessor.cpp" />
+    <ClCompile Include="Processors\CmdProcessor.cpp" />
+    <ClCompile Include="Processors\FileAddressProcessor.cpp" />
+    <ClCompile Include="Processors\FileProcessor.cpp" />
+    <ClCompile Include="Processors\HeartBeatProcessor.cpp" />
+    <ClCompile Include="Processors\LocalServerUdpProcessor.cpp" />
+    <ClCompile Include="Processors\LoginProcessor.cpp" />
+    <ClCompile Include="Processors\StatusProcessor.cpp" />
+    <ClCompile Include="Processors\TalkHBProcessor.cpp" />
+    <ClCompile Include="Processors\TalkProcessor.cpp" />
+    <ClCompile Include="Processors\TextChatProcessor.cpp" />
+    <ClCompile Include="Servers\LocalServerDispatcher.cpp" />
+    <ClCompile Include="Servers\LocalServerHeadRuleRouter.cpp" />
+    <ClCompile Include="Servers\LocalServerUdpDispatcher.cpp" />
+    <ClCompile Include="Servers\LocalTcpServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\proto\BaseCmd.pb.h" />
@@ -234,15 +242,23 @@
     <ClInclude Include="..\..\Shared\thirdparty\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
-    <ClInclude Include="BaseClientBehavior.h" />
-    <ClInclude Include="GlobalManager.h" />
-    <ClInclude Include="HeartBeatProcessor.h" />
-    <ClInclude Include="LocalServerDispatcher.h" />
-    <ClInclude Include="LocalServerHeadRuleRouter.h" />
-    <ClInclude Include="LocalServerUdpDispatcher.h" />
-    <ClInclude Include="LocalServerUdpProcessor.h" />
-    <ClInclude Include="LocalTcpServer.h" />
-    <ClInclude Include="LoginProcessor.h" />
+    <ClInclude Include="Behaviors\BaseClientBehavior.h" />
+    <ClInclude Include="Managers\GlobalManager.h" />
+    <ClInclude Include="Processors\AlarmProcessor.h" />
+    <ClInclude Include="Processors\CmdProcessor.h" />
+    <ClInclude Include="Processors\FileAddressProcessor.h" />
+    <ClInclude Include="Processors\FileProcessor.h" />
+    <ClInclude Include="Processors\HeartBeatProcessor.h" />
+    <ClInclude Include="Processors\LocalServerUdpProcessor.h" />
+    <ClInclude Include="Processors\LoginProcessor.h" />
+    <ClInclude Include="Processors\StatusProcessor.h" />
+    <ClInclude Include="Processors\TalkHBProcessor.h" />
+    <ClInclude Include="Processors\TalkProcessor.h" />
+    <ClInclude Include="Processors\TextChatProcessor.h" />
+    <ClInclude Include="Servers\LocalServerDispatcher.h" />
+    <ClInclude Include="Servers\LocalServerHeadRuleRouter.h" />
+    <ClInclude Include="Servers\LocalServerUdpDispatcher.h" />
+    <ClInclude Include="Servers\LocalTcpServer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Shared\thirdparty\jsoncpp\src\json_valueiterator.inl" />
