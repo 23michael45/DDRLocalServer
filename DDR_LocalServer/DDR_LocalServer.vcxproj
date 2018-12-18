@@ -107,10 +107,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;PROTOBUF_USE_DLLS;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;PROTOBUF_USE_DLLS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/curl/include;$(ProjectDir)../../Shared/Thirdparty/curl/;$(ProjectDir)../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,7 +152,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Debug\Conf
       <PreprocessorDefinitions>WIN32;_WINDOWS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;PROTOBUF_USE_DLLS;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;libcurl_EXPORTS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../Shared/Thirdparty/curl/include;$(ProjectDir)../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../Shared/Thirdparty/curl/;$(ProjectDir)../../Shared/Thirdparty/curl-asio/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/curl/include;$(ProjectDir)../../Shared/Thirdparty/curl/;$(ProjectDir)../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <MinimalRebuild>true</MinimalRebuild>
     </ClCompile>
@@ -187,6 +187,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\src\Network\TcpSocketContainer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp" />
+    <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\MiniDump.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.cpp" />
@@ -380,6 +381,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h" />
+    <ClInclude Include="..\..\Shared\src\Utility\Logger.h" />
     <ClInclude Include="..\..\Shared\src\Utility\MiniDump.h" />
     <ClInclude Include="..\..\Shared\src\Utility\Timer.hpp" />
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h" />

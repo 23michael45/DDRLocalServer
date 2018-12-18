@@ -4,6 +4,7 @@
 #include <chrono>
 #include <thread>
 
+#include "../../../Shared/src/Utility/Logger.h"
 BaseClientBehavior::BaseClientBehavior()
 {
 }

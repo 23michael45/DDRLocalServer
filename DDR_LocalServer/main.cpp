@@ -22,11 +22,13 @@ char gQuit = 0;
 #include <ctime>
 #include <iostream>
 
-using namespace std;
-
-
 #include <iostream>
 #include <fstream>
+
+#include "../../Shared/src/Utility/Logger.h"
+
+using namespace std;
+
 
 static curl_asio::data_action::type on_transfer_data_read(std::ofstream &out, const asio::const_buffer& buffer)
 {
@@ -75,6 +77,7 @@ int asiocurl(std::string filename,std::string usage,std::string url)
 }
 int main()
 {
+
 	InitMinDump();
 
 	GlobalManager::Instance()->StartTcpServer();

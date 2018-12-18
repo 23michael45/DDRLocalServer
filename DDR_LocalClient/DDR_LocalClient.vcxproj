@@ -176,6 +176,7 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClCompile Include="..\..\Shared\src\Network\TcpSocketContainer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp" />
+    <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinystr.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxml.cpp" />
@@ -202,6 +203,7 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h" />
+    <ClInclude Include="..\..\Shared\src\Utility\Logger.h" />
     <ClInclude Include="..\..\Shared\src\Utility\Singleton.h" />
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />

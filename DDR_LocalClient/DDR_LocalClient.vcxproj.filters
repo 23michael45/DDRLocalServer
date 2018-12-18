@@ -99,6 +99,9 @@
     <ClCompile Include="GlobalManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="GlobalManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\Logger.h">
+      <Filter>Shared\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
