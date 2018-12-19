@@ -1,9 +1,9 @@
 #ifndef GlobalManager_h__
 #define GlobalManager_h__
 
-#include "../../Shared/src/Network/UdpSocketBase.h"
-#include "../../Shared/src/Network/TcpClientBase.h"
-#include "../../Shared/src/Utility/Singleton.h"
+#include "../../../Shared/src/Network/UdpSocketBase.h"
+#include "../../../Shared/src/Network/TcpClientBase.h"
+#include "../../../Shared/src/Utility/Singleton.h"
 #include "LocalTcpClient.h"
 
 using namespace DDRFramework;

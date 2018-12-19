@@ -2,7 +2,7 @@
 #define LocalClientUdpDispatcher_h__
 
 
-#include "../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
 
 
 class LocalClientUdpDispatcher : public DDRFramework::BaseMessageDispatcher

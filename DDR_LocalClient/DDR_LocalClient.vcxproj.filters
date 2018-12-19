@@ -1,18 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Shared">
       <UniqueIdentifier>{f6df96da-85b1-4e24-9fd6-cc034a054cc5}</UniqueIdentifier>
     </Filter>
@@ -34,11 +22,11 @@
     <Filter Include="Shared\FSM">
       <UniqueIdentifier>{4092af65-06ea-41ca-a442-f233268d7a91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Client">
+      <UniqueIdentifier>{bcec1af1-68e3-4685-8c6a-fb7ed06ea62e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
       <Filter>Shared\Network</Filter>
     </ClCompile>
@@ -72,17 +60,8 @@
     <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp">
       <Filter>Shared\Network</Filter>
     </ClCompile>
-    <ClCompile Include="LocalClientDispatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LoginProcessor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\src\Network\TcpSocketContainer.cpp">
       <Filter>Shared\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="LocalTcpClient.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp">
       <Filter>Shared\Network</Filter>
@@ -90,18 +69,28 @@
     <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp">
       <Filter>Shared\Network</Filter>
     </ClCompile>
-    <ClCompile Include="LocalClientUdpDispatcher.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LocalClientUdpProcessor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GlobalManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Client\GlobalManager.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LocalClientDispatcher.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LocalClientUdpDispatcher.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LocalClientUdpProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LocalTcpClient.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\LoginProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -140,17 +129,8 @@
     <ClInclude Include="..\..\Shared\src\Network\BaseMessageDispatcher.h">
       <Filter>Shared\Network</Filter>
     </ClInclude>
-    <ClInclude Include="LocalClientDispatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LoginProcessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\src\Network\TcpSocketContainer.h">
       <Filter>Shared\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="LocalTcpClient.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h">
       <Filter>Shared\Network</Filter>
@@ -158,20 +138,29 @@
     <ClInclude Include="..\..\Shared\src\Network\BaseSocketContainer.h">
       <Filter>Shared\Network</Filter>
     </ClInclude>
-    <ClInclude Include="LocalClientUdpDispatcher.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LocalClientUdpProcessor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\Singleton.h">
       <Filter>Shared\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="GlobalManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\Logger.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\GlobalManager.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LocalClientDispatcher.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LocalClientUdpDispatcher.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LocalClientUdpProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LocalTcpClient.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\LoginProcessor.h">
+      <Filter>Client</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

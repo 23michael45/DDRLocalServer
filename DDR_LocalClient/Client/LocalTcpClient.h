@@ -1,9 +1,9 @@
 #ifndef LocalTcpClient_h__
 #define LocalTcpClient_h__
 
-#include "../../Shared/src/Network/TcpClientBase.h"
-#include "../../Shared/src/Utility/Singleton.h"
-#include "../../Shared/src/Utility/Timer.hpp"
+#include "../../../Shared/src/Network/TcpClientBase.h"
+#include "../../../Shared/src/Utility/Singleton.h"
+#include "../../../Shared/src/Utility/Timer.hpp"
 
 using namespace DDRFramework;
 class LocalTcpClient : public TcpClientBase 

@@ -1,7 +1,7 @@
 #include "LoginProcessor.h"
 #include <memory>
-#include "../../Shared/proto/BaseCmd.pb.h"
-#include "../../Shared/src/Utility/DDRMacro.h"
+#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "../../../Shared/src/Utility/DDRMacro.h"
 
 #include "../../../Shared/src/Utility/Logger.h"
 #include "GlobalManager.h"

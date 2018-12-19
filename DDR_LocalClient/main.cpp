@@ -3,11 +3,11 @@
 #include "../../Shared/src/Network/TcpClientBase.h"
 #include "../../Shared/proto/BaseCmd.pb.h"
 #include "../../Shared/src/Utility/DDRMacro.h"
-#include "LocalClientUdpDispatcher.h"
+#include "Client/LocalClientUdpDispatcher.h"
 #include <thread>
 #include <chrono>
-#include "LocalTcpClient.h"
-#include "GlobalManager.h"
+#include "Client/LocalTcpClient.h"
+#include "Client/GlobalManager.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 

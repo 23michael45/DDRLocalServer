@@ -1,12 +1,12 @@
 #include "LocalTcpClient.h"
-#include "../../Shared/src/Network/TcpSocketContainer.h"
-#include "../../Shared/src/Network/MessageSerializer.h"
-#include "../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "../../../Shared/src/Network/TcpSocketContainer.h"
+#include "../../../Shared/src/Network/MessageSerializer.h"
+#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
 #include "LocalClientDispatcher.h"
 #include "LocalClientUdpDispatcher.h"
 
 
-#include "../../Shared/proto/BaseCmd.pb.h"
+#include "../../../Shared/proto/BaseCmd.pb.h"
 #include "GlobalManager.h"
 using namespace DDRCommProto;
 

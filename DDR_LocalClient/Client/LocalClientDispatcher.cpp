@@ -1,5 +1,5 @@
 #include "LocalClientDispatcher.h"
-#include "../../Shared/proto/BaseCmd.pb.h"
+#include "../../../Shared/proto/BaseCmd.pb.h"
 
 #include "LoginProcessor.h"
 

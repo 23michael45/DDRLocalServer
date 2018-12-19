@@ -182,12 +182,12 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
-    <ClCompile Include="GlobalManager.cpp" />
-    <ClCompile Include="LocalClientDispatcher.cpp" />
-    <ClCompile Include="LocalClientUdpDispatcher.cpp" />
-    <ClCompile Include="LocalClientUdpProcessor.cpp" />
-    <ClCompile Include="LocalTcpClient.cpp" />
-    <ClCompile Include="LoginProcessor.cpp" />
+    <ClCompile Include="Client\GlobalManager.cpp" />
+    <ClCompile Include="Client\LocalClientDispatcher.cpp" />
+    <ClCompile Include="Client\LocalClientUdpDispatcher.cpp" />
+    <ClCompile Include="Client\LocalClientUdpProcessor.cpp" />
+    <ClCompile Include="Client\LocalTcpClient.cpp" />
+    <ClCompile Include="Client\LoginProcessor.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -208,12 +208,12 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
-    <ClInclude Include="GlobalManager.h" />
-    <ClInclude Include="LocalClientDispatcher.h" />
-    <ClInclude Include="LocalClientUdpDispatcher.h" />
-    <ClInclude Include="LocalClientUdpProcessor.h" />
-    <ClInclude Include="LocalTcpClient.h" />
-    <ClInclude Include="LoginProcessor.h" />
+    <ClInclude Include="Client\GlobalManager.h" />
+    <ClInclude Include="Client\LocalClientDispatcher.h" />
+    <ClInclude Include="Client\LocalClientUdpDispatcher.h" />
+    <ClInclude Include="Client\LocalClientUdpProcessor.h" />
+    <ClInclude Include="Client\LocalTcpClient.h" />
+    <ClInclude Include="Client\LoginProcessor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
