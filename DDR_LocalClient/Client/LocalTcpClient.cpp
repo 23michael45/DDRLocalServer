@@ -65,8 +65,8 @@ void LocalTcpClient::StopHeartBeat()
 }
 void LocalTcpClient::SendHeartBeatOnce(timer_id id)
 {
-	heartBeat hb;
-	auto sphb = std::make_shared<heartBeat>();
+	HeartBeat hb;
+	auto sphb = std::make_shared<HeartBeat>();
 	sphb->set_whatever("hb");
 
 	if (m_spClient && m_spClient->IsConnected())

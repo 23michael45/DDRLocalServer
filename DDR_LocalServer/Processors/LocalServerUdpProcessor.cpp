@@ -24,8 +24,8 @@ void LocalServerUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 	std::string name = pRaw->username();
 
 
-	auto sprsp = std::make_shared<respLogin>();
-	sprsp->set_retcode(respLogin_eLoginRetCode_success);
+	auto sprsp = std::make_shared<rspLogin>();
+	sprsp->set_retcode(rspLogin_eLoginRetCode_success);
 
 	spSockContainer->Send(sprsp);
 

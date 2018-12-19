@@ -9,8 +9,7 @@ using namespace DDRFramework;
 LocalClientDispatcher::LocalClientDispatcher()
 {
 
-	respLogin respLogin;
-	m_ProcessorMap[respLogin.GetTypeName()] =  std::make_shared<LoginProcessor>(*this);
+	RegisterProcessor(rsp, Login)
 }
 
 

@@ -21,10 +21,10 @@ LoginProcessor::~LoginProcessor()
 void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 
-	respLogin* pRaw = reinterpret_cast<respLogin*>(spMsg.get());
+	rspLogin* pRaw = reinterpret_cast<rspLogin*>(spMsg.get());
 
 
-	respLogin_eLoginRetCode retcode = pRaw->retcode();
+	rspLogin_eLoginRetCode retcode = pRaw->retcode();
 
 	m_RecvCount++;
 

@@ -55,6 +55,9 @@
     <Filter Include="Shared\Thirdparty\curl-asio">
       <UniqueIdentifier>{1fe027bd-1750-4cc1-95e8-03ec6fedd200}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Processors\StreamRelay">
+      <UniqueIdentifier>{7e1524fd-415a-4cc6-8c1c-baac2ee884f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -613,6 +616,12 @@
     <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Processors\StreamRelay\AudioStreamInfoProcessor.cpp">
+      <Filter>Processors\StreamRelay</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\StreamRelay\VideoStreamInfoProcessor.cpp">
+      <Filter>Processors\StreamRelay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -770,6 +779,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\Logger.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\StreamRelay\AudioStreamInfoProcessor.h">
+      <Filter>Processors\StreamRelay</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\StreamRelay\VideoStreamInfoProcessor.h">
+      <Filter>Processors\StreamRelay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

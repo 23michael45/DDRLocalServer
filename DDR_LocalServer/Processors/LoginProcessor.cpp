@@ -3,6 +3,7 @@
 #include "../../../Shared/proto/BaseCmd.pb.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../Behaviors/BaseClientBehavior.h"
+#include "../Managers/GlobalManager.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -22,19 +23,67 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	reqLogin* pRaw = reinterpret_cast<reqLogin*>(spMsg.get());
 
 	std::string name = pRaw->username();
-	reqLogin_eCltType type = pRaw->type();
-	std::string robotID = pRaw->robotid();
-	std::string robotPWD = pRaw->robotpwd();
-	int cltOpLv = pRaw->cltoplv();
-	int UID = pRaw->uid();
+	std::string pwd = pRaw->userpwd();
+	eCltType type = pRaw->type();
+
+
+	auto sprsp = std::make_shared<rspLogin>();
+
+	if (type == eCltType::ePCClient)
+	{
+		bool b = DBManager::Instance()->VerifyUser(name, pwd);
+		if (b)
+		{
+
+			sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+		}
+		else
+		{
+			sprsp->set_retcode(rspLogin_eLoginRetCode_incorrect_password);
+		}
+	}
+	else if (type == eCltType::eAndroidClient)
+	{
+		bool b = DBManager::Instance()->VerifyUser(name, pwd);
+		if (b)
+		{
+
+			sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+		}
+		else
+		{
+			sprsp->set_retcode(rspLogin_eLoginRetCode_incorrect_password);
+		}
+
+	}
+	else if (type == eCltType::eLSMStreamRelay)
+	{
+
+		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+	}
+	else if (type == eCltType::eLSMFaceRecognition)
+	{
+
+
+		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+
+	}
+	else if (type == eCltType::eLSMSlamNavigation)
+	{
 
 
 
+		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+	}
+	else if (type == eCltType::eLSMThermalImaging)
+	{
 
 
-	auto sprsp = std::make_shared<respLogin>();
-	sprsp->set_retcode(respLogin_eLoginRetCode_success);
-	sprsp->set_uid(1);
+		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+
+	}
+
+
 	spSockContainer->Send(sprsp);
 
 
