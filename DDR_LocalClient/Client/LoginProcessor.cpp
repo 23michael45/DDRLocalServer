@@ -28,8 +28,12 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 	m_RecvCount++;
 
+	auto spClient = GlobalManager::Instance()->GetTcpClient();
+	if (spClient)
+	{
+		spClient->StartHeartBeat();
 
-	GlobalManager::Instance()->GetTcpClient()->StartHeartBeat();
+	}
 
 	if (m_RecvCount % 100 == 0)
 	{

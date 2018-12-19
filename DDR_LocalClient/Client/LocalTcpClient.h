@@ -18,7 +18,7 @@ public:
 	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
 
 	auto shared_from_base() {
-		return std::static_pointer_cast<LocalTcpClient>(shared_from_this());
+		return std::dynamic_pointer_cast<LocalTcpClient>(shared_from_this());
 	}
 
 

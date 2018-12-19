@@ -89,10 +89,10 @@ void UdpClient()
 
 }
 
-
 int main()
 {
-	UdpClient();
+	TcpClient();
+	//UdpClient();
 
 	while (!gQuit)
 	{
