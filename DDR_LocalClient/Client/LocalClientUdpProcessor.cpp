@@ -1,7 +1,8 @@
 #include "LocalClientUdpProcessor.h"
 #include <memory>
-#include "../../../Shared/proto/BaseCmd.pb.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
+#include "../../../Shared/src/Utility/CommonFunc.h"
+#include "../../../Shared/thirdparty/asio/include/asio.hpp"
 #include "LocalTcpClient.h"
 #include "GlobalManager.h"
 
@@ -24,27 +25,55 @@ void LocalClientUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 
 	bcLSAddr* pRaw = reinterpret_cast<bcLSAddr*>(spMsg.get());
 
-	std::string name = pRaw->lsinfo().name();
-	std::string ips;
-	int port = pRaw->lsinfo().port();
 
-	std::string conntectip;
-	for (auto ip : pRaw->lsinfo().ips())
+	for (auto serverinfo : pRaw->lsinfos())
 	{
-		ips += ":" + ip;
-		if (ip.find("192.168.1.") != std::string::npos)
+		if (serverinfo.stype() == bcLSAddr_eServiceType_LocalServer)
 		{
-			conntectip = ip;
+			DealLocalServer(serverinfo);
+		}
+		else if (serverinfo.stype() == bcLSAddr_eServiceType_RemoteServer)
+		{
+		}
+		else if (serverinfo.stype() == bcLSAddr_eServiceType_RTSPStreamServer)
+		{
+		}
+		else if (serverinfo.stype() == bcLSAddr_eServiceType_TalkBackServer)
+		{
 		}
 	}
 
-
-
-	TcpClientStart(conntectip,port);
+	
+	DebugLog("\nReceive Server Broadcast But No IP in same segment");
 	
 
-	DebugLog("\nReceive Server Broadcast %s: %s" ,name.c_str(),ips.c_str());
 
+
+}
+void LocalClientUdpProcessor::DealLocalServer(bcLSAddr_ServerInfo& serverinfo)
+{
+	std::string name = serverinfo.name();
+	std::string ips;
+	int port = serverinfo.port();
+
+
+	auto localAddr = DDRFramework::GetLocalIPV4();
+
+
+	std::vector<std::string> remoteAddrs;
+	for (auto ip : serverinfo.ips())
+	{
+		remoteAddrs.push_back(ip);
+	}
+
+	auto rmap = DDRFramework::GetSameSegmentIPV4(localAddr, remoteAddrs);
+	if (rmap.size() > 0)
+	{
+		auto conntectip = (rmap.begin())->second;
+
+		TcpClientStart(conntectip, port);
+		DebugLog("\nReceive Server Broadcast %s: %s", name.c_str(), conntectip.c_str());
+	}
 
 }
 

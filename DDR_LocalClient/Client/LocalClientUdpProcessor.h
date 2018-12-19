@@ -3,9 +3,11 @@
 
 
 
+#include "../../../Shared/proto/BaseCmd.pb.h"
 #include "../../../Shared/src/Network/BaseProcessor.h"
 #include "../../../Shared/src/Network/TcpSocketContainer.h"
 
+using namespace DDRCommProto;
 
 
 class LocalClientUdpProcessor : public DDRFramework::BaseProcessor
@@ -18,6 +20,8 @@ public:
 	virtual void Process(std::shared_ptr<DDRFramework::BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override;
 private:
 	void TcpClientStart(std::string serverip,int serverport);
+
+	void DealLocalServer(bcLSAddr_ServerInfo& serverinfo);
 };
 
 

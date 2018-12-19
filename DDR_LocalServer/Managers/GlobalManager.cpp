@@ -2,6 +2,7 @@
 
 
 #include "../../../Shared/src/Utility/XmlLoader.h"
+#include "../../../Shared/src/Utility/CommonFunc.h"
 #include "../Servers/LocalServerUdpDispatcher.h"
 #include <thread>
 #include <chrono>
@@ -51,6 +52,8 @@ void GlobalManager::StopTcpServer()
 
 }
 
+
+
 void GlobalManager::StartUdpServer()
 {
 
@@ -61,27 +64,21 @@ void GlobalManager::StartUdpServer()
 
 
 	auto bc = std::make_shared<bcLSAddr>();
+	
 
 
-	bcLSAddr_ServerInfo lsinfo;
-	lsinfo.set_name(servername);
-	lsinfo.set_port(std::stoi(tcpport));
 
-
-	asio::io_service io_service;
-	tcp::resolver resolver(io_service);
-	tcp::resolver::query query(asio::ip::host_name(), "");
-	tcp::resolver::iterator iter = resolver.resolve(query);
-	tcp::resolver::iterator end; // End marker.
-
-
-	while (iter != end)
+	auto plsinfo = bc->add_lsinfos();
+	for (auto addr : DDRFramework::GetLocalIPV4())
 	{
-		tcp::endpoint ep = *iter++;
-		lsinfo.add_ips(ep.address().to_string());
+		plsinfo->add_ips(addr);
 	}
+	plsinfo->set_name(servername);
+	plsinfo->set_stype(bcLSAddr_eServiceType::bcLSAddr_eServiceType_LocalServer);
+	plsinfo->set_port(std::stoi(tcpport));
 
-	bc->set_allocated_lsinfo(&lsinfo);
+
+
 
 	m_spUdpServer = std::make_shared<UdpSocketBase>();
 
