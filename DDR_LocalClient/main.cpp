@@ -8,6 +8,7 @@
 #include <chrono>
 #include "Client/LocalTcpClient.h"
 #include "Client/GlobalManager.h"
+#include "Client/AudioTcpClient.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -92,9 +93,20 @@ void UdpClient()
 
 }
 
+std::shared_ptr<AudioTcpClient> TcpAudioClient()
+{
+
+	auto spAudioClient = std::make_shared<AudioTcpClient>();
+	spAudioClient->Connect("192.168.1.183", "88");
+
+	return spAudioClient;
+}
+
+
 int main()
 {
-	TcpClient();
+	auto spAudioClient = TcpAudioClient();
+	//TcpClient();
 	//UdpClient();
 
 	while (!gQuit)

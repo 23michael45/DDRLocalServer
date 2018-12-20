@@ -24,8 +24,9 @@ void AudioStreamServiceInfoProcessor::Process(std::shared_ptr<BaseSocketContaine
 
 	auto sprsp = std::make_shared<rspAudioStreamServiceInfo>();
 
-
-
+	auto pchannel = sprsp->add_channels();
+	pchannel->set_srcip("rtsp://192.168.1.100/11");
+	pchannel->set_dstip("rtmp://193.112.189.182:1935/live/video_test1");
 
 	spSockContainer->Send(sprsp);
 }
