@@ -2,8 +2,8 @@
 
 #include "../../../Shared/proto/BaseCmd.pb.h"
 #include "../Processors/LoginProcessor.h"
-#include "../Processors/StreamRelay/VideoStreamInfoProcessor.h"
-#include "../Processors/StreamRelay/AudioStreamInfoProcessor.h"
+#include "../Processors/StreamRelay/VideoStreamServiceInfoProcessor.h"
+#include "../Processors/StreamRelay/AudioStreamServiceInfoProcessor.h"
 #include "../Processors/HeartBeatProcessor.h"
 
 using namespace DDRCommProto;
@@ -16,8 +16,8 @@ LocalServerDispatcher::LocalServerDispatcher()
 
 
 	RegisterProcessor(req, Login)
-	RegisterProcessor(req, VideoStreamInfo)
-	RegisterProcessor(req, AudioStreamInfo)
+	RegisterProcessor(req, VideoStreamServiceInfo)
+	RegisterProcessor(req, AudioStreamServiceInfo)
 
 }
 

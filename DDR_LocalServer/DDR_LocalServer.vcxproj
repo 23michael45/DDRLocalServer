@@ -348,8 +348,8 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Processors\LocalServerUdpProcessor.cpp" />
     <ClCompile Include="Processors\LoginProcessor.cpp" />
     <ClCompile Include="Processors\StatusProcessor.cpp" />
-    <ClCompile Include="Processors\StreamRelay\AudioStreamInfoProcessor.cpp" />
-    <ClCompile Include="Processors\StreamRelay\VideoStreamInfoProcessor.cpp" />
+    <ClCompile Include="Processors\StreamRelay\AudioStreamServiceInfoProcessor.cpp" />
+    <ClCompile Include="Processors\StreamRelay\VideoStreamServiceInfoProcessor.cpp" />
     <ClCompile Include="Processors\TalkHBProcessor.cpp" />
     <ClCompile Include="Processors\TalkProcessor.cpp" />
     <ClCompile Include="Processors\TextChatProcessor.cpp" />
@@ -404,8 +404,8 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Processors\LocalServerUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />
     <ClInclude Include="Processors\StatusProcessor.h" />
-    <ClInclude Include="Processors\StreamRelay\AudioStreamInfoProcessor.h" />
-    <ClInclude Include="Processors\StreamRelay\VideoStreamInfoProcessor.h" />
+    <ClInclude Include="Processors\StreamRelay\AudioStreamServiceInfoProcessor.h" />
+    <ClInclude Include="Processors\StreamRelay\VideoStreamServiceInfoProcessor.h" />
     <ClInclude Include="Processors\TalkHBProcessor.h" />
     <ClInclude Include="Processors\TalkProcessor.h" />
     <ClInclude Include="Processors\TextChatProcessor.h" />

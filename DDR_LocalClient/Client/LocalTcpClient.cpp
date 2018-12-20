@@ -28,14 +28,14 @@ void LocalTcpClient::OnConnected(TcpSocketContainer& container)
 {
 
 	DebugLog("\nOnConnectSuccess! LocalTcpClient");
-	auto spreq = std::make_shared<reqLogin>();
+	/*auto spreq = std::make_shared<reqLogin>();
 	spreq->set_username("LocalTcpClient_XX");
 
 	if (m_spClient && m_spClient->IsConnected())
 	{
 		m_spClient->Send(spreq);
 	}
-	spreq.reset();
+	spreq.reset();*/
 
 }
 void LocalTcpClient::OnDisconnect(TcpSocketContainer& container)

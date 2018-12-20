@@ -37,9 +37,12 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 					auto spreq = std::make_shared<reqLogin>();
 					spreq->set_username("michaelmichaelmichaelmichaelmichaelmichaelmichaelmichaelmichaelmichael");
 
+					const char* psrc = "1234567890";
+
 					if (spClient && spClient->IsConnected())
 					{
-						spClient->Send(spreq);
+						//spClient->Send(spreq);
+						spClient->Send(psrc, 10);
 						i++;
 					}
 					spreq.reset();
