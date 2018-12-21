@@ -3,6 +3,7 @@
 #include "../../../Shared/src/Network/TcpClientBase.h"
 #include "Servers/LocalTcpServer.h"
 #include "../../../Shared/src/Utility/XmlLoader.h"
+#include "../../../Shared/src/Utility/LocalizationLoader.h"
 #include "../../../Shared/src/Utility/MiniDump.h"
 #include "../../../Shared/src/Network/UdpSocketBase.h"
 #include "Servers/LocalServerUdpDispatcher.h"
@@ -13,6 +14,10 @@
 using namespace DDRFramework;
 using namespace DDRCommProto;
 using namespace std;
+
+#ifdef _WINDOWS
+#include <Windows.h>
+#endif
 
 
 char gQuit = 0;
@@ -75,8 +80,16 @@ int asiocurl(std::string filename,std::string usage,std::string url)
 
 	return 1;
 }
+
 int main()
 {
+#ifdef _WINDOWS
+	SetConsoleOutputCP(CP_UTF8);
+#endif
+
+
+	DDRFramework::LocalizationLoader lloader;
+	DebugLog(lloader.GetString("LS_LoginSuccess").c_str());
 
 	InitMinDump();
 

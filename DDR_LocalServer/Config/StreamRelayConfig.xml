@@ -1,0 +1,8 @@
+<Root>
+  <LocalServerConfig>
+    <Element Key="ServerName" Value="StreamRelayService" />
+    <Element Key="TcpPort" Value="88" />
+    <Element Key="UdpPort" Value="28888" />
+    <Element Key="ThreadCount" Value="4" />
+  </LocalServerConfig>
+</Root>

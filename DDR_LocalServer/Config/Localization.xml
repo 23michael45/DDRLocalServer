@@ -1,0 +1,9 @@
+<Root>
+  <Localization>
+    <Element Key="LS_LoginSuccess" Cn="登录成功" En="Login Success" />
+    <Element Key="LS_Login_Incorrect_User_Password" Cn="密码错误" En="Login Incorrect User or Password" />
+    <Element Key="LS_Heartbeat_Timeout" Cn="TCP连接超时" En="Tcp Connection Timeout" />
+    <Element Key="SRS_Start_Local_Audio" Cn="局域网对讲开始" En="Local Audio Start" />
+    <Element Key="SRS_Stop_Local_Audio" Cn="局域网对讲结束" En="Local Audio Stop" />
+  </Localization>
+</Root>

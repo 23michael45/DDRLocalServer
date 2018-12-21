@@ -1,0 +1,19 @@
+<Root>
+  <DeviceConfig>
+    <Element ID="1" DeviceType="2" DataType="A" LocalName="LNN:TCP:DDR0024_ROBOTMIC" ChannelDescription="机器人麦克风" BandWidth="35" />
+    <Element ID="2" DeviceType="1" DataType="AV" LocalName="rtsp://192.168.1.100/11" ChannelDescription="某监控主码流" BandWidth="256" />
+    <Element ID="3" DeviceType="1" DataType="AV" LocalName="rtsp://192.168.1.100/12" ChannelDescription="某监控副码流" BandWidth="50" />
+    <Element ID="4" DeviceType="1" DataType="AV" LocalName="rtsp://192.168.1.100/11" ChannelDescription="SONY主" BandWidth="256" />
+    <Element ID="5" DeviceType="1" DataType="AV" LocalName="rtsp://192.168.1.100/12" ChannelDescription="SONY副" BandWidth="50" />
+    <Element ID="6" DeviceType="1" DataType="V" LocalName="rtsp://192.168.1.217/stream1" ChannelDescription="测着玩..." BandWidth="256" />
+    <Element ID="7" DeviceType="1" DataType="AV" LocalName="rtsp://192.168.1.10:554/user=admin&amp;password=&amp;channel=1&amp;stream=0.sdp?" ChannelDescription="也是测着看看效果" BandWidth="1024" />
+    <Element ID="8" DeviceType="1" DataType="AV" LocalName="rtsp://192.168.1.88" ChannelDescription="还是测着玩" BandWidth="25600" />
+    <Element ID="9" DeviceType="-1" DataType="" LocalName="" ChannelDescription="" BandWidth="" />
+    <Element ID="10" DeviceType="-1" DataType="" LocalName="" ChannelDescription="" BandWidth="" />
+    <Element ID="11" DeviceType="-1" DataType="" LocalName="" ChannelDescription="" BandWidth="" />
+    <Element ID="12" DeviceType="-1" DataType="" LocalName="" ChannelDescription="" BandWidth="" />
+    <Element ID="13" DeviceType="-1" DataType="" LocalName="" ChannelDescription="" BandWidth="" />
+    <Element ID="14" DeviceType="-1" DataType="" LocalName="" ChannelDescription="" BandWidth="" />
+    <Element ID="15" DeviceType="-1" DataType="" LocalName="" ChannelDescription="" BandWidth="" />
+  </DeviceConfig>
+</Root>

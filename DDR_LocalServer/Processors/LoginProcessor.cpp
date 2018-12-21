@@ -18,6 +18,7 @@ LoginProcessor::~LoginProcessor()
 
 void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
+
 	auto bodytype = spHeader->bodytype();
 
 	reqLogin* pRaw = reinterpret_cast<reqLogin*>(spMsg.get());
@@ -95,11 +96,21 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 		spSockContainer->GetTcp()->Stop();
 	}
 	else
-	{
+	{ 
 
 		auto spClientBehavior = std::make_shared<BaseClientBehavior>();
 		spSockContainer->m_spTcpSocketContainer->BindBehavior(spClientBehavior);
 
+
+		auto spTcp = spSockContainer->GetTcp();
+		if (spTcp)
+		{
+			auto spServerSessionTcp = dynamic_pointer_cast<TcpSessionBase>(spTcp);
+			if (spServerSessionTcp)
+			{
+				spServerSessionTcp->AssignLoginInfo(*pRaw);
+			}
+		}
 	}
 
 
