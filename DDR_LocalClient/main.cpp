@@ -21,7 +21,7 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 {
 
 	std::this_thread::sleep_for(chrono::seconds(2));
-	spClient->Connect("127.0.0.1", "88");
+	auto spSession = spClient->Connect("127.0.0.1", "88");
 
 	std::thread t = std::thread(std::bind([](std::shared_ptr<TcpClientBase> spClient) {
 
@@ -65,7 +65,7 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 	getchar();
 
 	std::this_thread::sleep_for(chrono::seconds(2));
-	spClient->Disconnect();
+	spClient->Disconnect(*spSession.get());
 	spClient.reset();
 }
 void TcpClient()
@@ -83,8 +83,11 @@ void TcpClient()
 
 	spClient->Stop();
 }
-void UdpClient()
+void TcpUdpClient()
 {
+
+	GlobalManager::Instance()->CreateTcp();
+	GlobalManager::Instance()->GetTcpClient()->Start(4);
 
 	GlobalManager::Instance()->CreateUdp();
 	GlobalManager::Instance()->GetUdpClient()->Start();
@@ -100,17 +103,38 @@ std::shared_ptr<AudioTcpClient> TcpAudioClient()
 	auto spAudioClient = std::shared_ptr<AudioTcpClient>(new AudioTcpClient);
 	//spAudioClient->Connect("192.168.1.183", "88");
 	spAudioClient->Start();
-	spAudioClient->Connect("127.0.0.1", "88");
+	spAudioClient->Connect("192.168.1.183", "89");
 
 	return spAudioClient;
 }
 
+void LoopTestUdpMem()
+{
+	while (true)
+	{
+		TcpUdpClient();
 
+
+		std::this_thread::sleep_for(chrono::seconds(2));
+
+		if (GlobalManager::Instance()->IsUdpWorking())
+		{
+			GlobalManager::Instance()->GetUdpClient()->StopReceive();
+			GlobalManager::Instance()->GetUdpClient()->Stop();
+
+		}
+	}
+}
 int main()
 {
-	auto spAudioClient = TcpAudioClient();
+	//auto spAudioClient = TcpAudioClient();
 	//TcpClient();
-	//UdpClient();
+	//LoopTestUdpMem();
+
+
+	TcpUdpClient();
+	
+	
 
 	while (!gQuit)
 	{

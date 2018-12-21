@@ -29,6 +29,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 	auto sprsp = std::make_shared<rspLogin>();
 
+	bool closeSession = false;
 	if (type == eCltType::ePCClient)
 	{
 		bool b = DBManager::Instance()->VerifyUser(name, pwd);
@@ -40,6 +41,8 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 		else
 		{
 			sprsp->set_retcode(rspLogin_eLoginRetCode_incorrect_password);
+		
+			closeSession = true;
 		}
 	}
 	else if (type == eCltType::eAndroidClient)
@@ -52,7 +55,9 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 		}
 		else
 		{
-			sprsp->set_retcode(rspLogin_eLoginRetCode_incorrect_password);
+			sprsp->set_retcode(rspLogin_eLoginRetCode_incorrect_password);		
+	
+			closeSession = true;
 		}
 
 	}
@@ -85,10 +90,19 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 
 	spSockContainer->Send(sprsp);
+	if (closeSession)
+	{
+		spSockContainer->GetTcp()->Stop();
+	}
+	else
+	{
+
+		auto spClientBehavior = std::make_shared<BaseClientBehavior>();
+		spSockContainer->m_spTcpSocketContainer->BindBehavior(spClientBehavior);
+
+	}
 
 
-	auto spClientBehavior = std::make_shared<BaseClientBehavior>();
-	spSockContainer->m_spTcpSocketContainer->BindBehavior(spClientBehavior);
 
 	DebugLog("\nLogin %s:" ,name.c_str());
 

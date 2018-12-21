@@ -35,9 +35,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 	}
 
-	if (m_RecvCount % 100 == 0)
-	{
-		DebugLog("\n--------------------------------------------Login :%i", retcode);
+	DebugLog("\n--------------------------------------------Login :%i", retcode);
 
-	}
+
 }

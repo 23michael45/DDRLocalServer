@@ -341,6 +341,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
     <ClCompile Include="Processors\AlarmProcessor.cpp" />
+    <ClCompile Include="Processors\Client\AudioStreamAddrProcessor.cpp" />
     <ClCompile Include="Processors\CmdProcessor.cpp" />
     <ClCompile Include="Processors\FileAddressProcessor.cpp" />
     <ClCompile Include="Processors\FileProcessor.cpp" />
@@ -397,6 +398,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Behaviors\BaseClientBehavior.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
     <ClInclude Include="Processors\AlarmProcessor.h" />
+    <ClInclude Include="Processors\Client\AudioStreamAddrProcessor.h" />
     <ClInclude Include="Processors\CmdProcessor.h" />
     <ClInclude Include="Processors\FileAddressProcessor.h" />
     <ClInclude Include="Processors\FileProcessor.h" />

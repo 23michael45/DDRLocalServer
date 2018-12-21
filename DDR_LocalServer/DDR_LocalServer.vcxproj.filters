@@ -58,6 +58,9 @@
     <Filter Include="Processors\StreamRelay">
       <UniqueIdentifier>{7e1524fd-415a-4cc6-8c1c-baac2ee884f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Processors\Client">
+      <UniqueIdentifier>{4d5d6087-a333-4431-b20a-6ec5f44c6cf0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -622,6 +625,9 @@
     <ClCompile Include="Processors\StreamRelay\VideoStreamServiceInfoProcessor.cpp">
       <Filter>Processors\StreamRelay</Filter>
     </ClCompile>
+    <ClCompile Include="Processors\Client\AudioStreamAddrProcessor.cpp">
+      <Filter>Processors\Client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -785,6 +791,9 @@
     </ClInclude>
     <ClInclude Include="Processors\StreamRelay\VideoStreamServiceInfoProcessor.h">
       <Filter>Processors\StreamRelay</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\Client\AudioStreamAddrProcessor.h">
+      <Filter>Processors\Client</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

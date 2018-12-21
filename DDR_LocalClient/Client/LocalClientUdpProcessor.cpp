@@ -44,8 +44,6 @@ void LocalClientUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 	}
 
 	
-	DebugLog("\nReceive Server Broadcast But No IP in same segment");
-	
 
 
 
@@ -74,6 +72,12 @@ void LocalClientUdpProcessor::DealLocalServer(bcLSAddr_ServerInfo& serverinfo)
 		TcpClientStart(conntectip, port);
 		DebugLog("\nReceive Server Broadcast %s: %s", name.c_str(), conntectip.c_str());
 	}
+	else
+	{
+
+
+		DebugLog("\nReceive Server Broadcast But No IP in same segment");
+	}
 
 }
 
@@ -84,8 +88,6 @@ void LocalClientUdpProcessor::TcpClientStart(std::string serverip, int serverpor
 		GlobalManager::Instance()->GetUdpClient()->StopReceive();
 		GlobalManager::Instance()->GetUdpClient()->Stop();
 
-		GlobalManager::Instance()->CreateTcp();
-		GlobalManager::Instance()->GetTcpClient()->Start(4);
 		std::ostringstream strport;
 		strport << serverport;
 		const std::string sPort(strport.str());

@@ -11,10 +11,12 @@ BaseClientBehavior::BaseClientBehavior()
 
 BaseClientBehavior::~BaseClientBehavior()
 {
+	m_Timer.remove(m_HeartBeatTimerID);
 	DebugLog("\nBaseClientBehavior Destroy")
 }
 void BaseClientBehavior::OnStart(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer)
 {
+	DebugLog("\nBaseClientBehavior OnStart----------------------------------------------------------------")
 	auto interval = std::chrono::seconds(5);
 	m_HeartBeatTimerID = m_Timer.add(interval, std::bind(&BaseClientBehavior::HeartBeatTimeout, this, spContainer));
 }
@@ -24,12 +26,14 @@ void BaseClientBehavior::Update(std::shared_ptr<DDRFramework::TcpSocketContainer
 }
 void BaseClientBehavior::OnStop(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer)
 {
-
+	DebugLog("\nBaseClientBehavior OnStop----------------------------------------------------------------")
+	m_Timer.remove(m_HeartBeatTimerID);
 }
 
 void BaseClientBehavior::HeartBeatTimeout(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer)
 {
 	spContainer->Stop();
+	m_Timer.remove(m_HeartBeatTimerID);
 	DebugLog("\nHeartBeat Timeout----------------------------------------------------------------")
 
 

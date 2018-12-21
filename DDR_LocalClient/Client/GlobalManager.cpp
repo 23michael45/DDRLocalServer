@@ -10,6 +10,10 @@ GlobalManager::~GlobalManager()
 
 void GlobalManager::CreateUdp()
 {
+	while (m_spUdpClient)
+	{
+		std::this_thread::sleep_for(chrono::seconds(1));
+	}
 	m_spUdpClient = std::make_shared<UdpSocketBase>();
 	m_spUdpClient->BindOnDisconnect(std::bind(&GlobalManager::OnUdpDisconnect, this, std::placeholders::_1));
 

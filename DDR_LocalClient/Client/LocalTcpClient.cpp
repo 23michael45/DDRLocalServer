@@ -17,6 +17,7 @@ LocalTcpClient::LocalTcpClient()
 
 LocalTcpClient::~LocalTcpClient()
 {
+	DebugLog("\nLocalTcpClient Destroy")
 }
 
 std::shared_ptr<TcpClientSessionBase> LocalTcpClient::BindSerializerDispatcher()
@@ -28,14 +29,21 @@ void LocalTcpClient::OnConnected(TcpSocketContainer& container)
 {
 
 	DebugLog("\nOnConnectSuccess! LocalTcpClient");
-	/*auto spreq = std::make_shared<reqLogin>();
+	auto spreq = std::make_shared<reqLogin>();
 	spreq->set_username("LocalTcpClient_XX");
+	spreq->set_type(ePCClient);
+	spreq->set_username("admin");
+	spreq->set_userpwd("admin1");
 
-	if (m_spClient && m_spClient->IsConnected())
+	if (IsConnected())
 	{
-		m_spClient->Send(spreq);
+		Send(spreq);
 	}
-	spreq.reset();*/
+	spreq.reset();
+
+	//Disconnect(container);
+
+
 
 }
 void LocalTcpClient::OnDisconnect(TcpSocketContainer& container)
@@ -69,9 +77,9 @@ void LocalTcpClient::SendHeartBeatOnce(timer_id id)
 	auto sphb = std::make_shared<HeartBeat>();
 	sphb->set_whatever("hb");
 
-	if (m_spClient && m_spClient->IsConnected())
+	if (IsConnected())
 	{
-		m_spClient->Send(sphb);
+		Send(sphb);
 	}
 	sphb.reset();
 }
