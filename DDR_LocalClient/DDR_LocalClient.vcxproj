@@ -106,10 +106,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;PROTOBUF_USE_DLLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;PROTOBUF_USE_DLLS;DR_WAV_IMPLEMENTATION;MINI_AL_IMPLEMENTATION;_DISABLE_EXTENDED_ALIGNED_STORAGE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -175,13 +175,18 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\TcpSocketContainer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp" />
+    <ClCompile Include="..\..\Shared\src\Utility\AudioCodec.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\mini-al\extras\dr_wav.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\mini-al\extras\stb_vorbis.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\mini-al\mini_al.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinystr.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="Client\AudioTcpClient.cpp" />
     <ClCompile Include="Client\GlobalManager.cpp" />
     <ClCompile Include="Client\LocalClientDispatcher.cpp" />
     <ClCompile Include="Client\LocalClientUdpDispatcher.cpp" />
@@ -201,13 +206,21 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h" />
     <ClInclude Include="..\..\Shared\src\Network\TcpSocketContainer.h" />
     <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h" />
+    <ClInclude Include="..\..\Shared\src\Utility\AudioCodec.h" />
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h" />
     <ClInclude Include="..\..\Shared\src\Utility\Logger.h" />
     <ClInclude Include="..\..\Shared\src\Utility\Singleton.h" />
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\mini-al\extras\dr_flac.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\mini-al\extras\dr_mp3.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\mini-al\extras\dr_wav.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\mini-al\extras\jar_mod.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\mini-al\extras\jar_xm.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\mini-al\mini_al.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
+    <ClInclude Include="Client\AudioTcpClient.h" />
     <ClInclude Include="Client\GlobalManager.h" />
     <ClInclude Include="Client\LocalClientDispatcher.h" />
     <ClInclude Include="Client\LocalClientUdpDispatcher.h" />
