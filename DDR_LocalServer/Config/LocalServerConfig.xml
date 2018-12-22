@@ -1,9 +1,0 @@
-<Root>
-  <LocalServerConfig>
-    <Element Key="ServerName" Value="LocalServerV1" />
-    <Element Key="TcpPort" Value="88" />
-    <Element Key="UdpPort" Value="28888" />
-    <Element Key="ServerThreadCount" Value="4" />
-    <Element Key="DatabaseFile" Value="ServerDB.db" />
-  </LocalServerConfig>
-</Root>

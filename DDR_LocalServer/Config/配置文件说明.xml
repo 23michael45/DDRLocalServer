@@ -1,8 +1,0 @@
-<Root>
-  <LocalServerConfig>
-    <Element 文件名="Localization" 功能="语言文字配置表" />
-    <Element 文件名="StreamConfig" 功能="流媒体源与目的配置表" />
-    <Element 文件名="StreamRelayConfig" 功能="流媒体服务配置表" />
-    <Element 文件名="Client/ClientConfig" 功能="客户端配置表" />
-  </LocalServerConfig>
-</Root>
