@@ -88,9 +88,12 @@ void LocalClientUdpProcessor::TcpClientStart(std::string serverip, int serverpor
 		GlobalManager::Instance()->GetUdpClient()->StopReceive();
 		GlobalManager::Instance()->GetUdpClient()->Stop();
 
-		std::ostringstream strport;
-		strport << serverport;
-		const std::string sPort(strport.str());
+
+		//both methon is ok
+		//std::ostringstream strport;
+		//strport << serverport;
+		//const std::string sPort(strport.str());
+		std::string sPort = std::to_string(serverport);
 		GlobalManager::Instance()->GetTcpClient()->Connect(serverip, sPort);
 
 	}

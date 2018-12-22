@@ -109,6 +109,9 @@
     <ClCompile Include="..\..\Shared\src\Utility\AudioCodec.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Client\StreamAddrProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -203,6 +206,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\AudioCodec.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\StreamAddrProcessor.h">
+      <Filter>Client</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

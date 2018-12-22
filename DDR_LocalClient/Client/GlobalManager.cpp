@@ -8,7 +8,7 @@ GlobalManager::~GlobalManager()
 
 }
 
-void GlobalManager::CreateUdp()
+void GlobalManager::StartUdp()
 {
 	while (m_spUdpClient)
 	{
@@ -26,7 +26,23 @@ void GlobalManager::ReleaseUdp()
 	}
 }
 
-void GlobalManager::CreateTcp()
+void GlobalManager::StartAudioClient(std::string ip,int port)
+{
+
+	m_spAudioTcpClient = std::make_shared<AudioTcpClient>();
+	m_spAudioTcpClient->Start(1);
+	m_spAudioTcpClient->Connect(ip, std::to_string(port));
+}
+void GlobalManager::StopAudioClient()
+{
+	if (m_spAudioTcpClient)
+	{
+		m_spAudioTcpClient->Stop();
+	}
+}
+
+
+void GlobalManager::StartTcpClient()
 {
 	m_spTcpClient = std::make_shared<LocalTcpClient>();
 
@@ -53,6 +69,11 @@ std::shared_ptr<LocalTcpClient> GlobalManager::GetTcpClient()
 std::shared_ptr<UdpSocketBase> GlobalManager::GetUdpClient()
 {
 	return m_spUdpClient;
+}
+std::shared_ptr<AudioTcpClient> GlobalManager::GetAudioTcpClient()
+{
+
+	return m_spAudioTcpClient;
 }
 void GlobalManager::OnUdpDisconnect(UdpSocketBase& container)
 {

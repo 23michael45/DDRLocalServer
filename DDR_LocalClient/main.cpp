@@ -86,10 +86,10 @@ void TcpClient()
 void TcpUdpClient()
 {
 
-	GlobalManager::Instance()->CreateTcp();
+	GlobalManager::Instance()->StartTcpClient();
 	GlobalManager::Instance()->GetTcpClient()->Start(4);
 
-	GlobalManager::Instance()->CreateUdp();
+	GlobalManager::Instance()->StartUdp();
 	GlobalManager::Instance()->GetUdpClient()->Start();
 	GlobalManager::Instance()->GetUdpClient()->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
 	GlobalManager::Instance()->GetUdpClient()->StartReceive(28888);
@@ -125,20 +125,46 @@ void LoopTestUdpMem()
 		}
 	}
 }
+
+
+class _ConsoleDebug : public DDRFramework::ConsoleDebug, public CSingleton<_ConsoleDebug>
+{
+public:
+	_ConsoleDebug()
+	{
+		AddCommand("ls cc", std::bind(&_ConsoleDebug::ListClientConnection, this));
+		AddCommand("ca", std::bind(&_ConsoleDebug::CallAudio, this));
+	}
+	void ListClientConnection()
+	{
+		printf_s("\nClient Connection");
+		auto spSession = GlobalManager::Instance()->GetTcpClient()->GetConnectedSession();
+		if (spSession)
+		{
+			std::string ip = spSession->GetSocket().remote_endpoint().address().to_string();
+			printf_s("\n%s", ip.c_str());
+		}
+		else
+		{
+			printf_s("\nClient Not Connection");
+		}
+	}
+
+	void CallAudio()
+	{
+		DebugLog("\nOnConnectSuccess! LocalTcpClient");
+		auto spreq = std::make_shared<reqStreamAddr>();
+		spreq->set_networktype(ChannelNetworkType::Local);
+		
+		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
+		spreq.reset();
+	}
+};
+
 int main()
 {
-	//auto spAudioClient = TcpAudioClient();
-	//TcpClient();
-	//LoopTestUdpMem();
-
-
 	TcpUdpClient();
 	
-	
-
-	while (!gQuit)
-	{
-		std::this_thread::sleep_for(std::chrono::seconds(1));
-	}
+	_ConsoleDebug::Instance()->ConsoleDebugLoop();
 	return 0;
 }

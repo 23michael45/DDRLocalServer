@@ -619,17 +619,17 @@
     <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Processors\StreamRelay\AudioStreamServiceInfoProcessor.cpp">
-      <Filter>Processors\StreamRelay</Filter>
-    </ClCompile>
-    <ClCompile Include="Processors\StreamRelay\VideoStreamServiceInfoProcessor.cpp">
-      <Filter>Processors\StreamRelay</Filter>
-    </ClCompile>
-    <ClCompile Include="Processors\Client\AudioStreamAddrProcessor.cpp">
-      <Filter>Processors\Client</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\src\Utility\LocalizationLoader.cpp">
       <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\StreamRelay\StreamServiceInfoProcessor.cpp">
+      <Filter>Processors\StreamRelay</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\Client\StreamAddrProcessor.cpp">
+      <Filter>Processors\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\StreamRelayServiceManager.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -789,17 +789,17 @@
     <ClInclude Include="..\..\Shared\src\Utility\Logger.h">
       <Filter>Shared\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Processors\StreamRelay\AudioStreamServiceInfoProcessor.h">
-      <Filter>Processors\StreamRelay</Filter>
-    </ClInclude>
-    <ClInclude Include="Processors\StreamRelay\VideoStreamServiceInfoProcessor.h">
-      <Filter>Processors\StreamRelay</Filter>
-    </ClInclude>
-    <ClInclude Include="Processors\Client\AudioStreamAddrProcessor.h">
-      <Filter>Processors\Client</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\LocalizationLoader.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\StreamRelay\StreamServiceInfoProcessor.h">
+      <Filter>Processors\StreamRelay</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\Client\StreamAddrProcessor.h">
+      <Filter>Processors\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\StreamRelayServiceManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

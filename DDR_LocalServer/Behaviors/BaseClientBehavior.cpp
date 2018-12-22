@@ -17,7 +17,7 @@ BaseClientBehavior::~BaseClientBehavior()
 void BaseClientBehavior::OnStart(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer)
 {
 	DebugLog("\nBaseClientBehavior OnStart----------------------------------------------------------------")
-	auto interval = std::chrono::seconds(5);
+	auto interval = std::chrono::seconds(15);
 	m_HeartBeatTimerID = m_Timer.add(interval, std::bind(&BaseClientBehavior::HeartBeatTimeout, this, spContainer));
 }
 void BaseClientBehavior::Update(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer)

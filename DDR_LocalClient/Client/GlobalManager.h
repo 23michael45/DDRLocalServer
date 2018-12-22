@@ -5,6 +5,7 @@
 #include "../../../Shared/src/Network/TcpClientBase.h"
 #include "../../../Shared/src/Utility/Singleton.h"
 #include "LocalTcpClient.h"
+#include "AudioTcpClient.h"
 
 using namespace DDRFramework;
 class GlobalManager : public DDRFramework::CSingleton<GlobalManager>
@@ -15,17 +16,22 @@ public:
 
 public:
 
-	void CreateUdp();
+	void StartUdp();
 	void ReleaseUdp();
 	bool IsUdpWorking();
 
-	void CreateTcp();
+	void StartAudioClient(std::string ip, int port);
+	void StopAudioClient();
+
+
+	void StartTcpClient();
 	void ReleaseTcp();
 	bool IsTcpWorking();
 
 	
 	std::shared_ptr<LocalTcpClient> GetTcpClient();
 	std::shared_ptr<UdpSocketBase> GetUdpClient();
+	std::shared_ptr<AudioTcpClient> GetAudioTcpClient();
 
 private:
 
@@ -33,6 +39,7 @@ private:
 
 	std::shared_ptr<LocalTcpClient> m_spTcpClient;
 	std::shared_ptr<UdpSocketBase> m_spUdpClient;
+	std::shared_ptr<AudioTcpClient> m_spAudioTcpClient;
 };
 
 #endif // GlobalManager_h__

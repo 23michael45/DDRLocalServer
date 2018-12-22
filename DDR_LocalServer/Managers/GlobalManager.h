@@ -4,6 +4,7 @@
 #include "../../../Shared/src/Network/UdpSocketBase.h"
 #include "../../../Shared/src/Utility/Singleton.h"
 #include "../../../Shared/src/Utility/XmlLoader.h"
+#include "../../../Shared/src/Utility/LocalizationLoader.h"
 #include "../../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
 #include "../Servers/LocalTcpServer.h"
 
@@ -22,6 +23,7 @@ public:
 
 	void StartUdpServer();
 	void StopUdpServer();
+	void OnUdpDisconnect(UdpSocketBase& container);
 
 
 	std::shared_ptr<LocalTcpServer> GetTcpServer()
@@ -33,11 +35,21 @@ public:
 		return m_spUdpServer;
 	}
 
+
+	XmlLoader& GetLocalServerConfig()
+	{
+		return m_LocalServerConfig;
+	}
+	LocalizationLoader& GetLocalizationConfig()
+	{
+		return m_LocalizationConfig;
+	}
 private:
 	std::shared_ptr<LocalTcpServer> m_spTcpServer;
 	std::shared_ptr<UdpSocketBase> m_spUdpServer;
 
-	XmlLoader m_ConfigLoader;
+	XmlLoader m_LocalServerConfig;
+	LocalizationLoader m_LocalizationConfig;
 };
 
 

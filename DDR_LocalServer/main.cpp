@@ -81,6 +81,26 @@ int asiocurl(std::string filename,std::string usage,std::string url)
 	return 1;
 }
 
+
+class _ConsoleDebug : public DDRFramework::ConsoleDebug ,public CSingleton<_ConsoleDebug>
+{
+public:
+	_ConsoleDebug()
+	{
+		AddCommand("ls sc", std::bind(&_ConsoleDebug::ListServerConnections, this));
+	}
+	void ListServerConnections()
+	{
+		printf_s("\nServer Connections");
+		for (auto spSessiont : GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
+		{
+			std::string ip = spSessiont.second->GetSocket().remote_endpoint().address().to_string();
+			printf_s("\n%s", ip.c_str());
+		}
+	}
+};
+
+
 int main()
 {
 #ifdef _WINDOWS
@@ -88,18 +108,13 @@ int main()
 #endif
 
 
-	DDRFramework::LocalizationLoader lloader;
-	DebugLog(lloader.GetString("LS_LoginSuccess").c_str());
-
 	InitMinDump();
 
 	GlobalManager::Instance()->StartTcpServer();
 	GlobalManager::Instance()->StartUdpServer();
 
 
-	while (!gQuit)
-	{
-		std::this_thread::sleep_for(std::chrono::seconds(1));
-	}
+	_ConsoleDebug::Instance()->ConsoleDebugLoop();
+
 	return 0;
 }

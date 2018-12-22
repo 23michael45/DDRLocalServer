@@ -14,9 +14,9 @@
 using namespace DDRCommProto;
 using namespace std;
 
-GlobalManager::GlobalManager():m_ConfigLoader("Config/LocalServerConfig.xml")
+GlobalManager::GlobalManager():m_LocalServerConfig("Config/LocalServer/LocalServerConfig.xml")
 {
-	std::string dbfile = m_ConfigLoader.GetValue("DatabaseFile");
+	std::string dbfile = m_LocalServerConfig.GetValue("DatabaseFile");
 	DBManager::Instance()->Open(dbfile);
 
 	bool b = DBManager::Instance()->VerifyUser("admin", "admin");
@@ -30,9 +30,9 @@ GlobalManager::~GlobalManager()
 void GlobalManager::StartTcpServer()
 {
 
-	int port = m_ConfigLoader.GetValue<int>("TcpPort");
-	std::string servername = m_ConfigLoader.GetValue("ServerName");
-	std::string threadCount = m_ConfigLoader.GetValue("ServerThreadCount");
+	int port = m_LocalServerConfig.GetValue<int>("TcpPort");
+	std::string servername = m_LocalServerConfig.GetValue("ServerName");
+	std::string threadCount = m_LocalServerConfig.GetValue("ServerThreadCount");
 
 	//loader.SetValue(std::string("ServerName"), std::string("LocalServerV2"));
 	//loader.DoSave();
@@ -85,6 +85,7 @@ void GlobalManager::StartUdpServer()
 	m_spUdpServer->Start();
 	m_spUdpServer->GetSerializer()->BindDispatcher(std::make_shared<LocalServerUdpDispatcher>());
 
+	m_spUdpServer->BindOnDisconnect(std::bind(&GlobalManager::OnUdpDisconnect, this, std::placeholders::_1));
 	m_spUdpServer->StartBroadcast(std::stoi(port), bc, 2000);
 	//spUdp->StartReceive(28888);
 
@@ -98,11 +99,17 @@ void GlobalManager::StopUdpServer()
 	{
 		m_spUdpServer->StopBroadcast();
 		m_spUdpServer->Stop();
-		m_spUdpServer.reset();
+		//m_spUdpServer.reset();donot reset here cause Stop is async ,it will release when OnDisconnect is called
 
 	}
 }
-
+void GlobalManager::OnUdpDisconnect(UdpSocketBase& container)
+{
+	if (m_spUdpServer)
+	{
+		m_spUdpServer.reset();
+	}
+}
 
 DBManager::DBManager()
 {

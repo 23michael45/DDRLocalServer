@@ -18,6 +18,8 @@ LoginProcessor::~LoginProcessor()
 
 void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
+	std::string fromip = spSockContainer->GetTcp()->GetSocket().remote_endpoint().address().to_string();
+	DebugLog("\nReceive Login from:%s" , fromip.c_str());
 
 	auto bodytype = spHeader->bodytype();
 
@@ -64,13 +66,10 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	}
 	else if (type == eCltType::eLSMStreamRelay)
 	{
-
 		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
 	}
 	else if (type == eCltType::eLSMFaceRecognition)
 	{
-
-
 		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
 
 	}
@@ -83,8 +82,6 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	}
 	else if (type == eCltType::eLSMThermalImaging)
 	{
-
-
 		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
 
 	}

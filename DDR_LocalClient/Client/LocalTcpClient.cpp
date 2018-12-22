@@ -33,7 +33,7 @@ void LocalTcpClient::OnConnected(TcpSocketContainer& container)
 	spreq->set_username("LocalTcpClient_XX");
 	spreq->set_type(ePCClient);
 	spreq->set_username("admin");
-	spreq->set_userpwd("admin1");
+	spreq->set_userpwd("admin");
 
 	if (IsConnected())
 	{
@@ -52,7 +52,7 @@ void LocalTcpClient::OnDisconnect(TcpSocketContainer& container)
 
 
 
-	GlobalManager::Instance()->CreateUdp();
+	GlobalManager::Instance()->StartUdp();
 	GlobalManager::Instance()->GetUdpClient()->Start();
 	GlobalManager::Instance()->GetUdpClient()->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
 	GlobalManager::Instance()->GetUdpClient()->StartReceive(28888);

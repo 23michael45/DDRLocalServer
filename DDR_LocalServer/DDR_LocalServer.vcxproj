@@ -119,7 +119,7 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy /Y $(SolutionDir)DDR_LocalServer\*.db   $(SolutionDir)x64\Debug\
-xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Debug\Config\</Command>
+xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Debug\Config\ /s /i</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -341,8 +341,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Behaviors\BaseClientBehavior.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
+    <ClCompile Include="Managers\StreamRelayServiceManager.cpp" />
     <ClCompile Include="Processors\AlarmProcessor.cpp" />
-    <ClCompile Include="Processors\Client\AudioStreamAddrProcessor.cpp" />
+    <ClCompile Include="Processors\Client\StreamAddrProcessor.cpp" />
     <ClCompile Include="Processors\CmdProcessor.cpp" />
     <ClCompile Include="Processors\FileAddressProcessor.cpp" />
     <ClCompile Include="Processors\FileProcessor.cpp" />
@@ -350,8 +351,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Processors\LocalServerUdpProcessor.cpp" />
     <ClCompile Include="Processors\LoginProcessor.cpp" />
     <ClCompile Include="Processors\StatusProcessor.cpp" />
-    <ClCompile Include="Processors\StreamRelay\AudioStreamServiceInfoProcessor.cpp" />
-    <ClCompile Include="Processors\StreamRelay\VideoStreamServiceInfoProcessor.cpp" />
+    <ClCompile Include="Processors\StreamRelay\StreamServiceInfoProcessor.cpp" />
     <ClCompile Include="Processors\TalkHBProcessor.cpp" />
     <ClCompile Include="Processors\TalkProcessor.cpp" />
     <ClCompile Include="Processors\TextChatProcessor.cpp" />
@@ -399,8 +399,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
     <ClInclude Include="Behaviors\BaseClientBehavior.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
+    <ClInclude Include="Managers\StreamRelayServiceManager.h" />
     <ClInclude Include="Processors\AlarmProcessor.h" />
-    <ClInclude Include="Processors\Client\AudioStreamAddrProcessor.h" />
+    <ClInclude Include="Processors\Client\StreamAddrProcessor.h" />
     <ClInclude Include="Processors\CmdProcessor.h" />
     <ClInclude Include="Processors\FileAddressProcessor.h" />
     <ClInclude Include="Processors\FileProcessor.h" />
@@ -408,8 +409,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Processors\LocalServerUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />
     <ClInclude Include="Processors\StatusProcessor.h" />
-    <ClInclude Include="Processors\StreamRelay\AudioStreamServiceInfoProcessor.h" />
-    <ClInclude Include="Processors\StreamRelay\VideoStreamServiceInfoProcessor.h" />
+    <ClInclude Include="Processors\StreamRelay\StreamServiceInfoProcessor.h" />
     <ClInclude Include="Processors\TalkHBProcessor.h" />
     <ClInclude Include="Processors\TalkProcessor.h" />
     <ClInclude Include="Processors\TextChatProcessor.h" />
