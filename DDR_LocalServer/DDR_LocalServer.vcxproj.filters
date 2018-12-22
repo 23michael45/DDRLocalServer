@@ -199,9 +199,6 @@
     <ClCompile Include="Processors\TextChatProcessor.cpp">
       <Filter>Processors</Filter>
     </ClCompile>
-    <ClCompile Include="Processors\AlarmProcessor.cpp">
-      <Filter>Processors</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\thirdparty\curl\lib\amigaos.c">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClCompile>
@@ -631,6 +628,9 @@
     <ClCompile Include="Managers\StreamRelayServiceManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Processors\StreamRelay\StreamRelayAlarmProcessor.cpp">
+      <Filter>Processors\StreamRelay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -780,9 +780,6 @@
     <ClInclude Include="Processors\TextChatProcessor.h">
       <Filter>Processors</Filter>
     </ClInclude>
-    <ClInclude Include="Processors\AlarmProcessor.h">
-      <Filter>Processors</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\thirdparty\curl-asio\curl-asio.hpp">
       <Filter>Shared\Thirdparty\curl-asio</Filter>
     </ClInclude>
@@ -800,6 +797,9 @@
     </ClInclude>
     <ClInclude Include="Managers\StreamRelayServiceManager.h">
       <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\StreamRelay\StreamRelayAlarmProcessor.h">
+      <Filter>Processors\StreamRelay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

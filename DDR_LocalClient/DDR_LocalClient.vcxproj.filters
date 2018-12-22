@@ -115,6 +115,9 @@
     <ClCompile Include="..\..\Shared\src\Utility\LocalizationLoader.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Client\AlarmProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -215,6 +218,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\LocalizationLoader.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\AlarmProcessor.h">
+      <Filter>Client</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

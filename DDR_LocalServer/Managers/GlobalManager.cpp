@@ -57,10 +57,9 @@ void GlobalManager::StopTcpServer()
 void GlobalManager::StartUdpServer()
 {
 
-	XmlLoader loader("Config/LocalServerConfig.xml");
-	std::string port = loader.GetValue("UdpPort");
-	std::string tcpport = loader.GetValue("TcpPort");
-	std::string servername = loader.GetValue("ServerName");
+	std::string port = m_LocalServerConfig.GetValue("UdpPort");
+	std::string tcpport = m_LocalServerConfig.GetValue("TcpPort");
+	std::string servername = m_LocalServerConfig.GetValue("ServerName");
 
 
 	auto bc = std::make_shared<bcLSAddr>();

@@ -342,7 +342,6 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
     <ClCompile Include="Managers\StreamRelayServiceManager.cpp" />
-    <ClCompile Include="Processors\AlarmProcessor.cpp" />
     <ClCompile Include="Processors\Client\StreamAddrProcessor.cpp" />
     <ClCompile Include="Processors\CmdProcessor.cpp" />
     <ClCompile Include="Processors\FileAddressProcessor.cpp" />
@@ -351,6 +350,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Processors\LocalServerUdpProcessor.cpp" />
     <ClCompile Include="Processors\LoginProcessor.cpp" />
     <ClCompile Include="Processors\StatusProcessor.cpp" />
+    <ClCompile Include="Processors\StreamRelay\StreamRelayAlarmProcessor.cpp" />
     <ClCompile Include="Processors\StreamRelay\StreamServiceInfoProcessor.cpp" />
     <ClCompile Include="Processors\TalkHBProcessor.cpp" />
     <ClCompile Include="Processors\TalkProcessor.cpp" />
@@ -400,7 +400,6 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Behaviors\BaseClientBehavior.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
     <ClInclude Include="Managers\StreamRelayServiceManager.h" />
-    <ClInclude Include="Processors\AlarmProcessor.h" />
     <ClInclude Include="Processors\Client\StreamAddrProcessor.h" />
     <ClInclude Include="Processors\CmdProcessor.h" />
     <ClInclude Include="Processors\FileAddressProcessor.h" />
@@ -409,6 +408,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Processors\LocalServerUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />
     <ClInclude Include="Processors\StatusProcessor.h" />
+    <ClInclude Include="Processors\StreamRelay\StreamRelayAlarmProcessor.h" />
     <ClInclude Include="Processors\StreamRelay\StreamServiceInfoProcessor.h" />
     <ClInclude Include="Processors\TalkHBProcessor.h" />
     <ClInclude Include="Processors\TalkProcessor.h" />
