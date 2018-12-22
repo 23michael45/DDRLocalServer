@@ -10,6 +10,10 @@
 #include "Client/GlobalManager.h"
 #include "Client/AudioTcpClient.h"
 #include <memory>
+
+#ifdef _WINDOWS
+#include <Windows.h>
+#endif
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -163,6 +167,9 @@ public:
 
 int main()
 {
+#ifdef _WINDOWS
+	SetConsoleOutputCP(CP_UTF8);
+#endif
 	TcpUdpClient();
 	
 	_ConsoleDebug::Instance()->ConsoleDebugLoop();

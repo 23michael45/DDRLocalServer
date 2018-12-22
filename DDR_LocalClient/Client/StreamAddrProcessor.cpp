@@ -22,25 +22,50 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 	rspStreamAddr* pRaw = reinterpret_cast<rspStreamAddr*>(spMsg.get());
 
 
-	if (pRaw->channels().size() > 0)
+	std::string error = pRaw->error();
+	if (error.empty())
 	{
-		for (auto channel : pRaw->channels())
+
+		if (pRaw->channels().size() > 0)
 		{
-			std::string ip = channel.dst();
-
-			if (channel.dstport().size() > 0)
+			for (auto channel : pRaw->channels())
 			{
+				if (channel.networktype() == ChannelNetworkType::Local)
+				{
+					if (channel.srcport().size() > 0)
+					{
 
-				int port = channel.dstport(0);
-				GlobalManager::Instance()->StartAudioClient(ip, port);
+						std::string ip = channel.srcaddr();
+						int port = channel.srcport(0);
+						GlobalManager::Instance()->StartAudioClient(ip, port);
+
+					}
+					else
+					{
+						//to do get 
+					}
+
+
+				}
+				else if (channel.networktype() == ChannelNetworkType::Remote)
+				{
+
+				}
+
 			}
-			break;;
 		}
+		else
+		{
+		}
+
 	}
 	else
 	{
-		DebugLog("\nNo StreamRelayServer Listening");
+		auto serror = GlobalManager::Instance()->GetLocalizationConfig().GetString(error);
+		DebugLog("\n%s", serror.c_str());
 	}
+
+
 
 
 	
