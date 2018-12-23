@@ -107,10 +107,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_WINDOWS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;PROTOBUF_USE_DLLS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;SYSTEM_WINDOWS;_SCL_SECURE_NO_WARNINGS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;PROTOBUF_USE_DLLS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/curl/include;$(ProjectDir)../../Shared/Thirdparty/curl/;$(ProjectDir)../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/;$(ProjectDir)../../Shared/Thirdparty/curl/include;$(ProjectDir)../../Shared/Thirdparty/curl/;$(ProjectDir)../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../Shared/Thirdparty/cppfs/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>
+      </LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -155,6 +157,8 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Debug\Conf
       <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/curl/include;$(ProjectDir)../../Shared/Thirdparty/curl/;$(ProjectDir)../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <MinimalRebuild>true</MinimalRebuild>
+      <LanguageStandard>
+      </LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -193,6 +197,26 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.c" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileHandleBackend.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileIteratorBackend.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileSystem.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Change.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\cppfsUrl.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Diff.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileHandle.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileIterator.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FilePath.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileVisitor.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\fs.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FunctionalFileVisitor.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\InputStream.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\LoginCredentials.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\OutputStream.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\system.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Tree.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileIterator.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileSystem.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\curl\lib\amigaos.c" />
     <ClCompile Include="..\..\Shared\thirdparty\curl\lib\asyn-ares.c" />
     <ClCompile Include="..\..\Shared\thirdparty\curl\lib\asyn-thread.c" />
@@ -340,12 +364,13 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="Behaviors\BaseClientBehavior.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Managers\FileManager.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
     <ClCompile Include="Managers\StreamRelayServiceManager.cpp" />
+    <ClCompile Include="Processors\Client\FileAddressProcessor.cpp" />
     <ClCompile Include="Processors\Client\StreamAddrProcessor.cpp" />
     <ClCompile Include="Processors\CmdProcessor.cpp" />
-    <ClCompile Include="Processors\FileAddressProcessor.cpp" />
-    <ClCompile Include="Processors\FileProcessor.cpp" />
+    <ClCompile Include="Processors\FileStatusProcessor.cpp" />
     <ClCompile Include="Processors\HeartBeatProcessor.cpp" />
     <ClCompile Include="Processors\LocalServerUdpProcessor.cpp" />
     <ClCompile Include="Processors\LoginProcessor.cpp" />
@@ -393,17 +418,40 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.h" />
     <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.h" />
     <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3ext.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\basen\basen.hpp" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\AbstractFileHandleBackend.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\AbstractFileIteratorBackend.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\AbstractFileSystem.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\Change.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\cppfs.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\cppfsUrl.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\Diff.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FileHandle.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FileIterator.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FilePath.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FileVisitor.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\fs.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FunctionalFileVisitor.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\InputStream.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\LoginCredentials.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\OutputStream.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\system.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\Tree.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\windows\LocalFileHandle.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\windows\LocalFileIterator.h" />
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\windows\LocalFileSystem.h" />
     <ClInclude Include="..\..\Shared\thirdparty\curl-asio\curl-asio.hpp" />
     <ClInclude Include="..\..\Shared\thirdparty\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
     <ClInclude Include="Behaviors\BaseClientBehavior.h" />
+    <ClInclude Include="Managers\FileManager.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
     <ClInclude Include="Managers\StreamRelayServiceManager.h" />
+    <ClInclude Include="Processors\Client\FileAddressProcessor.h" />
     <ClInclude Include="Processors\Client\StreamAddrProcessor.h" />
     <ClInclude Include="Processors\CmdProcessor.h" />
-    <ClInclude Include="Processors\FileAddressProcessor.h" />
-    <ClInclude Include="Processors\FileProcessor.h" />
+    <ClInclude Include="Processors\FileStatusProcessor.h" />
     <ClInclude Include="Processors\HeartBeatProcessor.h" />
     <ClInclude Include="Processors\LocalServerUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />

@@ -8,6 +8,8 @@
 #include "../../../Shared/src/Network/UdpSocketBase.h"
 #include "Servers/LocalServerUdpDispatcher.h"
 #include "Managers/GlobalManager.h"
+#include "Managers/FileManager.h"
+
 
 #include <thread>
 #include <chrono>
@@ -109,6 +111,11 @@ int main()
 
 
 	InitMinDump();
+
+	FileManager fm;
+	fm.SetRootPath("G:/temp/");
+	fm.CheckFiles();
+
 
 	GlobalManager::Instance()->StartTcpServer();
 	GlobalManager::Instance()->StartUdpServer();

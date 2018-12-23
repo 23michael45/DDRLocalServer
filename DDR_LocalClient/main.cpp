@@ -138,6 +138,7 @@ public:
 	{
 		AddCommand("ls cc", std::bind(&_ConsoleDebug::ListClientConnection, this));
 		AddCommand("ca", std::bind(&_ConsoleDebug::CallAudio, this));
+		AddCommand("reqfile", std::bind(&_ConsoleDebug::RequestFile, this));
 	}
 	void ListClientConnection()
 	{
@@ -156,10 +157,22 @@ public:
 
 	void CallAudio()
 	{
-		DebugLog("\nOnConnectSuccess! LocalTcpClient");
+		DebugLog("\nCall Audio");
 		auto spreq = std::make_shared<reqStreamAddr>();
 		spreq->set_networktype(ChannelNetworkType::Local);
 		
+		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
+		spreq.reset();
+	}
+
+	void RequestFile()
+	{
+		DebugLog("\nRequest File");
+		auto spreq = std::make_shared<reqFileAddress>();
+		spreq->set_filetype(eFileTypes::FileHttpAddress);
+		spreq->add_filenames("1*/*.txt");
+		spreq->add_filenames("2*1/1*.txt");
+
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
 	}
