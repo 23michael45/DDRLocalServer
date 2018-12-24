@@ -13,6 +13,7 @@
 
 #ifdef _WINDOWS
 #include <Windows.h>
+#include "cppfs/windows/LocalFileSystem.h"
 #endif
 using namespace DDRFramework;
 using namespace DDRCommProto;
@@ -171,7 +172,13 @@ public:
 		auto spreq = std::make_shared<reqFileAddress>();
 		spreq->set_filetype(eFileTypes::FileHttpAddress);
 		spreq->add_filenames("1*/*.txt");
-		spreq->add_filenames("2*1/1*.txt");
+
+		std::string targetFileFormat = "2*1/1*.txt";
+
+		spreq->add_filenames(cppfs::getStartWildRegex(targetFileFormat));
+
+
+
 
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();

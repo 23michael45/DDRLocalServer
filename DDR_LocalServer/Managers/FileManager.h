@@ -2,7 +2,8 @@
 #define FileManager_h__
 
 #include <filesystem>
-
+#include <vector>
+#include <string>
 #include "../../../Shared/src/Utility/Singleton.h"
 
 using namespace DDRFramework;
@@ -14,8 +15,11 @@ public:
 	~FileManager();
 
 	void SetRootPath(std::string root);
-	void CheckFiles();
+	std::vector<std::string> CheckFiles();
 private:
+
+	void CheckDir(std::string dir, std::vector<std::string>& vec);
+
 	std::string m_RootPath;
 };
 

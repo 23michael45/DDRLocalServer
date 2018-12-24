@@ -6,12 +6,22 @@
 #include <cppfs/fs.h>
 #include <cppfs/FileHandle.h>
 #include <cppfs/FileIterator.h>
+#include <cppfs/FilePath.h>
+
+#ifdef _WINDOWS
+#include <cppfs/windows/LocalFileSystem.h>
+#endif
 
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"
 using namespace cppfs;
+
 FileManager::FileManager()
 {
+
+	FilePath path(cppfs::getexepath());
+	m_RootPath = path.directoryPath();
+	
 
 }
 FileManager::~FileManager()
@@ -25,28 +35,34 @@ void FileManager::SetRootPath(std::string root)
 }
 
 
-void FileManager::CheckFiles()
+void FileManager::CheckDir(std::string dir, std::vector<std::string>& vec)
 {
-	//std::filesystem f;// rootPath = (m_RootPath);
-	//for (auto& p : fs::directory_iterator("sandbox"))
-	//	std::cout << p.path() << '\n';
-
-	std::vector<std::string> files;
-
-	FileHandle dir = fs::open(m_RootPath);
-
-	if (dir.isDirectory())
+	FileHandle fhandel = fs::open(dir);
+	if (fhandel.exists())
 	{
-		for (FileIterator it = dir.begin(); it != dir.end(); ++it)
+		if (fhandel.isDirectory())
 		{
-			std::string path = *it;
-			files.push_back(path);
-		}
-	}
+			auto files = fhandel.listFiles();
+			
 
-	for (auto f : files)
-	{
-		DebugLog("\n%s", f.c_str());
+
+
+			for (auto file : files)
+			{
+				CheckDir(dir + "/" + file, vec);
+			}
+		}
+		else
+		{
+			vec.push_back(dir);
+		}
+
 	}
+}
+std::vector<string> FileManager::CheckFiles()
+{
+	std::vector<std::string> files;
+	CheckDir(m_RootPath, files);
+	return files;
 
 }

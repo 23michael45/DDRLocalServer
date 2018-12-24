@@ -109,7 +109,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;PROTOBUF_USE_DLLS;DR_WAV_IMPLEMENTATION;MINI_AL_IMPLEMENTATION;_DISABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir);$(ProjectDir)../../Shared/Thirdparty/cppfs/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -180,6 +180,26 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClCompile Include="..\..\Shared\src\Utility\LocalizationLoader.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileHandleBackend.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileIteratorBackend.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileSystem.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Change.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\cppfsUrl.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Diff.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileHandle.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileIterator.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FilePath.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileVisitor.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\fs.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FunctionalFileVisitor.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\InputStream.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\LoginCredentials.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\OutputStream.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\system.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Tree.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileIterator.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileSystem.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\mini-al\extras\dr_wav.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\mini-al\extras\stb_vorbis.c" />
     <ClCompile Include="..\..\Shared\thirdparty\mini-al\mini_al.cpp" />

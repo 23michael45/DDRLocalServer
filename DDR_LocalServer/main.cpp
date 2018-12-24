@@ -19,7 +19,10 @@ using namespace std;
 
 #ifdef _WINDOWS
 #include <Windows.h>
+#include <cppfs/windows/LocalFileSystem.h>
 #endif
+#include <cppfs/FilePath.h>
+#include "Managers/FileManager.h"
 
 
 char gQuit = 0;
@@ -33,6 +36,7 @@ char gQuit = 0;
 #include <fstream>
 
 #include "../../Shared/src/Utility/Logger.h"
+#include <regex>
 
 using namespace std;
 
@@ -112,9 +116,21 @@ int main()
 
 	InitMinDump();
 
-	FileManager fm;
-	fm.SetRootPath("G:/temp/");
-	fm.CheckFiles();
+	cppfs::FilePath fpath(cppfs::getexepath());
+	std::string root = fpath.directoryPath();
+	FileManager::Instance()->SetRootPath(root + "../");
+	auto files = FileManager::Instance()->CheckFiles();
+
+	for (auto file : files)
+	{
+		if (std::regex_match(file, std::regex("(.*)(DDR_)(.*)(exe)")))
+		{
+			DebugLog("\n%s", file.c_str());
+
+		}
+	}
+
+
 
 
 	GlobalManager::Instance()->StartTcpServer();

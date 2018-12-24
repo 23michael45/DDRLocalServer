@@ -28,6 +28,12 @@
     <Filter Include="Shared\Thirdparty\mini-al">
       <UniqueIdentifier>{d81c0d60-49d7-4a4c-a71f-15bbe6bfb14f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shared\Thirdparty\cppfs">
+      <UniqueIdentifier>{108fefcb-4f80-4b9f-a8b7-dba22b439df9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\cppfs\windows">
+      <UniqueIdentifier>{f584a3a8-8bd1-4c34-888c-7785fc840cbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -117,6 +123,66 @@
     </ClCompile>
     <ClCompile Include="Client\AlarmProcessor.cpp">
       <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileIterator.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileSystem.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileHandleBackend.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileIteratorBackend.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileSystem.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Change.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\cppfsUrl.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Diff.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileHandle.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileIterator.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FilePath.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileVisitor.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\fs.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FunctionalFileVisitor.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\InputStream.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\LoginCredentials.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\OutputStream.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\system.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Tree.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
