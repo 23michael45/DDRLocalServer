@@ -116,21 +116,6 @@ int main()
 
 	InitMinDump();
 
-	cppfs::FilePath fpath(cppfs::getexepath());
-	std::string root = fpath.directoryPath();
-	FileManager::Instance()->SetRootPath(root + "../");
-	auto files = FileManager::Instance()->CheckFiles();
-
-	for (auto file : files)
-	{
-		if (std::regex_match(file, std::regex("(.*)(DDR_)(.*)(exe)")))
-		{
-			DebugLog("\n%s", file.c_str());
-
-		}
-	}
-
-
 
 
 	GlobalManager::Instance()->StartTcpServer();

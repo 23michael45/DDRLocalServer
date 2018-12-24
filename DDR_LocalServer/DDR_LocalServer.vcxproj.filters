@@ -631,9 +631,6 @@
     <ClCompile Include="Processors\StreamRelay\StreamRelayAlarmProcessor.cpp">
       <Filter>Processors\StreamRelay</Filter>
     </ClCompile>
-    <ClCompile Include="Processors\FileStatusProcessor.cpp">
-      <Filter>Processors</Filter>
-    </ClCompile>
     <ClCompile Include="Processors\Client\FileAddressProcessor.cpp">
       <Filter>Processors\Client</Filter>
     </ClCompile>
@@ -699,6 +696,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\cppfsUrl.cpp">
       <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\FileStatusProcessor.cpp">
+      <Filter>Processors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -864,9 +864,6 @@
     <ClInclude Include="Processors\StreamRelay\StreamRelayAlarmProcessor.h">
       <Filter>Processors\StreamRelay</Filter>
     </ClInclude>
-    <ClInclude Include="Processors\FileStatusProcessor.h">
-      <Filter>Processors</Filter>
-    </ClInclude>
     <ClInclude Include="Processors\Client\FileAddressProcessor.h">
       <Filter>Processors\Client</Filter>
     </ClInclude>
@@ -938,6 +935,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\cppfsUrl.h">
       <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\FileStatusProcessor.h">
+      <Filter>Processors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

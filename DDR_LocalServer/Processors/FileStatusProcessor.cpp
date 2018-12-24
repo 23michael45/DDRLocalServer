@@ -4,7 +4,6 @@
 #include "FileStatusProcessor.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"
-#include "../Managers//GlobalManager.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;
@@ -22,6 +21,11 @@ void FileStatusProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 {
 
 	ansFileStatus* pRaw = reinterpret_cast<ansFileStatus*>(spMsg.get());
+
+	for (auto file : pRaw->fileaddrlist())
+	{
+		DebugLog("\n%s", file);
+	}
 
 
 }

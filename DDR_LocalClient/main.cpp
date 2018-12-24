@@ -139,7 +139,7 @@ public:
 	{
 		AddCommand("ls cc", std::bind(&_ConsoleDebug::ListClientConnection, this));
 		AddCommand("ca", std::bind(&_ConsoleDebug::CallAudio, this));
-		AddCommand("reqfile", std::bind(&_ConsoleDebug::RequestFile, this));
+		AddCommand("reqf", std::bind(&_ConsoleDebug::RequestFile, this));
 	}
 	void ListClientConnection()
 	{
@@ -170,14 +170,10 @@ public:
 	{
 		DebugLog("\nRequest File");
 		auto spreq = std::make_shared<reqFileAddress>();
+		spreq->set_tarservicetype(eCltType::eLSMStreamRelay);
 		spreq->set_filetype(eFileTypes::FileHttpAddress);
-		spreq->add_filenames("1*/*.txt");
-
-		std::string targetFileFormat = "2*1/1*.txt";
-
-		spreq->add_filenames(cppfs::getStartWildRegex(targetFileFormat));
-
-
+		spreq->add_filenames("x64/*2018-16*.log");
+		spreq->add_filenames("x64/*2018-17*.log");
 
 
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
