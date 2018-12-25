@@ -530,9 +530,6 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClInclude Include="Client\StreamAddrProcessor.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\Shared\thirdparty\curl\lib\libcurl.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\Shared\thirdparty\curl\lib\Makefile.inc" />
     <None Include="..\..\Shared\thirdparty\curl\lib\objnames.inc" />
   </ItemGroup>

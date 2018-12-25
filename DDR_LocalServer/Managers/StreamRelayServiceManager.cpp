@@ -23,23 +23,38 @@ std::vector<AVChannelConfig> StreamRelayServiceManager::GetAVChannels()
 	{
 		AVChannelConfig channel;
 
-		auto sType = config.GetValue(i, "Type");
+		auto sStreamType = config.GetValue(i, "StreamType");
+
+
 		ChannelStreamType streamType;
-		if (sType == "A")
+		if (sStreamType == "A")
 		{
 			streamType = ChannelStreamType::Audio;
 		}
-		else if (sType == "V")
+		else if (sStreamType == "V")
 		{
 			streamType = ChannelStreamType::Video;
 		}
-		if (sType == "AV")
+		if (sStreamType == "AV")
 		{
 			streamType = ChannelStreamType::VideoAudio;
 		}
-
 		channel.set_streamtype(streamType);
 
+
+		auto sNetworkType = config.GetValue(i, "NetworkType");
+		ChannelNetworkType networkType;
+		if (sNetworkType == "Local")
+		{
+			networkType = ChannelNetworkType::Local;
+		}
+		else if (sNetworkType == "Remote")
+		{
+			networkType = ChannelNetworkType::Remote;
+		}
+		channel.set_networktype(networkType);
+
+		channel.set_rate(config.GetValue<int>(i, "Rate"));
 		channel.set_src(config.GetValue(i, "SrcAddress"));
 		channel.set_dst(config.GetValue(i, "RemoteAddress"));
 

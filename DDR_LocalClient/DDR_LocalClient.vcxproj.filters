@@ -1124,11 +1124,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\..\Shared\thirdparty\curl\lib\libcurl.rc">
-      <Filter>Shared\Thirdparty\curl\lib</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\Shared\thirdparty\curl\lib\Makefile.inc">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </None>

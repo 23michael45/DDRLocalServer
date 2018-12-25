@@ -83,7 +83,7 @@ void AudioTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer
 
 	DebugLog("\nOnConnectSuccess! LocalTcpClient");
 
-	m_AudioCodec.Init(2, 48000, on_recv_frames, on_send_frames);
+	m_AudioCodec.Init(1, 16000, on_recv_frames, on_send_frames);
 	m_AudioCodec.StartRecord();
 	//m_AudioCodec.StartPlay();
 
