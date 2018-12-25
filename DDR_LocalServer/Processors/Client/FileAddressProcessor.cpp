@@ -8,6 +8,10 @@
 #include "../../Managers//GlobalManager.h"
 #include "../../Managers//StreamRelayServiceManager.h"
 
+
+#include "eventpp/callbacklist.h"
+#include "eventpp/eventdispatcher.h"
+#include "eventpp/eventqueue.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -42,7 +46,20 @@ void FileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spS
 	 
 	if (pRaw->tarservicetype() == eLSMStreamRelay)
 	{
-		StreamRelayServiceManager::Instance()->GetServerSession()->Send(sprsp);
+		auto spStreamRelaySession = StreamRelayServiceManager::Instance()->GetServerSession();
+		if (spStreamRelaySession)
+		{
+
+			StreamRelayServiceManager::Instance()->m_WaitingSessionPare.insert(make_pair(spStreamRelaySession, spSockContainer->GetTcp()));
+
+			StreamRelayServiceManager::Instance()->Send(sprsp);
+
+		}
+		else
+		{
+			DebugLog("\nNo StreamRelayServer Conncected");
+		}
+
 	}
 	if (pRaw->tarservicetype() == eLSMFaceRecognition)
 	{

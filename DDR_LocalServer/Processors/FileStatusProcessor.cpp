@@ -4,6 +4,8 @@
 #include "FileStatusProcessor.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"
+#include "../../../Shared/src/Network/TcpServerBase.h"
+#include "../Managers/StreamRelayServiceManager.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;
@@ -22,11 +24,27 @@ void FileStatusProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 
 	ansFileStatus* pRaw = reinterpret_cast<ansFileStatus*>(spMsg.get());
 
-	for (auto file : pRaw->fileaddrlist())
-	{
-		DebugLog("\n%s", file);
-	}
 
+
+	auto sprsp = std::make_shared<rspFileAddress>();
+
+	auto spSession = std::dynamic_pointer_cast<TcpSessionBase>(spSockContainer->GetTcp());
+	if (spSession)
+	{
+		sprsp->set_tarservicetype(spSession->GetLoginInfo().type());
+		sprsp->set_filetype(pRaw->filetype());
+		for (auto file : pRaw->fileaddrlist())
+		{
+			sprsp->add_fileaddrlist(file);
+		}
+
+		auto map = StreamRelayServiceManager::Instance()->m_WaitingSessionPare;
+		if (map.find(spSession) != map.end() && map[spSession])
+		{
+			map[spSession]->Send(sprsp);
+		}
+
+	}
 
 }
 

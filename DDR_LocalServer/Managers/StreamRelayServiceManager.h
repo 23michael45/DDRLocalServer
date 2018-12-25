@@ -6,6 +6,7 @@
 
 #include "../../../Shared/src/Network/TcpServerBase.h"
 #include "../../../Shared/proto/BaseCmd.pb.h"
+#include "eventpp/eventdispatcher.h"
 
 using namespace DDRCommProto;
 using namespace DDRFramework;
@@ -24,11 +25,18 @@ public:
 
 	
 	std::shared_ptr<TcpSessionBase> GetServerSession();
+	void Send(std::shared_ptr<google::protobuf::Message> spmsg);
+	
 	int GetServerTcpPort();
+
+
+	std::map<std::shared_ptr<TcpSessionBase>, std::shared_ptr<TcpSocketContainer>> m_WaitingSessionPare;
 private:
 
 
 	XmlLoader m_StreamSrcProxyConfig;
+
+
 };
 
 

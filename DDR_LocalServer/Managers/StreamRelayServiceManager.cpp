@@ -62,6 +62,19 @@ std::shared_ptr<TcpSessionBase> StreamRelayServiceManager::GetServerSession()
 }
 
 
+void StreamRelayServiceManager::Send(std::shared_ptr<google::protobuf::Message> spmsg)
+{
+	auto spSession = GetServerSession();
+	if (spSession)
+	{
+		spSession->Send(spmsg);
+	}
+	else
+	{
+		DebugLog("\No StreamRelay Service Connected");
+	}
+}
+
 int StreamRelayServiceManager::GetServerTcpPort()
 {
 	return GlobalManager::Instance()->GetLocalServerConfig().GetValue<int>("StreamRelayTcpPort");

@@ -41,7 +41,7 @@ void BaseClientBehavior::HeartBeatTimeout(std::shared_ptr<DDRFramework::TcpSocke
 void BaseClientBehavior::ResetHeartBeat(std::shared_ptr<DDRFramework::TcpSocketContainer> spContainer)
 {
 	m_Timer.reset(m_HeartBeatTimerID);
-	DebugLog("\nResetHeartBeat----------------------------------------------")
+	//DebugLog("\nResetHeartBeat----------------------------------------------")
 	
 	
 }
