@@ -29,7 +29,7 @@ static void on_transfer_done(curl_asio::transfer::ptr transfer, std::ofstream &o
 		out.close();
 
 		std::cout << "Transfer of " << transfer->info().effective_url() << " completed successfully (" << transfer->info().total_time() << " seconds)! Content saved to file " << file << std::endl;
-		exit(0);
+		/*exit(0);*/
 	}
 	else
 	{

@@ -49,13 +49,8 @@ void LocalTcpClient::OnConnected(TcpSocketContainer& container)
 void LocalTcpClient::OnDisconnect(TcpSocketContainer& container)
 {
 	TcpClientBase::OnDisconnect(container);
-
-
-
+	
 	GlobalManager::Instance()->StartUdp();
-	GlobalManager::Instance()->GetUdpClient()->Start();
-	GlobalManager::Instance()->GetUdpClient()->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
-	GlobalManager::Instance()->GetUdpClient()->StartReceive(28888);
 }
 
 void LocalTcpClient::StartHeartBeat()
@@ -66,6 +61,8 @@ void LocalTcpClient::StartHeartBeat()
 	});*/
 
 	m_HeartBeatTimerID = m_Timer.add(std::chrono::seconds(1), std::bind(&LocalTcpClient::SendHeartBeatOnce, shared_from_base(),std::placeholders::_1), std::chrono::seconds(1));
+
+
 }
 void LocalTcpClient::StopHeartBeat()
 {

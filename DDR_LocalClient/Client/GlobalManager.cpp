@@ -1,6 +1,7 @@
 #include "GlobalManager.h"
+#include "LocalClientUdpDispatcher.h"
 
-GlobalManager::GlobalManager()
+GlobalManager::GlobalManager():m_ClientConfig("Config/Client/ClientConfig.xml")
 {
 }
 GlobalManager::~GlobalManager()
@@ -16,6 +17,11 @@ void GlobalManager::StartUdp()
 	}
 	m_spUdpClient = std::make_shared<UdpSocketBase>();
 	m_spUdpClient->BindOnDisconnect(std::bind(&GlobalManager::OnUdpDisconnect, this, std::placeholders::_1));
+
+
+	m_spUdpClient->Start();
+	m_spUdpClient->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
+	m_spUdpClient->StartReceive(m_ClientConfig.GetValue<int>("UdpPort"));
 
 }
 void GlobalManager::ReleaseUdp()

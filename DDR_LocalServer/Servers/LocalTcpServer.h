@@ -3,6 +3,7 @@
 
 #include "../../../Shared/src/Network/TcpServerBase.h"
 #include "../../../Shared/src/Utility/Singleton.h"
+#include "../Managers/StreamRelayServiceManager.h"
 using namespace DDRFramework;
 
 
@@ -19,6 +20,8 @@ public:
 
 	std::shared_ptr<TcpSessionBase> GetTcpSessionBySocket(tcp::socket* pSocket);
 	std::map<tcp::socket*,std::shared_ptr<TcpSessionBase>>& GetTcpSocketContainerMap();
+
+	virtual void OnSessionDisconnect(TcpSocketContainer& container) override;
 
 
 	auto shared_from_base() {

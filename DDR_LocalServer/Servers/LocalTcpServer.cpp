@@ -39,3 +39,8 @@ std::map<tcp::socket*, std::shared_ptr<TcpSessionBase>>& LocalTcpServer::GetTcpS
 {
 	return m_SessionMap;
 }
+
+void LocalTcpServer::OnSessionDisconnect(TcpSocketContainer& container)
+{
+	//StreamRelayServiceManager::Instance()->m_WaitingSessionPare.erase(container->get)
+}

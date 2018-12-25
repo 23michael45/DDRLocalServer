@@ -49,8 +49,9 @@ void FileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spS
 		auto spStreamRelaySession = StreamRelayServiceManager::Instance()->GetServerSession();
 		if (spStreamRelaySession)
 		{
+			auto spClientSession = dynamic_pointer_cast<TcpSessionBase>(spSockContainer->GetTcp());
 
-			StreamRelayServiceManager::Instance()->m_WaitingSessionPare.insert(make_pair(spStreamRelaySession, spSockContainer->GetTcp()));
+			StreamRelayServiceManager::Instance()->m_WaitingSessionPare.insert(make_pair(spStreamRelaySession, spClientSession));
 
 			StreamRelayServiceManager::Instance()->Send(sprsp);
 

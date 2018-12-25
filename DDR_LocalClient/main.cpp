@@ -95,9 +95,6 @@ void TcpUdpClient()
 	GlobalManager::Instance()->GetTcpClient()->Start(4);
 
 	GlobalManager::Instance()->StartUdp();
-	GlobalManager::Instance()->GetUdpClient()->Start();
-	GlobalManager::Instance()->GetUdpClient()->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
-	GlobalManager::Instance()->GetUdpClient()->StartReceive(28888);
 
 
 }

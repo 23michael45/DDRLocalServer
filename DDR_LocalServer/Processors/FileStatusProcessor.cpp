@@ -42,6 +42,7 @@ void FileStatusProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 		if (map.find(spSession) != map.end() && map[spSession])
 		{
 			map[spSession]->Send(sprsp);
+			map.erase(spSession);
 		}
 
 	}

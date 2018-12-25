@@ -86,10 +86,7 @@ void GlobalManager::StartUdpServer()
 
 	m_spUdpServer->BindOnDisconnect(std::bind(&GlobalManager::OnUdpDisconnect, this, std::placeholders::_1));
 	m_spUdpServer->StartBroadcast(std::stoi(port), bc, 2000);
-	//spUdp->StartReceive(28888);
 
-
-	//spUdp->StopReceive();
 
 }
 void GlobalManager::StopUdpServer()

@@ -30,7 +30,7 @@ public:
 	int GetServerTcpPort();
 
 
-	std::map<std::shared_ptr<TcpSessionBase>, std::shared_ptr<TcpSocketContainer>> m_WaitingSessionPare;
+	std::map<std::shared_ptr<TcpSessionBase>, std::shared_ptr<TcpSessionBase>> m_WaitingSessionPare;
 private:
 
 

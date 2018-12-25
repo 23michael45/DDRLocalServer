@@ -49,6 +49,7 @@ private:
 	std::shared_ptr<AudioTcpClient> m_spAudioTcpClient;
 
 
+	XmlLoader m_ClientConfig;
 	LocalizationLoader m_LocalizationConfig;
 
 };
