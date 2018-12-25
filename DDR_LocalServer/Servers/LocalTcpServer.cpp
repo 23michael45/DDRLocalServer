@@ -40,7 +40,9 @@ std::map<tcp::socket*, std::shared_ptr<TcpSessionBase>>& LocalTcpServer::GetTcpS
 	return m_SessionMap;
 }
 
-void LocalTcpServer::OnSessionDisconnect(TcpSocketContainer& container)
+void LocalTcpServer::OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
-	//StreamRelayServiceManager::Instance()->m_WaitingSessionPare.erase(container->get)
+
+	auto spClientSession = dynamic_pointer_cast<TcpSessionBase>(spContainer);
+	StreamRelayServiceManager::Instance()->m_WaitingSessionPare.erase(spClientSession);
 }

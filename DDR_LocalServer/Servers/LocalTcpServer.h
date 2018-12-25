@@ -21,7 +21,7 @@ public:
 	std::shared_ptr<TcpSessionBase> GetTcpSessionBySocket(tcp::socket* pSocket);
 	std::map<tcp::socket*,std::shared_ptr<TcpSessionBase>>& GetTcpSocketContainerMap();
 
-	virtual void OnSessionDisconnect(TcpSocketContainer& container) override;
+	virtual void OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spContainer) override;
 
 
 	auto shared_from_base() {

@@ -78,7 +78,7 @@ std::shared_ptr<TcpClientSessionBase> AudioTcpClient::BindSerializerDispatcher()
 	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, BaseMessageDispatcher,BaseHeadRuleRouter)
 		return spTcpClientSessionBase;
 }
-void AudioTcpClient::OnConnected(TcpSocketContainer& container)
+void AudioTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 
 	DebugLog("\nOnConnectSuccess! LocalTcpClient");
@@ -88,9 +88,9 @@ void AudioTcpClient::OnConnected(TcpSocketContainer& container)
 	//m_AudioCodec.StartPlay();
 
 }
-void AudioTcpClient::OnDisconnect(TcpSocketContainer& container)
+void AudioTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
-	TcpClientBase::OnDisconnect(container);
+	TcpClientBase::OnDisconnect(spContainer);
 
 	m_AudioCodec.StopRecord();
 	//m_AudioCodec.StopPlay();

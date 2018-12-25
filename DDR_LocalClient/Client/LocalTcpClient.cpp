@@ -25,7 +25,7 @@ std::shared_ptr<TcpClientSessionBase> LocalTcpClient::BindSerializerDispatcher()
 	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, LocalClientDispatcher,BaseHeadRuleRouter)
 		return spTcpClientSessionBase;
 }
-void LocalTcpClient::OnConnected(TcpSocketContainer& container)
+void LocalTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 
 	DebugLog("\nOnConnectSuccess! LocalTcpClient");
@@ -46,9 +46,9 @@ void LocalTcpClient::OnConnected(TcpSocketContainer& container)
 
 
 }
-void LocalTcpClient::OnDisconnect(TcpSocketContainer& container)
+void LocalTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
-	TcpClientBase::OnDisconnect(container);
+	TcpClientBase::OnDisconnect(spContainer);
 	
 	GlobalManager::Instance()->StartUdp();
 }

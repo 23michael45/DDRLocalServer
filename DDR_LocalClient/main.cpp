@@ -70,7 +70,7 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 	getchar();
 
 	std::this_thread::sleep_for(chrono::seconds(2));
-	spClient->Disconnect(*spSession.get());
+	spClient->Disconnect(spSession);
 	spClient.reset();
 }
 void TcpClient()
@@ -169,8 +169,8 @@ public:
 		auto spreq = std::make_shared<reqFileAddress>();
 		spreq->set_tarservicetype(eCltType::eLSMStreamRelay);
 		spreq->set_filetype(eFileTypes::FileHttpAddress);
-		spreq->add_filenames("x64/*2018-16*.log");
-		spreq->add_filenames("x64/*2018-17*.log");
+		spreq->add_filenames("x64/*DDR*Server.e*");
+		spreq->add_filenames("x64/*2018-17*.*");
 
 
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);

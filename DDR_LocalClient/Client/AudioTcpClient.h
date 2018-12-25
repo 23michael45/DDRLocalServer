@@ -15,8 +15,8 @@ public:
 	AudioTcpClient();
 	~AudioTcpClient();
 
-	void OnConnected(TcpSocketContainer& container) override;
-	void OnDisconnect(TcpSocketContainer& container) override;
+	void OnConnected(std::shared_ptr<TcpSocketContainer> spContainer) override;
+	void OnDisconnect(std::shared_ptr<TcpSocketContainer> psContainer) override;
 
 	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
 
