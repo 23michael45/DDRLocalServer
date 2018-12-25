@@ -2,7 +2,8 @@
 #define AudioTcpClient_h__
 
 
-
+#ifdef QT_PRECOMPILED_HEADER
+#else
 #include "../../../Shared/src/Utility/AudioCodec.h"
 #include "../../../Shared/src/Network/TcpClientBase.h"
 #include "../../../Shared/src/Utility/Singleton.h"
@@ -35,4 +36,5 @@ private:
 	DDRFramework::timer_id m_HeartBeatTimerID;
 };
 
+#endif
 #endif // AudioTcpClient_h__

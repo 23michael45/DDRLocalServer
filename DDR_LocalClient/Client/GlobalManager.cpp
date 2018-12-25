@@ -35,16 +35,22 @@ void GlobalManager::ReleaseUdp()
 void GlobalManager::StartAudioClient(std::string ip,int port)
 {
 
-	m_spAudioTcpClient = std::make_shared<AudioTcpClient>();
-	m_spAudioTcpClient->Start(1);
-	m_spAudioTcpClient->Connect(ip, std::to_string(port));
+#ifdef QT_PRECOMPILED_HEADER
+#else
+    m_spAudioTcpClient = std::make_shared<AudioTcpClient>();
+    m_spAudioTcpClient->Start(1);
+    m_spAudioTcpClient->Connect(ip, std::to_string(port));
+#endif
 }
 void GlobalManager::StopAudioClient()
 {
-	if (m_spAudioTcpClient)
-	{
-		m_spAudioTcpClient->Stop();
-	}
+#ifdef QT_PRECOMPILED_HEADER
+#else
+    if (m_spAudioTcpClient)
+    {
+        m_spAudioTcpClient->Stop();
+    }
+#endif
 }
 
 
@@ -76,11 +82,14 @@ std::shared_ptr<UdpSocketBase> GlobalManager::GetUdpClient()
 {
 	return m_spUdpClient;
 }
+#ifdef QT_PRECOMPILED_HEADER
+#else
 std::shared_ptr<AudioTcpClient> GlobalManager::GetAudioTcpClient()
 {
 
-	return m_spAudioTcpClient;
+    return m_spAudioTcpClient;
 }
+#endif
 void GlobalManager::OnUdpDisconnect(UdpSocketBase& container)
 {
 	ReleaseUdp();
