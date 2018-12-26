@@ -62,6 +62,15 @@ mal_uint32 on_send_frames(mal_device* pDevice, mal_uint32 frameCount, void* pSam
 
 
 
+TcpAudioClientSession::TcpAudioClientSession(asio::io_context& context):TcpClientSessionBase(context)
+{
+	SetRealtime(true);
+}
+TcpAudioClientSession::~TcpAudioClientSession()
+{
+	DebugLog("\nDestroy TcpAudioClientSession");
+}
+
 
 AudioTcpClient::AudioTcpClient()
 {
@@ -75,8 +84,8 @@ AudioTcpClient::~AudioTcpClient()
 
 std::shared_ptr<TcpClientSessionBase> AudioTcpClient::BindSerializerDispatcher()
 {
-	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, BaseMessageDispatcher,BaseHeadRuleRouter)
-		return spTcpClientSessionBase;
+	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpAudioClientSession, MessageSerializer, BaseMessageDispatcher,BaseHeadRuleRouter)
+		return spTcpAudioClientSession;
 }
 void AudioTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {

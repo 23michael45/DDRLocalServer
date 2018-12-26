@@ -47,6 +47,8 @@ public:
     std::shared_ptr<AudioTcpClient> GetAudioTcpClient();
 #endif
 
+	void SetServerAddr(std::string ip, std::string port);
+	void TryConnect();
 private:
 
 	void OnUdpDisconnect(UdpSocketBase& container);
@@ -61,6 +63,9 @@ private:
 
 	XmlLoader m_ClientConfig;
 	LocalizationLoader m_LocalizationConfig;
+
+	std::string m_ServerIP;
+	std::string m_ServerPort;
 
 };
 

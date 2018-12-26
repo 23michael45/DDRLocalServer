@@ -89,6 +89,31 @@ std::shared_ptr<AudioTcpClient> GlobalManager::GetAudioTcpClient()
 
     return m_spAudioTcpClient;
 }
+
+void GlobalManager::SetServerAddr(std::string ip, std::string port)
+{
+	m_ServerIP = ip;
+	m_ServerPort = port;
+}
+
+void GlobalManager::TryConnect()
+{
+	if (m_ServerIP.empty() || m_ServerPort.empty())
+	{
+		DebugLog("\nNo Server IP Broadcast Recieved");
+	}
+	else
+	{
+		if (IsUdpWorking())
+		{
+			GetUdpClient()->StopReceive();
+			GetUdpClient()->Stop();
+			GlobalManager::Instance()->GetTcpClient()->Connect(m_ServerIP, m_ServerPort);
+
+		}
+	}
+}
+
 #endif
 void GlobalManager::OnUdpDisconnect(UdpSocketBase& container)
 {

@@ -43,8 +43,6 @@ void LocalClientUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 		}
 	}
 
-	
-
 
 
 }
@@ -69,7 +67,8 @@ void LocalClientUdpProcessor::DealLocalServer(bcLSAddr_ServerInfo& serverinfo)
 	{
 		auto conntectip = (rmap.begin())->second;
 
-		TcpClientStart(conntectip, port);
+		std::string sPort = std::to_string(port);
+		GlobalManager::Instance()->SetServerAddr(conntectip, sPort);
 		DebugLog("\nReceive Server Broadcast %s: %s", name.c_str(), conntectip.c_str());
 	}
 	else
@@ -78,27 +77,5 @@ void LocalClientUdpProcessor::DealLocalServer(bcLSAddr_ServerInfo& serverinfo)
 
 		DebugLog("\nReceive Server Broadcast But No IP in same segment");
 	}
-
-}
-
-void LocalClientUdpProcessor::TcpClientStart(std::string serverip, int serverport)
-{
-	if (GlobalManager::Instance()->IsUdpWorking())
-	{
-		GlobalManager::Instance()->GetUdpClient()->StopReceive();
-		GlobalManager::Instance()->GetUdpClient()->Stop();
-
-
-		//both methon is ok
-		//std::ostringstream strport;
-		//strport << serverport;
-		//const std::string sPort(strport.str());
-		std::string sPort = std::to_string(serverport);
-		GlobalManager::Instance()->GetTcpClient()->Connect(serverip, sPort);
-
-	}
-
-
-
 
 }

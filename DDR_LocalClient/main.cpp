@@ -137,6 +137,7 @@ public:
 		AddCommand("ls cc", std::bind(&_ConsoleDebug::ListClientConnection, this));
 		AddCommand("ca", std::bind(&_ConsoleDebug::CallAudio, this));
 		AddCommand("reqf", std::bind(&_ConsoleDebug::RequestFile, this));
+		AddCommand("connect", std::bind(&_ConsoleDebug::Connect, this));
 	}
 	void ListClientConnection()
 	{
@@ -175,6 +176,12 @@ public:
 
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
+	}
+
+	void Connect()
+	{
+		GlobalManager::Instance()->TryConnect();
+
 	}
 };
 

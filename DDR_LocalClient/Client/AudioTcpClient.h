@@ -10,6 +10,15 @@
 #include "../../../Shared/src/Utility/Timer.hpp"
 
 using namespace DDRFramework;
+
+class TcpAudioClientSession : public TcpClientSessionBase
+{
+public:
+	TcpAudioClientSession(asio::io_context& context);
+	~TcpAudioClientSession();
+};
+
+
 class AudioTcpClient : public TcpClientBase 
 {
 public:
