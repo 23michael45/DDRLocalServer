@@ -1,6 +1,7 @@
 #include "../../Shared/src/Network/MessageSerializer.h"
 #include "../../Shared/src/Network/TcpServerBase.h"
 #include "../../Shared/src/Network/TcpClientBase.h"
+#include "../../Shared/src/Network/HttpClient.h"
 #include "../../Shared/proto/BaseCmd.pb.h"
 #include "../../Shared/src/Utility/DDRMacro.h"
 #include "Client/LocalClientUdpDispatcher.h"
@@ -141,6 +142,7 @@ public:
 		AddCommand("ca", std::bind(&_ConsoleDebug::CallAudio, this));
 		AddCommand("reqf", std::bind(&_ConsoleDebug::RequestFile, this));
 		AddCommand("connect", std::bind(&_ConsoleDebug::Connect, this));
+		AddCommand("httpget", std::bind(&_ConsoleDebug::HttpGet, this));
 	}
 	void ListClientConnection()
 	{
@@ -173,7 +175,7 @@ public:
 		auto spreq = std::make_shared<reqFileAddress>();
 		spreq->set_tarservicetype(eCltType::eLSMStreamRelay);
 		spreq->set_filetype(eFileTypes::FileHttpAddress);
-		spreq->add_filenames("x64/*DDR*Server.e*");
+		//spreq->add_filenames("x64/*DDR*Server.e*");
 		spreq->add_filenames("x64/*2018-17*.*");
 
 
@@ -196,6 +198,14 @@ public:
 
 		}
 
+	}
+	void HttpGet()
+	{
+
+		auto spHttpSession = std::make_shared<HttpSession>();
+		auto url = std::string("http://192.168.1.183:8080////bin/x64/26-12-2018-17-00-4.log");
+		auto outfile = std::string("D:/DevelopProj/Dadao/DDRFramework/DDRLocalServer/x64/Debug/26-12-2018-17-00-4.log");
+		spHttpSession->DoGet(url ,outfile);
 	}
 };
 

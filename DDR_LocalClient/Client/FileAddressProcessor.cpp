@@ -24,7 +24,7 @@ FileAddressProcessor::FileAddressProcessor(BaseMessageDispatcher& dispatcher) :B
 FileAddressProcessor::~FileAddressProcessor()
 {
 }
-
+std::shared_ptr<HttpSession> spHttpSession;
 void FileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 
@@ -41,8 +41,8 @@ void FileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 		cppfs::FilePath fpath(url);
 		auto filename = fpath.fileName();
 
-		HttpSession httpSession;
-		httpSession.DoGet(url, root + filename);
+		spHttpSession = std::make_shared<HttpSession>();
+		spHttpSession->DoGet(url, root + filename);
 	}
 
 
