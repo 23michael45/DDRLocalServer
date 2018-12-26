@@ -5,12 +5,13 @@
 #include "../../../Shared/src/Utility/Singleton.h"
 #include "../../../Shared/src/Utility/XmlLoader.h"
 #include "../../../Shared/src/Utility/LocalizationLoader.h"
+#include "../../../Shared/src/Utility/GlobalManagerBase.h"
 #include "../../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
 #include "../Servers/LocalTcpServer.h"
 
 using namespace DDRFramework;
 class DBManager;
-class GlobalManager : public CSingleton<GlobalManager>
+class GlobalManager : public CSingleton<GlobalManager>,public GlobalManagerBase
 {
 
 public:
@@ -40,16 +41,11 @@ public:
 	{
 		return m_LocalServerConfig;
 	}
-	LocalizationLoader& GetLocalizationConfig()
-	{
-		return m_LocalizationConfig;
-	}
 private:
 	std::shared_ptr<LocalTcpServer> m_spTcpServer;
 	std::shared_ptr<UdpSocketBase> m_spUdpServer;
 
 	XmlLoader m_LocalServerConfig;
-	LocalizationLoader m_LocalizationConfig;
 };
 
 

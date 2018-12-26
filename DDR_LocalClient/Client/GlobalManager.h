@@ -12,9 +12,10 @@
 #include "../../../Shared/src/Utility/Singleton.h"
 #include "LocalTcpClient.h"
 #include "../../../Shared/src/Utility/LocalizationLoader.h"
+#include "../../../Shared/src/Utility/GlobalManagerBase.h"
 
 using namespace DDRFramework;
-class GlobalManager : public DDRFramework::CSingleton<GlobalManager>
+class GlobalManager : public DDRFramework::CSingleton<GlobalManager> , public GlobalManagerBase
 {
 public:
 	GlobalManager();
@@ -35,10 +36,6 @@ public:
 	bool IsTcpWorking();
 
 
-	LocalizationLoader& GetLocalizationConfig()
-	{
-		return m_LocalizationConfig;
-	}
 	
 	std::shared_ptr<LocalTcpClient> GetTcpClient();
     std::shared_ptr<UdpSocketBase> GetUdpClient();
@@ -63,7 +60,6 @@ private:
 
 
 	XmlLoader m_ClientConfig;
-	LocalizationLoader m_LocalizationConfig;
 
 	std::string m_ServerIP;
 	std::string m_ServerPort;
