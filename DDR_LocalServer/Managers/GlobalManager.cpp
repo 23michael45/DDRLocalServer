@@ -75,7 +75,7 @@ void GlobalManager::StartUdpServer()
 	plsinfo->set_name(servername);
 	plsinfo->set_stype(bcLSAddr_eServiceType::bcLSAddr_eServiceType_LocalServer);
 	plsinfo->set_port(std::stoi(tcpport));
-
+	plsinfo->set_robotid(GetRobotID());
 
 
 

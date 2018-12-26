@@ -28,19 +28,28 @@ void LocalClientUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 
 	for (auto serverinfo : pRaw->lsinfos())
 	{
-		if (serverinfo.stype() == bcLSAddr_eServiceType_LocalServer)
+		if (serverinfo.robotid() == GlobalManager::Instance()->GetRobotID())
 		{
-			DealLocalServer(serverinfo);
+
+			if (serverinfo.stype() == bcLSAddr_eServiceType_LocalServer)
+			{
+				DealLocalServer(serverinfo);
+			}
+			else if (serverinfo.stype() == bcLSAddr_eServiceType_RemoteServer)
+			{
+			}
+			else if (serverinfo.stype() == bcLSAddr_eServiceType_RTSPStreamServer)
+			{
+			}
+			else if (serverinfo.stype() == bcLSAddr_eServiceType_TalkBackServer)
+			{
+			}
 		}
-		else if (serverinfo.stype() == bcLSAddr_eServiceType_RemoteServer)
+		else
 		{
+			//Not Same Robot , Abandon
 		}
-		else if (serverinfo.stype() == bcLSAddr_eServiceType_RTSPStreamServer)
-		{
-		}
-		else if (serverinfo.stype() == bcLSAddr_eServiceType_TalkBackServer)
-		{
-		}
+
 	}
 
 
