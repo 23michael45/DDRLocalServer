@@ -170,6 +170,7 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClCompile Include="..\..\Shared\proto\BaseCmd.pb.cc" />
     <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpClient.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\MessageSerializer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\TcpClientBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp" />
@@ -363,6 +364,7 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClInclude Include="..\..\Shared\src\Network\BaseMessageDispatcher.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseProcessor.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseSocketContainer.h" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpClient.h" />
     <ClInclude Include="..\..\Shared\src\Network\MessageSerializer.h" />
     <ClInclude Include="..\..\Shared\src\Network\TcpClientBase.h" />
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h" />

@@ -10,7 +10,10 @@
 #include "Client/GlobalManager.h"
 #include "Client/AudioTcpClient.h"
 #include <memory>
-
+#include <string>
+#include <sstream>
+#include <vector>
+#include <iterator>
 #ifdef _WINDOWS
 #include <Windows.h>
 #include "cppfs/windows/LocalFileSystem.h"
@@ -178,9 +181,20 @@ public:
 		spreq.reset();
 	}
 
+
 	void Connect()
 	{
-		GlobalManager::Instance()->TryConnect();
+		auto vec = split(m_CurrentCmd, ':');
+		if (vec.size() == 3)
+		{
+
+			GlobalManager::Instance()->TryConnect(vec[1],vec[2]);
+		}
+		else if(vec.size() == 1)
+		{
+			GlobalManager::Instance()->TryConnect();
+
+		}
 
 	}
 };

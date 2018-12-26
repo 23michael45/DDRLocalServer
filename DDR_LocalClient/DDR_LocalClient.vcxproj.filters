@@ -610,6 +610,9 @@
     <ClCompile Include="Client\FileAddressProcessor.cpp">
       <Filter>Client</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpClient.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -1121,6 +1124,9 @@
     </ClInclude>
     <ClInclude Include="Client\FileAddressProcessor.h">
       <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpClient.h">
+      <Filter>Shared\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -49,6 +49,7 @@ public:
 
 	void SetServerAddr(std::string ip, std::string port);
 	void TryConnect();
+	void TryConnect(std::string ip, std::string port);
 private:
 
 	void OnUdpDisconnect(UdpSocketBase& container);

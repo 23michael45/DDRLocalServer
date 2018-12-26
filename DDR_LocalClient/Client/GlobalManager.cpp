@@ -96,6 +96,17 @@ void GlobalManager::SetServerAddr(std::string ip, std::string port)
 	m_ServerPort = port;
 }
 
+void GlobalManager::TryConnect(std::string ip ,std::string port)
+{
+	if (IsUdpWorking())
+	{
+		GetUdpClient()->StopReceive();
+		GetUdpClient()->Stop();
+		GlobalManager::Instance()->GetTcpClient()->Connect(ip, port);
+
+	}
+
+}
 void GlobalManager::TryConnect()
 {
 	if (m_ServerIP.empty() || m_ServerPort.empty())
