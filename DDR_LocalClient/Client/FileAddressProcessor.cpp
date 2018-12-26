@@ -34,7 +34,7 @@ static void on_transfer_done(curl_asio::transfer::ptr transfer, std::ofstream &o
 	else
 	{
 		std::cerr << "Transfer of " << transfer->info().effective_url() << " failed with error " << result << std::endl;
-		exit(1);
+		//exit(1);
 	}
 }
 
@@ -54,8 +54,7 @@ void doGet(std::string& url,std::string outfile)
 		transfer->on_done = std::bind(on_transfer_done, transfer, std::ref(out), outfile, std::placeholders::_1);
 		if (transfer->start(url))
 		{
-			while (1)
-				io.run();
+			io.run();
 		}
 	}
 }

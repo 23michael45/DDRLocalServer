@@ -28,21 +28,22 @@ void FileStatusProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 
 	auto sprsp = std::make_shared<rspFileAddress>();
 
-	auto spSession = std::dynamic_pointer_cast<TcpSessionBase>(spSockContainer->GetTcp());
-	if (spSession)
+	auto spStreamRelaySession = std::dynamic_pointer_cast<TcpSessionBase>(spSockContainer->GetTcp());
+	if (spStreamRelaySession)
 	{
-		sprsp->set_tarservicetype(spSession->GetLoginInfo().type());
+		sprsp->set_tarservicetype(spStreamRelaySession->GetLoginInfo().type());
 		sprsp->set_filetype(pRaw->filetype());
 		for (auto file : pRaw->fileaddrlist())
 		{
 			sprsp->add_fileaddrlist(file);
 		}
 
-		auto map = StreamRelayServiceManager::Instance()->m_WaitingSessionPare;
-		if (map.find(spSession) != map.end() && map[spSession])
+		std::map<std::shared_ptr<TcpSessionBase>, std::shared_ptr<TcpSessionBase>>& map = StreamRelayServiceManager::Instance()->m_WaitingSessionPare;
+		if (map.find(spStreamRelaySession) != map.end() && map[spStreamRelaySession])
 		{
-			map[spSession]->Send(sprsp);
-			map.erase(spSession);
+			auto spClientSession = map[spStreamRelaySession];
+			spClientSession->Send(sprsp);
+			map.erase(spStreamRelaySession);
 		}
 
 	}

@@ -98,10 +98,12 @@ public:
 	void ListServerConnections()
 	{
 		printf_s("\nServer Connections");
-		for (auto spSessiont : GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
+		for (auto spSession : GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
 		{
-			std::string ip = spSessiont.second->GetSocket().remote_endpoint().address().to_string();
-			printf_s("\n%s", ip.c_str());
+
+
+			std::string ip = spSession.second->GetSocket().remote_endpoint().address().to_string();
+			printf_s("\n%s  type:%i", ip.c_str(), spSession.second->GetLoginInfo().type());
 		}
 	}
 };
