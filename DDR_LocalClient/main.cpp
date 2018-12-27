@@ -161,7 +161,7 @@ public:
 
 	void CallAudio()
 	{
-		DebugLog("\nCall Audio");
+		DebugLog("Call Audio");
 		auto spreq = std::make_shared<reqStreamAddr>();
 		spreq->set_networktype(ChannelNetworkType::Local);
 		
@@ -171,7 +171,7 @@ public:
 
 	void RequestFile()
 	{
-		DebugLog("\nRequest File");
+		DebugLog("Request File");
 		auto spreq = std::make_shared<reqFileAddress>();
 		spreq->set_tarservicetype(eCltType::eLSMStreamRelay);
 		spreq->set_filetype(eFileTypes::FileHttpAddress);

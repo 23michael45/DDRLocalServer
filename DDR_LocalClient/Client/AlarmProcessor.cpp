@@ -23,7 +23,7 @@ void AlarmProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 {
 
 	notifyAlarm* pRaw = reinterpret_cast<notifyAlarm*>(spMsg.get());
-	DebugLog("\n%s", GlobalManager::Instance()->GetLocalizationConfig().GetString(pRaw->error()).c_str());
+	DebugLog("%s", GlobalManager::Instance()->GetLocalizationConfig().GetString(pRaw->error()).c_str());
 
 }
 

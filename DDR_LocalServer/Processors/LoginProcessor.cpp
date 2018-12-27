@@ -19,7 +19,7 @@ LoginProcessor::~LoginProcessor()
 void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 	std::string fromip = spSockContainer->GetTcp()->GetSocket().remote_endpoint().address().to_string();
-	DebugLog("\nReceive Login from:%s" , fromip.c_str());
+	DebugLog("Receive Login from:%s" , fromip.c_str());
 
 	auto bodytype = spHeader->bodytype();
 
@@ -112,7 +112,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 
 
-	DebugLog("\nLogin %s:" ,name.c_str());
+	DebugLog("Login %s:" ,name.c_str());
 
 
 }

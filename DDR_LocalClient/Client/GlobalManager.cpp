@@ -111,7 +111,7 @@ void GlobalManager::TryConnect()
 {
 	if (m_ServerIP.empty() || m_ServerPort.empty())
 	{
-		DebugLog("\nNo Server IP Broadcast Recieved");
+		DebugLog("No Server IP Broadcast Recieved");
 	}
 	else
 	{

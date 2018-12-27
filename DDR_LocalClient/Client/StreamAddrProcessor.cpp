@@ -62,7 +62,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 	else
 	{
 		auto serror = GlobalManager::Instance()->GetLocalizationConfig().GetString(error);
-		DebugLog("\n%s", serror.c_str());
+		DebugLog("%s", serror.c_str());
 	}
 
 

@@ -29,7 +29,7 @@ void LocalServerUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSoc
 
 	spSockContainer->Send(sprsp);
 
-	//DebugLog("\nLogin %s:" ,name.c_str());
+	//DebugLog("Login %s:" ,name.c_str());
 
 
 }

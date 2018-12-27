@@ -86,7 +86,7 @@ void StreamRelayServiceManager::Send(std::shared_ptr<google::protobuf::Message> 
 	}
 	else
 	{
-		DebugLog("\No StreamRelay Service Connected");
+		DebugLog("o StreamRelay Service Connected");
 	}
 }
 

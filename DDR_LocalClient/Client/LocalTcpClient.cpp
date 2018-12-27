@@ -17,7 +17,7 @@ LocalTcpClient::LocalTcpClient()
 
 LocalTcpClient::~LocalTcpClient()
 {
-	DebugLog("\nLocalTcpClient Destroy")
+	DebugLog("LocalTcpClient Destroy")
 }
 
 std::shared_ptr<TcpClientSessionBase> LocalTcpClient::BindSerializerDispatcher()
@@ -28,7 +28,7 @@ std::shared_ptr<TcpClientSessionBase> LocalTcpClient::BindSerializerDispatcher()
 void LocalTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 
-	DebugLog("\nOnConnectSuccess! LocalTcpClient");
+	DebugLog("OnConnectSuccess! LocalTcpClient");
 	auto spreq = std::make_shared<reqLogin>();
 	spreq->set_username("LocalTcpClient_XX");
 	spreq->set_type(ePCClient);

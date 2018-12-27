@@ -35,7 +35,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 	}
 
-	DebugLog("\n--------------------------------------------Login :%i", retcode);
+	DebugLog("--------------------------------------------Login :%i", retcode);
 
 
 }

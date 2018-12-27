@@ -166,7 +166,7 @@ bool DBManager::CreateUserTable()
 	}
 	catch (CppSQLite3Exception& e)
 	{
-		DebugLog("\n%s", e.errorMessage());
+		DebugLog("%s", e.errorMessage());
 		return false;
 	}
 

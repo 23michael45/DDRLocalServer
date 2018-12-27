@@ -59,7 +59,7 @@ void FileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spS
 		}
 		else
 		{
-			DebugLog("\nNo StreamRelayServer Conncected");
+			DebugLog("No StreamRelayServer Conncected");
 		}
 
 	}

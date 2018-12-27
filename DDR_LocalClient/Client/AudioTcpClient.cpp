@@ -12,23 +12,10 @@ using namespace DDRCommProto;
 
 
 
-AudioTcpClient* p_gAudioClient;
 
-void on_recv_frames(mal_device* pDevice, mal_uint32 frameCount, const void* pSamples)
+void TcpAudioClientSession::on_recv_frames(mal_device* pDevice, mal_uint32 frameCount, const void* pSamples)
 {
 	mal_uint32 sampleCount = frameCount * pDevice->channels;
-
-	/*mal_uint32 newCapturedSampleCount = capturedSampleCount + sampleCount;
-	mal_int16* pNewCapturedSamples = (mal_int16*)realloc(pCapturedSamples, newCapturedSampleCount * sizeof(mal_int16));
-	if (pNewCapturedSamples == NULL) {
-		return;
-	}
-
-	memcpy(pNewCapturedSamples + capturedSampleCount, pSamples, sampleCount * sizeof(mal_int16));
-
-	pCapturedSamples = pNewCapturedSamples;
-	capturedSampleCount = newCapturedSampleCount;*/
-
 
 	std::shared_ptr<asio::streambuf> buf = std::make_shared<asio::streambuf>();
 
@@ -36,50 +23,76 @@ void on_recv_frames(mal_device* pDevice, mal_uint32 frameCount, const void* pSam
 	oshold.write((const char*)pSamples, sampleCount * sizeof(mal_int16));
 	oshold.flush();
 
-	if (p_gAudioClient)
-	{
-		p_gAudioClient->Send(buf);
-	}
+	Send(buf);
+
 
 }
 
-mal_uint32 on_send_frames(mal_device* pDevice, mal_uint32 frameCount, void* pSamples)
+mal_uint32 TcpAudioClientSession::on_send_frames(mal_device* pDevice, mal_uint32 frameCount, void* pSamples)
 {
+	std::lock_guard<std::mutex> lock(m_AudioRecvMutex);
 	mal_uint32 samplesToRead = frameCount * pDevice->channels;
-	/*if (samplesToRead > capturedSampleCount - playbackSample) {
-		samplesToRead = capturedSampleCount - playbackSample;
+
+	asio::streambuf& buf = m_AudioRecvBuf;
+
+	size_t len = buf.size();
+	if (len < samplesToRead * sizeof(mal_int16))
+	{
+
+		memcpy(pSamples, buf.data().data(), len);
+		buf.consume(len);
+
+		return len / sizeof(mal_int16) / pDevice->channels;
+	}
+	else
+	{
+
+		memcpy(pSamples, buf.data().data(), samplesToRead * sizeof(mal_int16));
+		buf.consume(samplesToRead * sizeof(mal_int16));
+		return samplesToRead / pDevice->channels;
 	}
 
-	if (samplesToRead == 0) {
-		return 0;
-	}
-
-	memcpy(pSamples, pCapturedSamples + playbackSample, samplesToRead * sizeof(mal_int16));
-	playbackSample += samplesToRead;*/
-
-	return samplesToRead / pDevice->channels;
 }
 
-
-
-TcpAudioClientSession::TcpAudioClientSession(asio::io_context& context):TcpClientSessionBase(context)
+void TcpAudioClientSession::OnHookReceive(asio::streambuf& buf)
 {
-	SetRealtime(true);
+	std::lock_guard<std::mutex> lock(m_AudioRecvMutex);
+	std::ostream oshold(&m_AudioRecvBuf);
+	oshold.write((const char*)buf.data().data(), buf.size());
+	oshold.flush();
+}
+TcpAudioClientSession::TcpAudioClientSession(asio::io_context& context): HookTcpClientSession(context)
+{
+
 }
 TcpAudioClientSession::~TcpAudioClientSession()
 {
-	DebugLog("\nDestroy TcpAudioClientSession");
+	DebugLog("Destroy TcpAudioClientSession");
+}
+void TcpAudioClientSession::OnStart()
+{
+	//do not use shared_from_base ,member don't give shared_ptr otherwisse it wont destruct correctly
+	m_AudioCodec.Init(1, 16000, std::bind(&TcpAudioClientSession::on_recv_frames, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3), std::bind(&TcpAudioClientSession::on_send_frames, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+	m_AudioCodec.StartRecord();
+	m_AudioCodec.StartPlay();
+}
+void TcpAudioClientSession::OnStop()
+{
+
+	m_AudioCodec.StopRecord();
+	m_AudioCodec.Deinit();
+	m_AudioCodec.StopPlay();
 }
 
 
 AudioTcpClient::AudioTcpClient()
 {
-	p_gAudioClient = this;
 }
 
 
 AudioTcpClient::~AudioTcpClient()
 {
+	DebugLog("Destroy AudioTcpClient");
 }
 
 std::shared_ptr<TcpClientSessionBase> AudioTcpClient::BindSerializerDispatcher()
@@ -89,18 +102,12 @@ std::shared_ptr<TcpClientSessionBase> AudioTcpClient::BindSerializerDispatcher()
 }
 void AudioTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {
-
-	DebugLog("\nOnConnectSuccess! LocalTcpClient");
-
-	m_AudioCodec.Init(1, 16000, on_recv_frames, on_send_frames);
-	m_AudioCodec.StartRecord();
-	//m_AudioCodec.StartPlay();
+	DebugLog("OnConnectSuccess! AudioTcpClient");
 
 }
 void AudioTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 	TcpClientBase::OnDisconnect(spContainer);
+	GlobalManager::Instance()->StopAudioClient();
 
-	m_AudioCodec.StopRecord();
-	//m_AudioCodec.StopPlay();
 }

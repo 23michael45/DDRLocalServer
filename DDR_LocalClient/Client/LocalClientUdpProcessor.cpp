@@ -16,7 +16,7 @@ LocalClientUdpProcessor::LocalClientUdpProcessor(BaseMessageDispatcher& dispatch
 
 LocalClientUdpProcessor::~LocalClientUdpProcessor()
 {
-	DebugLog("\nLocalClientUdpProcessor Destroy");
+	DebugLog("LocalClientUdpProcessor Destroy");
 }
 
 void LocalClientUdpProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
@@ -78,13 +78,13 @@ void LocalClientUdpProcessor::DealLocalServer(bcLSAddr_ServerInfo& serverinfo)
 
 		std::string sPort = std::to_string(port);
 		GlobalManager::Instance()->SetServerAddr(conntectip, sPort);
-		DebugLog("\nReceive Server Broadcast %s: %s", name.c_str(), conntectip.c_str());
+		DebugLog("Receive Server Broadcast %s: %s", name.c_str(), conntectip.c_str());
 	}
 	else
 	{
 
 
-		DebugLog("\nReceive Server Broadcast But No IP in same segment");
+		DebugLog("Receive Server Broadcast But No IP in same segment");
 	}
 
 }
