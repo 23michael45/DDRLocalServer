@@ -117,8 +117,8 @@
       <AdditionalDependencies>$(ProjectDir)../../Shared/lib/x64/libprotocd.lib;$(ProjectDir)../../Shared/lib/x64/libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>rem xcopy /Y $(SolutionDir)DDR_LocalClient\*.db   $(SolutionDir)x64\Debug\
-rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Debug\Config\</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
