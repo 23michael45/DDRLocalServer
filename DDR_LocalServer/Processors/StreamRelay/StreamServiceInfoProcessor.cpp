@@ -27,7 +27,7 @@ void StreamServiceInfoProcessor::Process(std::shared_ptr<BaseSocketContainer> sp
 	auto sprsp = std::make_shared<rspStreamServiceInfo>();
 
 	//sprsp->set_srcip("rtsp://192.168.1.88");
-	for (auto channel : StreamRelayServiceManager::Instance()->GetAVChannels())
+	for (auto channel : StreamRelayServiceManager::Instance()->GetAVChannelsConfig())
 	{
 			auto pchannel = sprsp->add_channels();
 			pchannel->CopyFrom(channel);

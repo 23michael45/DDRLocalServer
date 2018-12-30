@@ -21,7 +21,7 @@ public:
 		return m_StreamSrcProxyConfig;
 	}
 
-	std::vector<AVChannelConfig> GetAVChannels();
+	std::vector<AVChannelConfig> GetAVChannelsConfig();
 
 	
 	std::shared_ptr<TcpSessionBase> GetServerSession();

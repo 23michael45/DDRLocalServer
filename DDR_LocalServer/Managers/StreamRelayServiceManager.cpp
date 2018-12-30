@@ -13,7 +13,7 @@ StreamRelayServiceManager::~StreamRelayServiceManager()
 }
 
 
-std::vector<AVChannelConfig> StreamRelayServiceManager::GetAVChannels()
+std::vector<AVChannelConfig> StreamRelayServiceManager::GetAVChannelsConfig()
 {
 	auto config = m_StreamSrcProxyConfig;
 	int channelNum = config.RowGetKeyCount();

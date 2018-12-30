@@ -69,12 +69,58 @@ TcpAudioClientSession::~TcpAudioClientSession()
 {
 	DebugLog("Destroy TcpAudioClientSession");
 }
+
+//
+//void Test()
+//{
+//
+//
+//
+//	std::string root = "D:/DevelopProj/Dadao/DDRFramework/www/wav/";
+//
+//	int totallen = 6400 * 19;
+//	char* psrc = new char[totallen];
+//	char* p = psrc;
+//
+//	for (int i = 0; i < 19; i++)
+//	{
+//		std::string fn = root + std::to_string(i) + ".txt";
+//
+//		std::ifstream file(fn);
+//		std::string   line;
+//
+//		while (std::getline(file, line))
+//		{
+//			std::stringstream   linestream(line);
+//			std::string         data;
+//			char                val;
+//
+//			// If you have truly tab delimited data use getline() with third parameter.
+//			// If your data is just white space separated data
+//			// then the operator >> will do (it reads a space separated word into a string).
+//			std::getline(linestream, data, '\t');  // read up-to the first tab (discard tab).
+//
+//			// Read the integers using the operator >>
+//			val = atoi(data.c_str());
+//
+//			*p = val;
+//			p++;
+//		}
+//
+//	}
+//	Send(psrc, totallen);
+//}
+
 void TcpAudioClientSession::OnStart()
 {
 	//do not use shared_from_base ,member don't give shared_ptr otherwisse it wont destruct correctly
-	m_AudioCodec.Init(1, 16000, std::bind(&TcpAudioClientSession::on_recv_frames, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3), std::bind(&TcpAudioClientSession::on_send_frames, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
-	m_AudioCodec.StartRecord();
-	m_AudioCodec.StartPlay();
+	if (m_AudioCodec.Init())
+	{
+		m_AudioCodec.StartRecord();
+		m_AudioCodec.StartPlay();
+
+	}
+
 }
 void TcpAudioClientSession::OnStop()
 {

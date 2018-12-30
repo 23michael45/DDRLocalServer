@@ -176,7 +176,9 @@ public:
 		spreq->set_tarservicetype(eCltType::eLSMStreamRelay);
 		spreq->set_filetype(eFileTypes::FileHttpAddress);
 		//spreq->add_filenames("x64/*DDR*Server.e*");
-		spreq->add_filenames("x64/*2018-17*.*");
+		spreq->add_filenames("x64/*api*l*.*");
+		spreq->add_filenames("*жа*/*Мў*.*");
+		spreq->add_filenames("x64/*.ilk");
 
 
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);

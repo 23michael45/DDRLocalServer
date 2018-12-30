@@ -25,24 +25,29 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 	std::string error = pRaw->error();
 	if (error.empty())
 	{
+		size_t size = pRaw->channels().size();
 
-		if (pRaw->channels().size() > 0)
+		if (size > 0)
 		{
 			for (auto channel : pRaw->channels())
 			{
 				if (channel.networktype() == ChannelNetworkType::Local)
 				{
-					if (channel.srcport().size() > 0)
+					if (channel.streamtype() == ChannelStreamType::Audio)
 					{
+						if (channel.srcport().size() > 0)
+						{
 
-						std::string ip = channel.srcaddr();
-						int port = channel.srcport(0);
-						GlobalManager::Instance()->StartAudioClient(ip, port);
+							std::string ip = channel.srcaddr();
+							int port = channel.srcport(0);
+							GlobalManager::Instance()->StartAudioClient(ip, port);
 
-					}
-					else
-					{
-						//to do get 
+						}
+						else
+						{
+							//to do get 
+						}
+
 					}
 
 
