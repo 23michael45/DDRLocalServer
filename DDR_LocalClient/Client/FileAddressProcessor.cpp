@@ -4,6 +4,7 @@
 #include "FileAddressProcessor.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"
+#include "../../../Shared/src/Utility/CommonFunc.h"
 #include "../../../Shared/thirdparty/cppfs/include/cppfs/windows/LocalFileSystem.h"
 #include "../../../Shared/thirdparty/cppfs/include/cppfs/FilePath.h"
 #include "GlobalManager.h"
@@ -34,7 +35,7 @@ void FileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 	{
 		//do curl get;
 
-		cppfs::FilePath path(cppfs::getexepath());
+		cppfs::FilePath path(DDRFramework::getexepath());
 		auto root = path.directoryPath();
 
 
