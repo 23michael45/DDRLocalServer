@@ -176,9 +176,9 @@ public:
 		spreq->set_tarservicetype(eCltType::eLSMStreamRelay);
 		spreq->set_filetype(eFileTypes::FileHttpAddress);
 		//spreq->add_filenames("x64/*DDR*Server.e*");
-		spreq->add_filenames("x64/*api*l*.*");
-		spreq->add_filenames("*中*/*件*.*");
-		spreq->add_filenames("x64/*.ilk");
+		//spreq->add_filenames("x64/*api*l*.*");
+		//spreq->add_filenames("*中*/*件*.*");
+		spreq->add_filenames("*.wav");
 
 
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
@@ -205,8 +205,12 @@ public:
 	{
 
 		auto spHttpSession = std::make_shared<HttpSession>();
-		auto url = std::string("http://192.168.1.183:8080////bin/x64/26-12-2018-17-00-4.log");
-		auto outfile = std::string("D:/DevelopProj/Dadao/DDRFramework/DDRLocalServer/x64/Debug/26-12-2018-17-00-4.log");
+		//auto url = std::string("http://192.168.1.183:8080////bin/x64/26-12-2018-17-00-4.log");
+		//auto outfile = std::string("D:/DevelopProj/Dadao/DDRFramework/DDRLocalServer/x64/Debug/26-12-2018-17-00-4.log");
+		auto url = std::string("http://192.168.1.183:8080/wav/x.wav");
+		//auto url = std::string("http://192.168.1.183:8080/wav/wav.wav");
+		//auto url = std::string("http://192.168.1.183:8080/wav/a.txt");
+		auto outfile = std::string("D:/DevelopProj/Dadao/DDRFramework/DDRLocalServer/x64/Debug/x.wav");
 		spHttpSession->DoGet(url ,outfile);
 	}
 };

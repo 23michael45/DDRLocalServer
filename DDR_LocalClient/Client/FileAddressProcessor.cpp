@@ -43,7 +43,12 @@ void FileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 		auto filename = fpath.fileName();
 
 		spHttpSession = std::make_shared<HttpSession>();
+
+
 		spHttpSession->DoGet(url, root + filename);
+		break;
+
+
 	}
 
 

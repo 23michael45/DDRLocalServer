@@ -116,8 +116,8 @@ void TcpAudioClientSession::OnStart()
 	//do not use shared_from_base ,member don't give shared_ptr otherwisse it wont destruct correctly
 	if (m_AudioCodec.Init())
 	{
-		m_AudioCodec.StartRecord();
-		m_AudioCodec.StartPlay();
+		m_AudioCodec.StartDeviceRecord();
+		m_AudioCodec.StartDevicePlay();
 
 	}
 
@@ -125,9 +125,9 @@ void TcpAudioClientSession::OnStart()
 void TcpAudioClientSession::OnStop()
 {
 
-	m_AudioCodec.StopRecord();
+	m_AudioCodec.StopDeviceRecord();
 	m_AudioCodec.Deinit();
-	m_AudioCodec.StopPlay();
+	m_AudioCodec.StopDevicePlay();
 }
 
 
