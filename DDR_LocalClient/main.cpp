@@ -19,6 +19,12 @@
 #include <Windows.h>
 #include "cppfs/windows/LocalFileSystem.h"
 #endif
+
+
+
+#include "opencv2/opencv.hpp"
+#include "opencv2/imgproc.hpp"
+
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -207,11 +213,17 @@ public:
 		auto spHttpSession = std::make_shared<HttpSession>();
 		//auto url = std::string("http://192.168.1.183:8080////bin/x64/26-12-2018-17-00-4.log");
 		//auto outfile = std::string("D:/DevelopProj/Dadao/DDRFramework/DDRLocalServer/x64/Debug/26-12-2018-17-00-4.log");
-		auto url = std::string("http://192.168.1.183:8080/wav/x.wav");
+		auto url = std::string("http://192.168.1.183:8080/wav/9.wav");
 		//auto url = std::string("http://192.168.1.183:8080/wav/wav.wav");
 		//auto url = std::string("http://192.168.1.183:8080/wav/a.txt");
 		auto outfile = std::string("D:/DevelopProj/Dadao/DDRFramework/DDRLocalServer/x64/Debug/x.wav");
 		spHttpSession->DoGet(url ,outfile);
+	}
+
+	void OpenCVTest()
+	{
+		cv::Mat mat;
+		int cols = mat.cols;
 	}
 };
 

@@ -38,6 +38,10 @@ char gQuit = 0;
 #include "../../Shared/src/Utility/Logger.h"
 #include <regex>
 
+
+#include "opencv2/opencv.hpp"
+#include "opencv2/imgproc.hpp"
+
 using namespace std;
 
 
