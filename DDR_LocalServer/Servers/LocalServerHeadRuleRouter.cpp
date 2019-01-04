@@ -1,6 +1,8 @@
 #include "LocalServerHeadRuleRouter.h"
 #include "../Managers/StreamRelayServiceManager.h"
 #include "../Managers/GlobalManager.h"
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/repeated_field.h>
 
 
 LocalServerHeadRuleRouter::LocalServerHeadRuleRouter()
@@ -17,11 +19,17 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 	auto spHeaderReg = MsgRouterManager::Instance()->FindCommonHeader(spHeader->bodytype());
 	if (spHeaderReg)
 	{
-		CommonHeader_PassNode* pNode = 	spHeader->add_passnode();
-		pNode->set_nodetype(eLocalServer);
+		//if forward , record the route node
+		if (spHeader->flowdirection().size() > 0 && spHeader->flowdirection(0) == CommonHeader_eFlowDir_Forward)
+		{
+			CommonHeader_PassNode* pNode = spHeader->add_passnode();
+			pNode->set_nodetype(eLocalServer);
 
-		auto spSession = spSockContainer->GetTcp();
-		pNode->set_receivesessionid((int)spSession.get());
+			auto spSession = spSockContainer->GetTcp();
+			pNode->set_receivesessionid((int)spSession.get());
+
+		}
+
 
 		if (spHeader->toclttype().size() > 0)
 		{
@@ -57,14 +65,42 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 			{
 				auto map = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
 
-				for (auto spSession : map)
-				{
-					int IntPtr = (int)(spSession.second.get());
+				std::shared_ptr<TcpSessionBase> spSession = nullptr;
 
-					if (IntPtr == spHeader->passnode(0).receivesessionid())
+				auto passnodes = spHeader->mutable_passnode();
+				google::protobuf::RepeatedPtrField<CommonHeader_PassNode>::iterator it = passnodes->end();
+
+				for (auto spSessionPair : map)
+				{
+					int IntPtr = (int)(spSessionPair.second.get());
+
+
+					for (it = passnodes->begin(); it != passnodes->end(); it++)
 					{
-						spSession.second->Send(spHeader,buf,bodylen);
+						if (it->nodetype() == eLocalServer)
+						{
+							if (IntPtr == it->receivesessionid())
+							{
+								spSession = spSessionPair.second;
+								break;
+							}
+						}
 					}
+
+					if (spSession)
+					{
+						break;
+					}
+				}
+
+
+				if (spSession && it != passnodes->end())
+				{
+					auto passnodes = spHeader->mutable_passnode();
+					passnodes->erase(it);
+
+					spSession->Send(spHeader, buf, bodylen);
+
 				}
 
 			}
