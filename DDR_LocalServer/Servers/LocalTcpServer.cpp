@@ -44,5 +44,4 @@ void LocalTcpServer::OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spC
 {
 	TcpServerBase::OnSessionDisconnect(spContainer);
 	auto spClientSession = dynamic_pointer_cast<TcpSessionBase>(spContainer);
-	StreamRelayServiceManager::Instance()->m_WaitingSessionPare.erase(spClientSession);
 }

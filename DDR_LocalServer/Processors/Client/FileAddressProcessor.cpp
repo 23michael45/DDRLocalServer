@@ -32,27 +32,28 @@ void FileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 
 void FileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
-
-
 	reqFileAddress* pRaw = reinterpret_cast<reqFileAddress*>(spMsg.get());
+	SendChk(pRaw);
+}
 
-
+void FileAddressProcessor::SendChk(reqFileAddress* pRaw)
+{
 	auto sprsp = std::make_shared<chkFileStatus>();
 	sprsp->set_filetype(pRaw->filetype());
 	for (auto fmt : pRaw->filenames())
 	{
 		sprsp->add_filenames(fmt);
 	}
-	 
+
 	if (pRaw->tarservicetype() == eLSMStreamRelay)
 	{
 		auto spStreamRelaySession = StreamRelayServiceManager::Instance()->GetServerSession();
 		if (spStreamRelaySession)
 		{
-			auto spClientSession = dynamic_pointer_cast<TcpSessionBase>(spSockContainer->GetTcp());
+			/*auto spClientSession = dynamic_pointer_cast<TcpSessionBase>(spSockContainer->GetTcp());
 
 			std::map<std::shared_ptr<TcpSessionBase>, std::shared_ptr<TcpSessionBase>>& map = StreamRelayServiceManager::Instance()->m_WaitingSessionPare;
-			map.insert(make_pair(spStreamRelaySession, spClientSession));
+			map.insert(make_pair(spStreamRelaySession, spClientSession));*/
 
 			StreamRelayServiceManager::Instance()->Send(sprsp);
 
@@ -79,5 +80,4 @@ void FileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spS
 	{
 
 	}
-
 }

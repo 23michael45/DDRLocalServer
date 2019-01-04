@@ -38,13 +38,16 @@ void FileStatusProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 			sprsp->add_fileaddrlist(file);
 		}
 
-		std::map<std::shared_ptr<TcpSessionBase>, std::shared_ptr<TcpSessionBase>>& map = StreamRelayServiceManager::Instance()->m_WaitingSessionPare;
+
+		//do send to client
+
+		/*std::map<std::shared_ptr<TcpSessionBase>, std::shared_ptr<TcpSessionBase>>& map = StreamRelayServiceManager::Instance()->m_WaitingSessionPare;
 		if (map.find(spStreamRelaySession) != map.end() && map[spStreamRelaySession])
 		{
 			auto spClientSession = map[spStreamRelaySession];
 			spClientSession->Send(sprsp);
 			map.erase(spStreamRelaySession);
-		}
+		}*/
 
 	}
 

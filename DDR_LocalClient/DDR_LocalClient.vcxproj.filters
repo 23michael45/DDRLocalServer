@@ -616,6 +616,9 @@
     <ClCompile Include="..\..\Shared\src\Utility\GlobalManagerBase.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">

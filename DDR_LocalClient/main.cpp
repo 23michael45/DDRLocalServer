@@ -149,6 +149,7 @@ public:
 		AddCommand("reqf", std::bind(&_ConsoleDebug::RequestFile, this));
 		AddCommand("connect", std::bind(&_ConsoleDebug::Connect, this));
 		AddCommand("httpget", std::bind(&_ConsoleDebug::HttpGet, this));
+		AddCommand("cmd", std::bind(&_ConsoleDebug::SendCmd, this));
 	}
 	void ListClientConnection()
 	{
@@ -182,7 +183,7 @@ public:
 		spreq->set_tarservicetype(eCltType::eLSMStreamRelay);
 		spreq->set_filetype(eFileTypes::FileHttpAddress);
 		//spreq->add_filenames("x64/*DDR*Server.e*");
-		//spreq->add_filenames("x64/*api*l*.*");
+		spreq->add_filenames("x64/*api*l*.*");
 		//spreq->add_filenames("*жа*/*Мў*.*");
 		spreq->add_filenames("*.wav");
 
@@ -224,6 +225,18 @@ public:
 	{
 		cv::Mat mat;
 		int cols = mat.cols;
+	}
+
+	void SendCmd()
+	{
+		auto spreq = std::make_shared<reqCmdMove>();
+		spreq->set_line_speed(100);
+		spreq->set_angulau_speed(200);
+
+
+		auto spheader = std::make_shared<CommonHeader>();
+		GlobalManager::Instance()->GetTcpClient()->Send(spheader,spreq);
+		spreq.reset();
 	}
 };
 

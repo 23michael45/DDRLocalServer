@@ -26,11 +26,10 @@ public:
 	
 	std::shared_ptr<TcpSessionBase> GetServerSession();
 	void Send(std::shared_ptr<google::protobuf::Message> spmsg);
+	void Send(std::shared_ptr<CommonHeader> spHeader, asio::streambuf& buf, int bodylen);
 	
 	int GetServerTcpPort();
 
-
-	std::map<std::shared_ptr<TcpSessionBase>, std::shared_ptr<TcpSessionBase>> m_WaitingSessionPare;
 private:
 
 

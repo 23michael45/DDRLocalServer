@@ -90,6 +90,20 @@ void StreamRelayServiceManager::Send(std::shared_ptr<google::protobuf::Message> 
 	}
 }
 
+void StreamRelayServiceManager::Send(std::shared_ptr<CommonHeader> spHeader, asio::streambuf& buf, int bodylen)
+{
+	auto spSession = GetServerSession();
+	if (spSession)
+	{
+		spSession->Send(spHeader, buf, bodylen);
+	}
+	else
+	{
+		DebugLog("o StreamRelay Service Connected");
+	}
+
+}
+
 int StreamRelayServiceManager::GetServerTcpPort()
 {
 	return GlobalManager::Instance()->GetLocalServerConfig().GetValue<int>("StreamRelayTcpPort");
