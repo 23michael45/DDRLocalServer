@@ -83,31 +83,6 @@ void DoOnce(std::shared_ptr<TcpClientBase> spClient)
 	spClient->Disconnect(spSession);
 	spClient.reset();
 }
-void TcpClient()
-{
-
-	//auto spClient = std::make_shared<TcpClientBase>();
-	auto spClient = std::make_shared<LocalTcpClient>();
-
-	spClient->Start(1);
-	for (int i = 0; i < 1; i++)
-	{
-		DoOnce(spClient);
-		std::this_thread::sleep_for(chrono::seconds(1));
-	}
-
-	spClient->Stop();
-}
-void TcpUdpClient()
-{
-
-	GlobalManager::Instance()->StartTcpClient();
-	GlobalManager::Instance()->GetTcpClient()->Start(4);
-
-	GlobalManager::Instance()->StartUdp();
-
-
-}
 
 std::shared_ptr<AudioTcpClient> TcpAudioClient()
 {
@@ -118,24 +93,6 @@ std::shared_ptr<AudioTcpClient> TcpAudioClient()
 	spAudioClient->Connect("192.168.1.183", "89");
 
 	return spAudioClient;
-}
-
-void LoopTestUdpMem()
-{
-	while (true)
-	{
-		TcpUdpClient();
-
-
-		std::this_thread::sleep_for(chrono::seconds(2));
-
-		if (GlobalManager::Instance()->IsUdpWorking())
-		{
-			GlobalManager::Instance()->GetUdpClient()->StopReceive();
-			GlobalManager::Instance()->GetUdpClient()->Stop();
-
-		}
-	}
 }
 
 
@@ -199,11 +156,11 @@ public:
 		if (vec.size() == 3)
 		{
 
-			GlobalManager::Instance()->TryConnect(vec[1],vec[2]);
+			GlobalManager::Instance()->TcpConnect(vec[1],vec[2]);
 		}
 		else if(vec.size() == 1)
 		{
-			GlobalManager::Instance()->TryConnect();
+			GlobalManager::Instance()->TcpConnect();
 
 		}
 
@@ -245,7 +202,7 @@ int main()
 #ifdef _WINDOWS
 	SetConsoleOutputCP(CP_UTF8);
 #endif
-	TcpUdpClient();
+	GlobalManager::Instance()->Init();
 	
 	_ConsoleDebug::Instance()->ConsoleDebugLoop();
 	return 0;

@@ -20,12 +20,6 @@ public:
 	auto shared_from_base() {
 		return std::static_pointer_cast<TcpAudioClientSession>(shared_from_this());
 	}
-
-
-	void on_recv_frames(mal_device* pDevice, mal_uint32 frameCount, const void* pSamples);
-	mal_uint32 on_send_frames(mal_device* pDevice, mal_uint32 frameCount, void* pSamples);
-
-
 	virtual void OnStart() override;
 	virtual void OnStop() override;
 
@@ -35,9 +29,6 @@ protected:
 
 	AudioCodec m_AudioCodec;
 
-
-	std::mutex m_AudioRecvMutex;
-	asio::streambuf m_AudioRecvBuf;
 };
 
 

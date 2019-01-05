@@ -12,54 +12,9 @@ using namespace DDRCommProto;
 
 
 
-
-void TcpAudioClientSession::on_recv_frames(mal_device* pDevice, mal_uint32 frameCount, const void* pSamples)
-{
-	mal_uint32 sampleCount = frameCount * pDevice->channels;
-
-	std::shared_ptr<asio::streambuf> buf = std::make_shared<asio::streambuf>();
-
-	std::ostream oshold(buf.get());
-	oshold.write((const char*)pSamples, sampleCount * sizeof(mal_int16));
-	oshold.flush();
-
-	Send(buf);
-
-
-}
-
-mal_uint32 TcpAudioClientSession::on_send_frames(mal_device* pDevice, mal_uint32 frameCount, void* pSamples)
-{
-	std::lock_guard<std::mutex> lock(m_AudioRecvMutex);
-	mal_uint32 samplesToRead = frameCount * pDevice->channels;
-
-	asio::streambuf& buf = m_AudioRecvBuf;
-
-	size_t len = buf.size();
-	if (len < samplesToRead * sizeof(mal_int16))
-	{
-
-		memcpy(pSamples, buf.data().data(), len);
-		buf.consume(len);
-
-		return len / sizeof(mal_int16) / pDevice->channels;
-	}
-	else
-	{
-
-		memcpy(pSamples, buf.data().data(), samplesToRead * sizeof(mal_int16));
-		buf.consume(samplesToRead * sizeof(mal_int16));
-		return samplesToRead / pDevice->channels;
-	}
-
-}
-
 void TcpAudioClientSession::OnHookReceive(asio::streambuf& buf)
 {
-	std::lock_guard<std::mutex> lock(m_AudioRecvMutex);
-	std::ostream oshold(&m_AudioRecvBuf);
-	oshold.write((const char*)buf.data().data(), buf.size());
-	oshold.flush();
+	m_AudioCodec.PushAudioRecvBuf(buf);
 }
 TcpAudioClientSession::TcpAudioClientSession(asio::io_context& context): HookTcpClientSession(context)
 {

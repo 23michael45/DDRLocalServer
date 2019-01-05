@@ -1,7 +1,8 @@
 #include "GlobalManager.h"
 #include "LocalClientUdpDispatcher.h"
+#include "LocalClientUdpProcessor.h"
 
-GlobalManager::GlobalManager():m_ClientConfig("Config/Client/ClientConfig.xml")
+GlobalManager::GlobalManager():m_Config("Config/Client/ClientConfig.xml")
 {
 }
 GlobalManager::~GlobalManager()
@@ -9,27 +10,33 @@ GlobalManager::~GlobalManager()
 
 }
 
-void GlobalManager::StartUdp()
+void GlobalManager::Init()
 {
-	while (m_spUdpClient)
+	if (!m_spUdpClient)
 	{
-		std::this_thread::sleep_for(chrono::seconds(1));
+		m_spUdpClient = std::make_shared<UdpSocketBase>();
+		m_spUdpClient->BindOnDisconnect(std::bind(&GlobalManagerClientBase::OnUdpDisconnect, this, std::placeholders::_1));
+		StartUdp();
 	}
-	m_spUdpClient = std::make_shared<UdpSocketBase>();
-	m_spUdpClient->BindOnDisconnect(std::bind(&GlobalManager::OnUdpDisconnect, this, std::placeholders::_1));
-
-
-	m_spUdpClient->Start();
-	m_spUdpClient->GetSerializer()->BindDispatcher(std::make_shared<LocalClientUdpDispatcher>());
-	m_spUdpClient->StartReceive(m_ClientConfig.GetValue<int>("UdpPort"));
-
+	if (!m_spTcpClient)
+	{
+		m_spTcpClient = std::make_shared<LocalTcpClient>();
+		m_spTcpClient->Start();
+	}
 }
-void GlobalManager::ReleaseUdp()
+bool GlobalManager::StartUdp()
 {
 	if (m_spUdpClient)
 	{
-		m_spUdpClient.reset();
+		m_spUdpClient->Start();
+
+		auto spDispatcher = std::make_shared<BaseUdpMessageDispatcher>();
+		spDispatcher->AddProcessor<bcLSAddr, LocalClientUdpProcessor>();
+		m_spUdpClient->GetSerializer()->BindDispatcher(spDispatcher);
+		m_spUdpClient->StartReceive(m_GlobalConfig.GetValue<int>("UdpPort"));
 	}
+	return true;
+
 }
 
 void GlobalManager::StartAudioClient(std::string ip,int port)
@@ -54,34 +61,6 @@ void GlobalManager::StopAudioClient()
 }
 
 
-void GlobalManager::StartTcpClient()
-{
-	m_spTcpClient = std::make_shared<LocalTcpClient>();
-
-}
-void GlobalManager::ReleaseTcp()
-{
-	if (m_spTcpClient)
-	{
-		m_spTcpClient.reset();
-	}
-}
-bool GlobalManager::IsUdpWorking()
-{
-	return m_spUdpClient != nullptr;
-}
-bool GlobalManager::IsTcpWorking()
-{
-	return m_spTcpClient != nullptr;
-}
-std::shared_ptr<LocalTcpClient> GlobalManager::GetTcpClient()
-{
-	return m_spTcpClient;
-}
-std::shared_ptr<UdpSocketBase> GlobalManager::GetUdpClient()
-{
-	return m_spUdpClient;
-}
 #ifdef QT_PRECOMPILED_HEADER
 #else
 std::shared_ptr<AudioTcpClient> GlobalManager::GetAudioTcpClient()
@@ -96,37 +75,18 @@ void GlobalManager::SetServerAddr(std::string ip, std::string port)
 	m_ServerPort = port;
 }
 
-void GlobalManager::TryConnect(std::string ip ,std::string port)
+
+void GlobalManager::TcpConnect()
 {
-	if (IsUdpWorking())
+	if (!m_ServerIP.empty() && !m_ServerPort.empty())
 	{
-		GetUdpClient()->StopReceive();
-		GetUdpClient()->Stop();
-		GlobalManager::Instance()->GetTcpClient()->Connect(ip, port);
-
+		GlobalManagerClientBase::TcpConnect(m_ServerIP, m_ServerPort);
 	}
-
 }
-void GlobalManager::TryConnect()
-{
-	if (m_ServerIP.empty() || m_ServerPort.empty())
-	{
-		DebugLog("No Server IP Broadcast Recieved");
-	}
-	else
-	{
-		if (IsUdpWorking())
-		{
-			GetUdpClient()->StopReceive();
-			GetUdpClient()->Stop();
-			GlobalManager::Instance()->GetTcpClient()->Connect(m_ServerIP, m_ServerPort);
 
-		}
-	}
+void GlobalManager::TcpConnect(std::string ip, std::string port)
+{
+	GlobalManagerClientBase::TcpConnect(ip, port);
 }
 
 #endif
-void GlobalManager::OnUdpDisconnect(UdpSocketBase& container)
-{
-	ReleaseUdp();
-}

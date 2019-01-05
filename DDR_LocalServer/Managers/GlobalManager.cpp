@@ -57,7 +57,7 @@ void GlobalManager::StopTcpServer()
 void GlobalManager::StartUdpServer()
 {
 
-	std::string port = m_LocalServerConfig.GetValue("UdpPort");
+	std::string port = m_GlobalConfig.GetValue("UdpPort");
 	std::string tcpport = m_LocalServerConfig.GetValue("TcpPort");
 	std::string servername = m_LocalServerConfig.GetValue("ServerName");
 

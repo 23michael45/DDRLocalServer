@@ -41,9 +41,6 @@ void LocalTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer
 	}
 	spreq.reset();
 
-	//Disconnect(container);
-
-
 
 }
 void LocalTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)

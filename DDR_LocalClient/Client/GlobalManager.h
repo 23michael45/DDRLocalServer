@@ -15,7 +15,7 @@
 #include "../../../Shared/src/Utility/GlobalManagerBase.h"
 
 using namespace DDRFramework;
-class GlobalManager : public DDRFramework::CSingleton<GlobalManager> , public GlobalManagerBase
+class GlobalManager : public DDRFramework::CSingleton<GlobalManager> , public GlobalManagerClientBase
 {
 public:
 	GlobalManager();
@@ -23,43 +23,34 @@ public:
 
 public:
 
-	void StartUdp();
-	void ReleaseUdp();
-	bool IsUdpWorking();
+	virtual void Init() override;
+	virtual bool StartUdp() override;
 
 	void StartAudioClient(std::string ip, int port);
 	void StopAudioClient();
 
 
-	void StartTcpClient();
-	void ReleaseTcp();
-	bool IsTcpWorking();
-
 
 	
-	std::shared_ptr<LocalTcpClient> GetTcpClient();
-    std::shared_ptr<UdpSocketBase> GetUdpClient();
 #ifdef QT_PRECOMPILED_HEADER
 #else
     std::shared_ptr<AudioTcpClient> GetAudioTcpClient();
 #endif
 
 	void SetServerAddr(std::string ip, std::string port);
-	void TryConnect();
-	void TryConnect(std::string ip, std::string port);
+
+	virtual void TcpConnect(std::string ip, std::string port) override;
+	void TcpConnect();
+
 private:
 
-	void OnUdpDisconnect(UdpSocketBase& container);
-
-	std::shared_ptr<LocalTcpClient> m_spTcpClient;
-	std::shared_ptr<UdpSocketBase> m_spUdpClient;
 #ifdef QT_PRECOMPILED_HEADER
 #else
     std::shared_ptr<AudioTcpClient> m_spAudioTcpClient;
 #endif
 
 
-	XmlLoader m_ClientConfig;
+	XmlLoader m_Config;
 
 	std::string m_ServerIP;
 	std::string m_ServerPort;
