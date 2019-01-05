@@ -111,6 +111,8 @@ public:
 		AddCommand("connect", std::bind(&_ConsoleDebug::Connect, this));
 		AddCommand("httpget", std::bind(&_ConsoleDebug::HttpGet, this));
 		AddCommand("cmd", std::bind(&_ConsoleDebug::SendCmd, this));
+
+		AddCommand("cmdmove", std::bind(&_ConsoleDebug::SendCmdMove, this));
 	}
 	void ListClientConnection()
 	{
@@ -197,6 +199,17 @@ public:
 
 		auto spheader = std::make_shared<CommonHeader>();
 		GlobalManager::Instance()->GetTcpClient()->Send(spheader,spreq);
+		spreq.reset();
+	}
+
+	void SendCmdMove()
+	{
+		auto spreq = std::make_shared<reqCmdMove>();
+		spreq->set_line_speed(100);
+		spreq->set_angulau_speed(200);
+
+
+		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
 	}
 };

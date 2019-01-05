@@ -45,7 +45,7 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				}
 				else
 				{
-					DebugLog("No StreamRelayServer Conncected");
+					DebugLog("No eLSMStreamRelay Conncected");
 				}
 
 			}
@@ -55,6 +55,25 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 			}
 			else if (toType == eLSMSlamNavigation)
 			{
+				auto map = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
+
+				bool hasSession = false;
+				for (auto pair : map)
+				{
+					if (pair.second->GetLoginInfo().type() == toType)
+					{
+						pair.second->Send(spHeader, buf, bodylen);
+						hasSession = true;
+						break;
+					}
+				}
+				if (hasSession == false)
+				{
+
+					DebugLog("No eLSMSlamNavigation Conncected");
+				}
+				
+				
 
 			}
 			else if (toType == eLSMThermalImaging)

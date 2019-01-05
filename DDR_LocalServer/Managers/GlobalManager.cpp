@@ -17,10 +17,19 @@ using namespace std;
 GlobalManager::GlobalManager():m_LocalServerConfig("Config/LocalServer/LocalServerConfig.xml")
 {
 	std::string dbfile = m_LocalServerConfig.GetValue("DatabaseFile");
-	DBManager::Instance()->Open(dbfile);
 
-	bool b = DBManager::Instance()->VerifyUser("admin", "admin");
-	b = DBManager::Instance()->VerifyUser("admin", "admin1");
+	if (!dbfile.empty())
+	{
+
+		DBManager::Instance()->Open(dbfile);
+
+		bool b = DBManager::Instance()->VerifyUser("admin", "admin");
+		b = DBManager::Instance()->VerifyUser("admin", "admin1");
+	}
+	else
+	{
+		DebugLog("DBFile Load Error");
+	}
 
 }
 GlobalManager::~GlobalManager()
@@ -29,16 +38,23 @@ GlobalManager::~GlobalManager()
 }
 void GlobalManager::StartTcpServer()
 {
+	try
+	{
+		int port = m_LocalServerConfig.GetValue<int>("TcpPort");
+		std::string servername = m_LocalServerConfig.GetValue("ServerName");
+		std::string threadCount = m_LocalServerConfig.GetValue("ServerThreadCount");
 
-	int port = m_LocalServerConfig.GetValue<int>("TcpPort");
-	std::string servername = m_LocalServerConfig.GetValue("ServerName");
-	std::string threadCount = m_LocalServerConfig.GetValue("ServerThreadCount");
+		//loader.SetValue(std::string("ServerName"), std::string("LocalServerV2"));
+		//loader.DoSave();
 
-	//loader.SetValue(std::string("ServerName"), std::string("LocalServerV2"));
-	//loader.DoSave();
+		m_spTcpServer = std::make_shared<LocalTcpServer>(port);
+		m_spTcpServer->Start(std::stoi(threadCount));
+	}
+	catch (std::exception& e)
+	{
 
-	m_spTcpServer = std::make_shared<LocalTcpServer>(port);
-	m_spTcpServer->Start(std::stoi(threadCount));
+		DebugLog("StartTcpServer Error");
+	}
 
 
 
@@ -56,36 +72,43 @@ void GlobalManager::StopTcpServer()
 
 void GlobalManager::StartUdpServer()
 {
-
-	std::string port = m_GlobalConfig.GetValue("UdpPort");
-	std::string tcpport = m_LocalServerConfig.GetValue("TcpPort");
-	std::string servername = m_LocalServerConfig.GetValue("ServerName");
-
-
-	auto bc = std::make_shared<bcLSAddr>();
-	
-
-
-
-	auto plsinfo = bc->add_lsinfos();
-	for (auto addr : DDRFramework::GetLocalIPV4())
+	try
 	{
-		plsinfo->add_ips(addr);
+		std::string port = m_GlobalConfig.GetValue("UdpPort");
+		std::string tcpport = m_LocalServerConfig.GetValue("TcpPort");
+		std::string servername = m_LocalServerConfig.GetValue("ServerName");
+
+
+		auto bc = std::make_shared<bcLSAddr>();
+
+
+
+
+		auto plsinfo = bc->add_lsinfos();
+		for (auto addr : DDRFramework::GetLocalIPV4())
+		{
+			plsinfo->add_ips(addr);
+		}
+		plsinfo->set_name(servername);
+		plsinfo->set_stype(bcLSAddr_eServiceType::bcLSAddr_eServiceType_LocalServer);
+		plsinfo->set_port(std::stoi(tcpport));
+		plsinfo->set_robotid(GetRobotID());
+
+
+
+		m_spUdpServer = std::make_shared<UdpSocketBase>();
+
+		m_spUdpServer->Start();
+		m_spUdpServer->GetSerializer()->BindDispatcher(std::make_shared<LocalServerUdpDispatcher>());
+
+		m_spUdpServer->BindOnDisconnect(std::bind(&GlobalManager::OnUdpDisconnect, this, std::placeholders::_1));
+		m_spUdpServer->StartBroadcast(std::stoi(port), bc, 2000);
 	}
-	plsinfo->set_name(servername);
-	plsinfo->set_stype(bcLSAddr_eServiceType::bcLSAddr_eServiceType_LocalServer);
-	plsinfo->set_port(std::stoi(tcpport));
-	plsinfo->set_robotid(GetRobotID());
+	catch (std::exception& e)
+	{
+		DebugLog("StartUdpServer Error");
+	}
 
-
-
-	m_spUdpServer = std::make_shared<UdpSocketBase>();
-
-	m_spUdpServer->Start();
-	m_spUdpServer->GetSerializer()->BindDispatcher(std::make_shared<LocalServerUdpDispatcher>());
-
-	m_spUdpServer->BindOnDisconnect(std::bind(&GlobalManager::OnUdpDisconnect, this, std::placeholders::_1));
-	m_spUdpServer->StartBroadcast(std::stoi(port), bc, 2000);
 
 
 }
