@@ -619,6 +619,9 @@
     <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp">
       <Filter>Shared\Network</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\MiniDump.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">

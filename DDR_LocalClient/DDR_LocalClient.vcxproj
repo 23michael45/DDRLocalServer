@@ -186,6 +186,7 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClCompile Include="..\..\Shared\src\Utility\GlobalManagerBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\LocalizationLoader.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp" />
+    <ClCompile Include="..\..\Shared\src\Utility\MiniDump.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileHandleBackend.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileIteratorBackend.cpp" />

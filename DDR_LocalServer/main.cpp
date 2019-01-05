@@ -5,6 +5,7 @@
 #include "../../../Shared/src/Utility/XmlLoader.h"
 #include "../../../Shared/src/Utility/LocalizationLoader.h"
 #include "../../../Shared/src/Utility/MiniDump.h"
+#include "../../../Shared/src/Utility/CommonFunc.h"
 #include "../../../Shared/src/Network/UdpSocketBase.h"
 #include "Servers/LocalServerUdpDispatcher.h"
 #include "Managers/GlobalManager.h"
@@ -115,18 +116,11 @@ public:
 
 int main()
 {
-#ifdef _WINDOWS
-	SetConsoleOutputCP(CP_UTF8);
-#endif
-
+	DisableMouseSelectConsole();
 
 	InitMinDump();
-
-
-
 	GlobalManager::Instance()->StartTcpServer();
 	GlobalManager::Instance()->StartUdpServer();
-
 
 	_ConsoleDebug::Instance()->ConsoleDebugLoop();
 

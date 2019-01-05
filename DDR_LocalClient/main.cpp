@@ -4,6 +4,8 @@
 #include "../../Shared/src/Network/HttpClient.h"
 #include "../../Shared/proto/BaseCmd.pb.h"
 #include "../../Shared/src/Utility/DDRMacro.h"
+
+#include "../../Shared/src/Utility/MiniDump.h"
 #include "Client/LocalClientUdpDispatcher.h"
 #include <thread>
 #include <chrono>
@@ -15,6 +17,8 @@
 #include <sstream>
 #include <vector>
 #include <iterator>
+
+#include "../../../Shared/src/Utility/CommonFunc.h"
 #ifdef _WINDOWS
 #include <Windows.h>
 #include "cppfs/windows/LocalFileSystem.h"
@@ -199,9 +203,10 @@ public:
 
 int main()
 {
-#ifdef _WINDOWS
-	SetConsoleOutputCP(CP_UTF8);
-#endif
+	DisableMouseSelectConsole();
+
+	InitMinDump();
+
 	GlobalManager::Instance()->Init();
 	
 	_ConsoleDebug::Instance()->ConsoleDebugLoop();
