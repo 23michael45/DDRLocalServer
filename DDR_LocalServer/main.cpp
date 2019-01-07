@@ -11,6 +11,7 @@
 #include "Managers/GlobalManager.h"
 #include "Managers/FileManager.h"
 
+#include "../../Shared/src/Utility/PythonDebugTools.h"
 
 #include <thread>
 #include <chrono>
@@ -99,6 +100,7 @@ public:
 	_ConsoleDebug()
 	{
 		AddCommand("ls sc", std::bind(&_ConsoleDebug::ListServerConnections, this));
+		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
 	}
 	void ListServerConnections()
 	{
@@ -109,6 +111,63 @@ public:
 
 			std::string ip = spSession.second->GetSocket().remote_endpoint().address().to_string();
 			printf_s("\n%s  type:%i", ip.c_str(), spSession.second->GetLoginInfo().type());
+		}
+	}
+	void RunPython()
+	{
+		auto vec = split(m_CurrentCmd, ':');
+
+		std::string funcname = "msg";
+		std::string ip = "";
+		if (vec.size() == 2)
+		{
+			funcname = vec[1];
+		}
+		else if (vec.size() == 3)
+		{
+			funcname = vec[1];
+			ip = vec[2];
+		}
+
+		PythonDebugTools pdt(GlobalManager::Instance()->GetGlobalConfig().GetValue("PythonPath"));
+		auto spmsg = pdt.Run(funcname);
+		if (spmsg)
+		{
+			if (!ip.empty())
+			{
+				for (auto pair : GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
+				{
+					auto pSocket = pair.first;
+
+					if (pSocket)
+					{
+						std::string socketip = pSocket->remote_endpoint().address().to_string();
+						if (socketip == ip)
+						{
+
+							auto spSession = pair.second;
+							spSession->Send(spmsg);
+						}
+					}
+				}
+
+			}
+			else
+			{
+				for (auto pair :GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
+				{
+					auto spSession = pair.second;
+					spSession->Send(spmsg);
+
+				}
+
+			}
+
+		}
+		else
+		{
+
+			DebugLog("RunPython Error");
 		}
 	}
 };

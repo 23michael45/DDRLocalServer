@@ -3,6 +3,8 @@
 #include "../../Shared/src/Network/TcpClientBase.h"
 #include "../../Shared/src/Network/HttpClient.h"
 #include "../../Shared/proto/BaseCmd.pb.h"
+#include <google/protobuf/descriptor.h>
+#include <google/protobuf/message.h>
 #include "../../Shared/src/Utility/DDRMacro.h"
 
 #include "../../Shared/src/Utility/MiniDump.h"
@@ -25,9 +27,10 @@
 #endif
 
 
-
 #include "opencv2/opencv.hpp"
 #include "opencv2/imgproc.hpp"
+
+#include "../../Shared/src/Utility/PythonDebugTools.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;
@@ -113,6 +116,8 @@ public:
 		AddCommand("cmd", std::bind(&_ConsoleDebug::SendCmd, this));
 
 		AddCommand("cmdmove", std::bind(&_ConsoleDebug::SendCmdMove, this));
+
+		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
 	}
 	void ListClientConnection()
 	{
@@ -212,6 +217,29 @@ public:
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
 	}
+	void RunPython()
+	{
+		auto vec = split(m_CurrentCmd, ':');
+
+		std::string funcname = "msg";
+		if (vec.size() == 2)
+		{
+			funcname = vec[1];
+		}
+		
+		PythonDebugTools pdt(GlobalManager::Instance()->GetGlobalConfig().GetValue("PythonPath"));
+		auto spmsg = pdt.Run(funcname);
+		if (spmsg)
+		{
+			GlobalManager::Instance()->GetTcpClient()->Send(spmsg);
+
+		}
+		else
+		{
+
+			DebugLog("RunPython Error");
+		}
+	}
 };
 
 int main()
@@ -221,6 +249,7 @@ int main()
 	InitMinDump();
 
 	GlobalManager::Instance()->Init();
+
 	
 	_ConsoleDebug::Instance()->ConsoleDebugLoop();
 	return 0;
