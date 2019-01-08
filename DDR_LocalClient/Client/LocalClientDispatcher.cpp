@@ -9,22 +9,19 @@
 #include "StreamAddrProcessor.h"
 #include "AlarmProcessor.h"
 #include "FileAddressProcessor.h"
+#include "RemoteServerListProcessor.h"
 #endif
 using namespace DDRCommProto;
 using namespace DDRFramework;
 
 LocalClientDispatcher::LocalClientDispatcher()
 {
-
-#ifdef QT_PRECOMPILED_HEADER
-		RegisterProcessor(rsp, Login)
-        RegisterProcessor(rsp, StreamAddr)
-#else
         RegisterProcessor(rsp, Login)
         RegisterProcessor(rsp, StreamAddr)
         RegisterProcessor(notify, Alarm)
-        RegisterProcessor(rsp, FileAddress)
-#endif
+        RegisterProcessor(rsp, FileAddress)			
+		RegisterProcessor(rsp, RemoteServerList)
+
 }
 
 

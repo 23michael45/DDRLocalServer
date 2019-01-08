@@ -116,6 +116,7 @@ public:
 		AddCommand("cmd", std::bind(&_ConsoleDebug::SendCmd, this));
 
 		AddCommand("cmdmove", std::bind(&_ConsoleDebug::SendCmdMove, this));
+		AddCommand("slist", std::bind(&_ConsoleDebug::GetServerList, this));
 
 		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
 	}
@@ -158,6 +159,12 @@ public:
 
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
+	}
+	void GetServerList()
+	{
+		auto spreq = std::make_shared<reqRemoteServerList>();
+		spreq->set_fromip(GlobalManager::Instance()->GetTcpClient()->GetConnectedSession()->GetSocket().remote_endpoint().address().to_string());
+		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 	}
 
 

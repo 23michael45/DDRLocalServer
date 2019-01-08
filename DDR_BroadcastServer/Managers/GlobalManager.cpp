@@ -13,16 +13,16 @@
 using namespace DDRCommProto;
 using namespace std;
 
-GlobalManager::GlobalManager():m_BroadcastServerConfig("Config/BroadcastServer/BroadcastServerConfig.xml")
+GlobalManager::GlobalManager():m_BroadcastServerConfig("Config/BroadcastServer/BroadcastServerConfig.xml"), m_ServerListConfig("Config/BroadcastServer/ServerListConfig.xml")
 {
-	int count = m_BroadcastServerConfig.GetElementCount();
+	int count = m_ServerListConfig.GetElementCount();
 	
 	for (int i = 0 ; i<count;i++)
 	{
 		DDRCommProto::rspRemoteServerList::RemoteServer server;
-		server.set_name(m_BroadcastServerConfig.GetValue(i, "Name"));
-		server.set_ip(m_BroadcastServerConfig.GetValue(i, "IP"));
-		server.set_port(m_BroadcastServerConfig.GetValue<int>(i, "Port"));
+		server.set_name(m_ServerListConfig.GetValue(i, "Name"));
+		server.set_ip(m_ServerListConfig.GetValue(i, "IP"));
+		server.set_port(m_ServerListConfig.GetValue<int>(i, "Port"));
 		m_ServerList.push_back(server);
 	}
 	

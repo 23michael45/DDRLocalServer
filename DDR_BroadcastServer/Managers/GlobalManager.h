@@ -45,6 +45,7 @@ private:
 	std::shared_ptr<BroadcastTcpServer> m_spTcpServer;
 
 	XmlLoader m_BroadcastServerConfig;
+	XmlLoader m_ServerListConfig;
 
 	std::vector<DDRCommProto::rspRemoteServerList::RemoteServer> m_ServerList;
 };

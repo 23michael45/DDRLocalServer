@@ -366,6 +366,7 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClCompile Include="Client\LocalClientUdpProcessor.cpp" />
     <ClCompile Include="Client\LocalTcpClient.cpp" />
     <ClCompile Include="Client\LoginProcessor.cpp" />
+    <ClCompile Include="Client\RemoteServerListProcessor.cpp" />
     <ClCompile Include="Client\StreamAddrProcessor.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -542,6 +543,7 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClInclude Include="Client\LocalClientUdpProcessor.h" />
     <ClInclude Include="Client\LocalTcpClient.h" />
     <ClInclude Include="Client\LoginProcessor.h" />
+    <ClInclude Include="Client\RemoteServerListProcessor.h" />
     <ClInclude Include="Client\StreamAddrProcessor.h" />
   </ItemGroup>
   <ItemGroup>

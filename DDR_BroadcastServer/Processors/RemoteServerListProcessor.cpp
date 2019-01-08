@@ -32,9 +32,9 @@ void RemoteServerListProcessor::Process(std::shared_ptr<BaseSocketContainer> spS
 	{
 
 		auto* p = sprsp->add_servers();
-		*p = server;
+		p->CopyFrom(server);
 	}
-
+	auto ip = sprsp->servers(0).ip();
 
 	spSockContainer->Send(sprsp);
 }

@@ -625,6 +625,9 @@
     <ClCompile Include="..\..\Shared\src\Utility\PythonDebugTools.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Client\RemoteServerListProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -1145,6 +1148,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\PythonDebugTools.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\RemoteServerListProcessor.h">
+      <Filter>Client</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
