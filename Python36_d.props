@@ -11,7 +11,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)../../Shared/lib/x64/python;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>python36_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>D:\DevelopProj\Dadao\DDRFramework\DDRLocalServer\DDR_LocalClient\../../Shared/lib/x64/python/python36_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
