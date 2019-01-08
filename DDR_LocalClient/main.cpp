@@ -166,11 +166,12 @@ public:
 		auto vec = split(m_CurrentCmd, ':');
 		if (vec.size() == 3)
 		{
-
+			GlobalManager::Instance()->StopUdp();
 			GlobalManager::Instance()->TcpConnect(vec[1],vec[2]);
 		}
 		else if(vec.size() == 1)
 		{
+			GlobalManager::Instance()->StopUdp();
 			GlobalManager::Instance()->TcpConnect();
 
 		}
