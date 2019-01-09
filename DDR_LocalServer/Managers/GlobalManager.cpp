@@ -10,7 +10,6 @@
 #include <fstream>
 
 #include "../../../Shared/proto/BaseCmd.pb.h"
-#include "../../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
 using namespace DDRCommProto;
 using namespace std;
 

@@ -372,6 +372,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="Behaviors\BaseClientBehavior.cpp" />
+    <ClCompile Include="LSClient\LSClientDispatcher.cpp" />
+    <ClCompile Include="LSClient\LSTcpClient.cpp" />
+    <ClCompile Include="LSClient\RemoteServerListProcessor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\FileManager.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
@@ -456,6 +459,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
     <ClInclude Include="Behaviors\BaseClientBehavior.h" />
+    <ClInclude Include="LSClient\LSClientDispatcher.h" />
+    <ClInclude Include="LSClient\LSTcpClient.h" />
+    <ClInclude Include="LSClient\RemoteServerListProcessor.h" />
     <ClInclude Include="Managers\FileManager.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
     <ClInclude Include="Managers\StreamRelayServiceManager.h" />

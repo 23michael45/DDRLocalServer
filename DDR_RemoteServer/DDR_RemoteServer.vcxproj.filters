@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Shared">
+      <UniqueIdentifier>{f6df96da-85b1-4e24-9fd6-cc034a054cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Network">
+      <UniqueIdentifier>{6668bc2e-d3ba-47df-947a-78be52d340ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\proto">
+      <UniqueIdentifier>{e8e346af-7d13-4324-9655-3bc634532a17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Utility">
+      <UniqueIdentifier>{3d41e2ac-2279-414c-971a-bedf667dffb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty">
+      <UniqueIdentifier>{275aaa48-428f-4908-83ee-23a07b1b3026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\tinyxml">
+      <UniqueIdentifier>{accabda9-aa32-4a5f-8f47-dc9a284b8a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\FSM">
+      <UniqueIdentifier>{4092af65-06ea-41ca-a442-f233268d7a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Network\HttpServer">
+      <UniqueIdentifier>{37022df8-f005-41ae-a258-6472f29e2925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\jsoncpp">
+      <UniqueIdentifier>{c09385b9-26eb-4a15-8a30-4dbbb3fb6b58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Logic">
+      <UniqueIdentifier>{11cc90f6-4094-462c-b0b9-924beae2cfbf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\cppsqlite">
+      <UniqueIdentifier>{42b4a83a-5570-4bd6-b131-2136a88506d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Processors">
+      <UniqueIdentifier>{638d8b09-6714-489c-b322-11f528f3d6c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{a9769105-ad81-4f40-8ce9-2ef22099cddf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Servers">
+      <UniqueIdentifier>{7e96e48d-10e8-4c94-979c-0f94e322d576}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\cppfs">
+      <UniqueIdentifier>{a3333c2d-be43-4ccf-87fd-2dbd03500b33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\cppfs\windows">
+      <UniqueIdentifier>{a3972fa2-343f-4d5b-a130-6df782cd331a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\TcpClientBase.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\proto\BaseCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\XmlLoader.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxml.cpp">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinystr.cpp">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\MessageSerializer.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\TcpSocketContainer.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\connection.cpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\connection_manager.cpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\http_server.cpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\mime_types.cpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\reply.cpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\request_handler.cpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpServer\request_parser.cpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_reader.cpp">
+      <Filter>Shared\Thirdparty\jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_value.cpp">
+      <Filter>Shared\Thirdparty\jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_writer.cpp">
+      <Filter>Shared\Thirdparty\jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\MiniDump.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.cpp">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.c">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Managers\GlobalManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\LocalizationLoader.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileHandleBackend.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileIteratorBackend.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\AbstractFileSystem.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Change.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Diff.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileHandle.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileIterator.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FilePath.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FileVisitor.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\fs.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\FunctionalFileVisitor.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\InputStream.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\LoginCredentials.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\OutputStream.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\system.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Tree.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileIterator.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileSystem.cpp">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\cppfsUrl.cpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\GlobalManagerBase.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\RemoteServerListProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Servers\RemoteServerDispatcher.cpp">
+      <Filter>Servers</Filter>
+    </ClCompile>
+    <ClCompile Include="Servers\RemoteTcpServer.cpp">
+      <Filter>Servers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\TcpClientBase.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\proto\BaseCmd.pb.h">
+      <Filter>Shared\proto</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h">
+      <Filter>Shared\Thirdparty\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\MessageSerializer.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\FSM\FSM.h">
+      <Filter>Shared\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\Singleton.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\BaseProcessor.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\BaseMessageDispatcher.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\TcpSocketContainer.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\BaseSocketContainer.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer.h">
+      <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\connection.hpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\connection_manager.hpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\header.hpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\http_server.hpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\mime_types.hpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\reply.hpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\request.hpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\request_handler.hpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpServer\request_parser.hpp">
+      <Filter>Shared\Network\HttpServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\jsoncpp\src\json_tool.h">
+      <Filter>Shared\Thirdparty\jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Logic\BaseBehavior.h">
+      <Filter>Shared\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\Timer.hpp">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\MiniDump.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.h">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.h">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3ext.h">
+      <Filter>Shared\Thirdparty\cppsqlite</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\GlobalManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\Logger.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\LocalizationLoader.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\AbstractFileHandleBackend.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\AbstractFileIteratorBackend.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\AbstractFileSystem.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\Change.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\cppfs.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\Diff.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FileHandle.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FileIterator.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FilePath.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FileVisitor.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\fs.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\FunctionalFileVisitor.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\InputStream.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\LoginCredentials.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\OutputStream.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\system.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\Tree.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\windows\LocalFileHandle.h">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\windows\LocalFileIterator.h">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\windows\LocalFileSystem.h">
+      <Filter>Shared\Thirdparty\cppfs\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\basen\basen.hpp">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\cppfsUrl.h">
+      <Filter>Shared\Thirdparty\cppfs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\GlobalManagerBase.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\RemoteServerListProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Servers\RemoteServerDispatcher.h">
+      <Filter>Servers</Filter>
+    </ClInclude>
+    <ClInclude Include="Servers\RemoteTcpServer.h">
+      <Filter>Servers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Shared\thirdparty\jsoncpp\src\json_valueiterator.inl">
+      <Filter>Shared\Thirdparty\jsoncpp</Filter>
+    </None>
+  </ItemGroup>
+</Project>
