@@ -81,8 +81,8 @@ void TcpAudioClientSession::OnStop()
 {
 
 	m_AudioCodec.StopDeviceRecord();
-	m_AudioCodec.Deinit();
 	m_AudioCodec.StopDevicePlay();
+	m_AudioCodec.Deinit();
 }
 
 

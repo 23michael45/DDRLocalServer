@@ -1,7 +1,6 @@
 #include "../../../Shared/src/Network/MessageSerializer.h"
 #include "../../../Shared/src/Network/TcpServerBase.h"
 #include "../../../Shared/src/Network/TcpClientBase.h"
-#include "Servers/LocalTcpServer.h"
 #include "../../../Shared/src/Utility/XmlLoader.h"
 #include "../../../Shared/src/Utility/LocalizationLoader.h"
 #include "../../../Shared/src/Utility/MiniDump.h"
@@ -10,6 +9,8 @@
 #include "Servers/LocalServerUdpDispatcher.h"
 #include "Managers/GlobalManager.h"
 #include "Managers/FileManager.h"
+#include "Servers/LocalTcpServer.h"
+#include "LSClient/LSClientManager.h"
 
 #include "../../Shared/src/Utility/PythonDebugTools.h"
 
@@ -180,6 +181,9 @@ int main()
 	InitMinDump();
 	GlobalManager::Instance()->StartTcpServer();
 	GlobalManager::Instance()->StartUdpServer();
+
+	LSClientManager::Instance()->Init();
+	LSClientManager::Instance()->ConnectBroadcastServer();
 
 	_ConsoleDebug::Instance()->ConsoleDebugLoop();
 

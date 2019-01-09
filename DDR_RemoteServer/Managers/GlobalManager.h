@@ -32,9 +32,9 @@ public:
 		return m_spTcpServer;
 	}
 
-	XmlLoader& GetBroadcastServerConfig()
+	XmlLoader& GetRemoteServerConfig()
 	{
-		return m_BroadcastServerConfig;
+		return m_RemoteServerListConfig;
 	}
 	std::vector<DDRCommProto::rspRemoteServerList::RemoteServer>& GetServerVec()
 	{
@@ -44,8 +44,7 @@ public:
 private:
 	std::shared_ptr<RemoteTcpServer> m_spTcpServer;
 
-	XmlLoader m_BroadcastServerConfig;
-	XmlLoader m_ServerListConfig;
+	XmlLoader m_RemoteServerListConfig;
 
 	std::vector<DDRCommProto::rspRemoteServerList::RemoteServer> m_ServerList;
 };

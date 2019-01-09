@@ -13,5 +13,10 @@ public:
 	~LSClientDispatcher();
 };
 
-
+class LSBroadcastReceiveClientDispatcher : public DDRFramework::BaseMessageDispatcher
+{
+public:
+	LSBroadcastReceiveClientDispatcher();
+	~LSBroadcastReceiveClientDispatcher();
+};
 #endif // LSClientDispatcher_h__

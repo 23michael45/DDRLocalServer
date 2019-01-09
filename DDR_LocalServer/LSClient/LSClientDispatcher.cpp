@@ -8,11 +8,23 @@ using namespace DDRFramework;
 
 LSClientDispatcher::LSClientDispatcher()
 {		
-		RegisterProcessor(rsp, RemoteServerList)
-
+	
 }
 
 
 LSClientDispatcher::~LSClientDispatcher()
+{
+}
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+
+LSBroadcastReceiveClientDispatcher::LSBroadcastReceiveClientDispatcher()
+{
+	RegisterProcessor(rsp, RemoteServerList)
+
+}
+
+
+LSBroadcastReceiveClientDispatcher::~LSBroadcastReceiveClientDispatcher()
 {
 }

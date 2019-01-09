@@ -109,7 +109,9 @@ public:
 	_ConsoleDebug()
 	{
 		AddCommand("ls cc", std::bind(&_ConsoleDebug::ListClientConnection, this));
-		AddCommand("ca", std::bind(&_ConsoleDebug::CallAudio, this));
+		AddCommand("castart", std::bind(&_ConsoleDebug::StartAudio, this));
+		AddCommand("castop", std::bind(&_ConsoleDebug::StopAudio, this));
+
 		AddCommand("reqf", std::bind(&_ConsoleDebug::RequestFile, this));
 		AddCommand("connect", std::bind(&_ConsoleDebug::Connect, this));
 		AddCommand("httpget", std::bind(&_ConsoleDebug::HttpGet, this));
@@ -135,7 +137,7 @@ public:
 		}
 	}
 
-	void CallAudio()
+	void StartAudio()
 	{
 		DebugLog("Call Audio");
 		auto spreq = std::make_shared<reqStreamAddr>();
@@ -144,7 +146,11 @@ public:
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
 	}
+	void StopAudio()
+	{
 
+		GlobalManager::Instance()->StopAudioClient();
+	}
 	void RequestFile()
 	{
 		DebugLog("Request File");
