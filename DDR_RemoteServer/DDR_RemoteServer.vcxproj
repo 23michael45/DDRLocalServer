@@ -230,7 +230,10 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
+    <ClCompile Include="Processors\RegisteLSProcessor.cpp" />
+    <ClCompile Include="Processors\RemoteLoginProcessor.cpp" />
     <ClCompile Include="Processors\RemoteServerListProcessor.cpp" />
+    <ClCompile Include="Processors\SelectLSProcessor.cpp" />
     <ClCompile Include="Servers\RemoteServerDispatcher.cpp" />
     <ClCompile Include="Servers\RemoteTcpServer.cpp" />
   </ItemGroup>
@@ -294,7 +297,10 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
+    <ClInclude Include="Processors\RegisteLSProcessor.h" />
+    <ClInclude Include="Processors\RemoteLoginProcessor.h" />
     <ClInclude Include="Processors\RemoteServerListProcessor.h" />
+    <ClInclude Include="Processors\SelectLSProcessor.h" />
     <ClInclude Include="Servers\RemoteServerDispatcher.h" />
     <ClInclude Include="Servers\RemoteTcpServer.h" />
   </ItemGroup>

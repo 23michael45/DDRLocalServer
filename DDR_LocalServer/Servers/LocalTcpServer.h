@@ -3,11 +3,21 @@
 
 #include "../../../Shared/src/Network/TcpServerBase.h"
 #include "../../../Shared/src/Utility/Singleton.h"
-#include "../Managers/StreamRelayServiceManager.h"
 using namespace DDRFramework;
 
 
+class LocalServerTcpSession : public TcpSessionBase
+{
+public:
+	LocalServerTcpSession(asio::io_context& context);
+	~LocalServerTcpSession();
 
+
+	void AssignLoginInfo(reqLogin info);
+	reqLogin& GetLoginInfo();
+protected:
+	reqLogin m_reqLoginInfo;//Login Information
+};
 
 class LocalTcpServer : public TcpServerBase
 {

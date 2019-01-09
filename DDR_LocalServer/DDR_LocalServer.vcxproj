@@ -198,6 +198,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\src\Network\TcpSocketContainer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp" />
+    <ClCompile Include="..\..\Shared\src\Utility\DeviceUDID.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\GlobalManagerBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\LocalizationLoader.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp" />
@@ -423,6 +424,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h" />
+    <ClInclude Include="..\..\Shared\src\Utility\DeviceUDID.h" />
     <ClInclude Include="..\..\Shared\src\Utility\GlobalManagerBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\LocalizationLoader.h" />
     <ClInclude Include="..\..\Shared\src\Utility\Logger.h" />

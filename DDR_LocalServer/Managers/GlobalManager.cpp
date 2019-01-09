@@ -21,9 +21,6 @@ GlobalManager::GlobalManager():m_LocalServerConfig("Config/LocalServer/LocalServ
 	{
 
 		DBManager::Instance()->Open(dbfile);
-
-		bool b = DBManager::Instance()->VerifyUser("admin", "admin");
-		b = DBManager::Instance()->VerifyUser("admin", "admin1");
 	}
 	else
 	{

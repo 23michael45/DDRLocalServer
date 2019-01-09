@@ -33,13 +33,16 @@ void StreamRelayAlarmProcessor::Process(std::shared_ptr<BaseSocketContainer> spS
 	sprsp->set_error(pRaw->error());
 
 
-	for (auto spSession : GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
+	for (auto pair : GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
 	{
 		for (auto clttype : pRaw->to())
 		{
-			if (spSession.second->GetLoginInfo().type() == clttype)
+
+			auto spSession = pair.second;
+			auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
+			if (spServerSessionTcp->GetLoginInfo().type() == clttype)
 			{
-				spSession.second->Send(sprsp);
+				spServerSessionTcp->Send(sprsp);
 			}
 		}
 	}

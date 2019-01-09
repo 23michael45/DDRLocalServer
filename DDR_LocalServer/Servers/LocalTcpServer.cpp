@@ -8,6 +8,28 @@
 #include "../../../Shared/src/Utility/XmlLoader.h"
 
 
+LocalServerTcpSession::LocalServerTcpSession(asio::io_context& context) :TcpSessionBase::TcpSessionBase(context)
+{
+}
+
+LocalServerTcpSession::~LocalServerTcpSession()
+{
+	DebugLog("LocalServerTcpSession Destroy");
+}
+
+void LocalServerTcpSession::AssignLoginInfo(reqLogin info)
+{
+	m_reqLoginInfo.CopyFrom(info);
+}
+
+DDRCommProto::reqLogin& LocalServerTcpSession::GetLoginInfo()
+{
+	return m_reqLoginInfo;
+}
+
+
+
+
 
 LocalTcpServer::LocalTcpServer(int port):TcpServerBase(port)
 {
@@ -21,8 +43,8 @@ LocalTcpServer::~LocalTcpServer()
 
 std::shared_ptr<TcpSessionBase> LocalTcpServer::BindSerializerDispatcher()
 {
-	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpSessionBase, MessageSerializer, LocalServerDispatcher, LocalServerHeadRuleRouter)
-		return spTcpSessionBase;
+	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, LocalServerTcpSession, MessageSerializer, LocalServerDispatcher, LocalServerHeadRuleRouter)
+		return spLocalServerTcpSession;
 }
 
 
@@ -45,3 +67,5 @@ void LocalTcpServer::OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spC
 	TcpServerBase::OnSessionDisconnect(spContainer);
 	auto spClientSession = dynamic_pointer_cast<TcpSessionBase>(spContainer);
 }
+
+

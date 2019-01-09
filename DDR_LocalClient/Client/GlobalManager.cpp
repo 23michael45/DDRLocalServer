@@ -1,6 +1,7 @@
 #include "GlobalManager.h"
 #include "LocalClientUdpDispatcher.h"
 #include "LocalClientUdpProcessor.h"
+#include "LocalTcpClient.h"
 
 GlobalManager::GlobalManager():m_Config("Config/Client/ClientConfig.xml")
 {
@@ -87,6 +88,24 @@ void GlobalManager::TcpConnect()
 void GlobalManager::TcpConnect(std::string ip, std::string port)
 {
 	GlobalManagerClientBase::TcpConnect(ip, port);
+}
+
+void GlobalManager::ConnectBroadcastServer()
+{
+	m_spLSBroadcastReceiveTcpClient = std::make_shared<LSBroadcastReceiveTcpClient>();
+	m_spLSBroadcastReceiveTcpClient->Start();
+
+	std::string ip = m_GlobalConfig.GetValue("BroadcastServerIP");
+	std::string port = m_GlobalConfig.GetValue("BroadcastServerPort");
+	m_spLSBroadcastReceiveTcpClient->Connect(ip, port);
+}
+
+void GlobalManager::CloseBroadcastServer()
+{
+	if (m_spLSBroadcastReceiveTcpClient)
+	{
+		m_spLSBroadcastReceiveTcpClient->Stop();
+	}
 }
 
 #endif

@@ -77,3 +77,40 @@ void LocalTcpClient::SendHeartBeatOnce(timer_id id)
 	}
 	sphb.reset();
 }
+
+
+
+
+
+
+
+
+LSBroadcastReceiveTcpClient::LSBroadcastReceiveTcpClient()
+{
+}
+
+
+LSBroadcastReceiveTcpClient::~LSBroadcastReceiveTcpClient()
+{
+	DebugLog("LSBroadcastReceiveTcpClient Destroy")
+}
+
+std::shared_ptr<TcpClientSessionBase> LSBroadcastReceiveTcpClient::BindSerializerDispatcher()
+{
+	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, LSBroadcastReceiveClientDispatcher, BaseHeadRuleRouter)
+		return spTcpClientSessionBase;
+}
+void LSBroadcastReceiveTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
+{
+
+	DebugLog("OnConnectSuccess! LSBroadcastReceiveTcpClient");
+	auto spreq = std::make_shared<reqRemoteServerList>();
+	spreq->set_fromip(spContainer->GetSocket().remote_endpoint().address().to_string());
+	if (IsConnected())
+	{
+		Send(spreq);
+	}
+	spreq.reset();
+
+
+}

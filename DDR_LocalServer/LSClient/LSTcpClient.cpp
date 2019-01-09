@@ -27,18 +27,8 @@ std::shared_ptr<TcpClientSessionBase> LSTcpClient::BindSerializerDispatcher()
 void LSTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 
-	DebugLog("OnConnectSuccess! LocalTcpClient");
-	auto spreq = std::make_shared<reqLogin>();
-	spreq->set_username("LocalTcpClient_XX");
-	spreq->set_type(eLocalServer);
-	spreq->set_username("admin");
-	spreq->set_userpwd("admin");
-
-	if (IsConnected())
-	{
-		Send(spreq);
-	}
-	spreq.reset();
+	DebugLog("OnConnectSuccess! LSTcpClient");
+	RegisteToRemote();
 
 
 }
@@ -62,6 +52,18 @@ void LSTcpClient::StopHeartBeat()
 {
 	m_Timer.remove(m_HeartBeatTimerID);
 }
+
+void LSTcpClient::RegisteToRemote()
+{
+	short cpuhash = getCpuHash();
+
+	auto spreq = std::make_shared<reqRegisteLS>();
+	spreq->set_udid(std::to_string(cpuhash));
+	spreq->set_udid(GlobalManager::Instance()->GetGlobalConfig().GetValue("RobotID"));
+
+	Send(spreq);
+}
+
 void LSTcpClient::SendHeartBeatOnce(timer_id id)
 {
 	HeartBeat hb;

@@ -12,6 +12,7 @@
 #include "eventpp/callbacklist.h"
 #include "eventpp/eventdispatcher.h"
 #include "eventpp/eventqueue.h"
+#include "../../Servers/LocalTcpServer.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -50,13 +51,7 @@ void FileAddressProcessor::SendChk(reqFileAddress* pRaw)
 		auto spStreamRelaySession = StreamRelayServiceManager::Instance()->GetServerSession();
 		if (spStreamRelaySession)
 		{
-			/*auto spClientSession = dynamic_pointer_cast<TcpSessionBase>(spSockContainer->GetTcp());
-
-			std::map<std::shared_ptr<TcpSessionBase>, std::shared_ptr<TcpSessionBase>>& map = StreamRelayServiceManager::Instance()->m_WaitingSessionPare;
-			map.insert(make_pair(spStreamRelaySession, spClientSession));*/
-
-			StreamRelayServiceManager::Instance()->Send(sprsp);
-
+			spStreamRelaySession->Send(sprsp);
 		}
 		else
 		{

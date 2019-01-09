@@ -50,5 +50,25 @@ private:
 };
 
 
+class DBManager : public CSingleton<DBManager>
+{
+public:
+	DBManager();
+	~DBManager();
+
+	bool Open(std::string& filename);
+	bool Remove(std::string& filename);
+
+	bool VerifyUser(std::string username, std::string pwd);
+
+
+private:
+	bool CreateUserTable();
+	bool CodeSample();
+
+	std::string m_FileName;
+	CppSQLite3DB m_DB;
+};
+
 
 #endif // GlobalManager_h__

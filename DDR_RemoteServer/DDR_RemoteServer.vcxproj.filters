@@ -220,6 +220,15 @@
     <ClCompile Include="Servers\RemoteTcpServer.cpp">
       <Filter>Servers</Filter>
     </ClCompile>
+    <ClCompile Include="Processors\RegisteLSProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\SelectLSProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\RemoteLoginProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -407,6 +416,15 @@
     </ClInclude>
     <ClInclude Include="Servers\RemoteTcpServer.h">
       <Filter>Servers</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\RegisteLSProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\SelectLSProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\RemoteLoginProcessor.h">
+      <Filter>Processors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

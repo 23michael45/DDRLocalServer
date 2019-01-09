@@ -63,14 +63,16 @@ std::vector<AVChannelConfig> StreamRelayServiceManager::GetAVChannelsConfig()
 	}
 	return channelvec;
 }
-std::shared_ptr<TcpSessionBase> StreamRelayServiceManager::GetServerSession()
+std::shared_ptr<LocalServerTcpSession> StreamRelayServiceManager::GetServerSession()
 {
 	auto sessionMap = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
-	for (auto session : sessionMap)
+	for (auto pair : sessionMap)
 	{
-		if (session.second->GetLoginInfo().type() == eCltType::eLSMStreamRelay)
+		auto spSession = pair.second;
+		auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
+		if (spServerSessionTcp->GetLoginInfo().type() == eCltType::eLSMStreamRelay)
 		{
-			return session.second;
+			return spServerSessionTcp;
 		}
 	}
 	return nullptr;

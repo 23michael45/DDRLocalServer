@@ -42,5 +42,19 @@ private:
 	DDRFramework::timer_id m_HeartBeatTimerID;
 };
 
+class LSBroadcastReceiveTcpClient : public TcpClientBase
+{
+public:
+	LSBroadcastReceiveTcpClient();
+	~LSBroadcastReceiveTcpClient();
 
+	void OnConnected(std::shared_ptr<TcpSocketContainer> spContainer) override;
+
+	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
+
+	auto shared_from_base() {
+		return std::dynamic_pointer_cast<LSBroadcastReceiveTcpClient>(shared_from_this());
+	}
+
+};
 #endif // LocalTcpClient_h__

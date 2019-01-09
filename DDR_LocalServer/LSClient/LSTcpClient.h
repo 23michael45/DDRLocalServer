@@ -6,6 +6,7 @@
 #include "../../../Shared/src/Network/TcpClientBase.h"
 #include "../../../Shared/src/Utility/Singleton.h"
 #include "../../../Shared/src/Utility/Timer.hpp"
+#include "../../../Shared/src/Utility/DeviceUDID.h"
 
 using namespace DDRFramework;
 class LSTcpClient : public TcpClientBase 
@@ -27,6 +28,8 @@ public:
 	void StartHeartBeat();
 	void StopHeartBeat();
 
+
+	void RegisteToRemote();
 
 
 private:

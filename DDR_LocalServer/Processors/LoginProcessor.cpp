@@ -102,7 +102,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 		auto spTcp = spSockContainer->GetTcp();
 		if (spTcp)
 		{
-			auto spServerSessionTcp = dynamic_pointer_cast<TcpSessionBase>(spTcp);
+			auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spTcp);
 			if (spServerSessionTcp)
 			{
 				spServerSessionTcp->AssignLoginInfo(*pRaw);

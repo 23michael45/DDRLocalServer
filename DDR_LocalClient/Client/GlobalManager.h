@@ -30,30 +30,42 @@ public:
 	void StopAudioClient();
 
 
-
-	
-#ifdef QT_PRECOMPILED_HEADER
-#else
     std::shared_ptr<AudioTcpClient> GetAudioTcpClient();
-#endif
 
 	void SetServerAddr(std::string ip, std::string port);
 
 	virtual void TcpConnect(std::string ip, std::string port) override;
 	void TcpConnect();
 
+
+
+
+	void ConnectBroadcastServer();
+
+	void CloseBroadcastServer();
+
+	void AssignRemoteLoginInfo(rspRemoteLogin info)
+	{
+		m_RemoteLoginLSInfo.CopyFrom(info);
+	}
+	rspRemoteLogin& GetRemoteLoginInfo()
+	{
+		return m_RemoteLoginLSInfo;
+	}
+
 private:
 
-#ifdef QT_PRECOMPILED_HEADER
-#else
-    std::shared_ptr<AudioTcpClient> m_spAudioTcpClient;
-#endif
+	std::shared_ptr<AudioTcpClient> m_spAudioTcpClient;
+	std::shared_ptr<LSBroadcastReceiveTcpClient> m_spLSBroadcastReceiveTcpClient;
+
 
 
 	XmlLoader m_Config;
 
 	std::string m_ServerIP;
 	std::string m_ServerPort;
+
+	rspRemoteLogin m_RemoteLoginLSInfo;
 
 };
 

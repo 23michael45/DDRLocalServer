@@ -15,6 +15,17 @@ using namespace std;
 
 GlobalManager::GlobalManager():m_RemoteServerListConfig("Config/RemoteServer/RemoteServerConfig.xml")
 {
+	std::string dbfile = m_RemoteServerListConfig.GetValue("DatabaseFile");
+
+	if (!dbfile.empty())
+	{
+
+		DBManager::Instance()->Open(dbfile);
+	}
+	else
+	{
+		DebugLog("DBFile Load Error");
+	}
 	
 }
 GlobalManager::~GlobalManager()
@@ -50,5 +61,87 @@ void GlobalManager::StopTcpServer()
 	{
 		m_spTcpServer->Stop();
 	}
+
+}
+
+
+
+
+DBManager::DBManager()
+{
+
+}
+DBManager::~DBManager()
+{
+
+}
+
+bool DBManager::Open(std::string& filename)
+{
+	m_FileName = filename;
+	std::ifstream ifs(filename.c_str());
+	if (!ifs.good())
+	{
+		std::ofstream outfile(filename);
+		outfile.close();
+
+		m_DB.open(m_FileName.c_str());
+		CreateUserTable();
+		m_DB.close();
+	}
+
+	try
+	{
+		int i, fld;
+		time_t tmStart, tmEnd;
+		DebugLog("SQLite Version: %s", m_DB.SQLiteVersion());
+		m_DB.open(m_FileName.c_str());
+
+	}
+	catch (CppSQLite3Exception& e)
+	{
+		cerr << e.errorCode() << ":" << e.errorMessage() << endl;
+		return false;
+	}
+	return true;
+}
+bool DBManager::Remove(std::string& filename)
+{
+	remove(filename.c_str());
+	return true;
+}
+
+
+bool DBManager::CreateUserTable()
+{
+	try
+	{
+		m_DB.execDML("create table user(username string, userpwd string,priority int);");
+		int nRows = 0;
+		nRows = m_DB.execDML("insert into user values ('admin', 'admin',0);");
+		nRows = m_DB.execDML("insert into user values ('lsm', 'lsm',0);");
+		/*nRows = m_DB.execDML("insert into user values ('administrator', 'admin',99);");
+		nRows = m_DB.execDML("update user set priority = 99 where username = 'admin';");
+		nRows = m_DB.execDML("delete from user where username = 'administrator';");*/
+	}
+	catch (CppSQLite3Exception& e)
+	{
+		DebugLog("%s", e.errorMessage());
+		return false;
+	}
+
+	return true;
+}
+
+bool DBManager::VerifyUser(std::string username, std::string pwd)
+{
+	CppSQLite3Buffer bufSQL;
+	bufSQL.format("select * from user where username = '%s'and userpwd = '%s';", username.c_str(), pwd.c_str());
+	CppSQLite3Query q = m_DB.execQuery(bufSQL);
+	if (q.eof())
+	{
+		return false;
+	}
+	return true;
 
 }

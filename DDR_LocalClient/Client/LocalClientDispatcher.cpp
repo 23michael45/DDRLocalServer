@@ -19,12 +19,22 @@ LocalClientDispatcher::LocalClientDispatcher()
         RegisterProcessor(rsp, Login)
         RegisterProcessor(rsp, StreamAddr)
         RegisterProcessor(notify, Alarm)
-        RegisterProcessor(rsp, FileAddress)			
-		RegisterProcessor(rsp, RemoteServerList)
+        RegisterProcessor(rsp, FileAddress)		
 
 }
 
 
 LocalClientDispatcher::~LocalClientDispatcher()
+{
+}
+
+LSBroadcastReceiveClientDispatcher::LSBroadcastReceiveClientDispatcher()
+{
+	RegisterProcessor(rsp, RemoteServerList)
+
+}
+
+
+LSBroadcastReceiveClientDispatcher::~LSBroadcastReceiveClientDispatcher()
 {
 }

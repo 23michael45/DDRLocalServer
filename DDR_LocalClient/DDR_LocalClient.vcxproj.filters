@@ -628,6 +628,9 @@
     <ClCompile Include="Client\RemoteServerListProcessor.cpp">
       <Filter>Client</Filter>
     </ClCompile>
+    <ClCompile Include="Client\RemoteLoginProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -1150,6 +1153,9 @@
       <Filter>Shared\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Client\RemoteServerListProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\RemoteLoginProcessor.h">
       <Filter>Client</Filter>
     </ClInclude>
   </ItemGroup>

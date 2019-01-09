@@ -168,9 +168,16 @@ public:
 	}
 	void GetServerList()
 	{
-		auto spreq = std::make_shared<reqRemoteServerList>();
-		spreq->set_fromip(GlobalManager::Instance()->GetTcpClient()->GetConnectedSession()->GetSocket().remote_endpoint().address().to_string());
-		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
+		GlobalManager::Instance()->ConnectBroadcastServer();
+	}
+	void SelectLS()
+	{
+		rspRemoteLogin& info = GlobalManager::Instance()->GetRemoteLoginInfo();
+
+		if (info.lslist().size())
+		{
+
+		}
 	}
 
 
@@ -254,6 +261,7 @@ public:
 			DebugLog("RunPython Error");
 		}
 	}
+
 };
 
 int main()

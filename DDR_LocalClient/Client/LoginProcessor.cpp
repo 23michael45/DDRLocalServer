@@ -10,7 +10,6 @@ using namespace DDRCommProto;
 
 LoginProcessor::LoginProcessor(BaseMessageDispatcher& dispatcher) :BaseProcessor(dispatcher)
 {
-	m_RecvCount = 0;
 }
 
 
@@ -26,18 +25,25 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 	rspLogin_eLoginRetCode retcode = pRaw->retcode();
 
-	m_RecvCount++;
-
-	auto spClientBase = GlobalManager::Instance()->GetTcpClient();
-
-	auto spClient = std::dynamic_pointer_cast<LocalTcpClient>(spClientBase);
-	if (spClient)
+	if (retcode == rspLogin_eLoginRetCode_success)
 	{
-		spClient->StartHeartBeat();
+
+		auto spClientBase = GlobalManager::Instance()->GetTcpClient();
+
+		auto spClient = std::dynamic_pointer_cast<LocalTcpClient>(spClientBase);
+		if (spClient)
+		{
+			spClient->StartHeartBeat();
+
+		}
+
+		DebugLog("--------------------------------------------Login Success:%i", retcode);
+	}
+	else
+	{
+		DebugLog("--------------------------------------------Login Failed:%i", retcode);
 
 	}
-
-	DebugLog("--------------------------------------------Login :%i", retcode);
 
 
 }

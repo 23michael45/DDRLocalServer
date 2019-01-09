@@ -7,6 +7,7 @@
 #include "../../../Shared/src/Network/TcpServerBase.h"
 #include "../../../Shared/proto/BaseCmd.pb.h"
 #include "eventpp/eventdispatcher.h"
+#include "../Servers/LocalTcpServer.h"
 
 using namespace DDRCommProto;
 using namespace DDRFramework;
@@ -24,7 +25,7 @@ public:
 	std::vector<AVChannelConfig> GetAVChannelsConfig();
 
 	
-	std::shared_ptr<TcpSessionBase> GetServerSession();
+	std::shared_ptr<LocalServerTcpSession> GetServerSession();
 	void Send(std::shared_ptr<google::protobuf::Message> spmsg);
 	void Send(std::shared_ptr<CommonHeader> spHeader, asio::streambuf& buf, int bodylen);
 	

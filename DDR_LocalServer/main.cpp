@@ -106,12 +106,14 @@ public:
 	void ListServerConnections()
 	{
 		printf_s("\nServer Connections");
-		for (auto spSession : GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
+		for (auto pair : GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
 		{
 
+			auto spSession = pair.second;
+			auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
 
-			std::string ip = spSession.second->GetSocket().remote_endpoint().address().to_string();
-			printf_s("\n%s  type:%i", ip.c_str(), spSession.second->GetLoginInfo().type());
+			std::string ip = spServerSessionTcp->GetSocket().remote_endpoint().address().to_string();
+			printf_s("\n%s  type:%i", ip.c_str(), spServerSessionTcp->GetLoginInfo().type());
 		}
 	}
 	void RunPython()

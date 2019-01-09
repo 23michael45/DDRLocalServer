@@ -721,6 +721,9 @@
     <ClCompile Include="LSClient\LSClientManager.cpp">
       <Filter>LSClient</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\DeviceUDID.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -977,6 +980,9 @@
     </ClInclude>
     <ClInclude Include="LSClient\LSClientManager.h">
       <Filter>LSClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\DeviceUDID.h">
+      <Filter>Shared\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

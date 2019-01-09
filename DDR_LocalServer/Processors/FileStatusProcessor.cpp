@@ -6,6 +6,7 @@
 #include "../../../Shared/src/Utility/Logger.h"
 #include "../../../Shared/src/Network/TcpServerBase.h"
 #include "../Managers/StreamRelayServiceManager.h"
+#include "../Servers/LocalTcpServer.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;
@@ -28,7 +29,7 @@ void FileStatusProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 
 	auto sprsp = std::make_shared<rspFileAddress>();
 
-	auto spStreamRelaySession = std::dynamic_pointer_cast<TcpSessionBase>(spSockContainer->GetTcp());
+	auto spStreamRelaySession = std::dynamic_pointer_cast<LocalServerTcpSession>(spSockContainer->GetTcp());
 	if (spStreamRelaySession)
 	{
 		sprsp->set_tarservicetype(spStreamRelaySession->GetLoginInfo().type());
