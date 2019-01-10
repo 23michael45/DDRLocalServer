@@ -112,7 +112,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 
 
-	DebugLog("Login %s:" ,name.c_str());
+	DebugLog("Login Name:%s   type:%i" ,name.c_str(), type);
 
 
 }

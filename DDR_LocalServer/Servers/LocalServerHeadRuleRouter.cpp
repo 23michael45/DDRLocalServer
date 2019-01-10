@@ -156,11 +156,12 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 
 					auto spSession = pair.second;
 					auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
-					if (spServerSessionTcp->GetLoginInfo().type() == toType)
+
+					auto sessiontype = spServerSessionTcp->GetLoginInfo().type();
+					if ((sessiontype & toType) != 0)
 					{
 						spServerSessionTcp->Send(spHeader, buf, bodylen);
 						hasSession = true;
-						break;
 					}
 				}
 				if (hasSession == false)
