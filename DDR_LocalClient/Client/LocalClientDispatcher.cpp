@@ -10,6 +10,7 @@
 #include "AlarmProcessor.h"
 #include "FileAddressProcessor.h"
 #include "RemoteServerListProcessor.h"
+#include "RemoteLoginProcessor.h"
 #endif
 using namespace DDRCommProto;
 using namespace DDRFramework;
@@ -19,7 +20,8 @@ LocalClientDispatcher::LocalClientDispatcher()
         RegisterProcessor(rsp, Login)
         RegisterProcessor(rsp, StreamAddr)
         RegisterProcessor(notify, Alarm)
-        RegisterProcessor(rsp, FileAddress)		
+			RegisterProcessor(rsp, FileAddress)
+			RegisterProcessor(rsp, RemoteLogin)
 
 }
 

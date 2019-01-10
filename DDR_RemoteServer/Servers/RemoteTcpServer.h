@@ -9,33 +9,22 @@ using namespace DDRFramework;
 
 class RemoteServerTcpSession : public TcpSessionBase
 {
+	
+
 public:
+	enum RemoteServerTcpSessionType
+	{
+		RST_CLIENT,
+		RST_LS,
+
+
+	};
 	RemoteServerTcpSession(asio::io_context& context);
 	~RemoteServerTcpSession();
-};
-
-
-class RemoteServerTcpLSSession : public RemoteServerTcpSession
-{
-public:
-	RemoteServerTcpLSSession(asio::io_context& context);
-	~RemoteServerTcpLSSession();
-
 
 	void AssignRegisteLSInfo(reqRegisteLS info);
 	reqRegisteLS& GetRegisteLSInfo();
 
-
-protected:
-	reqRegisteLS m_reqRegisteLS;//LS Registe Information
-
-};
-
-class RemoteServerTcpClientSession : public RemoteServerTcpSession
-{
-public:
-	RemoteServerTcpClientSession(asio::io_context& context);
-	~RemoteServerTcpClientSession();
 
 	void AssignSelectLSInfo(reqSelectLS info);
 	void AssignRemoteLoginInfo(reqRemoteLogin info);
@@ -44,9 +33,19 @@ public:
 	reqSelectLS& GetSelectLSInfo();
 	reqRemoteLogin& GetRemoteLoginInfo();
 
+	RemoteServerTcpSessionType GetType()
+	{
+		return m_SessionType;
+	}
+
 protected:
+	reqRegisteLS m_reqRegisteLS;//LS Registe Information
+
+
 	reqSelectLS m_reqSelectLS;//Client Select LS Info
 	reqRemoteLogin m_reqRemoteLogin;
+
+	RemoteServerTcpSessionType m_SessionType;
 };
 
 
@@ -70,14 +69,15 @@ public:
 	}
 
 
-	std::map<std::string, std::shared_ptr<RemoteServerTcpLSSession>>& GetLSMap();
-	std::map<std::string, std::shared_ptr<RemoteServerTcpClientSession>>& GetClientMap();
+	std::map<std::string, std::shared_ptr<RemoteServerTcpSession>>& GetLSMap();
+	std::map<std::string, std::shared_ptr<RemoteServerTcpSession>>& GetClientMap();
 
-
+	std::shared_ptr<RemoteServerTcpSession> GetClientSession(std::string username);
+	std::shared_ptr<RemoteServerTcpSession> GetLSSession(std::string udid);
 protected:
 
-	std::map<std::string, std::shared_ptr<RemoteServerTcpLSSession>> m_LSSessionMap;
-	std::map<std::string, std::shared_ptr<RemoteServerTcpClientSession>> m_ClientSessionMap;
+	std::map<std::string, std::shared_ptr<RemoteServerTcpSession>> m_LSSessionMap;
+	std::map<std::string, std::shared_ptr<RemoteServerTcpSession>> m_ClientSessionMap;
 
 };
 

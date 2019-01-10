@@ -18,15 +18,23 @@ void LSClientManager::Init()
 	}
 }
 
+//#define DebugRemoteServer
 void LSClientManager::ConnectBroadcastServer()
 {
 
+#ifdef DebugRemoteServer
+
+
+	LSClientManager::Instance()->TcpConnect("192.168.1.183", "8900");
+
+#else
 	m_spLSBroadcastReceiveTcpClient = std::make_shared<LSBroadcastReceiveTcpClient>();
 	m_spLSBroadcastReceiveTcpClient->Start();
 
 	std::string ip = m_GlobalConfig.GetValue("BroadcastServerIP");
 	std::string port = m_GlobalConfig.GetValue("BroadcastServerPort");
 	m_spLSBroadcastReceiveTcpClient->Connect(ip, port);
+#endif
 	
 }
 

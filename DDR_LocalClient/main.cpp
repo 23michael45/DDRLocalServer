@@ -120,6 +120,9 @@ public:
 		AddCommand("cmdmove", std::bind(&_ConsoleDebug::SendCmdMove, this));
 		AddCommand("slist", std::bind(&_ConsoleDebug::GetServerList, this));
 
+		AddCommand("rlogin", std::bind(&_ConsoleDebug::RemoteLogin, this));
+		AddCommand("sls", std::bind(&_ConsoleDebug::SelectLS, this));
+
 		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
 	}
 	void ListClientConnection()
@@ -174,10 +177,28 @@ public:
 	{
 		rspRemoteLogin& info = GlobalManager::Instance()->GetRemoteLoginInfo();
 
-		if (info.lslist().size())
+		if (info.lslist().size() > 0)
 		{
+			auto ls = info.lslist(0);
+			
+			auto spreq = std::make_shared<reqSelectLS>();
+			
+			spreq->set_udid(ls.udid());
 
+			GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		}
+	}
+	void RemoteLogin()
+	{
+		auto spreq = std::make_shared<reqRemoteLogin>();
+
+		spreq->set_type(eCltType::ePCClient);
+		spreq->set_username("admin");
+		spreq->set_userpwd("admin");
+
+		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
+		DebugLog("Send Romote Login");
+
 	}
 
 

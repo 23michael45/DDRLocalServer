@@ -3,6 +3,7 @@
 #include "../../../Shared/src/Network/MessageSerializer.h"
 #include "../../../Shared/src/Network/BaseMessageDispatcher.h"
 #include "RemoteServerDispatcher.h"
+#include "RemoteServerHeadRuleRouter.h"
 
 #include "../../../Shared/src/Utility/XmlLoader.h"
 #include "../../../Shared/src/Network/TcpSocketContainer.h"
@@ -14,64 +15,48 @@ RemoteServerTcpSession::RemoteServerTcpSession(asio::io_context& context) :TcpSe
 
 RemoteServerTcpSession::~RemoteServerTcpSession()
 {
-	DebugLog("LocalServerTcpSession Destroy");
+	DebugLog("RemoteServerTcpSession Destroy");
 }
 
-RemoteServerTcpLSSession::RemoteServerTcpLSSession(asio::io_context& context) :RemoteServerTcpSession::RemoteServerTcpSession(context)
+void RemoteServerTcpSession::AssignRegisteLSInfo(reqRegisteLS info)
 {
+	m_reqRegisteLS.CopyFrom(info); 
+	m_SessionType = RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS;
 }
 
-RemoteServerTcpLSSession::~RemoteServerTcpLSSession()
-{
-	DebugLog("RemoteServerTcpLSSession Destroy");
-}
-void RemoteServerTcpLSSession::AssignRegisteLSInfo(reqRegisteLS info)
-{
-	m_reqRegisteLS.CopyFrom(info);
-}
-
-DDRCommProto::reqRegisteLS& RemoteServerTcpLSSession::GetRegisteLSInfo()
+DDRCommProto::reqRegisteLS& RemoteServerTcpSession::GetRegisteLSInfo()
 {
 	return m_reqRegisteLS;
 }
 
 
-RemoteServerTcpClientSession::RemoteServerTcpClientSession(asio::io_context& context) :RemoteServerTcpSession::RemoteServerTcpSession(context)
-{
-}
-
-RemoteServerTcpClientSession::~RemoteServerTcpClientSession()
-{
-	DebugLog("RemoteServerTcpClientSession Destroy");
-}
 
 
 
-
-
-
-void RemoteServerTcpClientSession::AssignSelectLSInfo(reqSelectLS info)
+void RemoteServerTcpSession::AssignSelectLSInfo(reqSelectLS info)
 {
 	m_reqSelectLS.CopyFrom(info);
 
 }
 
-void RemoteServerTcpClientSession::AssignRemoteLoginInfo(reqRemoteLogin info)
+void RemoteServerTcpSession::AssignRemoteLoginInfo(reqRemoteLogin info)
 {
 	m_reqRemoteLogin.CopyFrom(info);
+
+	m_SessionType = RemoteServerTcpSession::RemoteServerTcpSessionType::RST_CLIENT;
 
 }
 
 
 
 
-DDRCommProto::reqSelectLS& RemoteServerTcpClientSession::GetSelectLSInfo()
+DDRCommProto::reqSelectLS& RemoteServerTcpSession::GetSelectLSInfo()
 {
 	return m_reqSelectLS;
 
 }
 
-DDRCommProto::reqRemoteLogin& RemoteServerTcpClientSession::GetRemoteLoginInfo()
+DDRCommProto::reqRemoteLogin& RemoteServerTcpSession::GetRemoteLoginInfo()
 {
 	return m_reqRemoteLogin;
 }
@@ -88,8 +73,8 @@ RemoteTcpServer::~RemoteTcpServer()
 
 std::shared_ptr<TcpSessionBase> RemoteTcpServer::BindSerializerDispatcher()
 {
-	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpSessionBase, MessageSerializer, RemoteServerDispatcher, BaseHeadRuleRouter)
-		return spTcpSessionBase;
+	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, RemoteServerTcpSession, MessageSerializer, RemoteServerDispatcher, RemoteServerHeadRuleRouter)
+		return spRemoteServerTcpSession;
 }
 
 
@@ -110,15 +95,57 @@ std::map<tcp::socket*, std::shared_ptr<TcpSessionBase>>& RemoteTcpServer::GetTcp
 void RemoteTcpServer::OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 	TcpServerBase::OnSessionDisconnect(spContainer);
-	auto spClientSession = dynamic_pointer_cast<TcpSessionBase>(spContainer);
+	auto spClientSession = dynamic_pointer_cast<RemoteServerTcpSession>(spContainer);
+
+	if (spClientSession)
+	{
+		if (spClientSession->GetType() == RemoteServerTcpSession::RemoteServerTcpSessionType::RST_CLIENT)
+		{
+			std::string username = spClientSession->GetRemoteLoginInfo().username();
+			if (m_ClientSessionMap.find(username) != m_ClientSessionMap.end())
+			{
+				m_LSSessionMap.erase(username);
+			}
+		}
+		else if (spClientSession->GetType() == RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS)
+		{
+			std::string udid = spClientSession->GetRegisteLSInfo().udid();
+			if (m_LSSessionMap.find(udid) != m_LSSessionMap.end())
+			{
+				m_LSSessionMap.erase(udid);
+			}
+		}
+
+		
+
+	
+	}
 }
 
-std::map<std::string, std::shared_ptr<RemoteServerTcpLSSession>>& RemoteTcpServer::GetLSMap()
+std::map<std::string, std::shared_ptr<RemoteServerTcpSession>>& RemoteTcpServer::GetLSMap()
 {
 	return m_LSSessionMap;
 }
 
-std::map<std::string, std::shared_ptr<RemoteServerTcpClientSession>>& RemoteTcpServer::GetClientMap()
+std::map<std::string, std::shared_ptr<RemoteServerTcpSession>>& RemoteTcpServer::GetClientMap()
 {
 	return m_ClientSessionMap;
+}
+
+std::shared_ptr<RemoteServerTcpSession> RemoteTcpServer::GetClientSession(std::string username)
+{
+	if (m_ClientSessionMap.find(username) != m_ClientSessionMap.end())
+	{
+		return m_ClientSessionMap[username];
+	}
+	return nullptr;
+}
+
+std::shared_ptr<RemoteServerTcpSession> RemoteTcpServer::GetLSSession(std::string udid)
+{
+	if (m_LSSessionMap.find(udid) != m_LSSessionMap.end())
+	{
+		return m_LSSessionMap[udid];
+	}
+	return nullptr;
 }

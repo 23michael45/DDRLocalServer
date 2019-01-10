@@ -38,7 +38,7 @@ void RemoteLoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 
 			auto& map = GlobalManager::Instance()->GetTcpServer()->GetClientMap();
 
-			auto spClientSession = dynamic_pointer_cast<RemoteServerTcpClientSession>(spSockContainer->GetTcp());
+			auto spClientSession = dynamic_pointer_cast<RemoteServerTcpSession>(spSockContainer->GetTcp());
 			if (map.find(pRaw->username()) != map.end())
 			{
 				auto pair = make_pair(pRaw->username(), spClientSession);

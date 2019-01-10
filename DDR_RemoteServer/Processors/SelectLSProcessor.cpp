@@ -27,7 +27,7 @@ void SelectLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockConta
 	{
 		auto& map = GlobalManager::Instance()->GetTcpServer()->GetClientMap();
 
-		auto spClientSession = dynamic_pointer_cast<RemoteServerTcpClientSession>(spSockContainer->GetTcp());
+		auto spClientSession = dynamic_pointer_cast<RemoteServerTcpSession>(spSockContainer->GetTcp());
 		std::string username = spClientSession->GetRemoteLoginInfo().username();
 		if (map.find(username) != map.end())
 		{

@@ -30,13 +30,23 @@ void RegisteLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCont
 		auto spTcp = spSockContainer->GetTcp();
 		if (spTcp)
 		{
-			auto spServerSessionTcp = dynamic_pointer_cast<RemoteServerTcpLSSession>(spTcp);
+			auto spServerSessionTcp = dynamic_pointer_cast<RemoteServerTcpSession>(spTcp);
 			if (spServerSessionTcp)
 			{
 				spServerSessionTcp->AssignRegisteLSInfo(*pRaw);
+
+
+				auto& lsmap = GlobalManager::Instance()->GetTcpServer()->GetLSMap();
+
+				lsmap.insert(make_pair(pRaw->udid(), spServerSessionTcp));
 			}
 		}
+
 	}
+
+
+
+
 
 
 }

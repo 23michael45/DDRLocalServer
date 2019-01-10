@@ -185,6 +185,7 @@ int main()
 	GlobalManager::Instance()->StartUdpServer();
 
 	LSClientManager::Instance()->Init();
+
 	LSClientManager::Instance()->ConnectBroadcastServer();
 
 	_ConsoleDebug::Instance()->ConsoleDebugLoop();
