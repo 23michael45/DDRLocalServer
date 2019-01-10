@@ -22,15 +22,23 @@ public:
 	RemoteServerTcpSession(asio::io_context& context);
 	~RemoteServerTcpSession();
 
+	//Session As LS;
 	void AssignRegisteLSInfo(reqRegisteLS info);
 	reqRegisteLS& GetRegisteLSInfo();
+	void AssingClient(std::string username, std::shared_ptr<RemoteServerTcpSession> spClientSession);
+	void RemoveClient(std::string username);
+	std::shared_ptr<RemoteServerTcpSession> GetClientSession(std::string username);
+
+	std::map <std::string, std::shared_ptr<RemoteServerTcpSession>>& GetBindClientMap();
 
 
-	void AssignSelectLSInfo(reqSelectLS info);
+	//Session As Client;
+	void BindLS(std::string udid);
+	void ReleaseLS(std::string udid);
 	void AssignRemoteLoginInfo(reqRemoteLogin info);
 
 
-	reqSelectLS& GetSelectLSInfo();
+	std::string GetBindLSUDID();
 	reqRemoteLogin& GetRemoteLoginInfo();
 
 	RemoteServerTcpSessionType GetType()
@@ -38,12 +46,16 @@ public:
 		return m_SessionType;
 	}
 
+	auto shared_from_base() {
+		return std::static_pointer_cast<RemoteServerTcpSession>(shared_from_this());
+	}
 protected:
-	reqRegisteLS m_reqRegisteLS;//LS Registe Information
+	reqRegisteLS m_reqRegisteLS;//as LS Session Information
+	std::map <std::string, std::shared_ptr<RemoteServerTcpSession>> m_BindClientMap;
 
 
-	reqSelectLS m_reqSelectLS;//Client Select LS Info
-	reqRemoteLogin m_reqRemoteLogin;
+	reqRemoteLogin m_reqRemoteLogin;// as Client Session Info
+	std::shared_ptr<RemoteServerTcpSession> m_spBindLS;
 
 	RemoteServerTcpSessionType m_SessionType;
 };

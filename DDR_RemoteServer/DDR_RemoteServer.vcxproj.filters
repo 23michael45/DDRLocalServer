@@ -232,6 +232,9 @@
     <ClCompile Include="Servers\RemoteServerHeadRuleRouter.cpp">
       <Filter>Servers</Filter>
     </ClCompile>
+    <ClCompile Include="Processors\UnselectLSProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -431,6 +434,9 @@
     </ClInclude>
     <ClInclude Include="Servers\RemoteServerHeadRuleRouter.h">
       <Filter>Servers</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\UnselectLSProcessor.h">
+      <Filter>Processors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

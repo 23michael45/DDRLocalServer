@@ -13,7 +13,7 @@ RemoteServerHeadRuleRouter::~RemoteServerHeadRuleRouter()
 {
 }
 
-bool RemoteServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader,asio::streambuf& buf, int bodylen)
+bool RemoteServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, asio::streambuf& buf, int bodylen)
 {
 	if (spHeader->flowdirection().size() > 0)
 	{
@@ -159,27 +159,29 @@ bool RemoteServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer>
 
 					if (spServerSessionTcp->GetType() == RemoteServerTcpSession::RemoteServerTcpSessionType::RST_CLIENT)
 					{
-						std::string username = spServerSessionTcp->GetRemoteLoginInfo().username();
-						auto spTo = GlobalManager::Instance()->GetTcpServer()->GetClientSession(username);
-						if (spTo)
-						{
-
-							spTo->Send(spHeader, buf, bodylen);
-							hasSession = true;
-						}
-						
-					}
-					else if (spServerSessionTcp->GetType() == RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS)
-					{
-						std::string udid = spServerSessionTcp->GetRegisteLSInfo().udid();
+						std::string udid = spServerSessionTcp->GetBindLSUDID();
 						auto spTo = GlobalManager::Instance()->GetTcpServer()->GetLSSession(udid);
 						if (spTo)
 						{
+
 							spTo->Send(spHeader, buf, bodylen);
 							hasSession = true;
 						}
 
 					}
+					else if (spServerSessionTcp->GetType() == RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS)
+					{
+						//to do to control client
+						auto& map = spServerSessionTcp->GetBindClientMap();
+						for (auto pair : map)
+						{
+							auto spClientSession = pair.second;
+							spClientSession->Send(spHeader, buf, bodylen);
+
+							hasSession = true;
+						}
+					}
+
 
 				}
 				if (hasSession == false)
@@ -239,9 +241,5 @@ bool RemoteServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer>
 	else
 	{
 		return false;
-	}
-
-	
-	
-	
-};
+	};
+}

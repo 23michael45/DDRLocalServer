@@ -31,7 +31,11 @@ void SelectLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockConta
 		std::string username = spClientSession->GetRemoteLoginInfo().username();
 		if (map.find(username) != map.end())
 		{
-			map[username]->AssignSelectLSInfo(*pRaw);
+			map[username]->BindLS(pRaw->udid());
+		}
+		else
+		{
+			DebugLog("RemoteClient Not Login");
 		}
 
 	}

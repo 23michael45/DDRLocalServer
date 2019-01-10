@@ -4,6 +4,7 @@
 #include "../../../Shared/src/Network/BaseMessageDispatcher.h"
 #include "RemoteServerDispatcher.h"
 #include "RemoteServerHeadRuleRouter.h"
+#include "../Managers/GlobalManager.h"
 
 #include "../../../Shared/src/Utility/XmlLoader.h"
 #include "../../../Shared/src/Network/TcpSocketContainer.h"
@@ -15,6 +16,14 @@ RemoteServerTcpSession::RemoteServerTcpSession(asio::io_context& context) :TcpSe
 
 RemoteServerTcpSession::~RemoteServerTcpSession()
 {
+	if (m_SessionType== RemoteServerTcpSession::RemoteServerTcpSessionType::RST_CLIENT)
+	{
+		
+	}
+	else if (m_SessionType == RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS)
+	{
+		m_BindClientMap.clear();
+	}
 	DebugLog("RemoteServerTcpSession Destroy");
 }
 
@@ -33,10 +42,65 @@ DDRCommProto::reqRegisteLS& RemoteServerTcpSession::GetRegisteLSInfo()
 
 
 
-void RemoteServerTcpSession::AssignSelectLSInfo(reqSelectLS info)
+void RemoteServerTcpSession::AssingClient(std::string username, std::shared_ptr<RemoteServerTcpSession> spClientSession)
 {
-	m_reqSelectLS.CopyFrom(info);
+	if (m_BindClientMap.find(username) == m_BindClientMap.end())
+	{
+		m_BindClientMap.insert(std::make_pair(username, spClientSession));
+	}
+}
 
+void RemoteServerTcpSession::RemoveClient(std::string username)
+{
+	if (m_BindClientMap.find(username) != m_BindClientMap.end())
+	{
+		m_BindClientMap.erase(username);
+	}
+}
+
+std::shared_ptr<RemoteServerTcpSession> RemoteServerTcpSession::GetClientSession(std::string username)
+{
+	if (m_BindClientMap.find(username) != m_BindClientMap.end())
+	{
+		return m_BindClientMap[username];
+	}
+	return nullptr;
+}
+
+std::map <std::string, std::shared_ptr<RemoteServerTcpSession>>& RemoteServerTcpSession::GetBindClientMap()
+{
+	return	m_BindClientMap;
+}
+
+void RemoteServerTcpSession::BindLS(std::string udid)
+{
+
+	auto& map = GlobalManager::Instance()->GetTcpServer()->GetLSMap();
+	if (map.find(udid) != map.end())
+	{
+		auto spLSSession = map[udid];
+		spLSSession->AssingClient(m_reqRemoteLogin.username(), shared_from_base());
+		m_spBindLS = spLSSession;
+	}
+	else
+	{
+
+	}
+
+}
+void RemoteServerTcpSession::ReleaseLS(std::string udid)
+{
+	if (m_spBindLS)
+	{
+		if (m_spBindLS->GetRegisteLSInfo().udid() == udid)
+		{
+
+			m_spBindLS->RemoveClient(m_reqRemoteLogin.username());
+			m_spBindLS.reset();
+
+
+		}
+	}
 }
 
 void RemoteServerTcpSession::AssignRemoteLoginInfo(reqRemoteLogin info)
@@ -50,9 +114,13 @@ void RemoteServerTcpSession::AssignRemoteLoginInfo(reqRemoteLogin info)
 
 
 
-DDRCommProto::reqSelectLS& RemoteServerTcpSession::GetSelectLSInfo()
+std::string RemoteServerTcpSession::GetBindLSUDID()
 {
-	return m_reqSelectLS;
+	if (m_spBindLS)
+	{
+		m_spBindLS->GetRegisteLSInfo().udid();
+	}
+	return "";
 
 }
 
@@ -105,6 +173,12 @@ void RemoteTcpServer::OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> sp
 			if (m_ClientSessionMap.find(username) != m_ClientSessionMap.end())
 			{
 				m_LSSessionMap.erase(username);
+			}
+
+			std::string udid = spClientSession->GetBindLSUDID();
+			if (m_LSSessionMap.find(udid) != m_LSSessionMap.end())
+			{
+				m_LSSessionMap[udid]->RemoveClient(username);
 			}
 		}
 		else if (spClientSession->GetType() == RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS)
