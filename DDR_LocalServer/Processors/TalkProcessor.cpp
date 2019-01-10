@@ -19,7 +19,6 @@ TalkProcessor::~TalkProcessor()
 void TalkProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 	auto bodytype = spHeader->bodytype();
-	reqTalk* pRaw = reinterpret_cast<reqTalk*>(spMsg.get());
 
 	
 }
