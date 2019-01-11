@@ -3,7 +3,7 @@
 #include "../../../Shared/src/Network/MessageSerializer.h"
 #include "../../../Shared/src/Network/BaseMessageDispatcher.h"
 #include "LSClientDispatcher.h"
-
+#include "LSRemoteClientHeadRuleRouter.h"
 
 #include "../../../Shared/proto/BaseCmd.pb.h"
 #include "../Managers/GlobalManager.h"
@@ -21,7 +21,7 @@ LSTcpClient::~LSTcpClient()
 
 std::shared_ptr<TcpClientSessionBase> LSTcpClient::BindSerializerDispatcher()
 {
-	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, LSClientDispatcher,BaseHeadRuleRouter)
+	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, LSClientDispatcher, LSRemoteClientHeadRuleRouter)
 		return spTcpClientSessionBase;
 }
 void LSTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)

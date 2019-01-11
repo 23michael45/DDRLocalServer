@@ -11,6 +11,8 @@
 #include "FileAddressProcessor.h"
 #include "RemoteServerListProcessor.h"
 #include "RemoteLoginProcessor.h"
+#include "SelectLSProcessor.h"
+#include "UnselectLSProcessor.h"
 #endif
 using namespace DDRCommProto;
 using namespace DDRFramework;
@@ -22,6 +24,11 @@ LocalClientDispatcher::LocalClientDispatcher()
         RegisterProcessor(notify, Alarm)
 			RegisterProcessor(rsp, FileAddress)
 			RegisterProcessor(rsp, RemoteLogin)
+
+
+			RegisterProcessor(rsp, SelectLS)
+
+			RegisterProcessor(rsp, UnselectLS)
 
 }
 

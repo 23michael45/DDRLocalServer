@@ -368,7 +368,9 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClCompile Include="Client\LoginProcessor.cpp" />
     <ClCompile Include="Client\RemoteLoginProcessor.cpp" />
     <ClCompile Include="Client\RemoteServerListProcessor.cpp" />
+    <ClCompile Include="Client\SelectLSProcessor.cpp" />
     <ClCompile Include="Client\StreamAddrProcessor.cpp" />
+    <ClCompile Include="Client\UnselectLSProcessor.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -546,7 +548,9 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClInclude Include="Client\LoginProcessor.h" />
     <ClInclude Include="Client\RemoteLoginProcessor.h" />
     <ClInclude Include="Client\RemoteServerListProcessor.h" />
+    <ClInclude Include="Client\SelectLSProcessor.h" />
     <ClInclude Include="Client\StreamAddrProcessor.h" />
+    <ClInclude Include="Client\UnselectLSProcessor.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Shared\thirdparty\curl\lib\Makefile.inc" />

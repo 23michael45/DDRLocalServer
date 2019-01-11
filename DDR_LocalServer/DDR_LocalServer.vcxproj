@@ -375,6 +375,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Behaviors\BaseClientBehavior.cpp" />
     <ClCompile Include="LSClient\LSClientDispatcher.cpp" />
     <ClCompile Include="LSClient\LSClientManager.cpp" />
+    <ClCompile Include="LSClient\LSRemoteClientHeadRuleRouter.cpp" />
     <ClCompile Include="LSClient\LSTcpClient.cpp" />
     <ClCompile Include="LSClient\RemoteServerListProcessor.cpp" />
     <ClCompile Include="main.cpp" />
@@ -464,6 +465,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Behaviors\BaseClientBehavior.h" />
     <ClInclude Include="LSClient\LSClientDispatcher.h" />
     <ClInclude Include="LSClient\LSClientManager.h" />
+    <ClInclude Include="LSClient\LSRemoteClientHeadRuleRouter.h" />
     <ClInclude Include="LSClient\LSTcpClient.h" />
     <ClInclude Include="LSClient\RemoteServerListProcessor.h" />
     <ClInclude Include="Managers\FileManager.h" />

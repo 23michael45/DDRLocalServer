@@ -1,4 +1,4 @@
-#include "LocalServerHeadRuleRouter.h"
+#include "LSRemoteClientHeadRuleRouter.h"
 #include "../Managers/StreamRelayServiceManager.h"
 #include "../Managers/GlobalManager.h"
 #include "../LSClient/LSClientManager.h"
@@ -6,16 +6,16 @@
 #include <google/protobuf/repeated_field.h>
 
 
-LocalServerHeadRuleRouter::LocalServerHeadRuleRouter()
+LSRemoteClientHeadRuleRouter::LSRemoteClientHeadRuleRouter()
 {
 }
 
 
-LocalServerHeadRuleRouter::~LocalServerHeadRuleRouter()
+LSRemoteClientHeadRuleRouter::~LSRemoteClientHeadRuleRouter()
 {
 }
 
-bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, asio::streambuf& buf, int bodylen)
+bool LSRemoteClientHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, asio::streambuf& buf, int bodylen)
 {
 	if (spHeader->flowdirection().size() > 0)
 	{
@@ -75,7 +75,7 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 
 			if (passnodes->size() > 0)
 			{
-				google::protobuf::RepeatedPtrField<CommonHeader_PassNode>::reverse_iterator rit = passnodes->rbegin();
+				google::protobuf::RepeatedPtrField<CommonHeader_PassNode>::iterator it = passnodes->begin();
 
 
 				//Client Session Operation(To Remote Server)
@@ -83,9 +83,9 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				if (spClientSession)
 				{
 					int IntPtr = (int)(spClientSession.get());
-					if (rit->nodetype() == eLocalServer)
+					if (it->nodetype() == eLocalServer)
 					{
-						if (IntPtr == rit->receivesessionid())
+						if (IntPtr == it->receivesessionid())
 						{
 							spClientSession->Send(spHeader, buf, bodylen);
 						}
@@ -100,26 +100,26 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				for (auto spSessionPair : map)
 				{
 					int IntPtr = (int)(spSessionPair.second.get());
-					if (rit->nodetype() == eLocalServer)
+					if (it->nodetype() == eLocalServer)
 					{
-						if (IntPtr == rit->receivesessionid())
+						if (IntPtr == it->receivesessionid())
 						{
 							spSession = spSessionPair.second;
-							spSession->Send(spHeader, buf, bodylen);
 							break;
 						}
 					}
 				}
 
 
-				if (spSession && rit != passnodes->rend())
+				if (spSession && it != passnodes->end())
 				{
-					passnodes->erase(rit.base());
+					spSession->Send(spHeader, buf, bodylen);
 				}
 
 
 
 
+				passnodes->erase(it);
 			}
 		}
 	}

@@ -33,7 +33,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	auto sprsp = std::make_shared<rspLogin>();
 
 	bool closeSession = false;
-	if (type == eCltType::ePCClient)
+	if (type == eCltType::eLocalPCClient)
 	{
 		bool b = DBManager::Instance()->VerifyUser(name, pwd);
 		if (b)
@@ -48,7 +48,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 			closeSession = true;
 		}
 	}
-	else if (type == eCltType::eAndroidClient)
+	else if (type == eCltType::eLocalAndroidClient)
 	{
 		bool b = DBManager::Instance()->VerifyUser(name, pwd);
 		if (b)

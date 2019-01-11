@@ -35,10 +35,6 @@ void RegisteLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCont
 			{
 				spServerSessionTcp->AssignRegisteLSInfo(*pRaw);
 
-
-				auto& lsmap = GlobalManager::Instance()->GetTcpServer()->GetLSMap();
-
-				lsmap.insert(make_pair(pRaw->udid(), spServerSessionTcp));
 			}
 		}
 

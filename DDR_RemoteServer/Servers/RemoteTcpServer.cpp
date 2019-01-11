@@ -30,6 +30,11 @@ RemoteServerTcpSession::~RemoteServerTcpSession()
 void RemoteServerTcpSession::AssignRegisteLSInfo(reqRegisteLS info)
 {
 	m_reqRegisteLS.CopyFrom(info); 
+
+
+	auto& lsmap = GlobalManager::Instance()->GetTcpServer()->GetLSMap();
+	lsmap.insert(make_pair(info.udid(), shared_from_base()));
+
 	m_SessionType = RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS;
 }
 
@@ -107,6 +112,16 @@ void RemoteServerTcpSession::AssignRemoteLoginInfo(reqRemoteLogin info)
 {
 	m_reqRemoteLogin.CopyFrom(info);
 
+	auto& map = GlobalManager::Instance()->GetTcpServer()->GetClientMap();
+
+	if (map.find(info.username()) == map.end())
+	{
+		auto pair = make_pair(info.username(), shared_from_base());
+		map.insert(pair);
+	}
+
+
+
 	m_SessionType = RemoteServerTcpSession::RemoteServerTcpSessionType::RST_CLIENT;
 
 }
@@ -118,9 +133,13 @@ std::string RemoteServerTcpSession::GetBindLSUDID()
 {
 	if (m_spBindLS)
 	{
-		m_spBindLS->GetRegisteLSInfo().udid();
+		return m_spBindLS->GetRegisteLSInfo().udid();
 	}
-	return "";
+	else
+	{
+
+		return "";
+	}
 
 }
 
@@ -172,7 +191,7 @@ void RemoteTcpServer::OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> sp
 			std::string username = spClientSession->GetRemoteLoginInfo().username();
 			if (m_ClientSessionMap.find(username) != m_ClientSessionMap.end())
 			{
-				m_LSSessionMap.erase(username);
+				m_ClientSessionMap.erase(username);
 			}
 
 			std::string udid = spClientSession->GetBindLSUDID();

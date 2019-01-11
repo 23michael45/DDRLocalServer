@@ -724,6 +724,9 @@
     <ClCompile Include="..\..\Shared\src\Utility\DeviceUDID.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="LSClient\LSRemoteClientHeadRuleRouter.cpp">
+      <Filter>LSClient</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -983,6 +986,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\DeviceUDID.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="LSClient\LSRemoteClientHeadRuleRouter.h">
+      <Filter>LSClient</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

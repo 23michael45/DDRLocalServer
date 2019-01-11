@@ -163,7 +163,7 @@ public:
 		//spreq->add_filenames("x64/*DDR*Server.e*");
 		//spreq->add_filenames("x64/*api*l*.*");
 		//spreq->add_filenames("*жа*/*Мў*.*");
-		spreq->add_filenames("x*/Debug/*.db");
+		spreq->add_filenames("*/*.db");
 
 
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
@@ -192,7 +192,7 @@ public:
 	{
 		auto spreq = std::make_shared<reqRemoteLogin>();
 
-		spreq->set_type(eCltType::ePCClient);
+		spreq->set_type(eCltType::eRemotePCClient);
 		spreq->set_username("admin");
 		spreq->set_userpwd("admin");
 
