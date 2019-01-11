@@ -46,7 +46,6 @@ void FileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 
 
 		spHttpSession->DoGet(url, root + filename);
-		break;
 
 
 	}

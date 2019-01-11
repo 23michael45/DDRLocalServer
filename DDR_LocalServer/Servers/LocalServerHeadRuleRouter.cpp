@@ -148,34 +148,39 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				pNode->set_receivesessionid((int)spSession.get());
 
 
+				bool hasSession = false;
+
+				//do Local forward operation
+				auto map = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
+
+				for (auto pair : map)
+				{
+
+					auto spSession = pair.second;
+					auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
+
+					auto sessiontype = spServerSessionTcp->GetLoginInfo().type();
+					if ((sessiontype & toType) != 0)
+					{
+						spServerSessionTcp->Send(spHeader, buf, bodylen);
+						hasSession = true;
+					}
+				}
 
 				//Client Session Operation(To Remote Server)
-				auto spClientSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
-				if (spClientSession)
+				if ((eAllClient & toType) != 0)
 				{
+					auto spClientSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
+					if (spClientSession)
+					{
+						spClientSession->Send(spHeader, buf, bodylen);
+					}
 				}
-				else//Server Session Operation;
+				
+
+				if (hasSession == false)
 				{
-					auto map = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
-
-					bool hasSession = false;
-					for (auto pair : map)
-					{
-
-						auto spSession = pair.second;
-						auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
-
-						auto sessiontype = spServerSessionTcp->GetLoginInfo().type();
-						if ((sessiontype & toType) != 0)
-						{
-							spServerSessionTcp->Send(spHeader, buf, bodylen);
-							hasSession = true;
-						}
-					}
-					if (hasSession == false)
-					{
-						DebugLog("No Dest Session Conncected:%i", toType);
-					}
+					DebugLog("No Dest Session Conncected:%i", toType);
 				}
 
 			}
@@ -202,32 +207,31 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 							}
 						}
 					}
-					else//Server Session Operation;
-					{
-						auto map = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
-						std::shared_ptr<TcpSessionBase> spSession = nullptr;
 
-						for (auto spSessionPair : map)
+
+					//Server Session Operation;
+					auto map = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
+					std::shared_ptr<TcpSessionBase> spSession = nullptr;
+
+					for (auto spSessionPair : map)
+					{
+						int IntPtr = (int)(spSessionPair.second.get());
+						if (it->nodetype() == eLocalServer)
 						{
-							int IntPtr = (int)(spSessionPair.second.get());
-							if (it->nodetype() == eLocalServer)
+							if (IntPtr == it->receivesessionid())
 							{
-								if (IntPtr == it->receivesessionid())
-								{
-									spSession = spSessionPair.second;
-									break;
-								}
+								spSession = spSessionPair.second;
+								break;
 							}
 						}
-
-
-						if (spSession && it != passnodes->end())
-						{
-
-							spSession->Send(spHeader, buf, bodylen);
-
-						}
 					}
+
+
+					if (spSession && it != passnodes->end())
+					{
+						spSession->Send(spHeader, buf, bodylen);
+					}
+
 
 
 
