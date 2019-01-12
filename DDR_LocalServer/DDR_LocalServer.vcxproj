@@ -70,6 +70,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\OpenCV_d.props" />
     <Import Project="..\Python36_d.props" />
+    <Import Project="..\libcurl.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -395,6 +396,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Processors\TalkHBProcessor.cpp" />
     <ClCompile Include="Processors\TalkProcessor.cpp" />
     <ClCompile Include="Processors\TextChatProcessor.cpp" />
+    <ClCompile Include="Processors\UploadFileProcessor.cpp" />
     <ClCompile Include="Servers\LocalServerDispatcher.cpp" />
     <ClCompile Include="Servers\LocalServerHeadRuleRouter.cpp" />
     <ClCompile Include="Servers\LocalServerUdpDispatcher.cpp" />
@@ -484,6 +486,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Processors\TalkHBProcessor.h" />
     <ClInclude Include="Processors\TalkProcessor.h" />
     <ClInclude Include="Processors\TextChatProcessor.h" />
+    <ClInclude Include="Processors\UploadFileProcessor.h" />
     <ClInclude Include="Servers\LocalServerDispatcher.h" />
     <ClInclude Include="Servers\LocalServerHeadRuleRouter.h" />
     <ClInclude Include="Servers\LocalServerUdpDispatcher.h" />

@@ -27,6 +27,8 @@ GlobalManager::GlobalManager():m_RemoteServerListConfig("Config/RemoteServer/Rem
 		DebugLog("DBFile Load Error");
 	}
 	
+	std::string HttpFileServerBaseDir = m_RemoteServerListConfig.GetValue("HttpFileServerBaseDir");
+
 }
 GlobalManager::~GlobalManager()
 {

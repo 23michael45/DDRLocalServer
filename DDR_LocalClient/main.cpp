@@ -113,6 +113,9 @@ public:
 		AddCommand("castop", std::bind(&_ConsoleDebug::StopAudio, this));
 
 		AddCommand("reqf", std::bind(&_ConsoleDebug::RequestFile, this));
+		AddCommand("upf", std::bind(&_ConsoleDebug::UploadFile, this));
+
+
 		AddCommand("connect", std::bind(&_ConsoleDebug::Connect, this));
 		AddCommand("httpget", std::bind(&_ConsoleDebug::HttpGet, this));
 		AddCommand("cmd", std::bind(&_ConsoleDebug::SendCmd, this));
@@ -169,6 +172,20 @@ public:
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
 	}
+
+	void UploadFile()
+	{
+		auto spHttpSession = std::make_shared<HttpSession>();
+
+		std::string url = "http://localhost:8000/";
+		std::string basedir = "D:/DevelopProj/Dadao/DDRFramework/www/";
+		std::string filename = "fs/root/t.dll";
+		spHttpSession->DoPost(url, basedir , filename);
+
+
+		//std::this_thread::sleep_for(chrono::seconds(10));
+	}
+
 	void GetServerList()
 	{
 		GlobalManager::Instance()->ConnectBroadcastServer();

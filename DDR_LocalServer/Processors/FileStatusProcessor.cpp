@@ -47,7 +47,7 @@ void FileStatusProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 		if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, toIntptr, nodetype))
 		{
 
-			if (MsgRouterManager::Instance()->IsLastPassNode(spHeader))
+			if (MsgRouterManager::Instance()->IsLastPassNode(spHeader))//msg is from local network
 			{
 				//Server Session Operation;
 				auto map = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
@@ -67,7 +67,7 @@ void FileStatusProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 					}
 				}
 			}
-			else
+			else//msg is from remote network
 			{
 
 				//Client Session Operation(To Remote Server)
