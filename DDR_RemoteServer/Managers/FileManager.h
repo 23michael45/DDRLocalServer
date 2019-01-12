@@ -14,6 +14,11 @@ public:
 	FileManager();
 	~FileManager();
 
+
+	std::string GetHttpServerUrl();
+protected:
+
+	std::string m_HttpFileServerUrl;
 };
 
 #endif // FileManager_h__

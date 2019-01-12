@@ -235,6 +235,15 @@
     <ClCompile Include="Processors\UnselectLSProcessor.cpp">
       <Filter>Processors</Filter>
     </ClCompile>
+    <ClCompile Include="Processors\FileStatusProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\FileManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\FileManagerBase.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -437,6 +446,15 @@
     </ClInclude>
     <ClInclude Include="Processors\UnselectLSProcessor.h">
       <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\FileStatusProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\FileManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\FileManagerBase.h">
+      <Filter>Shared\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

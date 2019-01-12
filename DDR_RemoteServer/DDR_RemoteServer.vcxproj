@@ -194,6 +194,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\src\Network\TcpSocketContainer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp" />
+    <ClCompile Include="..\..\Shared\src\Utility\FileManagerBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\GlobalManagerBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\LocalizationLoader.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp" />
@@ -229,7 +230,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Managers\FileManager.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
+    <ClCompile Include="Processors\FileStatusProcessor.cpp" />
     <ClCompile Include="Processors\RegisteLSProcessor.cpp" />
     <ClCompile Include="Processors\RemoteLoginProcessor.cpp" />
     <ClCompile Include="Processors\RemoteServerListProcessor.cpp" />
@@ -264,6 +267,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\src\Network\UdpSocketBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h" />
+    <ClInclude Include="..\..\Shared\src\Utility\FileManagerBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\GlobalManagerBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\LocalizationLoader.h" />
     <ClInclude Include="..\..\Shared\src\Utility\Logger.h" />
@@ -298,7 +302,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\thirdparty\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
+    <ClInclude Include="Managers\FileManager.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
+    <ClInclude Include="Processors\FileStatusProcessor.h" />
     <ClInclude Include="Processors\RegisteLSProcessor.h" />
     <ClInclude Include="Processors\RemoteLoginProcessor.h" />
     <ClInclude Include="Processors\RemoteServerListProcessor.h" />

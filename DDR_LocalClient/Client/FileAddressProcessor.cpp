@@ -8,7 +8,6 @@
 #include "../../../Shared/thirdparty/cppfs/include/cppfs/windows/LocalFileSystem.h"
 #include "../../../Shared/thirdparty/cppfs/include/cppfs/FilePath.h"
 #include "GlobalManager.h"
-#include "../../../Shared/thirdparty/curl-asio/curl-asio.hpp"
 
 #include <iostream>
 #include <fstream>

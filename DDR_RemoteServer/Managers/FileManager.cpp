@@ -22,10 +22,16 @@ using namespace cppfs;
 FileManager::FileManager()
 {
 
-	m_RootPath = GlobalManager::Instance()->GetLocalServerConfig().GetValue("FileCacheBaseDir");
+	m_RootPath = GlobalManager::Instance()->GetRemoteServerConfig().GetValue("HttpFileServerBaseDir");
+	m_HttpFileServerUrl = GlobalManager::Instance()->GetRemoteServerConfig().GetValue("HttpFileServerUrl");
 
 }
 FileManager::~FileManager()
 {
 
+}
+
+std::string FileManager::GetHttpServerUrl()
+{
+	return m_HttpFileServerUrl;
 }
