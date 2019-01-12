@@ -39,6 +39,7 @@ void RemoteLoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 			spClientSession->AssignRemoteLoginInfo(*pRaw);
 
 
+			sprsp->set_yourrole(pRaw->type());
 
 
 			auto& lsmap = GlobalManager::Instance()->GetTcpServer()->GetLSMap();

@@ -4,7 +4,7 @@
 #include "../../../Shared/src/Network/BaseMessageDispatcher.h"
 #include "LocalServerDispatcher.h"
 #include "LocalServerHeadRuleRouter.h"
-
+#include "../Managers/GlobalManager.h"
 #include "../../../Shared/src/Utility/XmlLoader.h"
 
 
@@ -20,6 +20,8 @@ LocalServerTcpSession::~LocalServerTcpSession()
 void LocalServerTcpSession::AssignLoginInfo(reqLogin info)
 {
 	m_reqLoginInfo.CopyFrom(info);
+
+	GlobalManager::Instance()->GetTcpServer()->AddSessionType(info.type(), info.username(), shared_from_base());
 }
 
 DDRCommProto::reqLogin& LocalServerTcpSession::GetLoginInfo()
@@ -65,7 +67,61 @@ std::map<tcp::socket*, std::shared_ptr<TcpSessionBase>>& LocalTcpServer::GetTcpS
 void LocalTcpServer::OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 	TcpServerBase::OnSessionDisconnect(spContainer);
-	auto spClientSession = dynamic_pointer_cast<TcpSessionBase>(spContainer);
+	auto spClientSession = dynamic_pointer_cast<LocalServerTcpSession>(spContainer);
+	auto info = spClientSession->GetLoginInfo();
+	RemoveSessionType(info.type(), info.username());
 }
 
+void LocalTcpServer::AddSessionType(eCltType type, std::string sname, std::shared_ptr<LocalServerTcpSession> sp)
+{
+	if (m_TypeSessionMap.find(type) == m_TypeSessionMap.end())
+	{
+		auto spMap = std::make_shared<std::map<std::string, std::shared_ptr<LocalServerTcpSession>>>();
+		m_TypeSessionMap.insert(make_pair(type, spMap));
+	}
+	auto spMap = m_TypeSessionMap[type];
+	if (spMap->find(sname) == spMap->end())
+	{
+		spMap->insert(make_pair(sname, sp));
+	}
+	else
+	{
+		DebugLog("Add LocalServerTcpSession of type:%i name:%s already Exist", type, sname.c_str());
+	}
+}
+
+void LocalTcpServer::RemoveSessionType(eCltType type, std::string sname)
+{
+	if (m_TypeSessionMap.find(type) != m_TypeSessionMap.end())
+	{
+		auto spMap = m_TypeSessionMap[type];
+		if (spMap->find(sname) != spMap->end())
+		{
+			spMap->erase(sname);
+		}
+		else
+		{
+
+			DebugLog("Remove LocalServerTcpSession of type:%i name:%s not Exist", type, sname.c_str());
+		}
+	}
+	else
+	{
+		DebugLog("Remove LocalServerTcpSession of type:%i not Exist", type);
+	}
+}
+
+std::shared_ptr<LocalServerTcpSession> LocalTcpServer::GetSessionByType(eCltType type)
+{
+	if (m_TypeSessionMap.find(type) != m_TypeSessionMap.end())
+	{
+		auto spMap = m_TypeSessionMap[type];
+		if (spMap->size() > 0)
+		{
+			auto sp = spMap->begin()->second;
+			return sp;
+		}
+	}
+	return nullptr;
+}
 

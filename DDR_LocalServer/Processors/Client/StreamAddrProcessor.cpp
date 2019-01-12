@@ -1,5 +1,6 @@
 #include "StreamAddrProcessor.h"
 #include "../../Managers/StreamRelayServiceManager.h"
+#include "../../Managers/GlobalManager.h"
 #include "../../../Shared/proto/BaseCmd.pb.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 using namespace DDRFramework;
@@ -30,7 +31,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 
 	if (pRaw->networktype() == ChannelNetworkType::Local)
 	{
-		auto spSession = StreamRelayServiceManager::Instance()->GetServerSession();
+		auto spSession = GlobalManager::Instance()->GetTcpServer()->GetSessionByType(eLSMStreamRelay);
 		if (spSession)
 		{
 
@@ -82,7 +83,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 	}
 	else if (pRaw->networktype() == ChannelNetworkType::Remote)
 	{
-		auto spSession = StreamRelayServiceManager::Instance()->GetServerSession();
+		auto spSession = GlobalManager::Instance()->GetTcpServer()->GetSessionByType(eLSMStreamRelay);
 		if (spSession)
 		{
 			auto channels = StreamRelayServiceManager::Instance()->GetAVChannelsConfig();

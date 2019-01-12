@@ -178,6 +178,7 @@ public:
 
 int main()
 {
+	MsgRouterManager::Instance()->SetCltType(eLocalServer);
 	DisableMouseSelectConsole();
 
 	InitMinDump();

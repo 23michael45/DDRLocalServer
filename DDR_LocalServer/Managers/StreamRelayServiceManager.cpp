@@ -63,48 +63,7 @@ std::vector<AVChannelConfig> StreamRelayServiceManager::GetAVChannelsConfig()
 	}
 	return channelvec;
 }
-std::shared_ptr<LocalServerTcpSession> StreamRelayServiceManager::GetServerSession()
-{
-	auto sessionMap = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
-	for (auto pair : sessionMap)
-	{
-		auto spSession = pair.second;
-		auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
-		if (spServerSessionTcp->GetLoginInfo().type() == eCltType::eLSMStreamRelay)
-		{
-			return spServerSessionTcp;
-		}
-	}
-	return nullptr;
-}
 
-
-void StreamRelayServiceManager::Send(std::shared_ptr<google::protobuf::Message> spmsg)
-{
-	auto spSession = GetServerSession();
-	if (spSession)
-	{
-		spSession->Send(spmsg);
-	}
-	else
-	{
-		DebugLog("o StreamRelay Service Connected");
-	}
-}
-
-void StreamRelayServiceManager::Send(std::shared_ptr<CommonHeader> spHeader, asio::streambuf& buf, int bodylen)
-{
-	auto spSession = GetServerSession();
-	if (spSession)
-	{
-		spSession->Send(spHeader, buf, bodylen);
-	}
-	else
-	{
-		DebugLog("o StreamRelay Service Connected");
-	}
-
-}
 
 int StreamRelayServiceManager::GetServerTcpPort()
 {

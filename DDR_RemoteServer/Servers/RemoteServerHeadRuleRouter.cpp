@@ -22,11 +22,9 @@ bool RemoteServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer>
 
 			eCltType toType = spHeader->toclttype();
 
-			CommonHeader_PassNode* pNode = spHeader->add_passnodearray();
-			pNode->set_nodetype(eRemoteServer);
-
 			auto spSession = spSockContainer->GetTcp();
-			pNode->set_receivesessionid((int)spSession.get());
+			MsgRouterManager::Instance()->RecordPassNode(spHeader, spSession);
+
 
 
 			auto spFromSession = dynamic_pointer_cast<RemoteServerTcpSession>(spSockContainer->GetTcp());
@@ -78,40 +76,25 @@ bool RemoteServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer>
 
 			std::shared_ptr<TcpSessionBase> spSession = nullptr;
 
-			auto passnodes = spHeader->mutable_passnodearray();
-			google::protobuf::RepeatedPtrField<CommonHeader_PassNode>::iterator it = passnodes->end();
-
-			for (auto spSessionPair : map)
+			int toIntptr;
+			eCltType nodetype;
+			if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, toIntptr, nodetype))
 			{
-				int IntPtr = (int)(spSessionPair.second.get());
-
-
-				for (it = passnodes->begin(); it != passnodes->end(); it++)
+				for (auto spSessionPair : map)
 				{
-					if (it->nodetype() == eRemoteServer)
+					int IntPtr = (int)(spSessionPair.second.get());
+
+
+					if (nodetype == eRemoteServer)
 					{
-						if (IntPtr == it->receivesessionid())
+						if (IntPtr == toIntptr)
 						{
 							spSession = spSessionPair.second;
+							spSession->Send(spHeader, buf, bodylen);
 							break;
 						}
 					}
 				}
-
-				if (spSession)
-				{
-					break;
-				}
-			}
-
-
-			if (spSession && it != passnodes->end())
-			{
-				auto passnodes = spHeader->mutable_passnodearray();
-				passnodes->erase(it);
-
-				spSession->Send(spHeader, buf, bodylen);
-
 			}
 
 		}

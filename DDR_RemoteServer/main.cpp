@@ -64,6 +64,8 @@ public:
 
 int main()
 {
+	MsgRouterManager::Instance()->SetCltType(eRemoteServer);
+
 	DisableMouseSelectConsole();
 
 	InitMinDump();

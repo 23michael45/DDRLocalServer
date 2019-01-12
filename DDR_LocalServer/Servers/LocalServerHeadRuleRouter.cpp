@@ -25,11 +25,8 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 
 			eCltType toType = spHeader->toclttype();
 
-			CommonHeader_PassNode* pNode = spHeader->add_passnodearray();
-			pNode->set_nodetype(eLocalServer);
-
 			auto spSession = spSockContainer->GetTcp();
-			pNode->set_receivesessionid((int)spSession.get());
+			MsgRouterManager::Instance()->RecordPassNode(spHeader, spSession);
 
 
 			bool hasSession = false;
@@ -71,21 +68,19 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 		else if (spHeader->flowdirection(0) == CommonHeader_eFlowDir_Backward)
 		{
 
-			auto passnodes = spHeader->mutable_passnodearray();
-
-			if (passnodes->size() > 0)
+			int toIntptr;
+			eCltType nodetype;
+			if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, toIntptr, nodetype))
 			{
-				google::protobuf::RepeatedPtrField<CommonHeader_PassNode>::reverse_iterator rit = passnodes->rbegin();
-
 
 				//Client Session Operation(To Remote Server)
 				auto spClientSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
 				if (spClientSession)
 				{
 					int IntPtr = (int)(spClientSession.get());
-					if (rit->nodetype() == eLocalServer)
+					if (nodetype == eLocalServer)
 					{
-						if (IntPtr == rit->receivesessionid())
+						if (IntPtr == toIntptr)
 						{
 							spClientSession->Send(spHeader, buf, bodylen);
 						}
@@ -100,9 +95,9 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				for (auto spSessionPair : map)
 				{
 					int IntPtr = (int)(spSessionPair.second.get());
-					if (rit->nodetype() == eLocalServer)
+					if (nodetype == eLocalServer)
 					{
-						if (IntPtr == rit->receivesessionid())
+						if (IntPtr == toIntptr)
 						{
 							spSession = spSessionPair.second;
 							spSession->Send(spHeader, buf, bodylen);
@@ -112,15 +107,12 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				}
 
 
-				if (spSession && rit != passnodes->rend())
-				{
-					passnodes->erase(rit.base());
-				}
-
-
-
-
 			}
+			else
+			{
+				DebugLog("Router Info from CommonHeader Error");
+			}
+
 		}
 	}
 	else

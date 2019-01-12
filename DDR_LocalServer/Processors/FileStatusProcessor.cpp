@@ -6,7 +6,9 @@
 #include "../../../Shared/src/Utility/Logger.h"
 #include "../../../Shared/src/Network/TcpServerBase.h"
 #include "../Managers/StreamRelayServiceManager.h"
+#include "../Managers/GlobalManager.h"
 #include "../Servers/LocalTcpServer.h"
+#include "../LSClient/LSClientManager.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;
@@ -39,6 +41,53 @@ void FileStatusProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 			sprsp->add_fileaddrlist(file);
 		}
 
+
+		int toIntptr;
+		eCltType nodetype;
+		if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, toIntptr, nodetype))
+		{
+
+			if (MsgRouterManager::Instance()->IsLastPassNode(spHeader))
+			{
+				//Server Session Operation;
+				auto map = GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap();
+				std::shared_ptr<TcpSessionBase> spSession = nullptr;
+
+				for (auto spSessionPair : map)
+				{
+					int IntPtr = (int)(spSessionPair.second.get());
+					if (nodetype == eLocalServer)
+					{
+						if (IntPtr == toIntptr)
+						{
+							spSession = spSessionPair.second;
+							spSession->Send(spHeader, sprsp);
+							break;
+						}
+					}
+				}
+			}
+			else
+			{
+
+				//Client Session Operation(To Remote Server)
+				auto spClientSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
+				if (spClientSession)
+				{
+					int IntPtr = (int)(spClientSession.get());
+					if (nodetype == eLocalServer)
+					{
+						if (IntPtr == toIntptr)
+						{
+							spClientSession->Send(spHeader, sprsp);
+						}
+					}
+				}
+			}
+
+
+
+		}
 
 		//do send to client
 

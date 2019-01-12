@@ -34,45 +34,34 @@ void FileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 void FileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 	reqFileAddress* pRaw = reinterpret_cast<reqFileAddress*>(spMsg.get());
-	SendChk(pRaw);
-}
 
-void FileAddressProcessor::SendChk(reqFileAddress* pRaw)
-{
-	auto sprsp = std::make_shared<chkFileStatus>();
-	sprsp->set_filetype(pRaw->filetype());
-	for (auto fmt : pRaw->filenames())
+	if (pRaw)
 	{
-		sprsp->add_filenames(fmt);
-	}
+		//Record Mannually ,Router Info
+		MsgRouterManager::Instance()->RecordPassNode(spHeader, spSockContainer->GetTcp());
 
-	if (pRaw->tarservicetype() == eLSMStreamRelay)
-	{
-		auto spStreamRelaySession = StreamRelayServiceManager::Instance()->GetServerSession();
-		if (spStreamRelaySession)
+
+		auto sprsp = std::make_shared<chkFileStatus>();
+		sprsp->set_filetype(pRaw->filetype());
+		for (auto fmt : pRaw->filenames())
 		{
-			spStreamRelaySession->Send(sprsp);
-		}
-		else
-		{
-			DebugLog("No StreamRelayServer Conncected");
+			sprsp->add_filenames(fmt);
 		}
 
-	}
-	if (pRaw->tarservicetype() == eLSMFaceRecognition)
-	{
+		eCltType toType = pRaw->tarservicetype();
+		if ((toType & eAllLSM) != 0)
+		{
 
+			auto spSession = GlobalManager::Instance()->GetTcpServer()->GetSessionByType(pRaw->tarservicetype());
+			if (spSession)
+			{
+				spSession->Send(spHeader,sprsp);
+			}
+			else
+			{
+				DebugLog("No Seesion Conncected type:%i", pRaw->tarservicetype());
+			}
+		}
 	}
-	if (pRaw->tarservicetype() == eLSMSlamNavigation)
-	{
 
-	}
-	if (pRaw->tarservicetype() == eLSMThermalImaging)
-	{
-
-	}
-	else
-	{
-
-	}
 }

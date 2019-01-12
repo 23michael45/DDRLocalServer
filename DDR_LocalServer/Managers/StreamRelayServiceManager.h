@@ -25,10 +25,6 @@ public:
 	std::vector<AVChannelConfig> GetAVChannelsConfig();
 
 	
-	std::shared_ptr<LocalServerTcpSession> GetServerSession();
-	void Send(std::shared_ptr<google::protobuf::Message> spmsg);
-	void Send(std::shared_ptr<CommonHeader> spHeader, asio::streambuf& buf, int bodylen);
-	
 	int GetServerTcpPort();
 
 private:

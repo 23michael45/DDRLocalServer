@@ -15,6 +15,10 @@ public:
 
 	void AssignLoginInfo(reqLogin info);
 	reqLogin& GetLoginInfo();
+
+	auto shared_from_base() {
+		return std::static_pointer_cast<LocalServerTcpSession>(shared_from_this());
+	}
 protected:
 	reqLogin m_reqLoginInfo;//Login Information
 };
@@ -33,10 +37,17 @@ public:
 
 	virtual void OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spContainer) override;
 
+	void AddSessionType(eCltType type, std::string sname, std::shared_ptr<LocalServerTcpSession> sp);
+	void RemoveSessionType(eCltType type, std::string sname);
+	std::shared_ptr<LocalServerTcpSession> GetSessionByType(eCltType type);
+
 
 	auto shared_from_base() {
 		return std::static_pointer_cast<LocalTcpServer>(shared_from_this());
 	}
+
+protected:
+	std::map<eCltType, std::shared_ptr<std::map<std::string, std::shared_ptr<LocalServerTcpSession>>>> m_TypeSessionMap;
 };
 
 
