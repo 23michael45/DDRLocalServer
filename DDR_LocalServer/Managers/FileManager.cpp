@@ -12,6 +12,8 @@
 #include <cppfs/windows/LocalFileSystem.h>
 #endif
 
+#include "GlobalManager.h"
+
 #include "../../../Shared/src/Utility/CommonFunc.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"
@@ -20,9 +22,7 @@ using namespace cppfs;
 FileManager::FileManager()
 {
 
-	FilePath path(DDRFramework::getexepath());
-	m_RootPath = path.directoryPath();
-	
+	m_RootPath = GlobalManager::Instance()->GetLocalServerConfig().GetValue("FileCacheBaseDir");
 
 }
 FileManager::~FileManager()
@@ -30,40 +30,46 @@ FileManager::~FileManager()
 
 }
 
-void FileManager::SetRootPath(std::string root)
+std::string FileManager::HttpAddr2BaseDir(std::string httpaddr)
 {
-	m_RootPath = root;
+	int index = httpaddr.find_first_of(':');
+	index = httpaddr.find(':',index + 1);
+	index = httpaddr.find('/', index + 1);
+
+	std::string full = httpaddr.replace(httpaddr.begin(), httpaddr.begin() + index, m_RootPath);
+	full = replace_all(full, "///", "/");
+	full = replace_all(full, "//", "/");
+
+	return full;
 }
 
-
-void FileManager::CheckDir(std::string dir, std::vector<std::string>& vec)
+std::string FileManager::GetRelativeDir(std::string httpaddr)
 {
-	FileHandle fhandel = fs::open(dir);
+	int index = httpaddr.find_first_of(':');
+	index = httpaddr.find(':', index + 1);
+	index = httpaddr.find('/', index + 1);
+
+	std::string relativepath = httpaddr.replace(httpaddr.begin(), httpaddr.begin() + index, "");
+	relativepath = replace_all(relativepath, "///", "/");
+	relativepath = replace_all(relativepath, "//", "/");
+
+	return relativepath;
+
+}
+
+bool FileManager::FileExist(std::string url)
+{
+	std::string full = url;
+	if (url.substr(0, 4) == "http")
+	{
+		full = HttpAddr2BaseDir(url);
+	}
+
+	cppfs::FileHandle fhandel = fs::open(full);
 	if (fhandel.exists())
 	{
-		if (fhandel.isDirectory())
-		{
-			auto files = fhandel.listFiles();
-			
-
-
-
-			for (auto file : files)
-			{
-				CheckDir(dir + "/" + file, vec);
-			}
-		}
-		else
-		{
-			vec.push_back(dir);
-		}
-
+		return true;
 	}
+	return false;
 }
-std::vector<string> FileManager::CheckFiles()
-{
-	std::vector<std::string> files;
-	CheckDir(m_RootPath, files);
-	return files;
 
-}

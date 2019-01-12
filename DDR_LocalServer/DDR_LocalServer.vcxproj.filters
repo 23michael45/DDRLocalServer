@@ -730,6 +730,12 @@
     <ClCompile Include="Processors\UploadFileProcessor.cpp">
       <Filter>Processors</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Utility\FileManagerBase.cpp">
+      <Filter>Shared\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\src\Network\HttpClient.cpp">
+      <Filter>Shared\Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -995,6 +1001,12 @@
     </ClInclude>
     <ClInclude Include="Processors\UploadFileProcessor.h">
       <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\FileManagerBase.h">
+      <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Network\HttpClient.h">
+      <Filter>Shared\Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -102,6 +102,7 @@ public:
 	{
 		AddCommand("ls sc", std::bind(&_ConsoleDebug::ListServerConnections, this));
 		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
+		AddCommand("upf", std::bind(&_ConsoleDebug::UploadFile, this));
 	}
 	void ListServerConnections()
 	{
@@ -172,6 +173,16 @@ public:
 
 			DebugLog("RunPython Error");
 		}
+	}
+
+	void UploadFile()
+	{
+		bool b = false;
+
+		b = FileManager::Instance()->FileExist("D:/DevelopProj/Dadao/DDRFramework/www/1.txt");
+		b = FileManager::Instance()->FileExist("D:/DevelopProj/Dadao/DDRFramework/www/2.txt");
+		b = FileManager::Instance()->FileExist("http://192.168.1.1:8080/1.txt");
+		b = FileManager::Instance()->FileExist("http://192.168.1.1:8080/2.txt");
 	}
 };
 

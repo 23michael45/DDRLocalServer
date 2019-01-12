@@ -185,6 +185,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp" />
+    <ClCompile Include="..\..\Shared\src\Network\HttpClient.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\HttpServer.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\HttpServer\connection.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\HttpServer\connection_manager.cpp" />
@@ -200,6 +201,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\src\Network\UdpSocketBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\CommonFunc.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\DeviceUDID.cpp" />
+    <ClCompile Include="..\..\Shared\src\Utility\FileManagerBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\GlobalManagerBase.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\LocalizationLoader.cpp" />
     <ClCompile Include="..\..\Shared\src\Utility\Logger.cpp" />
@@ -409,6 +411,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\src\Network\BaseMessageDispatcher.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseProcessor.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseSocketContainer.h" />
+    <ClInclude Include="..\..\Shared\src\Network\HttpClient.h" />
     <ClInclude Include="..\..\Shared\src\Network\HttpServer.h" />
     <ClInclude Include="..\..\Shared\src\Network\HttpServer\connection.hpp" />
     <ClInclude Include="..\..\Shared\src\Network\HttpServer\connection_manager.hpp" />
@@ -428,6 +431,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DDRMacro.h" />
     <ClInclude Include="..\..\Shared\src\Utility\DeviceUDID.h" />
+    <ClInclude Include="..\..\Shared\src\Utility\FileManagerBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\GlobalManagerBase.h" />
     <ClInclude Include="..\..\Shared\src\Utility\LocalizationLoader.h" />
     <ClInclude Include="..\..\Shared\src\Utility\Logger.h" />

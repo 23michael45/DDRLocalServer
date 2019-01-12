@@ -5,22 +5,19 @@
 #include <vector>
 #include <string>
 #include "../../../Shared/src/Utility/Singleton.h"
+#include "../../../Shared/src/Utility/FileManagerBase.h"
 
 using namespace DDRFramework;
-
-class FileManager : public CSingleton<FileManager>
+class FileManager :public FileManagerBase, public CSingleton<FileManager>
 {
-public:	 
+public:
 	FileManager();
 	~FileManager();
 
-	void SetRootPath(std::string root);
-	std::vector<std::string> CheckFiles();
-private:
+	std::string HttpAddr2BaseDir(std::string httpaddr);
+	std::string GetRelativeDir(std::string httpaddr);
 
-	void CheckDir(std::string dir, std::vector<std::string>& vec);
-
-	std::string m_RootPath;
+	bool FileExist(std::string url);
 };
 
 #endif // FileManager_h__

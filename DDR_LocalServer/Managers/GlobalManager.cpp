@@ -27,6 +27,7 @@ GlobalManager::GlobalManager():m_LocalServerConfig("Config/LocalServer/LocalServ
 		DebugLog("DBFile Load Error");
 	}
 
+
 }
 GlobalManager::~GlobalManager()
 {

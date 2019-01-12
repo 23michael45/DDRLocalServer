@@ -167,6 +167,7 @@ public:
 		//spreq->add_filenames("x64/*api*l*.*");
 		//spreq->add_filenames("*жа*/*Мў*.*");
 		spreq->add_filenames("x64/Debug/*.db");
+		spreq->add_filenames("fs/*/*.*");
 
 
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
