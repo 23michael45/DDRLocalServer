@@ -48,6 +48,11 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				}
 			}
 
+			if (hasSession == false)
+			{
+				DebugLog("No Dest Session Conncected:%i", toType);
+			}
+
 			//Client Session Operation(To Remote Server)
 			if ((eAllClient & toType) != 0)
 			{
@@ -59,18 +64,12 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 			}
 
 
-			if (hasSession == false)
-			{
-				DebugLog("No Dest Session Conncected:%i", toType);
-			}
-
 		}
 		else if (spHeader->flowdirection(0) == CommonHeader_eFlowDir_Backward)
 		{
 
-			int toIntptr;
-			eCltType nodetype;
-			if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, toIntptr, nodetype))
+			CommonHeader_PassNode passnode;
+			if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, passnode))
 			{
 
 				//Client Session Operation(To Remote Server)
@@ -78,9 +77,9 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				if (spClientSession)
 				{
 					int IntPtr = (int)(spClientSession.get());
-					if (nodetype == eLocalServer)
+					if (passnode.nodetype() == eLocalServer)
 					{
-						if (IntPtr == toIntptr)
+						if (IntPtr == passnode.receivesessionid())
 						{
 							spClientSession->Send(spHeader, buf, bodylen);
 						}
@@ -95,9 +94,9 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				for (auto spSessionPair : map)
 				{
 					int IntPtr = (int)(spSessionPair.second.get());
-					if (nodetype == eLocalServer)
+					if (passnode.nodetype() == eLocalServer)
 					{
-						if (IntPtr == toIntptr)
+						if (IntPtr == passnode.receivesessionid())
 						{
 							spSession = spSessionPair.second;
 							spSession->Send(spHeader, buf, bodylen);

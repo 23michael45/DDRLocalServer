@@ -76,18 +76,17 @@ bool RemoteServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer>
 
 			std::shared_ptr<TcpSessionBase> spSession = nullptr;
 
-			int toIntptr;
-			eCltType nodetype;
-			if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, toIntptr, nodetype))
+			CommonHeader_PassNode passnode;
+			if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, passnode))
 			{
 				for (auto spSessionPair : map)
 				{
 					int IntPtr = (int)(spSessionPair.second.get());
 
 
-					if (nodetype == eRemoteServer)
+					if (passnode.nodetype() == eRemoteServer)
 					{
-						if (IntPtr == toIntptr)
+						if (IntPtr == passnode.receivesessionid())
 						{
 							spSession = spSessionPair.second;
 							spSession->Send(spHeader, buf, bodylen);

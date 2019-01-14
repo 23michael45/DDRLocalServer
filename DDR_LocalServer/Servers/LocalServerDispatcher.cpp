@@ -8,7 +8,6 @@
 #include "../Processors/Client/FileAddressProcessor.h"
 #include "../Processors/StreamRelay/StreamRelayAlarmProcessor.h"
 #include "../Processors/FileStatusProcessor.h"
-#include "../Processors/UploadFileProcessor.h"
 
 using namespace DDRCommProto;
 using namespace DDRFramework;
@@ -29,10 +28,8 @@ LocalServerDispatcher::LocalServerDispatcher()
 		//Stream Relay
 		RegisterProcessor(req, StreamServiceInfo)
 		RegisterProcessor(req, StreamRelayAlarm)
-		RegisterProcessor(ans, FileStatus)
 
-
-			RegisterProcessor(notify,UploadFile)
+			RegisterProcessor(ans, FileStatus)
 
 
 }

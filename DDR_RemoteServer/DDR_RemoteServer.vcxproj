@@ -234,10 +234,12 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Managers\GlobalManager.cpp" />
     <ClCompile Include="Processors\FileStatusProcessor.cpp" />
     <ClCompile Include="Processors\RegisteLSProcessor.cpp" />
+    <ClCompile Include="Processors\RemoteFileAddressProcessor.cpp" />
     <ClCompile Include="Processors\RemoteLoginProcessor.cpp" />
     <ClCompile Include="Processors\RemoteServerListProcessor.cpp" />
     <ClCompile Include="Processors\SelectLSProcessor.cpp" />
     <ClCompile Include="Processors\UnselectLSProcessor.cpp" />
+    <ClCompile Include="Processors\UploadFileProgressProcessor.cpp" />
     <ClCompile Include="Servers\RemoteServerDispatcher.cpp" />
     <ClCompile Include="Servers\RemoteServerHeadRuleRouter.cpp" />
     <ClCompile Include="Servers\RemoteTcpServer.cpp" />
@@ -306,10 +308,12 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Managers\GlobalManager.h" />
     <ClInclude Include="Processors\FileStatusProcessor.h" />
     <ClInclude Include="Processors\RegisteLSProcessor.h" />
+    <ClInclude Include="Processors\RemoteFileAddressProcessor.h" />
     <ClInclude Include="Processors\RemoteLoginProcessor.h" />
     <ClInclude Include="Processors\RemoteServerListProcessor.h" />
     <ClInclude Include="Processors\SelectLSProcessor.h" />
     <ClInclude Include="Processors\UnselectLSProcessor.h" />
+    <ClInclude Include="Processors\UploadFileProgressProcessor.h" />
     <ClInclude Include="Servers\RemoteServerDispatcher.h" />
     <ClInclude Include="Servers\RemoteServerHeadRuleRouter.h" />
     <ClInclude Include="Servers\RemoteTcpServer.h" />

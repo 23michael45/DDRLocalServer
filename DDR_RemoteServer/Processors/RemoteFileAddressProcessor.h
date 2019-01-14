@@ -1,31 +1,24 @@
-#ifndef FileAddressProcessor_h__
-#define FileAddressProcessor_h__
+#ifndef RemoteFileAddressProcessor_h__
+#define RemoteFileAddressProcessor_h__
 
 
 #include "../../../Shared/src/Network/MessageSerializer.h"
 #include "../../../Shared/src/Network/BaseProcessor.h"
-#include "../../../Shared/src/Network/HttpClient.h"
 
 
 using namespace DDRFramework;
-class FileAddressProcessor : public BaseProcessor
+class RemoteFileAddressProcessor : public BaseProcessor
 {
 public:
-	FileAddressProcessor(BaseMessageDispatcher& dispatcher);
-	~FileAddressProcessor();
+	RemoteFileAddressProcessor(BaseMessageDispatcher& dispatcher);
+	~RemoteFileAddressProcessor();
 
 	virtual void Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override;
 	virtual void AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg) override;
-
-	
-	void OnGetDone(float f);
-
 private:
 
+	void Lengancy(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg);
 
-
-	std::shared_ptr<HttpSession> spHttpSession;
 };
 
-#endif // FileAddressProcessor_h__
-
+#endif // RemoteFileAddressProcessor_h__

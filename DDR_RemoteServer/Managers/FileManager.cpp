@@ -31,7 +31,7 @@ FileManager::~FileManager()
 
 }
 
-std::string FileManager::GetHttpServerUrl()
+std::string FileManager::GetHttpServerUrl(std::string relativePath)
 {
-	return m_HttpFileServerUrl;
+	return m_HttpFileServerUrl + relativePath;
 }

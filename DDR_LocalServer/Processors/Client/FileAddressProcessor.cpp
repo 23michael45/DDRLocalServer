@@ -45,7 +45,7 @@ void FileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spS
 		sprsp->set_filetype(pRaw->filetype());
 		for (auto fmt : pRaw->filenames())
 		{
-			sprsp->add_filenames(fmt);
+			sprsp->add_filefmt(fmt);
 		}
 
 		eCltType toType = pRaw->tarservicetype();
@@ -59,7 +59,7 @@ void FileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spS
 			}
 			else
 			{
-				DebugLog("No Seesion Conncected type:%i", pRaw->tarservicetype());
+				DebugLog("FileAddressProcessor No Session Conncected type:%i", pRaw->tarservicetype());
 			}
 		}
 	}

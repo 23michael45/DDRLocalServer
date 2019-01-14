@@ -113,6 +113,7 @@ public:
 		AddCommand("castop", std::bind(&_ConsoleDebug::StopAudio, this));
 
 		AddCommand("reqf", std::bind(&_ConsoleDebug::RequestFile, this));
+		AddCommand("reqrf", std::bind(&_ConsoleDebug::RequestRemoteFile, this));
 		AddCommand("upf", std::bind(&_ConsoleDebug::UploadFile, this));
 
 
@@ -161,6 +162,22 @@ public:
 	{
 		DebugLog("Request File");
 		auto spreq = std::make_shared<reqFileAddress>();
+		spreq->set_tarservicetype(eCltType::eLSMStreamRelay);
+		spreq->set_filetype(eFileTypes::FileHttpAddress);
+		//spreq->add_filenames("x64/*DDR*Server.e*");
+		//spreq->add_filenames("x64/*api*l*.*");
+		//spreq->add_filenames("*жа*/*Мў*.*");
+		spreq->add_filenames("x64/Debug/*.db");
+		spreq->add_filenames("fs/*/*.*");
+
+
+		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
+		spreq.reset();
+	}
+	void RequestRemoteFile()
+	{
+		DebugLog("Request File");
+		auto spreq = std::make_shared<reqRemoteFileAddress>();
 		spreq->set_tarservicetype(eCltType::eLSMStreamRelay);
 		spreq->set_filetype(eFileTypes::FileHttpAddress);
 		//spreq->add_filenames("x64/*DDR*Server.e*");

@@ -70,6 +70,9 @@
     <Filter Include="LSClient">
       <UniqueIdentifier>{f8033801-1fed-477b-89a0-afb9316edc42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Processors\RemoteServer">
+      <UniqueIdentifier>{505281ca-cbb6-41a1-aadd-8067bb5043ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -715,9 +718,6 @@
     <ClCompile Include="LSClient\LSTcpClient.cpp">
       <Filter>LSClient</Filter>
     </ClCompile>
-    <ClCompile Include="LSClient\RemoteServerListProcessor.cpp">
-      <Filter>LSClient</Filter>
-    </ClCompile>
     <ClCompile Include="LSClient\LSClientManager.cpp">
       <Filter>LSClient</Filter>
     </ClCompile>
@@ -727,14 +727,17 @@
     <ClCompile Include="LSClient\LSRemoteClientHeadRuleRouter.cpp">
       <Filter>LSClient</Filter>
     </ClCompile>
-    <ClCompile Include="Processors\UploadFileProcessor.cpp">
-      <Filter>Processors</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Shared\src\Utility\FileManagerBase.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\src\Network\HttpClient.cpp">
       <Filter>Shared\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\RemoteServer\RemoteServerListProcessor.cpp">
+      <Filter>Processors\RemoteServer</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\RemoteServer\UploadFileProcessor.cpp">
+      <Filter>Processors\RemoteServer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -987,9 +990,6 @@
     <ClInclude Include="LSClient\LSTcpClient.h">
       <Filter>LSClient</Filter>
     </ClInclude>
-    <ClInclude Include="LSClient\RemoteServerListProcessor.h">
-      <Filter>LSClient</Filter>
-    </ClInclude>
     <ClInclude Include="LSClient\LSClientManager.h">
       <Filter>LSClient</Filter>
     </ClInclude>
@@ -999,14 +999,17 @@
     <ClInclude Include="LSClient\LSRemoteClientHeadRuleRouter.h">
       <Filter>LSClient</Filter>
     </ClInclude>
-    <ClInclude Include="Processors\UploadFileProcessor.h">
-      <Filter>Processors</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\FileManagerBase.h">
       <Filter>Shared\Utility</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Network\HttpClient.h">
       <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\RemoteServer\RemoteServerListProcessor.h">
+      <Filter>Processors\RemoteServer</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\RemoteServer\UploadFileProcessor.h">
+      <Filter>Processors\RemoteServer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

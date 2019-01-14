@@ -9,6 +9,7 @@
 #include "StreamAddrProcessor.h"
 #include "AlarmProcessor.h"
 #include "FileAddressProcessor.h"
+#include "RemoteFileAddressProcessor.h"
 #include "RemoteServerListProcessor.h"
 #include "RemoteLoginProcessor.h"
 #include "SelectLSProcessor.h"
@@ -23,6 +24,7 @@ LocalClientDispatcher::LocalClientDispatcher()
         RegisterProcessor(rsp, StreamAddr)
         RegisterProcessor(notify, Alarm)
 			RegisterProcessor(rsp, FileAddress)
+			RegisterProcessor(rsp, RemoteFileAddress)
 			RegisterProcessor(rsp, RemoteLogin)
 
 

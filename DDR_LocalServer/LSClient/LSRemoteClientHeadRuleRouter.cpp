@@ -68,19 +68,17 @@ bool LSRemoteClientHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContaine
 		}
 		else if (spHeader->flowdirection(0) == CommonHeader_eFlowDir_Backward)
 		{
-
-			int toIntptr;
-			eCltType nodetype;
-			if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, toIntptr, nodetype))
+			CommonHeader_PassNode passnode;
+			if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, passnode))
 			{
 				//Client Session Operation(To Remote Server)
 				auto spClientSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
 				if (spClientSession)
 				{
 					int IntPtr = (int)(spClientSession.get());
-					if (nodetype == eLocalServer)
+					if (passnode.nodetype() == eLocalServer)
 					{
-						if (IntPtr == toIntptr)
+						if (IntPtr == passnode.receivesessionid())
 						{
 							spClientSession->Send(spHeader, buf, bodylen);
 						}
@@ -95,9 +93,9 @@ bool LSRemoteClientHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContaine
 				for (auto spSessionPair : map)
 				{
 					int IntPtr = (int)(spSessionPair.second.get());
-					if (nodetype == eLocalServer)
+					if (passnode.nodetype() == eLocalServer)
 					{
-						if (IntPtr == toIntptr)
+						if (IntPtr == passnode.receivesessionid())
 						{
 							spSession = spSessionPair.second;
 							spSession->Send(spHeader, buf, bodylen);

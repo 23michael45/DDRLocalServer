@@ -1,10 +1,18 @@
 
+
 #include <memory>
 #include "../../../Shared/proto/BaseCmd.pb.h"
-#include "FileAddressProcessor.h"
+#include "RemoteFileAddressProcessor.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"
 #include "../../../Shared/src/Utility/CommonFunc.h"
+
+
+#include "eventpp/callbacklist.h"
+#include "eventpp/eventdispatcher.h"
+#include "eventpp/eventqueue.h"
+
+
 #include "../../../Shared/thirdparty/cppfs/include/cppfs/windows/LocalFileSystem.h"
 #include "../../../Shared/thirdparty/cppfs/include/cppfs/FilePath.h"
 #include "GlobalManager.h"
@@ -14,19 +22,26 @@
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
-
-FileAddressProcessor::FileAddressProcessor(BaseMessageDispatcher& dispatcher) :BaseProcessor(dispatcher)
+RemoteFileAddressProcessor::RemoteFileAddressProcessor(BaseMessageDispatcher& dispatcher) :BaseProcessor(dispatcher)
 {
 }
 
 
-FileAddressProcessor::~FileAddressProcessor()
+RemoteFileAddressProcessor::~RemoteFileAddressProcessor()
 {
 }
-void FileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+
+void RemoteFileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 
+
+}
+
+void RemoteFileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+{
 	rspFileAddress* pRaw = reinterpret_cast<rspFileAddress*>(spMsg.get());
+
+
 
 
 	cppfs::FilePath path(DDRFramework::getexepath());
@@ -35,36 +50,21 @@ void FileAddressProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 	std::vector<std::string> urls;
 	for (auto url : pRaw->fileaddrlist())
 	{
-		//do curl get;
-
-		urls.push_back(url);
+		//do curl get;urls.push_back(url);
 
 		cppfs::FilePath fpath(url);
 		auto filename = fpath.fileName();
 		outfiles.push_back(root + filename);
 
-
-
 	}
 
 
-
-
-
 	spHttpSession = std::make_shared<HttpSession>();
-	spHttpSession->BindOnGetDoneFunc(std::bind(&FileAddressProcessor::OnGetDone,this, std::placeholders::_1));
+	spHttpSession->BindOnGetDoneFunc(std::bind(&RemoteFileAddressProcessor::OnGetDone, this, std::placeholders::_1));
 	spHttpSession->DoGet(urls, outfiles);
-
-
 }
 
-void FileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+void RemoteFileAddressProcessor::OnGetDone(float f)
 {
-
-
-}
-
-void FileAddressProcessor::OnGetDone(float f)
-{
-	DebugLog("FileAddressProcessor OnGetDone %f",f);
+	DebugLog("FileAddressProcessor OnGetDone %f", f);
 }

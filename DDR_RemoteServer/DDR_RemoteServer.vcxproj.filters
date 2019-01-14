@@ -244,6 +244,12 @@
     <ClCompile Include="..\..\Shared\src\Utility\FileManagerBase.cpp">
       <Filter>Shared\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="Processors\RemoteFileAddressProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\UploadFileProgressProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -455,6 +461,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\FileManagerBase.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\RemoteFileAddressProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\UploadFileProgressProcessor.h">
+      <Filter>Processors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

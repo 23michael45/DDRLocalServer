@@ -15,7 +15,7 @@ public:
 	~FileManager();
 
 
-	std::string GetHttpServerUrl();
+	std::string GetHttpServerUrl(std::string relativePath);
 protected:
 
 	std::string m_HttpFileServerUrl;

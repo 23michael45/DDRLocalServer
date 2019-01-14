@@ -18,7 +18,7 @@ void LSClientManager::Init()
 	}
 }
 
-//#define DebugRemoteServer
+#define DebugRemoteServer
 void LSClientManager::ConnectBroadcastServer()
 {
 

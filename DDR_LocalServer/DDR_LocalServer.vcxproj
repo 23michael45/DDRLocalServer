@@ -380,7 +380,6 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="LSClient\LSClientManager.cpp" />
     <ClCompile Include="LSClient\LSRemoteClientHeadRuleRouter.cpp" />
     <ClCompile Include="LSClient\LSTcpClient.cpp" />
-    <ClCompile Include="LSClient\RemoteServerListProcessor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\FileManager.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
@@ -392,13 +391,14 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Processors\HeartBeatProcessor.cpp" />
     <ClCompile Include="Processors\LocalServerUdpProcessor.cpp" />
     <ClCompile Include="Processors\LoginProcessor.cpp" />
+    <ClCompile Include="Processors\RemoteServer\RemoteServerListProcessor.cpp" />
+    <ClCompile Include="Processors\RemoteServer\UploadFileProcessor.cpp" />
     <ClCompile Include="Processors\StatusProcessor.cpp" />
     <ClCompile Include="Processors\StreamRelay\StreamRelayAlarmProcessor.cpp" />
     <ClCompile Include="Processors\StreamRelay\StreamServiceInfoProcessor.cpp" />
     <ClCompile Include="Processors\TalkHBProcessor.cpp" />
     <ClCompile Include="Processors\TalkProcessor.cpp" />
     <ClCompile Include="Processors\TextChatProcessor.cpp" />
-    <ClCompile Include="Processors\UploadFileProcessor.cpp" />
     <ClCompile Include="Servers\LocalServerDispatcher.cpp" />
     <ClCompile Include="Servers\LocalServerHeadRuleRouter.cpp" />
     <ClCompile Include="Servers\LocalServerUdpDispatcher.cpp" />
@@ -473,7 +473,6 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="LSClient\LSClientManager.h" />
     <ClInclude Include="LSClient\LSRemoteClientHeadRuleRouter.h" />
     <ClInclude Include="LSClient\LSTcpClient.h" />
-    <ClInclude Include="LSClient\RemoteServerListProcessor.h" />
     <ClInclude Include="Managers\FileManager.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
     <ClInclude Include="Managers\StreamRelayServiceManager.h" />
@@ -484,13 +483,14 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Processors\HeartBeatProcessor.h" />
     <ClInclude Include="Processors\LocalServerUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />
+    <ClInclude Include="Processors\RemoteServer\RemoteServerListProcessor.h" />
+    <ClInclude Include="Processors\RemoteServer\UploadFileProcessor.h" />
     <ClInclude Include="Processors\StatusProcessor.h" />
     <ClInclude Include="Processors\StreamRelay\StreamRelayAlarmProcessor.h" />
     <ClInclude Include="Processors\StreamRelay\StreamServiceInfoProcessor.h" />
     <ClInclude Include="Processors\TalkHBProcessor.h" />
     <ClInclude Include="Processors\TalkProcessor.h" />
     <ClInclude Include="Processors\TextChatProcessor.h" />
-    <ClInclude Include="Processors\UploadFileProcessor.h" />
     <ClInclude Include="Servers\LocalServerDispatcher.h" />
     <ClInclude Include="Servers\LocalServerHeadRuleRouter.h" />
     <ClInclude Include="Servers\LocalServerUdpDispatcher.h" />

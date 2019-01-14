@@ -5,6 +5,9 @@
 #include "../Processors/RemoteLoginProcessor.h"
 #include "../Processors/SelectLSProcessor.h"
 #include "../Processors/RegisteLSProcessor.h"
+#include "../Processors/RemoteFileAddressProcessor.h"
+#include "../Processors/FileStatusProcessor.h"
+#include "../Processors/UploadFileProgressProcessor.h"
 
 using namespace DDRCommProto;
 using namespace DDRFramework;
@@ -18,6 +21,11 @@ RemoteServerDispatcher::RemoteServerDispatcher()
 		RegisterProcessor(req, RemoteLogin)
 		RegisterProcessor(req, SelectLS)
 
+
+		RegisterProcessor(req, RemoteFileAddress)
+		RegisterProcessor(ans, FileStatus)
+
+		RegisterProcessor(notify, UploadFileProgress)
 
 
 }
