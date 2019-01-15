@@ -192,12 +192,16 @@ public:
 
 	void UploadFile()
 	{
-		bool b = false;
+		//bool b = false;
 
-		b = FileManager::Instance()->FileExist("D:/DevelopProj/Dadao/DDRFramework/www/1.txt");
-		b = FileManager::Instance()->FileExist("D:/DevelopProj/Dadao/DDRFramework/www/2.txt");
-		b = FileManager::Instance()->FileExist("http://192.168.1.1:8080/1.txt");
-		b = FileManager::Instance()->FileExist("http://192.168.1.1:8080/2.txt");
+		//b = FileManager::Instance()->FileExist("D:/DevelopProj/Dadao/DDRFramework/www/1.txt");
+		//b = FileManager::Instance()->FileExist("D:/DevelopProj/Dadao/DDRFramework/www/2.txt");
+		//b = FileManager::Instance()->FileExist("http://192.168.1.1:8080/1.txt");
+		//b = FileManager::Instance()->FileExist("http://192.168.1.1:8080/2.txt");
+
+		TcpClientBase* p = new TcpClientBase();
+		delete p;
+		p->Connect("", "");
 	}
 };
 
