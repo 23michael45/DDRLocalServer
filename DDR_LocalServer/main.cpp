@@ -101,6 +101,7 @@ public:
 	_ConsoleDebug()
 	{
 		AddCommand("ls sc", std::bind(&_ConsoleDebug::ListServerConnections, this));
+		AddCommand("ls cc", std::bind(&_ConsoleDebug::ListClientConnections, this));
 		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
 		AddCommand("upf", std::bind(&_ConsoleDebug::UploadFile, this));
 	}
@@ -116,6 +117,20 @@ public:
 			std::string ip = spServerSessionTcp->GetSocket().remote_endpoint().address().to_string();
 			printf_s("\n%s  type:%i", ip.c_str(), spServerSessionTcp->GetLoginInfo().type());
 		}
+	}
+	void ListClientConnections()
+	{
+		printf_s("\nClient Connections");
+		auto spSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
+		auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
+		if (spServerSessionTcp)
+		{
+
+			std::string ip = spServerSessionTcp->GetSocket().remote_endpoint().address().to_string();
+			printf_s("\n%s  type:%i", ip.c_str(), spServerSessionTcp->GetLoginInfo().type());
+		}
+
+
 	}
 	void RunPython()
 	{

@@ -81,7 +81,7 @@ bool RemoteServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer>
 			{
 				for (auto spSessionPair : map)
 				{
-					long IntPtr = (long)(spSessionPair.second.get());
+					size_t IntPtr = (size_t)(spSessionPair.second.get());
 
 
 					if (passnode.nodetype() == eRemoteServer)

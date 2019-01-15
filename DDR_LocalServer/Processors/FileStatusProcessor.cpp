@@ -119,6 +119,10 @@ void FileStatusProcessor::OnGetDone(float f)
 				spHttpSession->BindOnPostDoneFunc(std::bind(&FileStatusProcessor::OnPostDone, this, std::placeholders::_1));
 				spHttpSession->DoPost(httpurl, FileManager::Instance()->GetRootPath(), uploadfiles);
 			}
+			else
+			{
+				OnPostDone(1.0f);
+			}
 			SAFE_DELETE(pnotify);
 		}
 
@@ -138,7 +142,7 @@ void FileStatusProcessor::OnPostDone(float f)
 	auto spSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
 
 
-	long IntPtr = (long)(spSession.get());
+	size_t IntPtr = (size_t)(spSession.get());
 	if (m_Passnode.nodetype() == eLocalServer)
 	{
 		if (IntPtr == m_Passnode.receivesessionid())
@@ -182,7 +186,7 @@ void FileStatusProcessor::ProcessAns(std::shared_ptr<BaseSocketContainer> spSock
 
 					for (auto spSessionPair : map)
 					{
-						long IntPtr = (long)(spSessionPair.second.get());
+						size_t IntPtr = (size_t)(spSessionPair.second.get());
 						if (passnode.nodetype() == eLocalServer)
 						{
 							if (IntPtr == passnode.receivesessionid())
@@ -226,7 +230,7 @@ void FileStatusProcessor::ProcessAns(std::shared_ptr<BaseSocketContainer> spSock
 					{
 
 
-						long IntPtr = (long)(spClientSession.get());
+						size_t IntPtr = (size_t)(spClientSession.get());
 						if (passnode.nodetype() == eLocalServer)
 						{
 							if (IntPtr == passnode.receivesessionid())

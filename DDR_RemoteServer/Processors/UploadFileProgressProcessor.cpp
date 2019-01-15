@@ -25,30 +25,40 @@ void UploadFileProgressProcessor::Process(std::shared_ptr<BaseSocketContainer> s
 	notifyUploadFileProgress* pRaw = reinterpret_cast<notifyUploadFileProgress*>(spMsg.get());
 	if (pRaw)
 	{
-		if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, m_Passnode))
+		if (pRaw->progress() == 1.0f)
 		{
+			FileManager::Instance()->CheckFiles();
 
-			reqRemoteFileAddress* preq = (reqRemoteFileAddress*)(m_Passnode.intptrdata(0));
-			if (preq)
+			if (MsgRouterManager::Instance()->ReturnPassNode(spHeader, m_Passnode))
 			{
 
-				auto sprsp = std::make_shared<rspRemoteFileAddress>();
-
-				for (auto fmt : preq->filenames())
+				reqRemoteFileAddress* preq = (reqRemoteFileAddress*)(m_Passnode.intptrdata(0));
+				if (preq)
 				{
-					DebugLog("UploadFileProgressProcessor %s", fmt.c_str());
-					auto files = FileManager::Instance()->Match(fmt);
 
-					for (auto fullpath : files)
+					auto sprsp = std::make_shared<rspRemoteFileAddress>();
+
+					for (auto fmt : preq->filenames())
 					{
-						auto httpaddr = FileManager::Instance()->GetHttpServerUrl(FileManager::Instance()->GetRelativeDirFromFull(fullpath));
-						sprsp->add_fileaddrlist(httpaddr);
+						DebugLog("UploadFileProgressProcessor %s", fmt.c_str());
+						auto files = FileManager::Instance()->Match(fmt);
+
+						for (auto fullpath : files)
+						{
+							auto httpaddr = FileManager::Instance()->GetHttpServerUrl(FileManager::Instance()->GetRelativeDirFromFull(fullpath));
+							sprsp->add_fileaddrlist(httpaddr);
+						}
+					}
+
+					auto spClientSession = (RemoteServerTcpSession*)m_Passnode.receivesessionid();
+					if (spClientSession)
+					{
+						spClientSession->Send(spHeader, sprsp);
 					}
 				}
+
+				SAFE_DELETE(preq);
 			}
-
-			SAFE_DELETE(preq);
-
 		}
 	}
 

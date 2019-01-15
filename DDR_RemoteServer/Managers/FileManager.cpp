@@ -23,7 +23,11 @@ FileManager::FileManager()
 {
 
 	m_RootPath = GlobalManager::Instance()->GetRemoteServerConfig().GetValue("HttpFileServerBaseDir");
+	CheckFiles();
+
+
 	m_HttpFileServerUrl = GlobalManager::Instance()->GetRemoteServerConfig().GetValue("HttpFileServerUrl");
+
 
 }
 FileManager::~FileManager()

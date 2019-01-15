@@ -56,6 +56,8 @@ void RemoteFileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContaine
 		auto filename = fpath.fileName();
 		outfiles.push_back(root + filename);
 
+		urls.push_back(url);
+
 	}
 
 

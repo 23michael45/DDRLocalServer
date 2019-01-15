@@ -52,7 +52,7 @@ void UploadFileProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 
 			for (auto fullpath : files)
 			{
-				matchedfiles.push_back(FileManager::Instance()->GetFullDirFromRelative(fullpath));
+				matchedfiles.push_back(FileManager::Instance()->GetRelativeDirFromFull(fullpath));
 			}
 		}
 

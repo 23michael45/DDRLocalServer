@@ -39,7 +39,7 @@ void RemoteFileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContaine
 		auto pNode = MsgRouterManager::Instance()->RecordPassNode(spHeader, spSockContainer->GetTcp());
 		reqRemoteFileAddress* pData = new reqRemoteFileAddress();
 		pData->CopyFrom(*pRaw);
-		pNode->add_intptrdata((int)pData);
+		pNode->add_intptrdata((size_t)pData);
 
 
 		auto spnotify = std::make_shared<notifyUploadFile>();
@@ -61,7 +61,7 @@ void RemoteFileAddressProcessor::AsyncProcess(std::shared_ptr<BaseSocketContaine
 
 			for (auto fullpath : files)
 			{
-				spnotify->add_existfiles(FileManager::Instance()->GetFullDirFromRelative(fullpath));
+				spnotify->add_existfiles(FileManager::Instance()->GetRelativeDirFromFull(fullpath));
 			}
 		}
 
