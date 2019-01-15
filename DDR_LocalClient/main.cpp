@@ -183,7 +183,7 @@ public:
 		//spreq->add_filenames("x64/*DDR*Server.e*");
 		//spreq->add_filenames("x64/*api*l*.*");
 		//spreq->add_filenames("*жа*/*Мў*.*");
-		spreq->add_filenames("x64/Debug/*.db");
+		//spreq->add_filenames("x64/Debug/*.db");
 		spreq->add_filenames("fs/*/*.*");
 
 

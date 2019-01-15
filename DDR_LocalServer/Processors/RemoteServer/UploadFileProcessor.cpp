@@ -32,7 +32,7 @@ void UploadFileProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 		auto pNode = MsgRouterManager::Instance()->RecordPassNode(spHeader, spSockContainer->GetTcp());
 		notifyUploadFile* pData = new notifyUploadFile();
 		pData->CopyFrom(*pRaw);
-		pNode->add_intptrdata((int)pData);
+		pNode->add_intptrdata((size_t)pData);
 
 
 

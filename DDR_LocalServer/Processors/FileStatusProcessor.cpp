@@ -45,19 +45,23 @@ void FileStatusProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSo
 			auto spFromSession = std::dynamic_pointer_cast<LocalServerTcpSession>(spSockContainer->GetTcp());
 			if (spFromSession)
 			{
+
+				std::vector<std::string> urls;
+				std::vector<std::string> getfiles;
 				for (auto file : pRaw->fileaddrlist())
 				{
 					if (!FileManager::Instance()->FileExist(file))
 					{
-
-						cppfs::FilePath fpath(file);
-						auto filename = fpath.fileName();
-						auto spHttpSession = std::make_shared<HttpSession>();
-						spHttpSession->BindOnGetDoneFunc(std::bind(&FileStatusProcessor::OnGetDone, this, std::placeholders::_1));
-						spHttpSession->DoGet(file, FileManager::Instance()->HttpAddr2BaseDir(file));
+						urls.push_back(file);
+						getfiles.push_back(FileManager::Instance()->HttpAddr2BaseDir(file));
 					}
 
 				}
+
+
+				auto spHttpSession = std::make_shared<HttpSession>();
+				spHttpSession->BindOnGetDoneFunc(std::bind(&FileStatusProcessor::OnGetDone, this, std::placeholders::_1));
+				spHttpSession->DoGet(urls, getfiles);
 			}
 		}
 	}
@@ -87,30 +91,35 @@ void FileStatusProcessor::OnGetDone(float f)
 				auto files = FileManager::Instance()->Match(fmt);
 				for (auto fullpath : files)
 				{
-					matchedfiles.push_back(FileManager::Instance()->GetFullDirFromRelative(fullpath));
+					matchedfiles.push_back(FileManager::Instance()->GetRelativeDirFromFull(fullpath));
 				}
 			}
 
 
-			for (auto fileupload : matchedfiles)
+			std::vector<std::string> uploadfiles;
+			for (auto file : matchedfiles)
 			{
-				if (remoteExistFiles.find(fileupload) != remoteExistFiles.end())//remote server exist
+				if (remoteExistFiles.find(file) != remoteExistFiles.end())//remote server exist
 				{
 
 				}
 				else
 				{
-					std::string httpurl = pnotify->httpaddr();
-					auto spHttpSession = std::make_shared<HttpSession>();
-					spHttpSession->BindOnPostDoneFunc(std::bind(&FileStatusProcessor::OnPostDone, this, std::placeholders::_1));
-					spHttpSession->DoPost(httpurl, FileManager::Instance()->GetRootPath(), fileupload);
+					uploadfiles.push_back(file);
 
 
 				}
 
 			}
+			if (uploadfiles.size() > 0)
+			{
 
-			delete pnotify;
+				std::string httpurl = pnotify->httpaddr();
+				auto spHttpSession = std::make_shared<HttpSession>();
+				spHttpSession->BindOnPostDoneFunc(std::bind(&FileStatusProcessor::OnPostDone, this, std::placeholders::_1));
+				spHttpSession->DoPost(httpurl, FileManager::Instance()->GetRootPath(), uploadfiles);
+			}
+			SAFE_DELETE(pnotify);
 		}
 
 	}
@@ -129,7 +138,7 @@ void FileStatusProcessor::OnPostDone(float f)
 	auto spSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
 
 
-	int IntPtr = (int)(spSession.get());
+	long IntPtr = (long)(spSession.get());
 	if (m_Passnode.nodetype() == eLocalServer)
 	{
 		if (IntPtr == m_Passnode.receivesessionid())
@@ -173,7 +182,7 @@ void FileStatusProcessor::ProcessAns(std::shared_ptr<BaseSocketContainer> spSock
 
 					for (auto spSessionPair : map)
 					{
-						int IntPtr = (int)(spSessionPair.second.get());
+						long IntPtr = (long)(spSessionPair.second.get());
 						if (passnode.nodetype() == eLocalServer)
 						{
 							if (IntPtr == passnode.receivesessionid())
@@ -217,7 +226,7 @@ void FileStatusProcessor::ProcessAns(std::shared_ptr<BaseSocketContainer> spSock
 					{
 
 
-						int IntPtr = (int)(spClientSession.get());
+						long IntPtr = (long)(spClientSession.get());
 						if (passnode.nodetype() == eLocalServer)
 						{
 							if (IntPtr == passnode.receivesessionid())

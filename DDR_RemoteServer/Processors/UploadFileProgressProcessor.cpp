@@ -47,7 +47,7 @@ void UploadFileProgressProcessor::Process(std::shared_ptr<BaseSocketContainer> s
 				}
 			}
 
-			delete preq;
+			SAFE_DELETE(preq);
 
 		}
 	}

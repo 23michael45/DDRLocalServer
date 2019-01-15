@@ -23,6 +23,7 @@ FileManager::FileManager()
 {
 
 	m_RootPath = GlobalManager::Instance()->GetLocalServerConfig().GetValue("FileCacheBaseDir");
+	CheckFiles();
 
 }
 FileManager::~FileManager()

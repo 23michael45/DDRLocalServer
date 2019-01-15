@@ -76,7 +76,7 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				auto spClientSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
 				if (spClientSession)
 				{
-					int IntPtr = (int)(spClientSession.get());
+					long IntPtr = (long)(spClientSession.get());
 					if (passnode.nodetype() == eLocalServer)
 					{
 						if (IntPtr == passnode.receivesessionid())
@@ -93,7 +93,7 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 
 				for (auto spSessionPair : map)
 				{
-					int IntPtr = (int)(spSessionPair.second.get());
+					long IntPtr = (long)(spSessionPair.second.get());
 					if (passnode.nodetype() == eLocalServer)
 					{
 						if (IntPtr == passnode.receivesessionid())
