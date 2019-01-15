@@ -128,6 +128,9 @@ public:
 		AddCommand("sls", std::bind(&_ConsoleDebug::SelectLS, this));
 
 		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
+
+		AddCommand("playwav", std::bind(&_ConsoleDebug::PlayAudio, this));
+
 	}
 	void ListClientConnection()
 	{
@@ -157,6 +160,20 @@ public:
 	{
 
 		GlobalManager::Instance()->StopAudioClient();
+	}
+	void PlayAudio()
+	{
+		DebugLog("Call Audio");
+		auto spreq = std::make_shared<reqCmdAudio>();
+		spreq->set_audiop(reqCmdAudio_eAudioOperational_eStart);
+		spreq->set_level(0);
+		//spreq->set_type(reqCmdAudio_eAudioMode_eTTS);
+		//spreq->set_audiostr("123454ºÃÈËºº×Öbig bell");
+		spreq->set_type(reqCmdAudio_eAudioMode_eFile);
+		spreq->set_audiostr("alarm.wav");
+
+		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
+		spreq.reset();
 	}
 	void RequestFile()
 	{
