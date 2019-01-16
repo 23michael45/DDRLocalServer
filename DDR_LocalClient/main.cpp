@@ -130,6 +130,13 @@ public:
 		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
 
 		AddCommand("playwav", std::bind(&_ConsoleDebug::PlayAudio, this));
+		AddCommand("stophb", std::bind(&_ConsoleDebug::StopHeartBeat, this));
+
+
+
+		AddCommand("startsend", std::bind(&_ConsoleDebug::StartSend, this));
+		AddCommand("stopsend", std::bind(&_ConsoleDebug::StopSend, this));
+	
 
 	}
 	void ListClientConnection()
@@ -335,6 +342,50 @@ public:
 		}
 	}
 
+	void StopHeartBeat()
+	{
+		auto sp = GlobalManager::Instance()->GetTcpClient();
+		auto spLocalTcpClient = dynamic_pointer_cast<LocalTcpClient>(sp);
+		if (spLocalTcpClient)
+		{
+			spLocalTcpClient->StopHeartBeat();
+		}
+	}
+
+
+
+
+	DDRFramework::Timer m_Timer;
+	DDRFramework::timer_id m_HeartBeatTimerID;
+	void StartSend()
+	{
+		m_HeartBeatTimerID = m_Timer.add(std::chrono::milliseconds(50), std::bind(&_ConsoleDebug::SendOnce, this, std::placeholders::_1), std::chrono::milliseconds(1));
+	}
+	void SendOnce(timer_id id)
+	{
+		printf_s("\nSend Alarm");
+		auto spSession = GlobalManager::Instance()->GetTcpClient()->GetConnectedSession();
+		if (spSession)
+		{
+
+			auto spreq = std::make_shared<reqCmdMove>();
+			//spreq->set_type(eCltType::eLSMStreamRelay);
+			spreq->set_line_speed(100);
+			spreq->set_angulau_speed(200);
+			//spreq->set_whatever("0");
+			spSession->Send(spreq);
+			spreq.reset();
+		}
+		else
+		{
+			printf_s("\nClient Not Connection");
+		}
+	}
+	void StopSend()
+	{
+
+		m_Timer.remove(m_HeartBeatTimerID);
+	}
 };
 
 int main()

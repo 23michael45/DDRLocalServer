@@ -359,6 +359,7 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="Client\AlarmProcessor.cpp" />
     <ClCompile Include="Client\AudioTcpClient.cpp" />
+    <ClCompile Include="Client\CmdMoveProcessor.cpp" />
     <ClCompile Include="Client\FileAddressProcessor.cpp" />
     <ClCompile Include="Client\GlobalManager.cpp" />
     <ClCompile Include="Client\LocalClientDispatcher.cpp" />
@@ -540,6 +541,7 @@ rem xcopy /Y $(SolutionDir)DDR_LocalClient\Config\*.*   $(SolutionDir)x64\Releas
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
     <ClInclude Include="Client\AlarmProcessor.h" />
     <ClInclude Include="Client\AudioTcpClient.h" />
+    <ClInclude Include="Client\CmdMoveProcessor.h" />
     <ClInclude Include="Client\FileAddressProcessor.h" />
     <ClInclude Include="Client\GlobalManager.h" />
     <ClInclude Include="Client\LocalClientDispatcher.h" />

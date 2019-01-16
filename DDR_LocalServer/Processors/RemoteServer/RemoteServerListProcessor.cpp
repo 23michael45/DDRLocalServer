@@ -28,15 +28,15 @@ void RemoteServerListProcessor::Process(std::shared_ptr<BaseSocketContainer> spS
 	rspRemoteServerList* pRaw = reinterpret_cast<rspRemoteServerList*>(spMsg.get());
 
 	auto servers = pRaw->servers();
+	std::vector<DDRCommProto::rspRemoteServerList_RemoteServer> serverVec;
 	for (auto server : servers)
 	{
+		serverVec.push_back(server);
 		DebugLog("Get Server:%s", server.ip().c_str());
 	}
 	if (servers.size() > 0)
 	{
-		auto server = servers[0];
-		LSClientManager::Instance()->CloseBroadcastServer();
-		LSClientManager::Instance()->TcpConnect(server.ip(),std::to_string(server.port()));
+		LSClientManager::Instance()->CloseBroadcastServer(serverVec);
 	}
 }
 

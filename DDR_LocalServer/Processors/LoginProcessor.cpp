@@ -38,8 +38,22 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 		bool b = DBManager::Instance()->VerifyUser(name, pwd);
 		if (b)
 		{
-			sprsp->set_yourrole(pRaw->type());
+			sprsp->set_yourrole(type);
 			sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+
+			//if (GlobalManager::Instance()->GetTcpServer()->GetSessionByTypeName(type, name))//this user already login
+			//{
+
+			//	sprsp->set_retcode(rspLogin_eLoginRetCode_server_limit_reached);
+			//	closeSession = true;
+			//}
+			//else
+			//{
+
+			//	sprsp->set_yourrole(type);
+			//	sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+
+			//}
 		}
 		else
 		{
@@ -54,7 +68,19 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 		if (b)
 		{
 
-			sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+			if (GlobalManager::Instance()->GetTcpServer()->GetSessionByTypeName(type, name))//this user already login
+			{
+
+				sprsp->set_retcode(rspLogin_eLoginRetCode_server_limit_reached);
+				closeSession = true;
+			}
+			else
+			{
+
+				sprsp->set_yourrole(type);
+				sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+
+			}
 		}
 		else
 		{

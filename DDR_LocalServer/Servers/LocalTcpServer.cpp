@@ -68,10 +68,23 @@ void LocalTcpServer::OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spC
 {
 	TcpServerBase::OnSessionDisconnect(spContainer);
 	auto spClientSession = dynamic_pointer_cast<LocalServerTcpSession>(spContainer);
-	auto info = spClientSession->GetLoginInfo();
-	RemoveSessionType(info.type(), info.username());
+	
+	if (spClientSession)
+	{
+		auto info = spClientSession->GetLoginInfo();
+		RemoveSessionType(info.type(), info.username());
+
+		spClientSession->DoFinishStop();
+	}
+
+
+
 }
 
+void LocalTcpServer::DelayAddSessionType(eCltType type, std::string sname, std::shared_ptr<LocalServerTcpSession> sp)
+{
+	AddSessionType(type, sname, sp);
+}
 void LocalTcpServer::AddSessionType(eCltType type, std::string sname, std::shared_ptr<LocalServerTcpSession> sp)
 {
 	if (m_TypeSessionMap.find(type) == m_TypeSessionMap.end())
@@ -79,13 +92,21 @@ void LocalTcpServer::AddSessionType(eCltType type, std::string sname, std::share
 		auto spMap = std::make_shared<std::map<std::string, std::shared_ptr<LocalServerTcpSession>>>();
 		m_TypeSessionMap.insert(make_pair(type, spMap));
 	}
-	auto spMap = m_TypeSessionMap[type];
+	auto& spMap = m_TypeSessionMap[type];
 	if (spMap->find(sname) == spMap->end())
 	{
 		spMap->insert(make_pair(sname, sp));
 	}
 	else
 	{
+		auto spold = spMap->at(sname);
+		spold->Stop();//stop will remove it from map , insert new session after stop finish
+
+
+		function<void()> bf;
+		bf = std::bind(&LocalTcpServer::DelayAddSessionType,shared_from_base(), type, sname, sp);
+		spold->BindDelayAddFunc(bf);
+
 		DebugLog("Add LocalServerTcpSession of type:%i name:%s already Exist", type, sname.c_str());
 	}
 }
@@ -94,7 +115,7 @@ void LocalTcpServer::RemoveSessionType(eCltType type, std::string sname)
 {
 	if (m_TypeSessionMap.find(type) != m_TypeSessionMap.end())
 	{
-		auto spMap = m_TypeSessionMap[type];
+		auto& spMap = m_TypeSessionMap[type];
 		if (spMap->find(sname) != spMap->end())
 		{
 			spMap->erase(sname);
@@ -123,5 +144,22 @@ std::shared_ptr<LocalServerTcpSession> LocalTcpServer::GetSessionByType(eCltType
 		}
 	}
 	return nullptr;
+}
+
+std::shared_ptr<LocalServerTcpSession> LocalTcpServer::GetSessionByTypeName(eCltType type, std::string sname)
+{
+	if (m_TypeSessionMap.find(type) == m_TypeSessionMap.end())
+	{
+		return nullptr;
+	}
+	auto& spMap = m_TypeSessionMap[type];
+	if (spMap->find(sname) != spMap->end())
+	{
+		return spMap->at(sname);
+	}
+	else
+	{
+		return nullptr;
+	}
 }
 

@@ -103,7 +103,8 @@ public:
 		AddCommand("ls sc", std::bind(&_ConsoleDebug::ListServerConnections, this));
 		AddCommand("ls cc", std::bind(&_ConsoleDebug::ListClientConnections, this));
 		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
-		AddCommand("upf", std::bind(&_ConsoleDebug::UploadFile, this));
+		AddCommand("upf", std::bind(&_ConsoleDebug::UploadFile, this)); 	
+		AddCommand("connectremote", std::bind(&_ConsoleDebug::ConnectRemoteServer, this));
 	}
 	void ListServerConnections()
 	{
@@ -194,6 +195,8 @@ public:
 	{
 		//bool b = false;
 
+
+
 		//b = FileManager::Instance()->FileExist("D:/DevelopProj/Dadao/DDRFramework/www/1.txt");
 		//b = FileManager::Instance()->FileExist("D:/DevelopProj/Dadao/DDRFramework/www/2.txt");
 		//b = FileManager::Instance()->FileExist("http://192.168.1.1:8080/1.txt");
@@ -202,6 +205,15 @@ public:
 		TcpClientBase* p = new TcpClientBase();
 		delete p;
 		p->Connect("", "");
+
+		rspRemoteFileAddress* pp = new rspRemoteFileAddress();
+		delete pp;
+		pp->set_error("");
+	}
+
+	void ConnectRemoteServer()
+	{
+		LSClientManager::Instance()->ConnectRemoteServer();
 	}
 };
 
@@ -216,7 +228,6 @@ int main()
 	GlobalManager::Instance()->StartUdpServer();
 
 	LSClientManager::Instance()->Init();
-
 	LSClientManager::Instance()->ConnectBroadcastServer();
 
 	_ConsoleDebug::Instance()->ConsoleDebugLoop();

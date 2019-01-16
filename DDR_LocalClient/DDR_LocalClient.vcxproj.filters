@@ -640,6 +640,9 @@
     <ClCompile Include="Client\RemoteFileAddressProcessor.cpp">
       <Filter>Client</Filter>
     </ClCompile>
+    <ClCompile Include="Client\CmdMoveProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -1174,6 +1177,9 @@
       <Filter>Client</Filter>
     </ClInclude>
     <ClInclude Include="Client\RemoteFileAddressProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\CmdMoveProcessor.h">
       <Filter>Client</Filter>
     </ClInclude>
   </ItemGroup>

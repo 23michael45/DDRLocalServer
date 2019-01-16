@@ -19,7 +19,23 @@ public:
 	auto shared_from_base() {
 		return std::static_pointer_cast<LocalServerTcpSession>(shared_from_this());
 	}
+
+	void BindDelayAddFunc(std::function<void()> func)
+	{
+		m_DelayAddSessionFunc = func;
+	}
+
+	void DoFinishStop()
+	{
+		if (m_DelayAddSessionFunc)
+		{
+			m_DelayAddSessionFunc();
+		}
+	}
+
 protected:
+
+	std::function<void()> m_DelayAddSessionFunc;
 	reqLogin m_reqLoginInfo;//Login Information
 };
 
@@ -40,6 +56,7 @@ public:
 	void AddSessionType(eCltType type, std::string sname, std::shared_ptr<LocalServerTcpSession> sp);
 	void RemoveSessionType(eCltType type, std::string sname);
 	std::shared_ptr<LocalServerTcpSession> GetSessionByType(eCltType type);
+	std::shared_ptr<LocalServerTcpSession> GetSessionByTypeName(eCltType type, std::string sname);
 
 
 	auto shared_from_base() {
@@ -47,6 +64,9 @@ public:
 	}
 
 protected:
+
+	void DelayAddSessionType(eCltType type, std::string sname, std::shared_ptr<LocalServerTcpSession> sp);
+
 	std::map<eCltType, std::shared_ptr<std::map<std::string, std::shared_ptr<LocalServerTcpSession>>>> m_TypeSessionMap;
 };
 

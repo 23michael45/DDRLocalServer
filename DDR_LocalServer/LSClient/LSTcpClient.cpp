@@ -30,7 +30,6 @@ void LSTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 	DebugLog("OnConnectSuccess! LSTcpClient");
 	RegisteToRemote();
 
-
 }
 void LSTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {

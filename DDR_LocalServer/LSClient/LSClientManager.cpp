@@ -38,10 +38,22 @@ void LSClientManager::ConnectBroadcastServer()
 	
 }
 
-void LSClientManager::CloseBroadcastServer()
+void LSClientManager::CloseBroadcastServer(std::vector<DDRCommProto::rspRemoteServerList_RemoteServer> servers)
 {
+	m_Servers = servers;
 	if (m_spLSBroadcastReceiveTcpClient)
 	{
 		m_spLSBroadcastReceiveTcpClient->Stop();
 	}
 }
+
+void LSClientManager::ConnectRemoteServer()
+{
+	if (m_Servers.size() > 0)
+	{
+		auto server = m_Servers[0];
+		TcpConnect(server.ip(), std::to_string(server.port()));
+
+	}
+}
+

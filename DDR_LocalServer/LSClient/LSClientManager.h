@@ -20,11 +20,12 @@ public:
 
 	virtual void Init() override;
 	void ConnectBroadcastServer();
-	void CloseBroadcastServer();
+	void CloseBroadcastServer(std::vector<DDRCommProto::rspRemoteServerList_RemoteServer> servers);
+	void ConnectRemoteServer();
 
+	std::vector<DDRCommProto::rspRemoteServerList_RemoteServer> m_Servers;
 
 	std::shared_ptr <LSBroadcastReceiveTcpClient> m_spLSBroadcastReceiveTcpClient;
-
 
 
 	std::string m_ServerIP;

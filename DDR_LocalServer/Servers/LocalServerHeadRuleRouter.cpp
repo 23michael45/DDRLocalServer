@@ -56,14 +56,19 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 			//Client Session Operation(To Remote Server)
 			if ((eAllClient & toType) != 0)
 			{
-				auto spClientSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
-				if (spClientSession)
+				auto spTcp = LSClientManager::Instance()->GetTcpClient();
+				if (spTcp)
 				{
-					spClientSession->Send(spHeader, buf, bodylen);
+					auto spClientSession = spTcp->GetConnectedSession();
+					if (spClientSession)
+					{
+						spClientSession->Send(spHeader, buf, bodylen);
+					}
+
 				}
 			}
 
-
+			return true;
 		}
 		else if (spHeader->flowdirection(0) == CommonHeader_eFlowDir_Backward)
 		{
@@ -73,17 +78,22 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 			{
 
 				//Client Session Operation(To Remote Server)
-				auto spClientSession = LSClientManager::Instance()->GetTcpClient()->GetConnectedSession();
-				if (spClientSession)
+				auto spTcp = LSClientManager::Instance()->GetTcpClient();
+				if (spTcp)
 				{
-					size_t IntPtr = (size_t)(spClientSession.get());
-					if (passnode.nodetype() == eLocalServer)
+					auto spClientSession = spTcp->GetConnectedSession();
+					if (spClientSession)
 					{
-						if (IntPtr == passnode.receivesessionid())
+						size_t IntPtr = (size_t)(spClientSession.get());
+						if (passnode.nodetype() == eLocalServer)
 						{
-							spClientSession->Send(spHeader, buf, bodylen);
+							if (IntPtr == passnode.receivesessionid())
+							{
+								spClientSession->Send(spHeader, buf, bodylen);
+							}
 						}
 					}
+
 				}
 
 
@@ -112,7 +122,11 @@ bool LocalServerHeadRuleRouter::IgnoreBody(std::shared_ptr<BaseSocketContainer> 
 				DebugLog("Router Info from CommonHeader Error");
 			}
 
+			return true;
 		}
+
+
+		return false;
 	}
 	else
 	{
