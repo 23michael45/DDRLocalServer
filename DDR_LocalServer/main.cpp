@@ -104,7 +104,8 @@ public:
 		AddCommand("ls cc", std::bind(&_ConsoleDebug::ListClientConnections, this));
 		AddCommand("py", std::bind(&_ConsoleDebug::RunPython, this));
 		AddCommand("upf", std::bind(&_ConsoleDebug::UploadFile, this)); 	
-		AddCommand("connectremote", std::bind(&_ConsoleDebug::ConnectRemoteServer, this));
+		AddCommand("con remote", std::bind(&_ConsoleDebug::ConnectRemoteServer, this));
+		AddCommand("dis remote", std::bind(&_ConsoleDebug::DisconnectRemoteServer, this));
 	}
 	void ListServerConnections()
 	{
@@ -214,6 +215,10 @@ public:
 	void ConnectRemoteServer()
 	{
 		LSClientManager::Instance()->ConnectRemoteServer();
+	}
+	void DisconnectRemoteServer()
+	{
+		LSClientManager::Instance()->GetTcpClient()->Stop();
 	}
 };
 

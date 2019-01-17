@@ -357,13 +357,31 @@ public:
 
 	DDRFramework::Timer m_Timer;
 	DDRFramework::timer_id m_HeartBeatTimerID;
+	int m_SendTimes;
+	int m_TotalTimes;
 	void StartSend()
 	{
-		m_HeartBeatTimerID = m_Timer.add(std::chrono::milliseconds(50), std::bind(&_ConsoleDebug::SendOnce, this, std::placeholders::_1), std::chrono::milliseconds(1));
+		auto vec = split(m_CurrentCmd, ':');
+		if (vec.size() == 2)
+		{
+			m_TotalTimes = atoi(vec[1].c_str());
+			m_SendTimes = 0;
+			m_HeartBeatTimerID = m_Timer.add(std::chrono::milliseconds(50), std::bind(&_ConsoleDebug::SendOnce, this, std::placeholders::_1), std::chrono::milliseconds(1));
+		}
+		else
+		{
+			m_HeartBeatTimerID = m_Timer.add(std::chrono::milliseconds(50), std::bind(&_ConsoleDebug::SendOnce, this, std::placeholders::_1), std::chrono::milliseconds(1));
+		}
 	}
 	void SendOnce(timer_id id)
 	{
-		printf_s("\nSend Alarm");
+		m_SendTimes++;
+		if (m_SendTimes > m_TotalTimes)
+		{
+			StopSend();
+			return;
+		}
+		printf_s("\nSend Once");
 		auto spSession = GlobalManager::Instance()->GetTcpClient()->GetConnectedSession();
 		if (spSession)
 		{
@@ -373,7 +391,13 @@ public:
 			spreq->set_line_speed(100);
 			spreq->set_angulau_speed(200);
 			//spreq->set_whatever("0");
-			spSession->Send(spreq);
+
+
+			auto spheader = std::make_shared<CommonHeader>();
+			spheader->set_fromclttype(eLocalPCClient);
+			spheader->set_toclttype(eLSMStreamRelay);
+			spheader->add_flowdirection(CommonHeader_eFlowDir_Forward);
+			spSession->Send(spheader,spreq);
 			spreq.reset();
 		}
 		else
