@@ -24,10 +24,8 @@ public:
 
 	virtual void OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spContainer) override;
 
+	SHARED_FROM_BASE(BroadcastTcpServer)
 
-	auto shared_from_base() {
-		return std::static_pointer_cast<BroadcastTcpServer>(shared_from_this());
-	}
 };
 
 #endif // BroadcastServerTcpServer_h__

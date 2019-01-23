@@ -17,9 +17,9 @@ public:
 	TcpAudioClientSession(asio::io_context& context);
 	~TcpAudioClientSession();
 
-	auto shared_from_base() {
-		return std::static_pointer_cast<TcpAudioClientSession>(shared_from_this());
-	}
+
+	SHARED_FROM_BASE(TcpAudioClientSession)
+
 	virtual void OnStart() override;
 	virtual void OnStop() override;
 
@@ -43,10 +43,7 @@ public:
 
 	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
 
-
-	auto shared_from_base() {
-		return std::dynamic_pointer_cast<AudioTcpClient>(shared_from_this());
-	}
+	SHARED_FROM_BASE(AudioTcpClient)
 
 
 

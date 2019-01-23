@@ -16,9 +16,7 @@ public:
 	void AssignLoginInfo(reqLogin info);
 	reqLogin& GetLoginInfo();
 
-	auto shared_from_base() {
-		return std::static_pointer_cast<LocalServerTcpSession>(shared_from_this());
-	}
+	SHARED_FROM_BASE(LocalServerTcpSession)
 
 	void BindDelayAddFunc(std::function<void()> func)
 	{
@@ -58,10 +56,7 @@ public:
 	std::shared_ptr<LocalServerTcpSession> GetSessionByType(eCltType type);
 	std::shared_ptr<LocalServerTcpSession> GetSessionByTypeName(eCltType type, std::string sname);
 
-
-	auto shared_from_base() {
-		return std::static_pointer_cast<LocalTcpServer>(shared_from_this());
-	}
+	SHARED_FROM_BASE(LocalTcpServer)
 
 protected:
 

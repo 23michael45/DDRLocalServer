@@ -46,9 +46,7 @@ public:
 		return m_SessionType;
 	}
 
-	auto shared_from_base() {
-		return std::static_pointer_cast<RemoteServerTcpSession>(shared_from_this());
-	}
+	SHARED_FROM_BASE(RemoteServerTcpSession)
 protected:
 	reqRegisteLS m_reqRegisteLS;//as LS Session Information
 	std::map <std::string, std::shared_ptr<RemoteServerTcpSession>> m_BindClientMap;
@@ -75,10 +73,7 @@ public:
 
 	virtual void OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> spContainer) override;
 
-
-	auto shared_from_base() {
-		return std::static_pointer_cast<RemoteTcpServer>(shared_from_this());
-	}
+	SHARED_FROM_BASE(RemoteTcpServer)
 
 
 	std::map<std::string, std::shared_ptr<RemoteServerTcpSession>>& GetLSMap();

@@ -20,10 +20,7 @@ public:
 
 	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
 
-	auto shared_from_base() {
-		return std::dynamic_pointer_cast<LSTcpClient>(shared_from_this());
-	}
-
+	SHARED_FROM_BASE(LSTcpClient)
 
 	void StartHeartBeat();
 	void StopHeartBeat();
@@ -52,9 +49,7 @@ public:
 
 	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
 
-	auto shared_from_base() {
-		return std::dynamic_pointer_cast<LSBroadcastReceiveTcpClient>(shared_from_this());
-	}
+	SHARED_FROM_BASE(LSBroadcastReceiveTcpClient)
 
 };
 
