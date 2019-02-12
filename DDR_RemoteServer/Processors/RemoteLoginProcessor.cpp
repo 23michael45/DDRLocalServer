@@ -22,6 +22,7 @@ RemoteLoginProcessor::~RemoteLoginProcessor()
 void RemoteLoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 
+	bool closeSession = false;
 	reqRemoteLogin* pRaw = reinterpret_cast<reqRemoteLogin*>(spMsg.get());
 	if (pRaw)
 	{
@@ -59,11 +60,17 @@ void RemoteLoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 		else
 		{
 			sprsp->set_retcode(rspRemoteLogin_eRemoteLoginRetCode_incorrect_password);
-
+			closeSession = true;
 		}
 
 
 		spSockContainer->Send(sprsp);
+
+
+		if (closeSession)
+		{
+			spSockContainer->GetTcp()->Stop();
+		}
 	}
 
 

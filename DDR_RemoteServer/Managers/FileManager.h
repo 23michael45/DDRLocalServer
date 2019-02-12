@@ -1,7 +1,6 @@
 #ifndef FileManager_h__
 #define FileManager_h__
 
-#include <filesystem>
 #include <vector>
 #include <string>
 #include "../../../Shared/src/Utility/Singleton.h"
