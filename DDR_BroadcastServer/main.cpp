@@ -32,6 +32,7 @@ using namespace std;
 
 #include "../../Shared/src/Utility/Logger.h"
 #include <regex>
+#include "Version.h"
 
 using namespace std;
 
@@ -42,6 +43,14 @@ public:
 	_ConsoleDebug()
 	{
 		AddCommand("ls sc", std::bind(&_ConsoleDebug::ListServerConnections, this));
+		AddCommand("ver", std::bind(&_ConsoleDebug::PrintVersion, this));
+	}
+	void PrintVersion()
+	{
+		printf_s("\nBuild Time:%s", g_BuildTime.c_str());
+		printf_s("\nBuild Version:%s", g_Version.c_str());
+		printf_s("\nBuild Mode:%s", g_DMode.c_str());
+
 	}
 	void ListServerConnections()
 	{

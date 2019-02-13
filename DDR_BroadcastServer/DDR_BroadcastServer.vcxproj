@@ -127,6 +127,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)../../Shared/tools/version/DDRVersionTools.exe compile-time Version.h 2</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -176,6 +179,9 @@
       <Command>xcopy /Y $(SolutionDir)DDR_LocalServer\*.db   $(SolutionDir)x64\Release\
 xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Config\</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(ProjectDir)../../Shared/tools/version/DDRVersionTools.exe compile-time Version.h 2</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\proto\BaseCmd.pb.cc" />
@@ -299,6 +305,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Processors\RemoteServerListProcessor.h" />
     <ClInclude Include="Servers\BroadcastServerDispatcher.h" />
     <ClInclude Include="Servers\BroadcastServerTcpServer.h" />
+    <ClInclude Include="Version.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\thirdparty\protobuf\src\google\protobuf\arena.cc" />

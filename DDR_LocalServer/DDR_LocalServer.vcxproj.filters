@@ -79,7 +79,7 @@
     <Filter Include="Shared\Thirdparty\protobuf\src">
       <UniqueIdentifier>{a3972fa2-323f-4d5b-a130-6df722cd3b1b}</UniqueIdentifier>
     </Filter>
-	<Filter Include="Shared\Thirdparty\protobuf\include">
+    <Filter Include="Shared\Thirdparty\protobuf\include">
       <UniqueIdentifier>{a3972fa2-345f-4d5b-a130-6df7823d3bca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -1020,6 +1020,7 @@
     <ClInclude Include="Processors\RemoteServer\UploadFileProcessor.h">
       <Filter>Processors\RemoteServer</Filter>
     </ClInclude>
+    <ClInclude Include="Version.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Thirdparty\protobuf\src\google\protobuf\arena.cc">

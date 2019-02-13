@@ -26,6 +26,7 @@ using namespace std;
 #endif
 #include <cppfs/FilePath.h>
 #include "Managers/FileManager.h"
+#include "Version.h"
 
 
 char gQuit = 0;
@@ -106,6 +107,14 @@ public:
 		AddCommand("upf", std::bind(&_ConsoleDebug::UploadFile, this)); 	
 		AddCommand("con remote", std::bind(&_ConsoleDebug::ConnectRemoteServer, this));
 		AddCommand("dis remote", std::bind(&_ConsoleDebug::DisconnectRemoteServer, this));
+		AddCommand("ver", std::bind(&_ConsoleDebug::PrintVersion, this));
+	}
+	void PrintVersion()
+	{
+		printf_s("\nBuild Time:%s", g_BuildTime.c_str());
+		printf_s("\nBuild Version:%s", g_Version.c_str());
+		printf_s("\nBuild Mode:%s", g_DMode.c_str());
+		
 	}
 	void ListServerConnections()
 	{

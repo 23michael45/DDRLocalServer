@@ -45,17 +45,17 @@
     </Filter>
     <Filter Include="Shared\Thirdparty\cppfs">
       <UniqueIdentifier>{a3333c2d-be43-4ccf-87fd-2dbd03500b33}</UniqueIdentifier>
-    </Filter>  
-	<Filter Include="Shared\Thirdparty\cppfs\windows">
+    </Filter>
+    <Filter Include="Shared\Thirdparty\cppfs\windows">
       <UniqueIdentifier>{a3333c2d-be43-4ccf-87fd-245603500b33}</UniqueIdentifier>
     </Filter>
-	<Filter Include="Shared\Thirdparty\protobuf">
+    <Filter Include="Shared\Thirdparty\protobuf">
       <UniqueIdentifier>{a3972fa2-343f-4d5b-a120-6df722cd3b1a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shared\Thirdparty\protobuf\src">
       <UniqueIdentifier>{a3972fa2-323f-4d5b-a130-6df722cd3b1b}</UniqueIdentifier>
     </Filter>
-	<Filter Include="Shared\Thirdparty\protobuf\include">
+    <Filter Include="Shared\Thirdparty\protobuf\include">
       <UniqueIdentifier>{a3972fa2-345f-4d5b-a130-6df7823d3bca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -205,7 +205,7 @@
     <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\Tree.cpp">
       <Filter>Shared\Thirdparty\cppfs</Filter>
     </ClCompile>
-	<ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp">
+    <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp">
       <Filter>Shared\Thirdparty\cppfs\windows</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileIterator.cpp">
@@ -390,7 +390,7 @@
     <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\Tree.h">
       <Filter>Shared\Thirdparty\cppfs</Filter>
     </ClInclude>
-	<ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\windows\LocalFileHandle.h">
+    <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\windows\LocalFileHandle.h">
       <Filter>Shared\Thirdparty\cppfs\windows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\thirdparty\cppfs\include\cppfs\windows\LocalFileIterator.h">
@@ -417,6 +417,7 @@
     <ClInclude Include="Processors\RemoteServerListProcessor.h">
       <Filter>Processors</Filter>
     </ClInclude>
+    <ClInclude Include="Version.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Thirdparty\protobuf\src\google\protobuf\arena.cc">
