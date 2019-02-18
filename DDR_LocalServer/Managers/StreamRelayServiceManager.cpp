@@ -57,6 +57,7 @@ std::vector<AVChannelConfig> StreamRelayServiceManager::GetAVChannelsConfig()
 		channel.set_rate(config.GetValue<int>(i, "Rate"));
 		channel.set_src(config.GetValue(i, "SrcAddress"));
 		channel.set_dst(config.GetValue(i, "RemoteAddress"));
+		channel.set_srcname(config.GetValue(i, "SrcName"));
 
 
 		channelvec.push_back(channel);

@@ -46,6 +46,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 					pChannel->set_streamtype(ChannelStreamType::Video);
 					pChannel->set_networktype(channel.networktype());
 					pChannel->set_rate(channel.rate());
+					pChannel->set_srcname(channel.srcname());
 
 				}
 				else if (channel.streamtype() == ChannelStreamType::VideoAudio)
@@ -56,6 +57,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 					pChannel->set_streamtype(ChannelStreamType::VideoAudio);
 					pChannel->set_networktype(channel.networktype());
 					pChannel->set_rate(channel.rate());
+					pChannel->set_srcname(channel.srcname());
 
 				}
 				else if (channel.streamtype() == ChannelStreamType::Audio)
@@ -70,6 +72,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 					pChannel->set_streamtype(ChannelStreamType::Audio);
 					pChannel->set_networktype(channel.networktype());
 					pChannel->set_rate(channel.rate());
+					pChannel->set_srcname(channel.srcname());
 
 				}
 			}
@@ -98,6 +101,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 					pChannel->set_streamtype(channel.streamtype());
 					pChannel->set_networktype(channel.networktype());
 					pChannel->set_rate(channel.rate());
+					pChannel->set_srcname(channel.srcname());
 
 				}
 			}

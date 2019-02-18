@@ -40,6 +40,8 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 
 							std::string ip = channel.srcaddr();
 							int port = channel.srcport(0);
+							std::string srcname = channel.srcname();
+							DebugLog("StreamAddrProcessor %s", srcname.c_str());
 							GlobalManager::Instance()->StartAudioClient(ip, port);
 
 						}
