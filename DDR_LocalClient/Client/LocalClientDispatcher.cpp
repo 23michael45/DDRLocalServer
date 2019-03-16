@@ -15,6 +15,7 @@
 #include "SelectLSProcessor.h"
 #include "UnselectLSProcessor.h"
 #include "CmdMoveProcessor.h"
+#include "AudioTalkProcessor.h"
 #endif
 using namespace DDRCommProto;
 using namespace DDRFramework;
@@ -28,6 +29,7 @@ LocalClientDispatcher::LocalClientDispatcher()
 			RegisterProcessor(rsp, RemoteFileAddress)
 			RegisterProcessor(rsp, RemoteLogin)
 			RegisterProcessor(rsp, CmdMove)
+			RegisterProcessor(rsp, AudioTalk)
 
 
 			RegisterProcessor(rsp, SelectLS)

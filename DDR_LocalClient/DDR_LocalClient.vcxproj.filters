@@ -43,13 +43,13 @@
     <Filter Include="Shared\Thirdparty\curl-asio">
       <UniqueIdentifier>{5182c6c9-6284-4c12-8532-ddcd5b92e433}</UniqueIdentifier>
     </Filter>
-	<Filter Include="Shared\Thirdparty\protobuf">
+    <Filter Include="Shared\Thirdparty\protobuf">
       <UniqueIdentifier>{a3972fa2-343f-4d5b-a120-6df722cd3b1a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shared\Thirdparty\protobuf\src">
       <UniqueIdentifier>{a3972fa2-323f-4d5b-a130-6df722cd3b1b}</UniqueIdentifier>
     </Filter>
-	<Filter Include="Shared\Thirdparty\protobuf\include">
+    <Filter Include="Shared\Thirdparty\protobuf\include">
       <UniqueIdentifier>{a3972fa2-345f-4d5b-a130-6df7823d3bca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -652,6 +652,9 @@
     <ClCompile Include="Client\CmdMoveProcessor.cpp">
       <Filter>Client</Filter>
     </ClCompile>
+    <ClCompile Include="Client\AudioTalkProcessor.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -1191,8 +1194,11 @@
     <ClInclude Include="Client\CmdMoveProcessor.h">
       <Filter>Client</Filter>
     </ClInclude>
+    <ClInclude Include="Client\AudioTalkProcessor.h">
+      <Filter>Client</Filter>
+    </ClInclude>
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <ClCompile Include="..\..\Shared\Thirdparty\protobuf\src\google\protobuf\arena.cc">
       <Filter>Shared\Thirdparty\protobuf\src</Filter>
     </ClCompile>
@@ -1589,7 +1595,6 @@
       <Filter>Shared\Thirdparty\protobuf\include</Filter>
     </ClInclude>
   </ItemGroup>
-  
   <ItemGroup>
     <None Include="..\..\Shared\thirdparty\curl\lib\Makefile.inc">
       <Filter>Shared\Thirdparty\curl\lib</Filter>

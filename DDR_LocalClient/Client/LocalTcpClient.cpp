@@ -32,8 +32,8 @@ void LocalTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer
 	auto spreq = std::make_shared<reqLogin>();
 	spreq->set_username("LocalTcpClient_XX");
 	spreq->set_type(eLocalPCClient);
-	spreq->set_username("admin");
-	spreq->set_userpwd("admin");
+	spreq->set_username("pc2");
+	spreq->set_userpwd("1234");
 
 	if (IsConnected())
 	{

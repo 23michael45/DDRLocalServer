@@ -110,6 +110,8 @@ public:
 	{
 		AddCommand("ls cc", std::bind(&_ConsoleDebug::ListClientConnection, this));
 		AddCommand("castart", std::bind(&_ConsoleDebug::StartAudio, this));
+		AddCommand("talkstart", std::bind(&_ConsoleDebug::StartTalk, this));
+		AddCommand("talkstop", std::bind(&_ConsoleDebug::StopTalk, this));
 		AddCommand("castop", std::bind(&_ConsoleDebug::StopAudio, this));
 
 		AddCommand("reqf", std::bind(&_ConsoleDebug::RequestFile, this));
@@ -162,9 +164,30 @@ public:
 		
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
+
+		
+	}
+	void StartTalk()
+	{
+		auto sp = std::make_shared<reqAudioTalk>();
+		sp->set_optype(reqAudioTalk_eOpMode_eStart);
+
+		GlobalManager::Instance()->GetTcpClient()->Send(sp);
+		sp.reset();
+
+	}
+	void StopTalk()
+	{
+
+		auto sp = std::make_shared<reqAudioTalk>();
+		sp->set_optype(reqAudioTalk_eOpMode_eStop);
+
+		GlobalManager::Instance()->GetTcpClient()->Send(sp);
+		sp.reset();
 	}
 	void StopAudio()
 	{
+
 
 		GlobalManager::Instance()->StopAudioClient();
 	}
@@ -298,25 +321,54 @@ public:
 
 	void SendCmd()
 	{
-		auto spreq = std::make_shared<reqCmdMove>();
-		spreq->set_line_speed(100);
-		spreq->set_angulau_speed(200);
+		//auto spreq = std::make_shared<reqCmdMove>();
+		//spreq->set_line_speed(100);
+		//spreq->set_angulau_speed(200);
 
 
-		auto spheader = std::make_shared<CommonHeader>();
-		GlobalManager::Instance()->GetTcpClient()->Send(spheader,spreq);
-		spreq.reset();
+		//auto spheader = std::make_shared<CommonHeader>();
+		//GlobalManager::Instance()->GetTcpClient()->Send(spheader,spreq);
+		//spreq.reset();
+
+		while (true)
+		{
+			StartAudio();
+
+			std::this_thread::sleep_for(chrono::milliseconds(500));
+
+			StartTalk();
+
+			std::this_thread::sleep_for(chrono::milliseconds(5000));
+			StopTalk();
+
+			std::this_thread::sleep_for(chrono::milliseconds(500));
+			StopAudio();
+
+			std::this_thread::sleep_for(chrono::milliseconds(500));
+
+		}
 	}
 
 	void SendCmdMove()
 	{
-		auto spreq = std::make_shared<reqCmdMove>();
-		spreq->set_line_speed(100);
-		spreq->set_angulau_speed(200);
+		while (true)
+		{
+
+			std::this_thread::sleep_for(chrono::milliseconds(10));
+			auto spreq = std::make_shared<reqCmdMove>();
+			spreq->set_angulau_speed(10);
+
+			GlobalManager::Instance()->GetTcpClient()->Send(spreq);
+			spreq.reset();
+
+			char data[1024] = { 1 };
+			GlobalManager::Instance()->GetTcpClient()->Send(&data, 1024);
+
+		}
 
 
-		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
-		spreq.reset();
+		
+
 	}
 	void RunPython()
 	{
@@ -414,6 +466,7 @@ public:
 
 int main()
 {
+
 	DisableMouseSelectConsole();
 
 	InitMinDump();
