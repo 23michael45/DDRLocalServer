@@ -2,7 +2,7 @@
 #include "../../../DDRLocalServer/DDR_LocalClient/Client/LocalClientUdpDispatcher.h"
 #include "../Processors/LocalClientUdpProcessor.h"
 
-GlobalManager::GlobalManager() :m_Config("Config/VirtualServiceService/VirtualServiceConfig.xml")
+GlobalManager::GlobalManager() :m_Config("Config/VirtualService/VirtualConfig.xml")
 {
 
 }

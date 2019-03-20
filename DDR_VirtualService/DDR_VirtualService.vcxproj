@@ -543,7 +543,6 @@
     <ClInclude Include="Client\VirtualServiceTcpClient.h" />
     <ClInclude Include="Processors\LocalClientUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />
-    <ClInclude Include="Version.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Shared\thirdparty\curl\lib\Makefile.inc" />

@@ -1153,7 +1153,6 @@
     <ClInclude Include="..\..\Shared\thirdparty\curl\lib\shared.h">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClInclude>
-    <ClInclude Include="Version.h" />
     <ClInclude Include="Client\VirtualServiceTcpClient.h">
       <Filter>Client</Filter>
     </ClInclude>
