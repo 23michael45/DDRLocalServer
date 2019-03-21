@@ -33,36 +33,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	auto sprsp = std::make_shared<rspLogin>();
 
 	bool closeSession = false;
-	if (type == eCltType::eLocalPCClient)
-	{
-		bool b = DBManager::Instance()->VerifyUser(name, pwd);
-		if (b)
-		{
-			sprsp->set_yourrole(type);
-			sprsp->set_retcode(rspLogin_eLoginRetCode_success);
-
-			//if (GlobalManager::Instance()->GetTcpServer()->GetSessionByTypeName(type, name))//this user already login
-			//{
-
-			//	sprsp->set_retcode(rspLogin_eLoginRetCode_server_limit_reached);
-			//	closeSession = true;
-			//}
-			//else
-			//{
-
-			//	sprsp->set_yourrole(type);
-			//	sprsp->set_retcode(rspLogin_eLoginRetCode_success);
-
-			//}
-		}
-		else
-		{
-			sprsp->set_retcode(rspLogin_eLoginRetCode_incorrect_password);
-		
-			closeSession = true;
-		}
-	}
-	else if (type == eCltType::eLocalAndroidClient)
+	if (type == eCltType::eLocalPCClient || type == eCltType::eLocalAndroidClient)
 	{
 		bool b = DBManager::Instance()->VerifyUser(name, pwd);
 		if (b)
@@ -72,6 +43,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 			{
 
 				sprsp->set_retcode(rspLogin_eLoginRetCode_server_limit_reached);
+
 				closeSession = true;
 			}
 			else
@@ -79,6 +51,9 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 				sprsp->set_yourrole(type);
 				sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+
+				int priority = DBManager::Instance()->GetUserPriority(name);
+				sprsp->set_priority(priority);
 
 			}
 		}

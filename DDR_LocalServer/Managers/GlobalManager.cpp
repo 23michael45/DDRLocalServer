@@ -206,6 +206,24 @@ bool DBManager::VerifyUser(std::string username, std::string pwd)
 
 }
 
+int DBManager::GetUserPriority(std::string username)
+{
+	CppSQLite3Buffer bufSQL;
+	bufSQL.format("select priority from user where username = '%s';", username.c_str());
+	CppSQLite3Query q = m_DB.execQuery(bufSQL);
+	if (q.eof())
+	{
+		return -1;
+	}
+	else
+	{
+		int priority = q.getIntField("priority");
+		return priority;
+	}
+}
+
+
+
 bool DBManager::CodeSample()
 {
 	///////////////////////////////////////////////////////////////////

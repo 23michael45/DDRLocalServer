@@ -59,7 +59,7 @@ public:
 	bool Remove(std::string& filename);
 
 	bool VerifyUser(std::string username, std::string pwd); 
-	
+	int GetUserPriority(std::string username);
 
 private:
 	bool CreateUserTable();

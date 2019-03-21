@@ -37,7 +37,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 
 		}
 
-		DebugLog("--------------------------------------------Login Success:%i", retcode);
+		DebugLog("--------------------------------------------Login Success:%i Priority:%i", retcode,pRaw->priority());
 	}
 	else
 	{
