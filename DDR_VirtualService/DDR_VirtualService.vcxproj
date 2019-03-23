@@ -357,6 +357,7 @@
     <ClCompile Include="Client\LocalClientUdpDispatcher.cpp" />
     <ClCompile Include="Client\VirtualServiceTcpClient.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Processors\FileAddressProcessor.cpp" />
     <ClCompile Include="Processors\LocalClientUdpProcessor.cpp" />
     <ClCompile Include="Processors\LoginProcessor.cpp" />
   </ItemGroup>
@@ -541,6 +542,7 @@
     <ClInclude Include="Client\LocalClientDispatcher.h" />
     <ClInclude Include="Client\LocalClientUdpDispatcher.h" />
     <ClInclude Include="Client\VirtualServiceTcpClient.h" />
+    <ClInclude Include="Processors\FileAddressProcessor.h" />
     <ClInclude Include="Processors\LocalClientUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />
   </ItemGroup>

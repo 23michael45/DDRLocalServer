@@ -4,9 +4,10 @@
     <RemoteDebuggerCommand>C:\www\bin\Debug\DDR_VirtualService.exe</RemoteDebuggerCommand>
     <RemoteDebuggerCommandArguments>
     </RemoteDebuggerCommandArguments>
-    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <RemoteDebuggerWorkingDirectory>C:\www\bin\Debug</RemoteDebuggerWorkingDirectory>
     <RemoteDebuggerServerName>192.168.1.72</RemoteDebuggerServerName>
     <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)../x64/Debug</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
 </Project>

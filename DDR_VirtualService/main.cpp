@@ -166,62 +166,64 @@ public:
 	void CheckFiles() {
 
 		std::string fmt = "OneRoute*";
-		auto matchedFiles = FileManager::Instance()->MatchDir("", fmt);
-		std::vector<std::string> v;
-		for (auto dir : matchedFiles)
-		{
-			auto finalFiles = FileManager::Instance()->MatchDir(dir, "Path*");
-			for (auto f : finalFiles)
-			{
-				v.push_back(f);
-			}
-		}
+		//auto matchedFiles = FileManager::Instance()->MatchDir("OneRouteXXX", fmt);
+		//std::vector<std::string> v;
+		//for (auto dir : matchedFiles)
+		//{
+		//	auto finalFiles = FileManager::Instance()->MatchDir(dir, "bkPic.png");
+		//	for (auto f : finalFiles)
+		//	{
+		//		v.push_back(f);
+		//	}
+		//}
 
-		auto listfiles = FileManager::Instance()->CheckFiles();
+		//auto listfiles = FileManager::Instance()->CheckFiles();
 
 		//std::string fmt = "roo*\\*\\*.txt";
 		//std::string fmt = "x*/Debug/*.db";
 		//std::string fmt = "fs/*.txt";
-		//auto vec = FileManager::Instance()->Match(fmt);
-
+		fmt = "OneRoute_111\\bkPic.png";
+		//fmt = "bkPic.png";
+		auto vec = FileManager::Instance()->Match(fmt);
+		DebugLog("%s",vec[1].c_str());
 		//for (auto s : vec)
 		//{
 		//	DebugLog("%s", s.c_str());
 		//}
 
-		auto sprsp = std::make_shared<rspFileAddress>();
+		//auto sprsp = std::make_shared<rspFileAddress>();
 
 
-		auto files = FileManager::Instance()->Match(fmt);
+		//auto files = FileManager::Instance()->Match(fmt);
 
-		for (auto file : files)
-		{
-
-
-			std::string httpaddr = HttpFileServer::Instance()->GetHttpFullPath(file);
+		//for (auto file : files)
+		//{
 
 
-
-
-
-			sprsp->add_fileaddrlist(httpaddr);
+		//	std::string httpaddr = HttpFileServer::Instance()->GetHttpFullPath(file);
 
 
 
-			auto spHttpSession = std::make_shared<HttpSession>();
 
 
-			cppfs::FilePath fpath(httpaddr);
-			auto filename = fpath.fileName();
-			spHttpSession->DoGet(httpaddr, filename);
+		//	sprsp->add_fileaddrlist(httpaddr);
 
 
 
-		}
+		//	auto spHttpSession = std::make_shared<HttpSession>();
+
+
+		//	cppfs::FilePath fpath(httpaddr);
+		//	auto filename = fpath.fileName();
+		//	spHttpSession->DoGet(httpaddr, filename);
 
 
 
-		GlobalManager::Instance()->GetTcpClient()->Send(sprsp);
+		//}
+
+
+
+		//GlobalManager::Instance()->GetTcpClient()->Send(sprsp);
 
 	}
 

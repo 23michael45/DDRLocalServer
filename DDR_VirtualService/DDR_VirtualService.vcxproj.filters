@@ -608,6 +608,9 @@
     <ClCompile Include="Client\VirtualServiceTcpClient.cpp">
       <Filter>Client</Filter>
     </ClCompile>
+    <ClCompile Include="Processors\FileAddressProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h">
@@ -1155,6 +1158,9 @@
     </ClInclude>
     <ClInclude Include="Client\VirtualServiceTcpClient.h">
       <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\FileAddressProcessor.h">
+      <Filter>Processors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
