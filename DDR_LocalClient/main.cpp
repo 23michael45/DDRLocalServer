@@ -138,6 +138,9 @@ public:
 
 		AddCommand("startsend", std::bind(&_ConsoleDebug::StartSend, this));
 		AddCommand("stopsend", std::bind(&_ConsoleDebug::StopSend, this));
+
+
+		AddCommand("connects", std::bind(&_ConsoleDebug::Connects, this));
 	
 
 	}
@@ -308,12 +311,54 @@ public:
 		}
 		else if(vec.size() == 1)
 		{
+
 			GlobalManager::Instance()->StopUdp();
 			GlobalManager::Instance()->TcpConnect();
 
 		}
 
+
 	}
+
+	void Connects()
+	{
+		std::thread t(std::bind(&_ConsoleDebug::SendingThread, this, m_CurrentCmd));
+		t.detach();
+
+
+	}
+	void SendingThread(string cmd)
+	{
+		while (true)
+		{
+
+			auto vec = split(cmd, ':');
+			if (vec.size() == 3)
+			{
+				GlobalManager::Instance()->TcpConnect(vec[1], vec[2]);
+			}
+			else if (vec.size() == 1)
+			{
+				GlobalManager::Instance()->TcpConnect();
+
+			}
+			DebugLog("Connect")
+
+			std::this_thread::sleep_for(chrono::milliseconds(5000));
+
+
+
+			auto spClient = GlobalManager::Instance()->GetTcpClient();
+			spClient->Disconnect(spClient->GetConnectedSession());
+
+			DebugLog("Disconnect")
+			std::this_thread::sleep_for(chrono::milliseconds(500));
+		}
+
+
+	}
+
+	
 	void HttpGet()
 	{
 
