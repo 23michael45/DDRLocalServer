@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "../../../Shared/proto/BaseCmd.pb.h"
+#include "../../proto/RemoteCmd.pb.h"
 #include "RemoteServerListProcessor.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"

@@ -4,6 +4,8 @@
 
 #include "../../../Shared/src/Network/TcpServerBase.h"
 #include "../../../Shared/src/Utility/Singleton.h"
+
+#include "../../proto/RemoteCmd.pb.h"
 using namespace DDRFramework;
 
 

@@ -748,6 +748,15 @@
     <ClCompile Include="Processors\RemoteServer\UploadFileProcessor.cpp">
       <Filter>Processors\RemoteServer</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Shared\proto\RemoteCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\RemoteServer\RtspStreamUploadAddrProcessor.cpp">
+      <Filter>Processors\RemoteServer</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\RemoteServer\StreamAddrProcessor.cpp">
+      <Filter>Processors\RemoteServer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -755,9 +764,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Network\TcpClientBase.h">
       <Filter>Shared\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\proto\BaseCmd.pb.h">
-      <Filter>Shared\proto</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h">
       <Filter>Shared\Utility</Filter>
@@ -1021,6 +1027,12 @@
       <Filter>Processors\RemoteServer</Filter>
     </ClInclude>
     <ClInclude Include="Version.h" />
+    <ClInclude Include="Processors\RemoteServer\RtspStreamUploadAddrProcessor.h">
+      <Filter>Processors\RemoteServer</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\RemoteServer\StreamAddrProcessor.h">
+      <Filter>Processors\RemoteServer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\Thirdparty\protobuf\src\google\protobuf\arena.cc">

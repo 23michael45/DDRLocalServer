@@ -9,6 +9,7 @@
 #include "../../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
 #include "../Servers/BroadcastServerTcpServer.h"
 
+#include "../../proto/RemoteCmd.pb.h"
 #include "../../../Shared/proto/BaseCmd.pb.h"
 
 using namespace DDRFramework;

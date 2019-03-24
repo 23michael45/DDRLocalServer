@@ -185,6 +185,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\proto\BaseCmd.pb.cc" />
+    <ClCompile Include="..\..\Shared\proto\RemoteCmd.pb.cc" />
     <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp" />
@@ -243,7 +244,6 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Servers\BroadcastServerTcpServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Shared\proto\BaseCmd.pb.h" />
     <ClInclude Include="..\..\Shared\src\FSM\FSM.h" />
     <ClInclude Include="..\..\Shared\src\Logic\BaseBehavior.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseMessageDispatcher.h" />

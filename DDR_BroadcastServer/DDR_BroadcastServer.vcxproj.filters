@@ -229,6 +229,9 @@
     <ClCompile Include="Processors\RemoteServerListProcessor.cpp">
       <Filter>Processors</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Shared\proto\RemoteCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Network\TcpServerBase.h">
@@ -236,9 +239,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Network\TcpClientBase.h">
       <Filter>Shared\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Shared\proto\BaseCmd.pb.h">
-      <Filter>Shared\proto</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h">
       <Filter>Shared\Utility</Filter>

@@ -183,6 +183,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\proto\BaseCmd.pb.cc" />
+    <ClCompile Include="..\..\Shared\proto\RemoteCmd.pb.cc" />
     <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp" />
@@ -243,7 +244,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Processors\RemoteFileAddressProcessor.cpp" />
     <ClCompile Include="Processors\RemoteLoginProcessor.cpp" />
     <ClCompile Include="Processors\RemoteServerListProcessor.cpp" />
+    <ClCompile Include="Processors\RtspStreamUploadAddrProcessor.cpp" />
     <ClCompile Include="Processors\SelectLSProcessor.cpp" />
+    <ClCompile Include="Processors\StreamAddrProcessor.cpp" />
     <ClCompile Include="Processors\UnselectLSProcessor.cpp" />
     <ClCompile Include="Processors\UploadFileProgressProcessor.cpp" />
     <ClCompile Include="Servers\RemoteServerDispatcher.cpp" />
@@ -251,7 +254,6 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Servers\RemoteTcpServer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Shared\proto\BaseCmd.pb.h" />
     <ClInclude Include="..\..\Shared\src\FSM\FSM.h" />
     <ClInclude Include="..\..\Shared\src\Logic\BaseBehavior.h" />
     <ClInclude Include="..\..\Shared\src\Network\BaseMessageDispatcher.h" />
@@ -317,7 +319,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Processors\RemoteFileAddressProcessor.h" />
     <ClInclude Include="Processors\RemoteLoginProcessor.h" />
     <ClInclude Include="Processors\RemoteServerListProcessor.h" />
+    <ClInclude Include="Processors\RtspStreamUploadAddrProcessor.h" />
     <ClInclude Include="Processors\SelectLSProcessor.h" />
+    <ClInclude Include="Processors\StreamAddrProcessor.h" />
     <ClInclude Include="Processors\UnselectLSProcessor.h" />
     <ClInclude Include="Processors\UploadFileProgressProcessor.h" />
     <ClInclude Include="Servers\RemoteServerDispatcher.h" />
