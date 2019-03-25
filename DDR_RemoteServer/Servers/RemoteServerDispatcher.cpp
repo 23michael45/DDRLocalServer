@@ -8,6 +8,7 @@
 #include "../Processors/RemoteFileAddressProcessor.h"
 #include "../Processors/FileStatusProcessor.h"
 #include "../Processors/UploadFileProgressProcessor.h"
+#include "../Processors/RtspStreamUploadAddrProcessor.h"
 
 using namespace DDRCommProto;
 using namespace DDRFramework;
@@ -26,6 +27,8 @@ RemoteServerDispatcher::RemoteServerDispatcher()
 		RegisterProcessor(ans, FileStatus)
 
 		RegisterProcessor(notify, UploadFileProgress)
+
+		RegisterProcessor(req, RtspStreamUploadAddr)
 
 
 }

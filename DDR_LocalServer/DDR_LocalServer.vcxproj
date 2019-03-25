@@ -400,9 +400,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="Processors\HeartBeatProcessor.cpp" />
     <ClCompile Include="Processors\LocalServerUdpProcessor.cpp" />
     <ClCompile Include="Processors\LoginProcessor.cpp" />
+    <ClCompile Include="Processors\RemoteServer\RegisteLSProcessor.cpp" />
     <ClCompile Include="Processors\RemoteServer\RemoteServerListProcessor.cpp" />
     <ClCompile Include="Processors\RemoteServer\RtspStreamUploadAddrProcessor.cpp" />
-    <ClCompile Include="Processors\RemoteServer\StreamAddrProcessor.cpp" />
     <ClCompile Include="Processors\RemoteServer\UploadFileProcessor.cpp" />
     <ClCompile Include="Processors\StatusProcessor.cpp" />
     <ClCompile Include="Processors\StreamRelay\StreamRelayAlarmProcessor.cpp" />
@@ -493,9 +493,9 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="Processors\HeartBeatProcessor.h" />
     <ClInclude Include="Processors\LocalServerUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />
+    <ClInclude Include="Processors\RemoteServer\RegisteLSProcessor.h" />
     <ClInclude Include="Processors\RemoteServer\RemoteServerListProcessor.h" />
     <ClInclude Include="Processors\RemoteServer\RtspStreamUploadAddrProcessor.h" />
-    <ClInclude Include="Processors\RemoteServer\StreamAddrProcessor.h" />
     <ClInclude Include="Processors\RemoteServer\UploadFileProcessor.h" />
     <ClInclude Include="Processors\StatusProcessor.h" />
     <ClInclude Include="Processors\StreamRelay\StreamRelayAlarmProcessor.h" />

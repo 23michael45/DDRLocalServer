@@ -179,7 +179,8 @@ bool DBManager::CreateUserTable()
 		m_DB.execDML("create table user(username string, userpwd string,priority int);");
 		int nRows = 0;
 		nRows = m_DB.execDML("insert into user values ('admin', 'admin',0);");
-		nRows = m_DB.execDML("insert into user values ('lsm', 'lsm',0);");
+		nRows = m_DB.execDML("insert into user values ('admin_pc', 'admin_pc',0);");
+		nRows = m_DB.execDML("insert into user values ('admin_android', 'admin_android',0);");
 		/*nRows = m_DB.execDML("insert into user values ('administrator', 'admin',99);");
 		nRows = m_DB.execDML("update user set priority = 99 where username = 'admin';");
 		nRows = m_DB.execDML("delete from user where username = 'administrator';");*/

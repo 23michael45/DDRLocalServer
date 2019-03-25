@@ -1,6 +1,8 @@
 #include "StreamAddrProcessor.h"
 #include "../../../Shared/proto/BaseCmd.pb.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
+#include "../Managers/StreamProxyManager.h"
+#include "../Servers/RemoteTcpServer.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -25,34 +27,41 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 
 	if (pRaw->networktype() == ChannelNetworkType::Remote)
 	{
-		/*auto spSession = GlobalManager::Instance()->GetTcpServer()->GetSessionByType(eLSMStreamRelay);
-		if (spSession)
+
+		auto spFromSession = dynamic_pointer_cast<RemoteServerTcpSession>(spSockContainer->GetTcp());
+		if (spFromSession)
 		{
-			auto channels = StreamRelayServiceManager::Instance()->GetAVChannelsConfig();
-			for (auto channel : channels)
+			std::string udid = spFromSession->GetBindLSUDID();
+			if (!udid.empty())
 			{
 
-				if (channel.networktype() == ChannelNetworkType::Remote)
-				{
-					auto *pChannel = sprsp->add_channels();
+				auto ChannelVec = StreamProxyManager::Instance()->GetRobotUploadAddr(udid);
 
-					pChannel->set_srcaddr(channel.dst());
-					pChannel->set_streamtype(channel.streamtype());
-					pChannel->set_networktype(channel.networktype());
-					pChannel->set_rate(channel.rate());
-					pChannel->set_srcname(channel.srcname());
+				for (auto channel : ChannelVec)
+				{
+					auto pchannel = sprsp->add_channels();
+					pchannel->CopyFrom(channel);
 
 				}
 			}
+			else
+			{
 
+				sprsp->set_error("not bind ls udid");
+			}
 
-		}*/
-		/*else
+		}
+		else
 		{
-			sprsp->set_error("LS_Err_NoStreamRelayService_Connected");
 
-		}*/
+			sprsp->set_error("session is not client");
+		}
 
+
+	}
+	else
+	{
+		sprsp->set_error("Net Type Error");
 
 	}
 

@@ -3,6 +3,8 @@
 
 #include "../Processors/RemoteServer/RemoteServerListProcessor.h"
 #include "../Processors/RemoteServer/UploadFileProcessor.h"
+#include "../Processors/RemoteServer/RegisteLSProcessor.h"
+#include "../Processors/RemoteServer/RtspStreamUploadAddrProcessor.h"
 using namespace DDRCommProto;
 using namespace DDRFramework;
 
@@ -10,6 +12,9 @@ LSClientDispatcher::LSClientDispatcher()
 {		
 
 	RegisterProcessor(notify, UploadFile)
+
+		RegisterProcessor(rsp, RegisteLS)
+		RegisterProcessor(rsp, RtspStreamUploadAddr)
 }
 
 

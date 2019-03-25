@@ -5,6 +5,7 @@
 #include "RemoteServerDispatcher.h"
 #include "RemoteServerHeadRuleRouter.h"
 #include "../Managers/GlobalManager.h"
+#include "../Managers/StreamProxyManager.h"
 
 #include "../../../Shared/src/Utility/XmlLoader.h"
 #include "../../../Shared/src/Network/TcpSocketContainer.h"
@@ -199,10 +200,16 @@ void RemoteTcpServer::OnSessionDisconnect(std::shared_ptr<TcpSocketContainer> sp
 			{
 				m_LSSessionMap[udid]->RemoveClient(username);
 			}
+
+			StreamProxyManager::Instance()->ReleaseProxyDownload(username);
+
 		}
 		else if (spClientSession->GetType() == RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS)
 		{
 			std::string udid = spClientSession->GetRegisteLSInfo().udid();
+
+			StreamProxyManager::Instance()->ReleaseProxyUpload(udid);
+
 			if (m_LSSessionMap.find(udid) != m_LSSessionMap.end())
 			{
 				m_LSSessionMap.erase(udid);

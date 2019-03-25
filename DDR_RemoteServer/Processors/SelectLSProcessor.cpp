@@ -35,6 +35,7 @@ void SelectLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockConta
 
 
 			auto sprsp = std::make_shared<rspSelectLS>();
+			sprsp->set_udid(pRaw->udid());
 			sprsp->set_error("");
 			spSockContainer->Send(sprsp);
 		}

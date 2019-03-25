@@ -109,10 +109,10 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;SYSTEM_WINDOWS;_SCL_SECURE_NO_WARNINGS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;SYSTEM_WINDOWS;_SCL_SECURE_NO_WARNINGS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;_DEBUG;_CONSOLE;GUID_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../Shared/Thirdparty/cppfs/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../Shared/Thirdparty/crossguid/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>
       </LanguageStandard>
     </ClCompile>
@@ -159,7 +159,7 @@
       <PreprocessorDefinitions>WIN32;_WINDOWS;SYSTEM_WINDOWS;_SCL_SECURE_NO_WARNINGS;HAVE_CONFIG_H;BUILDING_LIBCURL;CURL_HIDDEN_SYMBOLS;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_USRDLL;_CRT_SECURE_NO_WARNINGS;PROTOBUF_ENCRYPT;ASIO_STANDALONE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../Shared/Thirdparty/cppfs/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../Shared/Thirdparty/crossguid/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <MinimalRebuild>true</MinimalRebuild>
       <LanguageStandard>
@@ -229,6 +229,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileHandle.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileIterator.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\cppfs\source\windows\LocalFileSystem.cpp" />
+    <ClCompile Include="..\..\Shared\thirdparty\crossguid\src\guid.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_reader.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_value.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\jsoncpp\src\json_writer.cpp" />
@@ -239,6 +240,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\FileManager.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
+    <ClCompile Include="Managers\StreamProxyManager.cpp" />
     <ClCompile Include="Processors\FileStatusProcessor.cpp" />
     <ClCompile Include="Processors\RegisteLSProcessor.cpp" />
     <ClCompile Include="Processors\RemoteFileAddressProcessor.cpp" />
@@ -283,6 +285,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\src\Utility\Logger.h" />
     <ClInclude Include="..\..\Shared\src\Utility\MiniDump.h" />
     <ClInclude Include="..\..\Shared\src\Utility\Timer.hpp" />
+    <ClInclude Include="..\..\Shared\src\Utility\UUID.h" />
     <ClInclude Include="..\..\Shared\src\Utility\XmlLoader.h" />
     <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\cppsqlite3.h" />
     <ClInclude Include="..\..\Shared\thirdparty\cpp-sqlite3\sqlite3.h" />
@@ -314,6 +317,7 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
     <ClInclude Include="Managers\FileManager.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
+    <ClInclude Include="Managers\StreamProxyManager.h" />
     <ClInclude Include="Processors\FileStatusProcessor.h" />
     <ClInclude Include="Processors\RegisteLSProcessor.h" />
     <ClInclude Include="Processors\RemoteFileAddressProcessor.h" />

@@ -5,6 +5,8 @@
 #include "RtspStreamUploadAddrProcessor.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"
+#include "../Managers/StreamProxyManager.h"
+#include "../Servers/RemoteTcpServer.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;
@@ -22,7 +24,37 @@ void RtspStreamUploadAddrProcessor::Process(std::shared_ptr<BaseSocketContainer>
 {
 
 	reqRtspStreamUploadAddr* pRaw = reinterpret_cast<reqRtspStreamUploadAddr*>(spMsg.get());
+	if (pRaw)
+	{
 
+		auto sprsp = std::make_shared<rspRtspStreamUploadAddr>();
+
+		std::shared_ptr<RemoteServerTcpSession> spRSTcpSession = std::dynamic_pointer_cast<RemoteServerTcpSession>(spSockContainer->GetTcp());
+		if (spRSTcpSession)
+		{
+			std::string udid = spRSTcpSession->GetRegisteLSInfo().udid();
+
+
+
+			for (auto channel : pRaw->channels())
+			{
+				RemoteStreamChannel rchannel = StreamProxyManager::Instance()->AllocMostIdleProxyUpload(udid, channel);
+
+
+
+				auto pchannel = sprsp->add_channels();
+				pchannel->CopyFrom(rchannel);
+			}
+		}
+	
+	
+		if (sprsp->channels_size() <= 0)
+		{
+			sprsp->set_error("No Rtsp Proxy Alloc");
+		}
+
+		spSockContainer->Send(sprsp);
+	}
 
 }
 

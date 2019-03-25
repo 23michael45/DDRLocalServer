@@ -754,7 +754,7 @@
     <ClCompile Include="Processors\RemoteServer\RtspStreamUploadAddrProcessor.cpp">
       <Filter>Processors\RemoteServer</Filter>
     </ClCompile>
-    <ClCompile Include="Processors\RemoteServer\StreamAddrProcessor.cpp">
+    <ClCompile Include="Processors\RemoteServer\RegisteLSProcessor.cpp">
       <Filter>Processors\RemoteServer</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1030,7 +1030,7 @@
     <ClInclude Include="Processors\RemoteServer\RtspStreamUploadAddrProcessor.h">
       <Filter>Processors\RemoteServer</Filter>
     </ClInclude>
-    <ClInclude Include="Processors\RemoteServer\StreamAddrProcessor.h">
+    <ClInclude Include="Processors\RemoteServer\RegisteLSProcessor.h">
       <Filter>Processors\RemoteServer</Filter>
     </ClInclude>
   </ItemGroup>

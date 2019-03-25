@@ -25,7 +25,7 @@ void SelectLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockConta
 	rspSelectLS* pRaw = reinterpret_cast<rspSelectLS*>(spMsg.get());
 	if (pRaw)
 	{
-		DebugLog("Select LS:%s", pRaw->error().c_str());
+		DebugLog("Select LS:%s error: %s", pRaw->udid().c_str(),pRaw->error().c_str());
 	}
 
 

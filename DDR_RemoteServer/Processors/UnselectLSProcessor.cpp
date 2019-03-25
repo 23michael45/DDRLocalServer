@@ -31,11 +31,23 @@ void UnselectLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 		std::string username = spClientSession->GetRemoteLoginInfo().username();
 		if (map.find(username) != map.end())
 		{
+
 			map[username]->ReleaseLS(pRaw->udid());
+
+
+			auto sprsp = std::make_shared<rspUnselectLS>();
+			sprsp->set_udid(pRaw->udid());
+			sprsp->set_error("");
+			spSockContainer->Send(sprsp);
 		}
 		else
 		{
 			DebugLog("RemoteClient Not Login");
+
+
+			auto sprsp = std::make_shared<rspUnselectLS>();
+			sprsp->set_error("No Client Login");
+			spSockContainer->Send(sprsp);
 		}
 
 	}

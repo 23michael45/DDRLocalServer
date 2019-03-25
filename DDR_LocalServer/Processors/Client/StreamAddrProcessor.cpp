@@ -35,46 +35,39 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 		if (spSession)
 		{
 
-			auto channels = StreamRelayServiceManager::Instance()->GetAVChannelsConfig();
+			auto& channels = StreamRelayServiceManager::Instance()->m_LocalStreamConfig;
 			for (auto channel : channels)
 			{
-				if (channel.streamtype() == ChannelStreamType::Video)
-				{
-					auto *pChannel = sprsp->add_channels();
+				auto *pChannel = sprsp->add_channels();
 
-					pChannel->set_srcaddr(channel.src());
+				if (channel.mType == StreamRelayServiceManager::LocalStreamSrc::EStreamType::Video)
+				{
+
 					pChannel->set_streamtype(ChannelStreamType::Video);
-					pChannel->set_networktype(channel.networktype());
-					pChannel->set_rate(channel.rate());
-					pChannel->set_srcname(channel.srcname());
 
 				}
-				else if (channel.streamtype() == ChannelStreamType::VideoAudio)
+				else if (channel.mType == StreamRelayServiceManager::LocalStreamSrc::EStreamType::VideoAudio)
 				{
-					auto *pChannel = sprsp->add_channels();
 
-					pChannel->set_srcaddr(channel.src());
+
 					pChannel->set_streamtype(ChannelStreamType::VideoAudio);
-					pChannel->set_networktype(channel.networktype());
-					pChannel->set_rate(channel.rate());
-					pChannel->set_srcname(channel.srcname());
 
 				}
-				else if (channel.streamtype() == ChannelStreamType::Audio)
+				else if (channel.mType == StreamRelayServiceManager::LocalStreamSrc::EStreamType::Audio)
 				{
-					auto *pChannel = sprsp->add_channels();
-
-
 
 					std::string dstip = spSession->GetSocket().remote_endpoint().address().to_string();
 					pChannel->set_srcaddr(dstip);
 					pChannel->add_srcport(StreamRelayServiceManager::Instance()->GetServerTcpPort());
 					pChannel->set_streamtype(ChannelStreamType::Audio);
-					pChannel->set_networktype(channel.networktype());
-					pChannel->set_rate(channel.rate());
-					pChannel->set_srcname(channel.srcname());
 
 				}
+
+
+				pChannel->set_networktype(ChannelNetworkType::Local);
+				pChannel->set_srcaddr(channel.mSrc);
+				pChannel->set_rate(channel.mBandWidth);
+				pChannel->set_srcname(channel.mSrcName);
 			}
 
 		}
@@ -89,21 +82,38 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 		auto spSession = GlobalManager::Instance()->GetTcpServer()->GetSessionByType(eLSMStreamRelay);
 		if (spSession)
 		{
-			auto channels = StreamRelayServiceManager::Instance()->GetAVChannelsConfig();
+			auto& channels = StreamRelayServiceManager::Instance()->m_ChannelsToUploadOnRemoteServer;
 			for (auto channel : channels)
 			{
+				auto *pChannel = sprsp->add_channels();
 
-				if (channel.networktype() == ChannelNetworkType::Remote)
+				pChannel->set_networktype(ChannelNetworkType::Remote);
+
+
+				pChannel->set_srcaddr(channel.url());
+
+				if (channel.type() == RemoteStreamChannel_StreamType_Audio)
 				{
-					auto *pChannel = sprsp->add_channels();
 
-					pChannel->set_srcaddr(channel.dst());
-					pChannel->set_streamtype(channel.streamtype());
-					pChannel->set_networktype(channel.networktype());
-					pChannel->set_rate(channel.rate());
-					pChannel->set_srcname(channel.srcname());
-
+					pChannel->set_streamtype(ChannelStreamType::Audio);
 				}
+				if (channel.type() == RemoteStreamChannel_StreamType_Video)
+				{
+
+					pChannel->set_streamtype(ChannelStreamType::Video);
+				}
+				if (channel.type() == RemoteStreamChannel_StreamType_VideoAudio)
+				{
+
+					pChannel->set_streamtype(ChannelStreamType::VideoAudio);
+				}
+
+
+
+				pChannel->set_rate(channel.downloadbandwidth());
+				pChannel->set_srcname(channel.srcname());
+
+
 			}
 
 

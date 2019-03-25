@@ -1,8 +1,10 @@
 #include "StreamProxyManager.h"
 #include "GlobalManager.h"
 
+#include <crossguid/guid.hpp>
 
-StreamProxyManager::StreamProxyManager() : m_StreamProxyConfigLoader("Config/RemoteServer/StreamSrcProxyConfig.xml")
+
+StreamProxyManager::StreamProxyManager() : m_StreamProxyConfigLoader("Config/RemoteServer/StreamProxyConfig.xml")
 {
 
 	LoadRemoteStreamChannels();
@@ -10,8 +12,96 @@ StreamProxyManager::StreamProxyManager() : m_StreamProxyConfigLoader("Config/Rem
 
 StreamProxyManager::~StreamProxyManager()
 {
+	for (auto pProxy : m_ProxyVec)
+	{
+		delete pProxy;
+	}
+
+	m_ProxyVec.clear();
+	m_ProxyMap.clear();
+	m_Robot2ProxyMap.clear();
+
 }
 
+
+
+
+RemoteStreamChannel StreamProxyManager::AllocMostIdleProxyUpload(std::string udid, RemoteStreamChannel& channel)
+{
+
+
+	StreamProxy* pproxy = GetMostIdleProxy();
+	pproxy->mUploadUsed += channel.uploadbandwidth();
+
+
+
+
+	if (m_Robot2ProxyMap.find(udid) == m_Robot2ProxyMap.end())
+	{
+		std::vector<StreamProxyChannel> vec;
+		m_Robot2ProxyMap[udid] = vec;
+	}
+
+
+	auto& Vec = m_Robot2ProxyMap[udid];
+
+
+	auto g = xg::newGuid();
+	std::string guid = g.str();
+
+
+	StreamProxyChannel proxychannel;
+	proxychannel.mChannel = channel;
+	proxychannel.mProxy = pproxy;
+	proxychannel.mStreamUUID = guid;
+
+
+	Vec.push_back(proxychannel);
+
+	channel.set_url(GetRtspFullAddr(proxychannel));
+
+	return channel;
+}
+
+void StreamProxyManager::ReleaseProxyUpload(std::string udid)
+{
+	auto vec = m_Robot2ProxyMap[udid];
+	for (auto proxychannel : vec)
+	{
+		proxychannel.mProxy->mUploadUsed -= proxychannel.mChannel.uploadbandwidth();
+	}
+	m_Robot2ProxyMap.erase(udid);
+}
+
+
+StreamProxyManager::StreamProxy* StreamProxyManager::AllocMostIdleProxyDownload(RemoteStreamChannel& channel)
+{
+	StreamProxy* pproxy = GetMostIdleProxy();
+	pproxy->mDownloadUsed += channel.uploadbandwidth();
+	return pproxy;
+}
+
+void StreamProxyManager::ReleaseProxyDownload(std::string username)
+{
+
+}
+
+bool StreamProxyManager::compare(StreamProxy* a, StreamProxy* b)
+{
+	return a->mUploadUsed < b->mUploadUsed; //升序排列，如果改为return a>b，则为降序
+}
+
+StreamProxyManager::StreamProxy* StreamProxyManager::GetMostIdleProxy()
+{
+	if (m_ProxyVec.size() > 0)
+	{
+		std::sort(m_ProxyVec.begin(), m_ProxyVec.end(), std::bind(&StreamProxyManager::compare, this, std::placeholders::_1, std::placeholders::_2));
+		auto pleastOne = m_ProxyVec[0];
+		return pleastOne;
+	}
+
+	return nullptr;
+}
 
 void StreamProxyManager::LoadRemoteStreamChannels()
 {
@@ -21,7 +111,7 @@ void StreamProxyManager::LoadRemoteStreamChannels()
 
 	for (int i = 0; i < channelNum; i++)
 	{
-		RemoteStreamChannel rsChannel;
+		StreamProxy sproxy;
 
 		auto sStreamType = config.GetValue(i, "Type");
 
@@ -39,27 +129,33 @@ void StreamProxyManager::LoadRemoteStreamChannels()
 		{
 			streamType = RemoteStreamChannel_StreamType_VideoAudio;
 		}
-		rsChannel.set_type(streamType);
 
 
-		auto bandWidth = config.GetValue<int>(i, "BandWidth");
-		rsChannel.set_bandwidth(bandWidth);
-
-		rsChannel.set_url(config.GetValue(i, "Url"));
-		rsChannel.set_srcname(config.GetValue(i, "SrcName"));
+		StreamProxy* pproxy = new StreamProxy();
 
 
+		auto uploadbandWidth = config.GetValue<int>(i, "UploadBandWidth");
+		pproxy->mUploadBandWidth = uploadbandWidth;
 
-		StreamProxyChannel channel;
-		channel.mIp = config.GetValue(i, "IP");
-		channel.mIp = config.GetValue<int>(i, "Port");
-		channel.mUsed = 0;
 
-		m_ProxyVec.push_back(channel);
+		auto downloadbandWidth = config.GetValue<int>(i, "DownloadBandWidth");
+		pproxy->mDonwloadBandWidth = downloadbandWidth;
 
-		if (m_ProxyMap.find(channel.mIp) == m_ProxyMap.end())
+		pproxy->mUrl = config.GetValue(i, "Url");
+		pproxy->mName = config.GetValue(i, "SrcName");
+
+
+
+		pproxy->mIp = config.GetValue(i, "IP");
+		pproxy->mPort = config.GetValue<int>(i, "Port");
+		pproxy->mUploadUsed = 0;
+		pproxy->mDownloadUsed = 0;
+
+		m_ProxyVec.push_back(pproxy);
+
+		if (m_ProxyMap.find(pproxy->mIp) == m_ProxyMap.end())
 		{
-			m_ProxyMap[channel.mIp] = channel;
+			m_ProxyMap[pproxy->mIp] = pproxy;
 		}
 	}
 }

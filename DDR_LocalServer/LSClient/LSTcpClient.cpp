@@ -54,11 +54,11 @@ void LSTcpClient::StopHeartBeat()
 
 void LSTcpClient::RegisteToRemote()
 {
-	short cpuhash = getCpuHash();
+	std::string cpuhash = getCpuHash();
 
 	auto spreq = std::make_shared<reqRegisteLS>();
-	spreq->set_udid(std::to_string(cpuhash));
-	spreq->set_udid(GlobalManager::Instance()->GetGlobalConfig().GetValue("RobotID"));
+	spreq->set_udid(cpuhash);
+	spreq->set_name(GlobalManager::Instance()->GetGlobalConfig().GetValue("RobotID"));
 
 	Send(spreq);
 }

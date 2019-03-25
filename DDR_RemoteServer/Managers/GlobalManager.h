@@ -61,6 +61,7 @@ public:
 
 	bool VerifyUser(std::string username, std::string pwd);
 
+	std::vector<std::string> GetUserRobotList(std::string username);
 
 private:
 	bool CreateUserTable();

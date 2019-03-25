@@ -37,6 +37,9 @@ void RemoteServerListProcessor::Process(std::shared_ptr<BaseSocketContainer> spS
 	if (servers.size() > 0)
 	{
 		LSClientManager::Instance()->CloseBroadcastServer(serverVec);
+
+		//auto connect remote server if exist
+		LSClientManager::Instance()->ConnectRemoteServer();
 	}
 }
 

@@ -25,7 +25,7 @@ void UnselectLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 	rspUnselectLS* pRaw = reinterpret_cast<rspUnselectLS*>(spMsg.get());
 	if (pRaw)
 	{
-		DebugLog("Unelect LS:%s", pRaw->error().c_str());
+		DebugLog("Unelect LS: %s  Error: %s",pRaw->udid().c_str(), pRaw->error().c_str());
 	}
 
 

@@ -5,7 +5,7 @@
 #include "RtspStreamUploadAddrProcessor.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"
-
+#include "../../Managers/StreamRelayServiceManager.h"
 using namespace DDRFramework;
 using namespace DDRCommProto;
 
@@ -21,7 +21,16 @@ RtspStreamUploadAddrProcessor::~RtspStreamUploadAddrProcessor()
 void RtspStreamUploadAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 
-	reqRtspStreamUploadAddr* pRaw = reinterpret_cast<reqRtspStreamUploadAddr*>(spMsg.get());
+	rspRtspStreamUploadAddr* pRaw = reinterpret_cast<rspRtspStreamUploadAddr*>(spMsg.get());
+	if (pRaw)
+	{
+		StreamRelayServiceManager::Instance()->UpdateUploadServer(pRaw);
+
+		for (auto channel : pRaw->channels())
+		{
+			DebugLog("RtspStreamUploadAddrProcessor %s", channel.url().c_str())
+		}
+	}
 
 
 }

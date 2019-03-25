@@ -2,72 +2,102 @@
 #include "GlobalManager.h"
 
 
-StreamRelayServiceManager::StreamRelayServiceManager() : m_StreamSrcProxyConfig("Config/LocalServer/StreamSrcProxyConfig.xml")
+StreamRelayServiceManager::StreamRelayServiceManager() : m_StreamSrcProxyConfigLoader("Config/LocalServer/StreamSrcProxyConfig.xml")
 {
 
-
+	InitAVChannels();
+	InitChannelsToUpload();
 }
 
 StreamRelayServiceManager::~StreamRelayServiceManager()
 {
 }
 
-
-std::vector<AVChannelConfig> StreamRelayServiceManager::GetAVChannelsConfig()
+void StreamRelayServiceManager::InitAVChannels()
 {
-	auto config = m_StreamSrcProxyConfig;
+	auto config = m_StreamSrcProxyConfigLoader;
 	int channelNum = config.RowGetKeyCount();
 
-	std::vector<AVChannelConfig> channelvec;
+
 	for (int i = 0; i < channelNum; i++)
 	{
-		AVChannelConfig channel;
+		LocalStreamSrc channel;
 
 		auto sStreamType = config.GetValue(i, "StreamType");
 
 
-		ChannelStreamType streamType;
+		LocalStreamSrc::EStreamType  streamType;
 		if (sStreamType == "A")
 		{
-			streamType = ChannelStreamType::Audio;
+			streamType = LocalStreamSrc::EStreamType::Audio;
 		}
 		else if (sStreamType == "V")
 		{
-			streamType = ChannelStreamType::Video;
+			streamType = LocalStreamSrc::EStreamType::Video;
 		}
 		if (sStreamType == "AV")
 		{
-			streamType = ChannelStreamType::VideoAudio;
+			streamType = LocalStreamSrc::EStreamType::VideoAudio;
 		}
-		channel.set_streamtype(streamType);
+		channel.mType = (streamType);
 
 
-		auto sNetworkType = config.GetValue(i, "NetworkType");
-		ChannelNetworkType networkType;
-		if (sNetworkType == "Local")
-		{
-			networkType = ChannelNetworkType::Local;
-		}
-		else if (sNetworkType == "Remote")
-		{
-			networkType = ChannelNetworkType::Remote;
-		}
-		channel.set_networktype(networkType);
 
-		channel.set_rate(config.GetValue<int>(i, "Rate"));
-		channel.set_src(config.GetValue(i, "SrcAddress"));
-		channel.set_dst(config.GetValue(i, "RemoteAddress"));
-		channel.set_srcname(config.GetValue(i, "SrcName"));
+		channel.mBandWidth = (config.GetValue<int>(i, "BandWidth"));
+		channel.mSrc = (config.GetValue(i, "SrcAddress"));
+		channel.mSrcName = (config.GetValue(i, "SrcName"));
 
 
-		channelvec.push_back(channel);
+		m_LocalStreamConfig.push_back(channel);
 	}
-	return channelvec;
 }
 
+
+void StreamRelayServiceManager::InitChannelsToUpload()
+{
+	for (auto channel : m_LocalStreamConfig)
+	{
+
+		RemoteStreamChannel c;
+		c.set_url("");//do not need fill url
+
+		if (channel.mType == LocalStreamSrc::EStreamType::Video)
+		{
+
+			c.set_type(RemoteStreamChannel_StreamType_Video);
+		}
+		else if (channel.mType == LocalStreamSrc::EStreamType::Audio)
+		{
+
+			c.set_type(RemoteStreamChannel_StreamType_Audio);
+		}
+		else if (channel.mType == LocalStreamSrc::EStreamType::VideoAudio)
+		{
+
+			c.set_type(RemoteStreamChannel_StreamType_VideoAudio);
+		}
+
+
+		c.set_uploadbandwidth(channel.mBandWidth);
+		c.set_downloadbandwidth(0);//do not need fill downloadbandwidth
+		c.set_srcname(channel.mSrcName);
+
+		m_ChannelsToUploadConfig.push_back(c);
+
+	}
+}
 
 int StreamRelayServiceManager::GetServerTcpPort()
 {
 	return GlobalManager::Instance()->GetLocalServerConfig().GetValue<int>("StreamRelayTcpPort");
 
+}
+
+void StreamRelayServiceManager::UpdateUploadServer(rspRtspStreamUploadAddr* prsp)
+{
+	for (int i = 0; i < prsp->channels_size(); i++)
+	{
+		auto& channel = prsp->channels(i);
+		m_ChannelsToUploadOnRemoteServer.push_back(channel);
+	}
 }

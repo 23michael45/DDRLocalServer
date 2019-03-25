@@ -58,6 +58,9 @@
     <Filter Include="Shared\Thirdparty\protobuf\include">
       <UniqueIdentifier>{a3972fa2-345f-4d5b-a130-6df7823d3bca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shared\Thirdparty\corssguid">
+      <UniqueIdentifier>{5af48164-70a6-4b45-90b0-29178ceb9092}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -267,6 +270,12 @@
     </ClCompile>
     <ClCompile Include="Processors\RtspStreamUploadAddrProcessor.cpp">
       <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\StreamProxyManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\thirdparty\crossguid\src\guid.cpp">
+      <Filter>Shared\Thirdparty\corssguid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -489,6 +498,12 @@
     </ClInclude>
     <ClInclude Include="Processors\RtspStreamUploadAddrProcessor.h">
       <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Managers\StreamProxyManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Shared\src\Utility\UUID.h">
+      <Filter>Shared\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

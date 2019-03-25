@@ -5,7 +5,7 @@
 #include "RegisteLSProcessor.h"
 #include "../../../Shared/src/Utility/DDRMacro.h"
 #include "../../../Shared/src/Utility/Logger.h"
-#include "../Managers/GlobalManager.h"
+#include "../../Managers/StreamRelayServiceManager.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;
@@ -22,23 +22,29 @@ RegisteLSProcessor::~RegisteLSProcessor()
 void RegisteLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
 {
 
-	reqRegisteLS* pRaw = reinterpret_cast<reqRegisteLS*>(spMsg.get());
+	rspRegisteLS* pRaw = reinterpret_cast<rspRegisteLS*>(spMsg.get());
 
 	if (pRaw)
 	{
 
-		auto spTcp = spSockContainer->GetTcp();
-		if (spTcp)
+		if (pRaw->error() == "")
 		{
-			auto spServerSessionTcp = dynamic_pointer_cast<RemoteServerTcpSession>(spTcp);
-			if (spServerSessionTcp)
+
+			auto spreq = std::make_shared<reqRtspStreamUploadAddr>();
+
+			auto channels = StreamRelayServiceManager::Instance()->m_ChannelsToUploadConfig;
+
+			for (auto channel : channels)
 			{
-				spServerSessionTcp->AssignRegisteLSInfo(*pRaw);
+				auto c = spreq->add_channels();
+				c->CopyFrom(channel);
+			}
 
-
-
-				auto sprsp = std::make_shared<rspRegisteLS>();
-				spServerSessionTcp->Send(sprsp);
+			auto spTcp = spSockContainer->GetTcp();
+		
+			if (spTcp)
+			{
+				spTcp->Send(spreq);
 			}
 		}
 
