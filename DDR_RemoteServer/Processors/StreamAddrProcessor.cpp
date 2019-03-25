@@ -33,15 +33,39 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 		{
 			std::string udid = spFromSession->GetBindLSUDID();
 			if (!udid.empty())
-			{
+			{ 
 
 				auto ChannelVec = StreamProxyManager::Instance()->GetRobotUploadAddr(udid);
 
 				for (auto channel : ChannelVec)
 				{
 					auto pchannel = sprsp->add_channels();
-					pchannel->CopyFrom(channel);
 
+					pchannel->set_networktype(ChannelNetworkType::Remote);
+
+
+					pchannel->set_srcaddr(channel.url());
+
+					if (channel.type() == RemoteStreamChannel_StreamType_Audio)
+					{
+
+						pchannel->set_streamtype(ChannelStreamType::Audio);
+					}
+					if (channel.type() == RemoteStreamChannel_StreamType_Video)
+					{
+
+						pchannel->set_streamtype(ChannelStreamType::Video);
+					}
+					if (channel.type() == RemoteStreamChannel_StreamType_VideoAudio)
+					{
+
+						pchannel->set_streamtype(ChannelStreamType::VideoAudio);
+					}
+
+
+
+					pchannel->set_rate(channel.downloadbandwidth());
+					pchannel->set_srcname(channel.srcname());
 				}
 			}
 			else

@@ -163,7 +163,7 @@ public:
 	{
 		DebugLog("Call Audio");
 		auto spreq = std::make_shared<reqStreamAddr>();
-		spreq->set_networktype(ChannelNetworkType::Local);
+		spreq->set_networktype(ChannelNetworkType::Remote);
 		
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
