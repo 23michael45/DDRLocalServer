@@ -31,6 +31,27 @@ public:
 	void RemoveClient(std::string username);
 	std::shared_ptr<RemoteServerTcpSession> GetClientSession(std::string username);
 
+
+	bool HasLogin()
+	{
+		if (m_SessionType == RST_CLIENT)
+		{
+			if (m_reqRemoteLogin.username().empty() && m_reqRemoteLogin.userpwd().empty())
+			{
+				return false;
+			}
+			return true;
+		}
+		else if (m_SessionType == RST_LS)
+		{
+			if (m_reqRegisteLS.udid().empty())
+			{
+				return false;
+			}
+			return true;
+		}
+	}
+
 	std::map <std::string, std::shared_ptr<RemoteServerTcpSession>>& GetBindClientMap();
 
 

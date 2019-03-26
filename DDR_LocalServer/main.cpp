@@ -108,6 +108,9 @@ public:
 		AddCommand("con remote", std::bind(&_ConsoleDebug::ConnectRemoteServer, this));
 		AddCommand("dis remote", std::bind(&_ConsoleDebug::DisconnectRemoteServer, this));
 		AddCommand("ver", std::bind(&_ConsoleDebug::PrintVersion, this));
+
+
+		AddCommand("send2all", std::bind(&_ConsoleDebug::Send2All, this));
 	}
 	void PrintVersion()
 	{
@@ -116,6 +119,34 @@ public:
 		printf_s("\nBuild Mode:%s", g_DMode.c_str());
 		
 	}
+
+	void Send2All()
+	{
+
+		char* data = new char[256];
+		for (int i = 0 ;i<256;i++)
+		{
+			data[i] = i;
+		}
+
+		std::shared_ptr<asio::streambuf> buf = std::make_shared<asio::streambuf>();
+
+		std::ostream oshold(buf.get());
+		oshold.write((const char*)data, 256);
+		oshold.flush();
+
+		for (auto pair : GlobalManager::Instance()->GetTcpServer()->GetTcpSocketContainerMap())
+		{
+
+			auto spSession = pair.second;
+			auto spServerSessionTcp = dynamic_pointer_cast<LocalServerTcpSession>(spSession);
+
+
+			spServerSessionTcp->Send(buf);
+		}
+
+	}
+
 	void ListServerConnections()
 	{
 		printf_s("\nServer Connections");

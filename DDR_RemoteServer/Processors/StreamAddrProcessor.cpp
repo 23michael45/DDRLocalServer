@@ -85,7 +85,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 	}
 	else
 	{
-		sprsp->set_error("Net Type Error");
+		sprsp->set_error("Remote Server Don't Process StreamAddr Local Request");
 
 	}
 

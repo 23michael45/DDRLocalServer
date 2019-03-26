@@ -120,6 +120,7 @@ public:
 
 
 		AddCommand("connect", std::bind(&_ConsoleDebug::Connect, this));
+		AddCommand("login", std::bind(&_ConsoleDebug::Login, this));
 		AddCommand("httpget", std::bind(&_ConsoleDebug::HttpGet, this));
 		AddCommand("cmd", std::bind(&_ConsoleDebug::SendCmd, this));
 
@@ -141,8 +142,9 @@ public:
 
 
 		AddCommand("connects", std::bind(&_ConsoleDebug::Connects, this));
-	
 
+		AddCommand("ac", std::bind(&_ConsoleDebug::AudioClient, this));
+	
 	}
 	void ListClientConnection()
 	{
@@ -158,12 +160,21 @@ public:
 			printf_s("\nClient Not Connection");
 		}
 	}
+	void AudioClient()
+	{
+		auto spAudioClient = std::make_shared<AudioTcpClient>();
+		//spAudioClient->Connect("192.168.1.183", "88");
+		spAudioClient->Start();
+		spAudioClient->Connect("192.168.1.183", "88");
 
+		
+	}
 	void StartAudio()
 	{
 		DebugLog("Call Audio");
 		auto spreq = std::make_shared<reqStreamAddr>();
-		spreq->set_networktype(ChannelNetworkType::Remote);
+		//spreq->set_networktype(ChannelNetworkType::Remote);
+		spreq->set_networktype(ChannelNetworkType::Local);
 		
 		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
 		spreq.reset();
@@ -318,6 +329,18 @@ public:
 		}
 
 
+	}
+	void Login()
+	{
+
+		auto spreq = std::make_shared<reqLogin>();
+		spreq->set_type(eLocalPCClient);
+		spreq->set_username("admin_pc");
+		spreq->set_userpwd("admin_pc");
+
+		GlobalManager::Instance()->GetTcpClient()->Send(spreq);
+
+		spreq.reset();
 	}
 
 	void Connects()

@@ -44,6 +44,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 				{
 
 					pChannel->set_streamtype(ChannelStreamType::Video);
+					pChannel->set_srcaddr(channel.mSrc);
 
 				}
 				else if (channel.mType == StreamRelayServiceManager::LocalStreamSrc::EStreamType::VideoAudio)
@@ -51,6 +52,7 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 
 
 					pChannel->set_streamtype(ChannelStreamType::VideoAudio);
+					pChannel->set_srcaddr(channel.mSrc);
 
 				}
 				else if (channel.mType == StreamRelayServiceManager::LocalStreamSrc::EStreamType::Audio)
@@ -61,11 +63,11 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 					pChannel->add_srcport(StreamRelayServiceManager::Instance()->GetServerTcpPort());
 					pChannel->set_streamtype(ChannelStreamType::Audio);
 
+
 				}
 
 
 				pChannel->set_networktype(ChannelNetworkType::Local);
-				pChannel->set_srcaddr(channel.mSrc);
 				pChannel->set_rate(channel.mBandWidth);
 				pChannel->set_srcname(channel.mSrcName);
 			}
@@ -79,53 +81,55 @@ void StreamAddrProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCon
 	}
 	else if (pRaw->networktype() == ChannelNetworkType::Remote)
 	{
-		auto spSession = GlobalManager::Instance()->GetTcpServer()->GetSessionByType(eLSMStreamRelay);
-		if (spSession)
-		{
-			auto& channels = StreamRelayServiceManager::Instance()->m_ChannelsToUploadOnRemoteServer;
-			for (auto channel : channels)
-			{
-				auto *pChannel = sprsp->add_channels();
 
-				pChannel->set_networktype(ChannelNetworkType::Remote);
+		sprsp->set_error("Local Server Don't Process StreamAddr Local Request");
+		//auto spSession = GlobalManager::Instance()->GetTcpServer()->GetSessionByType(eLSMStreamRelay);
+		//if (spSession)
+		//{
+		//	auto& channels = StreamRelayServiceManager::Instance()->m_ChannelsToUploadOnRemoteServer;
+		//	for (auto channel : channels)
+		//	{
+		//		auto *pChannel = sprsp->add_channels();
 
-
-				pChannel->set_srcaddr(channel.url());
-
-				if (channel.type() == RemoteStreamChannel_StreamType_Audio)
-				{
-
-					pChannel->set_streamtype(ChannelStreamType::Audio);
-				}
-				if (channel.type() == RemoteStreamChannel_StreamType_Video)
-				{
-
-					pChannel->set_streamtype(ChannelStreamType::Video);
-				}
-				if (channel.type() == RemoteStreamChannel_StreamType_VideoAudio)
-				{
-
-					pChannel->set_streamtype(ChannelStreamType::VideoAudio);
-				}
+		//		pChannel->set_networktype(ChannelNetworkType::Remote);
 
 
+		//		pChannel->set_srcaddr(channel.url());
 
-				pChannel->set_rate(channel.downloadbandwidth());
-				pChannel->set_srcname(channel.srcname());
+		//		if (channel.type() == RemoteStreamChannel_StreamType_Audio)
+		//		{
+
+		//			pChannel->set_streamtype(ChannelStreamType::Audio);
+		//		}
+		//		if (channel.type() == RemoteStreamChannel_StreamType_Video)
+		//		{
+
+		//			pChannel->set_streamtype(ChannelStreamType::Video);
+		//		}
+		//		if (channel.type() == RemoteStreamChannel_StreamType_VideoAudio)
+		//		{
+
+		//			pChannel->set_streamtype(ChannelStreamType::VideoAudio);
+		//		}
 
 
-			}
+
+		//		pChannel->set_rate(channel.downloadbandwidth());
+		//		pChannel->set_srcname(channel.srcname());
+
+
+		//	}
 
 
 		}
-		else
+	else
 		{
 			sprsp->set_error("LS_Err_NoStreamRelayService_Connected");
 
 		}
 
 
-	}
+	
 
 
 	spSockContainer->Send(sprsp);

@@ -33,6 +33,15 @@ DDRCommProto::reqLogin& LocalServerTcpSession::GetLoginInfo()
 
 
 
+bool LocalServerTcpSession::HasLogin()
+{
+	if (m_reqLoginInfo.username().empty() && m_reqLoginInfo.userpwd().empty())
+	{
+		return false;
+	}
+	return true;
+}
+
 LocalTcpServer::LocalTcpServer(int port):TcpServerBase(port)
 {
 }

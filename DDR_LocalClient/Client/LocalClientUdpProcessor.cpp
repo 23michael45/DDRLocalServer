@@ -78,7 +78,7 @@ void LocalClientUdpProcessor::DealLocalServer(bcLSAddr_ServerInfo& serverinfo)
 
 		std::string sPort = std::to_string(port);
 		GlobalManager::Instance()->SetServerAddr(conntectip, sPort);
-		DebugLog("Receive Server Broadcast %s: %s", name.c_str(), conntectip.c_str());
+		//DebugLog("Receive Server Broadcast %s: %s", name.c_str(), conntectip.c_str());
 	}
 	else
 	{

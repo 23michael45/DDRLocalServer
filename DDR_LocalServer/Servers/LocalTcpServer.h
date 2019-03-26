@@ -15,6 +15,7 @@ public:
 
 	void AssignLoginInfo(reqLogin info);
 	reqLogin& GetLoginInfo();
+	bool HasLogin();
 
 	SHARED_FROM_BASE(LocalServerTcpSession)
 

@@ -8,6 +8,7 @@
 #include "../Processors/Client/FileAddressProcessor.h"
 #include "../Processors/StreamRelay/StreamRelayAlarmProcessor.h"
 #include "../Processors/FileStatusProcessor.h"
+#include "LocalTcpServer.h"
 
 using namespace DDRCommProto;
 using namespace DDRFramework;
@@ -37,4 +38,20 @@ LocalServerDispatcher::LocalServerDispatcher()
 
 LocalServerDispatcher::~LocalServerDispatcher()
 {
+}
+
+void LocalServerDispatcher::Dispatch(std::shared_ptr< DDRFramework::BaseSocketContainer> spParentSocketContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)
+{
+	auto spServerTcpSession = dynamic_pointer_cast<LocalServerTcpSession>(spParentSocketContainer->GetTcp());
+
+	if (spServerTcpSession->HasLogin() || spHeader->bodytype() == "DDRCommProto.reqLogin")
+	{
+
+		BaseMessageDispatcher::Dispatch(spParentSocketContainer, spHeader, spMsg);
+	}
+	else
+	{
+		DebugLog("Dispatch Error , has not login")
+	}
+
 }

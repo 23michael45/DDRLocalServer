@@ -97,7 +97,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	{ 
 
 		auto spClientBehavior = std::make_shared<BaseClientBehavior>();
-		spSockContainer->m_spTcpSocketContainer->BindBehavior(spClientBehavior);
+		spSockContainer->GetTcp()->BindBehavior(spClientBehavior);
 
 
 		auto spTcp = spSockContainer->GetTcp();
