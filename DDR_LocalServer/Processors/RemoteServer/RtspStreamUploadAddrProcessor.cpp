@@ -31,8 +31,6 @@ void RtspStreamUploadAddrProcessor::Process(std::shared_ptr<BaseSocketContainer>
 			DebugLog("RtspStreamUploadAddrProcessor %s", channel.url().c_str())
 		}
 	}
-
-
 }
 
 void RtspStreamUploadAddrProcessor::AsyncProcess(std::shared_ptr<BaseSocketContainer> spSockContainer, std::shared_ptr<DDRCommProto::CommonHeader> spHeader, std::shared_ptr<google::protobuf::Message> spMsg)

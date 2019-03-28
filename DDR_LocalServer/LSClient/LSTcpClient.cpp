@@ -27,13 +27,14 @@ std::shared_ptr<TcpClientSessionBase> LSTcpClient::BindSerializerDispatcher()
 }
 void LSTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {
-	StartHeartBeat();
 	DebugLog("OnConnectSuccess! LSTcpClient");
 	RegisteToRemote();
+	StartHeartBeat();
 
 }
 void LSTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
+	StopHeartBeat();
 	TcpClientBase::OnDisconnect(spContainer);
 	LSClientManager::Instance()->ConnectBroadcastServer();
 

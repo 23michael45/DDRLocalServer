@@ -145,6 +145,7 @@ public:
 		AddCommand("connects", std::bind(&_ConsoleDebug::Connects, this));
 
 		AddCommand("ac", std::bind(&_ConsoleDebug::AudioClient, this));
+		AddCommand("test", std::bind(&_ConsoleDebug::Test, this));
 	
 	}
 	void ListClientConnection()
@@ -169,6 +170,19 @@ public:
 		spAudioClient->Connect("192.168.1.183", "88");
 
 		
+	}
+	void Test()
+	{
+		std::thread t(std::bind(&_ConsoleDebug::TestThread, this));
+		t.detach();
+	}
+	void TestThread()
+	{
+		while (true)
+		{
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+			DebugLog("test");
+		}
 	}
 	void StartAudio()
 	{

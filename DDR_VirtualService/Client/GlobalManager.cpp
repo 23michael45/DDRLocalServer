@@ -20,7 +20,7 @@ void GlobalManager::Init()
 	if (!m_spTcpClient)
 	{
 		m_spTcpClient = std::make_shared<VirtualServiceTcpClient>();
-		m_spTcpClient->Start(m_Config.GetValue<int>("ThreadCount"));
+		m_spTcpClient->Start(m_Config.GetValue<int>("ServerThreadCount"));
 	}
 
 	if (!m_spTcpServer)

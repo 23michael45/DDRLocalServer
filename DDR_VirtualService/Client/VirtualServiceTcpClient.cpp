@@ -44,6 +44,7 @@ void VirtualServiceTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> sp
 }
 void VirtualServiceTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
+	StopHeartBeat();
 	TcpClientBase::OnDisconnect(spContainer);
 	//HttpFileServer::Instance()->Stop();
 

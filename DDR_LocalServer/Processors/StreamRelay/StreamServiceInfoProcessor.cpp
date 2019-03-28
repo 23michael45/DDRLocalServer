@@ -59,12 +59,15 @@ void StreamServiceInfoProcessor::Process(std::shared_ptr<BaseSocketContainer> sp
 		auto remote_dst = StreamRelayServiceManager::Instance()->m_ChannelsToUploadOnRemoteServer[i];
 		auto local_src = StreamRelayServiceManager::Instance()->m_LocalStreamConfig[i];
 
+
 		auto pchannel = sprsp->add_channels();
 
 
 		pchannel->set_src(local_src.mSrc);
+		pchannel->set_srcname(local_src.mSrcName);
+
+
 		pchannel->set_dst(remote_dst.url());
-		pchannel->set_srcname(remote_dst.srcname());
 		pchannel->set_rate(remote_dst.uploadbandwidth());
 		pchannel->set_networktype(ChannelNetworkType::Remote);
 

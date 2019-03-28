@@ -100,4 +100,52 @@ void StreamRelayServiceManager::UpdateUploadServer(rspRtspStreamUploadAddr* prsp
 		auto& channel = prsp->channels(i);
 		m_ChannelsToUploadOnRemoteServer.push_back(channel);
 	}
+
+	NotifyUploadServerChanged();
+}
+
+void StreamRelayServiceManager::NotifyUploadServerChanged()
+{
+
+	auto spNotify = std::make_shared<notifyStreamServiceInfoChanged>();
+	auto spTcpServer = GlobalManager::Instance()->GetTcpServer();
+	if (spNotify && spTcpServer)
+	{
+		auto spSession = spTcpServer->GetSessionByType(DDRCommProto::eCltType::eLSMStreamRelay);
+		if (spSession)
+		{
+			for (int i = 0; i < m_ChannelsToUploadOnRemoteServer.size(); i++)
+			{
+				auto pchannel = spNotify->add_channels();
+
+				pchannel->set_src(m_LocalStreamConfig[i].mSrc);
+
+				auto fromChannel = m_ChannelsToUploadOnRemoteServer[i];
+
+				pchannel->set_dst(fromChannel.url());
+				pchannel->set_srcname(fromChannel.srcname());
+
+
+				if (fromChannel.type() == RemoteStreamChannel_StreamType_Audio)
+				{
+
+					pchannel->set_streamtype(ChannelStreamType::Audio);
+				}
+				else if (fromChannel.type() == RemoteStreamChannel_StreamType_Video)
+				{
+
+					pchannel->set_streamtype(ChannelStreamType::Video);
+				}
+				else if (fromChannel.type() == RemoteStreamChannel_StreamType_VideoAudio)
+				{
+
+					pchannel->set_streamtype(ChannelStreamType::VideoAudio);
+				}
+
+				pchannel->set_networktype(ChannelNetworkType::Remote);
+			}
+
+			spSession->Send(spNotify);
+		}
+	}
 }

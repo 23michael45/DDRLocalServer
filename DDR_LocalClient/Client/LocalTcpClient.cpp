@@ -36,6 +36,7 @@ void LocalTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer
 }
 void LocalTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
+	StopHeartBeat();
 	TcpClientBase::OnDisconnect(spContainer);
 	
 	GlobalManager::Instance()->StartUdp();

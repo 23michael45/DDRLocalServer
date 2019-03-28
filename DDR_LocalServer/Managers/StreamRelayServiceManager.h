@@ -42,14 +42,20 @@ public:
 
 	void UpdateUploadServer(rspRtspStreamUploadAddr* prsp);
 
+	void NotifyUploadServerChanged();
+
 	std::vector<LocalStreamSrc> m_LocalStreamConfig;
 	std::vector<RemoteStreamChannel> m_ChannelsToUploadConfig;
 
 	std::vector<RemoteStreamChannel> m_ChannelsToUploadOnRemoteServer;
+
+
 private:
 
 
 	XmlLoader m_StreamSrcProxyConfigLoader;
+
+
 
 
 };
