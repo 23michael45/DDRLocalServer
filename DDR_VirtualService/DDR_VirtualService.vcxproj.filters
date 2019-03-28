@@ -191,6 +191,24 @@
     <ClCompile Include="..\..\Shared\src\Network\HttpClient.cpp">
       <Filter>Shared\Network</Filter>
     </ClCompile>
+    <ClCompile Include="Client\VirtualServiceTcpClient.cpp">
+      <Filter>Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\FileAddressProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\proto\RemoteCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
+    <ClCompile Include="Server\VirtualTcpServer.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Server\VirtualServerDispatcher.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\proto\SimulationCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Shared\thirdparty\curl\lib\amigaos.c">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClCompile>
@@ -605,24 +623,6 @@
     <ClCompile Include="..\..\Shared\thirdparty\curl\lib\x509asn1.c">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClCompile>
-    <ClCompile Include="Client\VirtualServiceTcpClient.cpp">
-      <Filter>Client</Filter>
-    </ClCompile>
-    <ClCompile Include="Processors\FileAddressProcessor.cpp">
-      <Filter>Processors</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\proto\RemoteCmd.pb.cc">
-      <Filter>Shared\proto</Filter>
-    </ClCompile>
-    <ClCompile Include="Server\VirtualTcpServer.cpp">
-      <Filter>Server</Filter>
-    </ClCompile>
-    <ClCompile Include="Server\VirtualServerDispatcher.cpp">
-      <Filter>Server</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Shared\proto\SimulationCmd.pb.cc">
-      <Filter>Shared\proto</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h">
@@ -765,6 +765,18 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Network\HttpClient.h">
       <Filter>Shared\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\VirtualServiceTcpClient.h">
+      <Filter>Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\FileAddressProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Server\VirtualTcpServer.h">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Server\VirtualServerDispatcher.h">
+      <Filter>Server</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Shared\thirdparty\curl\lib\amigaos.h">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
@@ -1045,6 +1057,9 @@
     <ClInclude Include="..\..\Shared\thirdparty\curl\lib\setup-vms.h">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Shared\thirdparty\curl\lib\shared.h">
+      <Filter>Shared\Thirdparty\curl\lib</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Shared\thirdparty\curl\lib\sigpipe.h">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClInclude>
@@ -1165,21 +1180,6 @@
     <ClInclude Include="..\..\Shared\thirdparty\curl\lib\x509asn1.h">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Shared\thirdparty\curl\lib\shared.h">
-      <Filter>Shared\Thirdparty\curl\lib</Filter>
-    </ClInclude>
-    <ClInclude Include="Client\VirtualServiceTcpClient.h">
-      <Filter>Client</Filter>
-    </ClInclude>
-    <ClInclude Include="Processors\FileAddressProcessor.h">
-      <Filter>Processors</Filter>
-    </ClInclude>
-    <ClInclude Include="Server\VirtualTcpServer.h">
-      <Filter>Server</Filter>
-    </ClInclude>
-    <ClInclude Include="Server\VirtualServerDispatcher.h">
-      <Filter>Server</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Shared">
@@ -1224,12 +1224,6 @@
     <Filter Include="Processors">
       <UniqueIdentifier>{dd5ea8ab-5407-4fca-b65a-b057e24d7333}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Shared\Thirdparty\curl">
-      <UniqueIdentifier>{dd60cdb6-31a8-4376-b8a9-621fd59c1325}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Shared\Thirdparty\curl\lib">
-      <UniqueIdentifier>{98ac8240-3d0a-4870-b649-cbda68877f4e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shared\Thirdparty\protobuf">
       <UniqueIdentifier>{a3972fa2-343f-4d5b-a120-6df722cd3b1a}</UniqueIdentifier>
     </Filter>
@@ -1242,13 +1236,16 @@
     <Filter Include="Server">
       <UniqueIdentifier>{24660a6e-b831-418f-b342-81a194d53463}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shared\Thirdparty\curl">
+      <UniqueIdentifier>{2b1c265d-eb3a-4880-990e-c7aa2d5a9b1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shared\Thirdparty\curl\lib">
+      <UniqueIdentifier>{9e26007a-666d-4d66-8b8a-eb2246c74ce8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Shared\thirdparty\jsoncpp\src\json_valueiterator.inl">
       <Filter>Shared\Thirdparty\jsoncpp</Filter>
-    </None>
-    <None Include="..\..\Shared\thirdparty\curl\lib\Makefile.inc">
-      <Filter>Shared\Thirdparty\curl\lib</Filter>
     </None>
     <None Include="..\..\Shared\thirdparty\curl\lib\objnames.inc">
       <Filter>Shared\Thirdparty\curl\lib</Filter>

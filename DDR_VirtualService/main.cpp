@@ -6,7 +6,6 @@
 #include "../../Shared/proto/BaseCmd.pb.h"
 #include "../../Shared/src/Utility/DDRMacro.h"
 #include "../../Shared/src/Utility/CommonFunc.h"
-#include "../../Shared/src/Network/HttpClient.h"
 #include "Client/LocalClientUdpDispatcher.h"
 #include <thread>
 #include <chrono>

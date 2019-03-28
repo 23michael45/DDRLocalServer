@@ -36,6 +36,8 @@ public:
 		return m_spUdpServer;
 	}
 
+	bool CheckRemoteNetwork();
+
 
 	XmlLoader& GetLocalServerConfig()
 	{

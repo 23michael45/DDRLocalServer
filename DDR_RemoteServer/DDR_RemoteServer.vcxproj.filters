@@ -922,5 +922,8 @@
     <None Include="..\..\Shared\thirdparty\jsoncpp\src\json_valueiterator.inl">
       <Filter>Shared\Thirdparty\jsoncpp</Filter>
     </None>
+    <None Include="..\..\www\bin\x64\Debug\py_d.exe">
+      <Filter>Processors</Filter>
+    </None>
   </ItemGroup>
 </Project>

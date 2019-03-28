@@ -127,6 +127,19 @@ void GlobalManager::OnUdpDisconnect(UdpSocketBase& container)
 	}
 }
 
+bool GlobalManager::CheckRemoteNetwork()
+{
+	std::string b = m_LocalServerConfig.GetValue("CheckRemote");
+	if (b == "TRUE")
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 DBManager::DBManager()
 {
 
