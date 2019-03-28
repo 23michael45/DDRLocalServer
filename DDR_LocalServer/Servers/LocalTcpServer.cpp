@@ -6,6 +6,7 @@
 #include "LocalServerHeadRuleRouter.h"
 #include "../Managers/GlobalManager.h"
 #include "../../../Shared/src/Utility/XmlLoader.h"
+#include "../Behaviors/BaseClientBehavior.h"
 
 
 LocalServerTcpSession::LocalServerTcpSession(asio::io_context& context) :TcpSessionBase::TcpSessionBase(context)
@@ -41,6 +42,16 @@ bool LocalServerTcpSession::HasLogin()
 	}
 	return true;
 }
+
+void LocalServerTcpSession::OnStart()
+{
+	TcpSessionBase::OnStart();
+
+	auto spClientBehavior = std::make_shared<BaseClientBehavior>();
+	BindBehavior(spClientBehavior);
+
+}
+
 
 LocalTcpServer::LocalTcpServer(int port):TcpServerBase(port)
 {

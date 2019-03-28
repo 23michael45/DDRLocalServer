@@ -22,6 +22,11 @@ void GlobalManager::Init()
 		m_spTcpClient = std::make_shared<VirtualServiceTcpClient>();
 		m_spTcpClient->Start(m_Config.GetValue<int>("ThreadCount"));
 	}
+
+	if (!m_spTcpServer)
+	{
+		StartTcpServer();
+	}
 }
 bool GlobalManager::StartUdp()
 {
@@ -35,4 +40,33 @@ bool GlobalManager::StartUdp()
 		m_spUdpClient->StartReceive(m_GlobalConfig.GetValue<int>("UdpPort"));
 	}
 	return true;
+}
+
+void GlobalManager::StartTcpServer()
+{
+	try
+	{
+		int port = m_Config.GetValue<int>("TcpPort");
+		std::string servername = m_Config.GetValue("ServerName");
+		std::string threadCount = m_Config.GetValue("ServerThreadCount");
+
+
+
+		m_spTcpServer = std::make_shared<VirtualTcpServer>(port);
+		m_spTcpServer->Start(std::stoi(threadCount));
+	}
+	catch (std::exception& e)
+	{
+
+		DebugLog("StartTcpServer Error");
+	}
+
+}
+void GlobalManager::StopTcpServer()
+{
+	if (m_spTcpServer)
+	{
+		m_spTcpServer->Stop();
+	}
+
 }

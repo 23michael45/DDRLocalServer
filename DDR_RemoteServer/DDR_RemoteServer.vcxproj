@@ -237,11 +237,13 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxml.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlerror.cpp" />
     <ClCompile Include="..\..\Shared\thirdparty\tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="Behaviors\BaseClientBehavior.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Managers\FileManager.cpp" />
     <ClCompile Include="Managers\GlobalManager.cpp" />
     <ClCompile Include="Managers\StreamProxyManager.cpp" />
     <ClCompile Include="Processors\FileStatusProcessor.cpp" />
+    <ClCompile Include="Processors\HeartBeatProcessor.cpp" />
     <ClCompile Include="Processors\RegisteLSProcessor.cpp" />
     <ClCompile Include="Processors\RemoteFileAddressProcessor.cpp" />
     <ClCompile Include="Processors\RemoteLoginProcessor.cpp" />
@@ -315,10 +317,12 @@ xcopy /Y $(SolutionDir)DDR_LocalServer\Config\*.*   $(SolutionDir)x64\Release\Co
     <ClInclude Include="..\..\Shared\thirdparty\jsoncpp\src\json_tool.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinystr.h" />
     <ClInclude Include="..\..\Shared\thirdparty\tinyxml\tinyxml.h" />
+    <ClInclude Include="Behaviors\BaseClientBehavior.h" />
     <ClInclude Include="Managers\FileManager.h" />
     <ClInclude Include="Managers\GlobalManager.h" />
     <ClInclude Include="Managers\StreamProxyManager.h" />
     <ClInclude Include="Processors\FileStatusProcessor.h" />
+    <ClInclude Include="Processors\HeartBeatProcessor.h" />
     <ClInclude Include="Processors\RegisteLSProcessor.h" />
     <ClInclude Include="Processors\RemoteFileAddressProcessor.h" />
     <ClInclude Include="Processors\RemoteLoginProcessor.h" />

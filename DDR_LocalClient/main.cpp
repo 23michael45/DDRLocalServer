@@ -120,6 +120,7 @@ public:
 
 
 		AddCommand("connect", std::bind(&_ConsoleDebug::Connect, this));
+		AddCommand("disconnect", std::bind(&_ConsoleDebug::Disconnect, this));
 		AddCommand("login", std::bind(&_ConsoleDebug::Login, this));
 		AddCommand("httpget", std::bind(&_ConsoleDebug::HttpGet, this));
 		AddCommand("cmd", std::bind(&_ConsoleDebug::SendCmd, this));
@@ -311,14 +312,16 @@ public:
 
 	}
 
-
+	std::shared_ptr<TcpClientSessionBase> spConnectedSession;
 	void Connect()
 	{
 		auto vec = split(m_CurrentCmd, ':');
 		if (vec.size() == 3)
 		{
 			GlobalManager::Instance()->StopUdp();
-			GlobalManager::Instance()->TcpConnect(vec[1],vec[2]);
+			//GlobalManager::Instance()->TcpConnect(vec[1],vec[2]);
+
+			spConnectedSession = GlobalManager::Instance()->GetTcpClient()->Connect(vec[1], vec[2]);
 		}
 		else if(vec.size() == 1)
 		{
@@ -330,6 +333,15 @@ public:
 
 
 	}
+	void Disconnect()
+	{
+		if (spConnectedSession)
+		{
+			 GlobalManager::Instance()->GetTcpClient()->Disconnect(spConnectedSession);
+			 spConnectedSession = nullptr;
+		}
+	}
+
 	void Login()
 	{
 

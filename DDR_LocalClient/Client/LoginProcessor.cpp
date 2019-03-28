@@ -28,14 +28,7 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 	if (retcode == rspLogin_eLoginRetCode_success)
 	{
 
-		auto spClientBase = GlobalManager::Instance()->GetTcpClient();
-
-		auto spClient = std::dynamic_pointer_cast<LocalTcpClient>(spClientBase);
-		if (spClient)
-		{
-			spClient->StartHeartBeat();
-
-		}
+	
 
 		DebugLog("--------------------------------------------Login Success:%i Priority:%i", retcode,pRaw->priority());
 	}

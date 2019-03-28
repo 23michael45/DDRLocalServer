@@ -21,6 +21,7 @@
 
 #include "../../Shared/src/Utility/MiniDump.h"
 #include "Client/FileManager.h"
+#include "../../Shared/proto/SimulationCmd.pb.h"
 
 
 using namespace DDRFramework;
@@ -44,6 +45,8 @@ public:
 
 
 		AddCommand("basestatus", std::bind(&_ConsoleDebug::SendBaseStatus, this));
+
+		AddCommand("diffdrive", std::bind(&_ConsoleDebug::SendDiffrentialDirveCmd, this));
 
 	}
 	
@@ -226,7 +229,25 @@ public:
 		//GlobalManager::Instance()->GetTcpClient()->Send(sprsp);
 
 	}
+	void SendDiffrentialDirveCmd()
+	{
+		auto spServer = GlobalManager::Instance()->GetTcpServer();
+		if (spServer)
+		{
+			auto spnotify = std::make_shared<notifyDifferentialDrive>();
 
+			spnotify->set_leftrpm(100);
+			spnotify->set_rightrpm(100);
+
+			auto sessoins = spServer->GetConnectedSessions();
+			if (sessoins.size() > 0)
+			{
+				sessoins[0]->Send(spnotify);
+
+			}
+
+		}
+	}
 
 };
 

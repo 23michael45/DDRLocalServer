@@ -28,6 +28,8 @@ std::shared_ptr<TcpClientSessionBase> LocalTcpClient::BindSerializerDispatcher()
 void LocalTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 
+
+	StartHeartBeat();
 	DebugLog("OnConnectSuccess! LocalTcpClient");
 
 

@@ -9,6 +9,8 @@
 
 #include "../../../Shared/src/Utility/XmlLoader.h"
 #include "../../../Shared/src/Network/TcpSocketContainer.h"
+#include "../Behaviors/BaseClientBehavior.h"
+
 
 
 RemoteServerTcpSession::RemoteServerTcpSession(asio::io_context& context) :TcpSessionBase::TcpSessionBase(context)
@@ -148,6 +150,21 @@ DDRCommProto::reqRemoteLogin& RemoteServerTcpSession::GetRemoteLoginInfo()
 {
 	return m_reqRemoteLogin;
 }
+
+
+void RemoteServerTcpSession::OnStart()
+{
+	TcpSessionBase::OnStart();
+
+	auto spClientBehavior = std::make_shared<BaseClientBehavior>();
+	BindBehavior(spClientBehavior);
+
+}
+
+
+
+
+
 
 RemoteTcpServer::RemoteTcpServer(int port):TcpServerBase(port)
 {

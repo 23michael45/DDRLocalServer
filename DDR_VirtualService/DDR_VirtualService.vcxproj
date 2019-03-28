@@ -158,6 +158,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\Shared\proto\BaseCmd.pb.cc" />
     <ClCompile Include="..\..\Shared\proto\RemoteCmd.pb.cc" />
+    <ClCompile Include="..\..\Shared\proto\SimulationCmd.pb.cc" />
     <ClCompile Include="..\..\Shared\src\Network\BaseMessageDispatcher.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseProcessor.cpp" />
     <ClCompile Include="..\..\Shared\src\Network\BaseSocketContainer.cpp" />
@@ -361,6 +362,8 @@
     <ClCompile Include="Processors\FileAddressProcessor.cpp" />
     <ClCompile Include="Processors\LocalClientUdpProcessor.cpp" />
     <ClCompile Include="Processors\LoginProcessor.cpp" />
+    <ClCompile Include="Server\VirtualServerDispatcher.cpp" />
+    <ClCompile Include="Server\VirtualTcpServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\FSM\FSM.h" />
@@ -546,6 +549,8 @@
     <ClInclude Include="Processors\FileAddressProcessor.h" />
     <ClInclude Include="Processors\LocalClientUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />
+    <ClInclude Include="Server\VirtualServerDispatcher.h" />
+    <ClInclude Include="Server\VirtualTcpServer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Shared\thirdparty\curl\lib\Makefile.inc" />

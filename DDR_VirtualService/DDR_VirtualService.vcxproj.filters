@@ -614,6 +614,15 @@
     <ClCompile Include="..\..\Shared\proto\RemoteCmd.pb.cc">
       <Filter>Shared\proto</Filter>
     </ClCompile>
+    <ClCompile Include="Server\VirtualTcpServer.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Server\VirtualServerDispatcher.cpp">
+      <Filter>Server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Shared\proto\SimulationCmd.pb.cc">
+      <Filter>Shared\proto</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h">
@@ -1165,6 +1174,12 @@
     <ClInclude Include="Processors\FileAddressProcessor.h">
       <Filter>Processors</Filter>
     </ClInclude>
+    <ClInclude Include="Server\VirtualTcpServer.h">
+      <Filter>Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Server\VirtualServerDispatcher.h">
+      <Filter>Server</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Shared">
@@ -1223,6 +1238,9 @@
     </Filter>
     <Filter Include="Shared\Thirdparty\protobuf\include">
       <UniqueIdentifier>{a3972fa2-345f-4d5b-a130-6df7823d3bca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Server">
+      <UniqueIdentifier>{24660a6e-b831-418f-b342-81a194d53463}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

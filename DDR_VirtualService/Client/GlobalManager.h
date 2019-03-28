@@ -8,6 +8,7 @@
 #include "../../../Shared/src/Utility/LocalizationLoader.h"
 #include "../../../Shared/src/Utility/GlobalManagerBase.h"
 #include "VirtualServiceTcpClient.h"
+#include "../Server/VirtualTcpServer.h"
 using namespace DDRFramework;
 class GlobalManager : public DDRFramework::CSingleton<GlobalManager>, public GlobalManagerClientBase
 {
@@ -19,11 +20,22 @@ public:
 	virtual void Init() override;
 	virtual bool StartUdp() override;
 
+	void StartTcpServer();
+	void StopTcpServer();
+
+	std::shared_ptr<VirtualTcpServer> GetTcpServer()
+	{
+		return m_spTcpServer;
+	}
+
 
 	XmlLoader GetConfig()
 	{
 		return m_Config;
 	}
+private:
+	std::shared_ptr<VirtualTcpServer> m_spTcpServer;
+
 
 private:
 

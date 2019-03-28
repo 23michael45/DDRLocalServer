@@ -27,6 +27,7 @@ public:
 
 	std::shared_ptr <LSBroadcastReceiveTcpClient> m_spLSBroadcastReceiveTcpClient;
 
+	std::shared_ptr <TcpClientSessionBase> m_spCurrentBroadcastSession;
 
 	std::string m_ServerIP;
 	std::string m_ServerPort;

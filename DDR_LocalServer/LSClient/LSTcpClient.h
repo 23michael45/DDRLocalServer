@@ -17,6 +17,7 @@ public:
 
 	void OnConnected(std::shared_ptr<TcpSocketContainer> spContainer) override;
 	void OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer) override;
+	void OnConnectTimeout(std::shared_ptr<TcpSocketContainer> spContainer) override;
 
 	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
 
@@ -46,6 +47,9 @@ public:
 	~LSBroadcastReceiveTcpClient();
 
 	void OnConnected(std::shared_ptr<TcpSocketContainer> spContainer) override;
+	void OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer) override;
+	void OnConnectTimeout(std::shared_ptr<TcpSocketContainer> spContainer) override;
+	void OnConnectFailed(std::shared_ptr<TcpSocketContainer> spContainer) override;
 
 	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
 

@@ -61,6 +61,9 @@
     <Filter Include="Shared\Thirdparty\corssguid">
       <UniqueIdentifier>{5af48164-70a6-4b45-90b0-29178ceb9092}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Behaviors">
+      <UniqueIdentifier>{e6926633-1b6e-49ee-bc68-e0d8af6581cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Shared\src\Network\TcpServerBase.cpp">
@@ -276,6 +279,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Shared\thirdparty\crossguid\src\guid.cpp">
       <Filter>Shared\Thirdparty\corssguid</Filter>
+    </ClCompile>
+    <ClCompile Include="Behaviors\BaseClientBehavior.cpp">
+      <Filter>Behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\HeartBeatProcessor.cpp">
+      <Filter>Processors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -504,6 +513,12 @@
     </ClInclude>
     <ClInclude Include="..\..\Shared\src\Utility\UUID.h">
       <Filter>Shared\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Behaviors\BaseClientBehavior.h">
+      <Filter>Behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\HeartBeatProcessor.h">
+      <Filter>Processors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

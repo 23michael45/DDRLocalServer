@@ -7,6 +7,7 @@
 
 #include "../../../Shared/proto/BaseCmd.pb.h"
 #include "../Managers/GlobalManager.h"
+#include "LSClientManager.h"
 using namespace DDRCommProto;
 
 LSTcpClient::LSTcpClient()
@@ -26,7 +27,7 @@ std::shared_ptr<TcpClientSessionBase> LSTcpClient::BindSerializerDispatcher()
 }
 void LSTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {
-
+	StartHeartBeat();
 	DebugLog("OnConnectSuccess! LSTcpClient");
 	RegisteToRemote();
 
@@ -34,7 +35,17 @@ void LSTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 void LSTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 	TcpClientBase::OnDisconnect(spContainer);
+	LSClientManager::Instance()->ConnectBroadcastServer();
+
 }
+
+void LSTcpClient::OnConnectTimeout(std::shared_ptr<TcpSocketContainer> spContainer)
+{
+	TcpClientBase::OnDisconnect(spContainer);
+	LSClientManager::Instance()->ConnectBroadcastServer();
+
+}
+
 
 void LSTcpClient::StartHeartBeat()
 {
@@ -108,5 +119,22 @@ void LSBroadcastReceiveTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer
 	}
 	spreq.reset();
 
+
+}
+void LSBroadcastReceiveTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
+{
+	TcpClientBase::OnDisconnect(spContainer);
+}
+void LSBroadcastReceiveTcpClient::OnConnectTimeout(std::shared_ptr<TcpSocketContainer> spContainer)
+{
+	TcpClientBase::OnDisconnect(spContainer);
+	LSClientManager::Instance()->ConnectBroadcastServer();
+
+}
+
+void LSBroadcastReceiveTcpClient::OnConnectFailed(std::shared_ptr<TcpSocketContainer> spContainer)
+{
+	std::this_thread::sleep_for(std::chrono::seconds(3));
+	LSClientManager::Instance()->ConnectBroadcastServer();
 
 }

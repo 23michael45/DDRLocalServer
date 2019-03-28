@@ -30,14 +30,7 @@ void RemoteLoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 
 		if (retcode == rspRemoteLogin_eRemoteLoginRetCode_success)
 		{
-			auto spClientBase = GlobalManager::Instance()->GetTcpClient();
 
-			auto spClient = std::dynamic_pointer_cast<LocalTcpClient>(spClientBase);
-			if (spClient)
-			{
-				spClient->StartHeartBeat();
-
-			}
 
 			GlobalManager::Instance()->AssignRemoteLoginInfo(*pRaw);
 

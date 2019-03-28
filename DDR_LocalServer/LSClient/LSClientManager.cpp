@@ -16,6 +16,13 @@ void LSClientManager::Init()
 		m_spTcpClient = std::make_shared<LSTcpClient>();
 		m_spTcpClient->Start();
 	}
+
+	if (!m_spLSBroadcastReceiveTcpClient)
+	{
+		m_spLSBroadcastReceiveTcpClient = std::make_shared<LSBroadcastReceiveTcpClient>();
+		m_spLSBroadcastReceiveTcpClient->Start();
+
+	}
 }
 
 //#define DebugRemoteServer
@@ -28,12 +35,16 @@ void LSClientManager::ConnectBroadcastServer()
 	LSClientManager::Instance()->TcpConnect("192.168.1.183", "8900");
 
 #else
-	m_spLSBroadcastReceiveTcpClient = std::make_shared<LSBroadcastReceiveTcpClient>();
-	m_spLSBroadcastReceiveTcpClient->Start();
 
 	std::string ip = m_GlobalConfig.GetValue("BroadcastServerIP");
 	std::string port = m_GlobalConfig.GetValue("BroadcastServerPort");
-	m_spLSBroadcastReceiveTcpClient->Connect(ip, port);
+	if (m_spCurrentBroadcastSession)
+	{
+		int count = m_spCurrentBroadcastSession.use_count();
+		m_spCurrentBroadcastSession.reset();
+	}
+
+	m_spCurrentBroadcastSession = m_spLSBroadcastReceiveTcpClient->Connect(ip, port);
 #endif
 	
 }
@@ -41,9 +52,10 @@ void LSClientManager::ConnectBroadcastServer()
 void LSClientManager::CloseBroadcastServer(std::vector<DDRCommProto::rspRemoteServerList_RemoteServer> servers)
 {
 	m_Servers = servers;
-	if (m_spLSBroadcastReceiveTcpClient)
+	if (m_spCurrentBroadcastSession)
 	{
-		m_spLSBroadcastReceiveTcpClient->Stop();
+		m_spLSBroadcastReceiveTcpClient->Disconnect(m_spCurrentBroadcastSession);
+		m_spCurrentBroadcastSession.reset();
 	}
 }
 

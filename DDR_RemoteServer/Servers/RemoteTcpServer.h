@@ -24,6 +24,8 @@ public:
 	RemoteServerTcpSession(asio::io_context& context);
 	~RemoteServerTcpSession();
 
+	virtual void OnStart() override;
+
 	//Session As LS;
 	void AssignRegisteLSInfo(reqRegisteLS info);
 	reqRegisteLS& GetRegisteLSInfo();

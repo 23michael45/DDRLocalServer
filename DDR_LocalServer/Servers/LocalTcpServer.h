@@ -32,6 +32,8 @@ public:
 		}
 	}
 
+	virtual void OnStart() override;
+
 protected:
 
 	std::function<void()> m_DelayAddSessionFunc;

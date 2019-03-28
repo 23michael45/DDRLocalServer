@@ -31,6 +31,9 @@ void VirtualServiceTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> sp
 {
 
 	DebugLog("OnConnectSuccess! VirtualServiceTcpClient");
+
+
+	StartHeartBeat();
 	auto spreq = std::make_shared<reqLogin>();
 	spreq->set_username(GlobalManager::Instance()->GetConfig().GetValue("ServerName"));
 	spreq->set_type(eCltType::eLSMVirtual);

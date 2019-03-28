@@ -10,6 +10,7 @@
 #include "../Processors/UploadFileProgressProcessor.h"
 #include "../Processors/RtspStreamUploadAddrProcessor.h"
 #include "../Processors/StreamAddrProcessor.h"
+#include "../Processors/HeartBeatProcessor.h"
 #include "../Servers/RemoteTcpServer.h"
 
 using namespace DDRCommProto;
@@ -17,6 +18,8 @@ using namespace DDRFramework;
 
 RemoteServerDispatcher::RemoteServerDispatcher()
 {
+	HeartBeat hBeat;
+	m_ProcessorMap[hBeat.GetTypeName()] = std::make_shared<HeartBeatProcessor>(*this);
 
 	//Global
 	RegisterProcessor(req, RegisteLS)
