@@ -64,25 +64,22 @@ void LoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockContaine
 		}
 
 	}
-	else if (type == eCltType::eLSMStreamRelay)
+	else if (type == eCltType::eForwarderClient		||
+			 type == eCltType::eLSMStreamRelay		|| 
+			 type == eCltType::eLSMFaceRecognition  ||
+			 type == eCltType::eLSMSlamNavigation   ||
+			 type == eCltType::eLSMThermalImaging  )
 	{
-		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
-	}
-	else if (type == eCltType::eLSMFaceRecognition)
-	{
-		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+		if (GlobalManager::Instance()->GetTcpServer()->GetSessionByType(type) != nullptr)
+		{
+			sprsp->set_retcode(rspLogin_eLoginRetCode_server_limit_reached);
+			closeSession = true;
+		}
+		else
+		{
+			sprsp->set_retcode(rspLogin_eLoginRetCode_success);
 
-	}
-	else if (type == eCltType::eLSMSlamNavigation)
-	{
-
-
-
-		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
-	}
-	else if (type == eCltType::eLSMThermalImaging)
-	{
-		sprsp->set_retcode(rspLogin_eLoginRetCode_success);
+		}
 
 	}
 
