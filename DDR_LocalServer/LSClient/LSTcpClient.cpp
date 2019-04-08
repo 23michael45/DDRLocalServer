@@ -66,7 +66,8 @@ void LSTcpClient::StopHeartBeat()
 
 void LSTcpClient::RegisteToRemote()
 {
-	std::string cpuhash = getCpuHash();
+	std::string cpuhash = getMacAddr();
+	DebugLog("RegisteToRemote CpuHash %s", cpuhash.c_str())
 
 	auto spreq = std::make_shared<reqRegisteLS>();
 	spreq->set_udid(cpuhash);
