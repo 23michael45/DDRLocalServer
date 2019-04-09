@@ -36,14 +36,14 @@ void LSTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 	StopHeartBeat();
 	TcpClientBase::OnDisconnect(spContainer);
-	LSClientManager::Instance()->ConnectBroadcastServer();
+	LSClientManager::Instance()->StartCheckBroadcast();
 
 }
 
 void LSTcpClient::OnConnectTimeout(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 	TcpClientBase::OnDisconnect(spContainer);
-	LSClientManager::Instance()->ConnectBroadcastServer();
+	LSClientManager::Instance()->StartCheckBroadcast();
 
 }
 
@@ -94,8 +94,11 @@ void LSTcpClient::SendHeartBeatOnce(timer_id id)
 
 
 
-LSBroadcastReceiveTcpClient::LSBroadcastReceiveTcpClient()
+LSBroadcastReceiveTcpClient::LSBroadcastReceiveTcpClient(std::string ip,std::string port)
 {
+	mIP = ip;
+	mPort = port;
+
 }
 
 
@@ -109,6 +112,35 @@ std::shared_ptr<TcpClientSessionBase> LSBroadcastReceiveTcpClient::BindSerialize
 	BIND_IOCONTEXT_SERIALIZER_DISPATCHER(m_IOContext, TcpClientSessionBase, MessageSerializer, LSBroadcastReceiveClientDispatcher, BaseHeadRuleRouter)
 		return spTcpClientSessionBase;
 }
+
+void LSBroadcastReceiveTcpClient::StartCheck()
+{
+	m_IOContext.post(std::bind(&LSBroadcastReceiveTcpClient::CheckBroadcastSessionConnected, shared_from_base()));
+
+}
+
+void LSBroadcastReceiveTcpClient::Close()
+{
+	if (m_spCurrentBroadcastSession)
+	{
+		Disconnect(m_spCurrentBroadcastSession);
+		m_spCurrentBroadcastSession.reset();
+	}
+}
+
+void LSBroadcastReceiveTcpClient::CheckBroadcastSessionConnected()
+{
+	if (m_spCurrentBroadcastSession)
+	{
+		std::this_thread::sleep_for(std::chrono::seconds(3));
+		m_IOContext.post(std::bind(&LSBroadcastReceiveTcpClient::CheckBroadcastSessionConnected, shared_from_base()));
+	}
+	else
+	{
+		m_spCurrentBroadcastSession = Connect(mIP, mPort);
+	}
+}
+
 void LSBroadcastReceiveTcpClient::OnConnected(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 
@@ -130,13 +162,14 @@ void LSBroadcastReceiveTcpClient::OnDisconnect(std::shared_ptr<TcpSocketContaine
 void LSBroadcastReceiveTcpClient::OnConnectTimeout(std::shared_ptr<TcpSocketContainer> spContainer)
 {
 	TcpClientBase::OnDisconnect(spContainer);
-	LSClientManager::Instance()->ConnectBroadcastServer();
-
+	Close();
+	StartCheck();
 }
 
 void LSBroadcastReceiveTcpClient::OnConnectFailed(std::shared_ptr<TcpSocketContainer> spContainer)
 {
-	std::this_thread::sleep_for(std::chrono::seconds(3));
-	LSClientManager::Instance()->ConnectBroadcastServer();
+	TcpClientBase::OnDisconnect(spContainer);
+	Close();
+	StartCheck();
 
 }

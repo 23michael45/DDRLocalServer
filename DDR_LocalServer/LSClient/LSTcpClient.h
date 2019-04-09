@@ -43,7 +43,7 @@ private:
 class LSBroadcastReceiveTcpClient : public TcpClientBase
 {
 public:
-	LSBroadcastReceiveTcpClient();
+	LSBroadcastReceiveTcpClient(std::string ip,std::string port);
 	~LSBroadcastReceiveTcpClient();
 
 	void OnConnected(std::shared_ptr<TcpSocketContainer> spContainer) override;
@@ -53,7 +53,20 @@ public:
 
 	virtual std::shared_ptr<TcpClientSessionBase> BindSerializerDispatcher();
 
+
+	void StartCheck();
+	void Close();
+	void CheckBroadcastSessionConnected();
+
+
+	std::shared_ptr <TcpClientSessionBase> m_spCurrentBroadcastSession;
+
 	SHARED_FROM_BASE(LSBroadcastReceiveTcpClient)
+
+
+private:
+	std::string mIP;
+	std::string mPort;
 
 };
 

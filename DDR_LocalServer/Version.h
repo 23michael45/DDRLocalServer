@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-std::string g_BuildTime = "3/28/2019 9:14:36 PM";
+std::string g_BuildTime = "4/9/2019 4:32:20 PM";
 std::string g_Version = "1.0.0";
 
 #ifdef _DEBUG

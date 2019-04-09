@@ -30,15 +30,24 @@ RemoteServerTcpSession::~RemoteServerTcpSession()
 	DebugLog("RemoteServerTcpSession Destroy");
 }
 
-void RemoteServerTcpSession::AssignRegisteLSInfo(reqRegisteLS info)
+bool RemoteServerTcpSession::AssignRegisteLSInfo(reqRegisteLS info)
 {
 	m_reqRegisteLS.CopyFrom(info); 
 
 
 	auto& lsmap = GlobalManager::Instance()->GetTcpServer()->GetLSMap();
-	lsmap.insert(make_pair(info.udid(), shared_from_base()));
+	if (lsmap.find(info.udid()) != lsmap.end())
+	{
+		return false;
+	}
+	else
+	{
+		lsmap.insert(make_pair(info.udid(), shared_from_base()));
+		m_SessionType = RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS;
+		return true;
+	}
 
-	m_SessionType = RemoteServerTcpSession::RemoteServerTcpSessionType::RST_LS;
+
 }
 
 DDRCommProto::reqRegisteLS& RemoteServerTcpSession::GetRegisteLSInfo()
@@ -111,9 +120,8 @@ void RemoteServerTcpSession::ReleaseLS(std::string udid)
 	}
 }
 
-void RemoteServerTcpSession::AssignRemoteLoginInfo(reqRemoteLogin info)
+bool RemoteServerTcpSession::AssignRemoteLoginInfo(reqRemoteLogin info)
 {
-	m_reqRemoteLogin.CopyFrom(info);
 
 	auto& map = GlobalManager::Instance()->GetTcpServer()->GetClientMap();
 
@@ -121,12 +129,16 @@ void RemoteServerTcpSession::AssignRemoteLoginInfo(reqRemoteLogin info)
 	{
 		auto pair = make_pair(info.username(), shared_from_base());
 		map.insert(pair);
+
+		m_SessionType = RemoteServerTcpSession::RemoteServerTcpSessionType::RST_CLIENT;
+
+		m_reqRemoteLogin.CopyFrom(info);
+		return true;
 	}
-
-
-
-	m_SessionType = RemoteServerTcpSession::RemoteServerTcpSessionType::RST_CLIENT;
-
+	else
+	{
+		return false;
+	}
 }
 
 

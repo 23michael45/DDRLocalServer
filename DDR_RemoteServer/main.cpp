@@ -59,7 +59,7 @@ public:
 
 
 			std::string ip = spSession.second->GetSocket().remote_endpoint().address().to_string();
-			printf_s("\nLS:%s  name:%s", ip.c_str(), spSession.second->GetRegisteLSInfo().name().c_str());
+			printf_s("\nLS:%s  name:%s udid:%s", ip.c_str(), spSession.second->GetRegisteLSInfo().name().c_str(),spSession.first.c_str());
 		}
 
 		for (auto spSession : GlobalManager::Instance()->GetTcpServer()->GetClientMap())

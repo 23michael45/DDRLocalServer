@@ -27,7 +27,7 @@ public:
 	virtual void OnStart() override;
 
 	//Session As LS;
-	void AssignRegisteLSInfo(reqRegisteLS info);
+	bool AssignRegisteLSInfo(reqRegisteLS info);
 	reqRegisteLS& GetRegisteLSInfo();
 	void AssingClient(std::string username, std::shared_ptr<RemoteServerTcpSession> spClientSession);
 	void RemoveClient(std::string username);
@@ -60,7 +60,7 @@ public:
 	//Session As Client;
 	void BindLS(std::string udid);
 	void ReleaseLS(std::string udid);
-	void AssignRemoteLoginInfo(reqRemoteLogin info);
+	bool AssignRemoteLoginInfo(reqRemoteLogin info);
 
 
 	std::string GetBindLSUDID();

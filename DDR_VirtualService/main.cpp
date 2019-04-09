@@ -230,13 +230,17 @@ public:
 	}
 	void SendDiffrentialDirveCmd()
 	{
+		auto vec = split(m_CurrentCmd, ':');
+		float l = std::stof(vec[1]);
+		float r = std::stof(vec[2]);
+
 		auto spServer = GlobalManager::Instance()->GetTcpServer();
 		if (spServer)
 		{
 			auto spnotify = std::make_shared<notifyDifferentialDrive>();
 
-			spnotify->set_leftrpm(100);
-			spnotify->set_rightrpm(100);
+			spnotify->set_leftrpm(l);
+			spnotify->set_rightrpm(r);
 
 			auto sessoins = spServer->GetConnectedSessions();
 			if (sessoins.size() > 0)

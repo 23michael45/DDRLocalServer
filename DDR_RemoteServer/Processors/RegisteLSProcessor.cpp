@@ -33,12 +33,22 @@ void RegisteLSProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCont
 			auto spServerSessionTcp = dynamic_pointer_cast<RemoteServerTcpSession>(spTcp);
 			if (spServerSessionTcp)
 			{
-				spServerSessionTcp->AssignRegisteLSInfo(*pRaw);
-
-
-
 				auto sprsp = std::make_shared<rspRegisteLS>();
-				spServerSessionTcp->Send(sprsp);
+				if (spServerSessionTcp->AssignRegisteLSInfo(*pRaw))
+				{
+					sprsp->set_error("");
+					spServerSessionTcp->Send(sprsp);
+				}
+				else
+				{
+					sprsp->set_error("Duplicate LS UDID");
+					spServerSessionTcp->Send(sprsp);
+
+					spServerSessionTcp->Stop();
+				}
+
+
+
 			}
 		}
 

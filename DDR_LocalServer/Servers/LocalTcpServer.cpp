@@ -107,6 +107,7 @@ void LocalTcpServer::DelayAddSessionType(eCltType type, std::string sname, std::
 }
 void LocalTcpServer::AddSessionType(eCltType type, std::string sname, std::shared_ptr<LocalServerTcpSession> sp)
 {
+	std::lock_guard<std::mutex> lock(mTypeSessionMapMutex);
 	if (m_TypeSessionMap.find(type) == m_TypeSessionMap.end())
 	{
 		auto spMap = std::make_shared<std::map<std::string, std::shared_ptr<LocalServerTcpSession>>>();
@@ -133,6 +134,7 @@ void LocalTcpServer::AddSessionType(eCltType type, std::string sname, std::share
 
 void LocalTcpServer::RemoveSessionType(eCltType type, std::string sname)
 {
+	std::lock_guard<std::mutex> lock(mTypeSessionMapMutex);
 	if (m_TypeSessionMap.find(type) != m_TypeSessionMap.end())
 	{
 		auto& spMap = m_TypeSessionMap[type];
@@ -154,6 +156,7 @@ void LocalTcpServer::RemoveSessionType(eCltType type, std::string sname)
 
 std::shared_ptr<LocalServerTcpSession> LocalTcpServer::GetSessionByType(eCltType type)
 {
+	//std::lock_guard<std::mutex> lock(mTypeSessionMapMutex);
 	if (m_TypeSessionMap.find(type) != m_TypeSessionMap.end())
 	{
 		auto spMap = m_TypeSessionMap[type];
@@ -168,6 +171,7 @@ std::shared_ptr<LocalServerTcpSession> LocalTcpServer::GetSessionByType(eCltType
 
 std::shared_ptr<LocalServerTcpSession> LocalTcpServer::GetSessionByTypeName(eCltType type, std::string sname)
 {
+	//std::lock_guard<std::mutex> lock(mTypeSessionMapMutex);
 	if (m_TypeSessionMap.find(type) == m_TypeSessionMap.end())
 	{
 		return nullptr;

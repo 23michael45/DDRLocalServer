@@ -2,14 +2,18 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LocalDebuggerWorkingDirectory>$(ProjectDir)../x64/Debug</LocalDebuggerWorkingDirectory>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <RemoteDebuggerCommand>C:\www\RemoteServer\DDR_RemoteServer.exe</RemoteDebuggerCommand>
-    <RemoteDebuggerWorkingDirectory>C:\www\RemoteServer</RemoteDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>C:\www\RemoteServer\Debug\DDR_RemoteServer.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerWorkingDirectory>C:\www\RemoteServer\Debug</RemoteDebuggerWorkingDirectory>
     <RemoteDebuggerServerName>111.230.250.213</RemoteDebuggerServerName>
     <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerWorkingDirectory>$(ProjectDir)../x64/Release</LocalDebuggerWorkingDirectory>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WindowsRemoteDebugger</DebuggerFlavor>
+    <RemoteDebuggerCommand>C:\www\RemoteServer\Debug\DDR_RemoteServer.exe</RemoteDebuggerCommand>
+    <RemoteDebuggerWorkingDirectory>C:\www\RemoteServer\Debug</RemoteDebuggerWorkingDirectory>
+    <RemoteDebuggerServerName>111.230.250.213</RemoteDebuggerServerName>
+    <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
   </PropertyGroup>
 </Project>

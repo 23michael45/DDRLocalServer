@@ -111,6 +111,7 @@ public:
 
 
 		AddCommand("send2all", std::bind(&_ConsoleDebug::Send2All, this));
+		AddCommand("startbroadcast", std::bind(&_ConsoleDebug::BroadcastCheck, this));
 	}
 	void PrintVersion()
 	{
@@ -260,6 +261,11 @@ public:
 	{
 		LSClientManager::Instance()->GetTcpClient()->Stop();
 	}
+
+	void BroadcastCheck()
+	{
+		LSClientManager::Instance()->StartCheckBroadcast();
+	}
 };
 
 
@@ -272,11 +278,11 @@ int main()
 	GlobalManager::Instance()->StartTcpServer();
 	GlobalManager::Instance()->StartUdpServer();
 
-	LSClientManager::Instance()->Init();
 
 	if (GlobalManager::Instance()->CheckRemoteNetwork())
 	{
-		LSClientManager::Instance()->ConnectBroadcastServer();
+		LSClientManager::Instance()->Init();
+		LSClientManager::Instance()->StartCheckBroadcast();
 
 	}
 	

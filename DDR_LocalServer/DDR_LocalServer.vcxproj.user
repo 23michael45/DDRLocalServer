@@ -3,7 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <RemoteDebuggerCommand>C:\www\bin\x64\Debug\DDR_LocalServer.exe</RemoteDebuggerCommand>
     <RemoteDebuggerWorkingDirectory>C:\www\bin\x64\Debug</RemoteDebuggerWorkingDirectory>
-    <RemoteDebuggerServerName>192.168.1.10</RemoteDebuggerServerName>
+    <RemoteDebuggerServerName>192.168.0.95</RemoteDebuggerServerName>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <RemoteDebuggerConnection>RemoteWithoutAuthentication</RemoteDebuggerConnection>
     <LocalDebuggerWorkingDirectory>$(ProjectDir)../x64/Debug</LocalDebuggerWorkingDirectory>

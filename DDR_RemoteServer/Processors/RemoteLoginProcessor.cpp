@@ -37,24 +37,32 @@ void RemoteLoginProcessor::Process(std::shared_ptr<BaseSocketContainer> spSockCo
 		if (b)
 		{
 			auto spClientSession = dynamic_pointer_cast<RemoteServerTcpSession>(spSockContainer->GetTcp());
-			spClientSession->AssignRemoteLoginInfo(*pRaw);
-
-
-			sprsp->set_yourrole(pRaw->type());
-
-
-			auto& lsmap = GlobalManager::Instance()->GetTcpServer()->GetLSMap();
-
-			for (auto pair : lsmap)
+			
+			
+			if (spClientSession->AssignRemoteLoginInfo(*pRaw))
 			{
-				auto spLSSession =pair.second;
+				sprsp->set_yourrole(pRaw->type());
 
-				auto pls = sprsp->add_lslist();
-				pls->set_name(spLSSession->GetRegisteLSInfo().name());
-				pls->set_udid(spLSSession->GetRegisteLSInfo().udid());
-				
+
+				auto& lsmap = GlobalManager::Instance()->GetTcpServer()->GetLSMap();
+
+				for (auto pair : lsmap)
+				{
+					auto spLSSession = pair.second;
+
+					auto pls = sprsp->add_lslist();
+					pls->set_name(spLSSession->GetRegisteLSInfo().name());
+					pls->set_udid(spLSSession->GetRegisteLSInfo().udid());
+
+				}
+
+				sprsp->set_retcode(rspRemoteLogin_eRemoteLoginRetCode_success);
 			}
-
+			else
+			{
+				sprsp->set_retcode(rspRemoteLogin_eRemoteLoginRetCode_server_limit_reached);
+				closeSession = true;
+			}
 
 		}
 		else

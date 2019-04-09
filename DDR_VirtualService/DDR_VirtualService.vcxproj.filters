@@ -623,6 +623,15 @@
     <ClCompile Include="..\..\Shared\thirdparty\curl\lib\x509asn1.c">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClCompile>
+    <ClCompile Include="Algorithm\theatastar.cpp">
+      <Filter>Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\DifferentialRPMProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="PPOAC\AutoPathGen.cpp">
+      <Filter>PPOAC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h">
@@ -1180,6 +1189,27 @@
     <ClInclude Include="..\..\Shared\thirdparty\curl\lib\x509asn1.h">
       <Filter>Shared\Thirdparty\curl\lib</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Thirdparty\Lazy-Theta-with-optimization-any-angle-pathfinding\pathfinding.hpp">
+      <Filter>Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Thirdparty\Lazy-Theta-with-optimization-any-angle-pathfinding\tileadaptor.hpp">
+      <Filter>Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Thirdparty\Lazy-Theta-with-optimization-any-angle-pathfinding\utility.hpp">
+      <Filter>Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\DifferentialRPMProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="PPOAC\AutoPathGen.h">
+      <Filter>PPOAC</Filter>
+    </ClInclude>
+    <ClInclude Include="PPOAC\PPOACFactory.h">
+      <Filter>PPOAC</Filter>
+    </ClInclude>
+    <ClInclude Include="PPOAC\PPOACInterface.h">
+      <Filter>PPOAC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Shared">
@@ -1241,6 +1271,12 @@
     </Filter>
     <Filter Include="Shared\Thirdparty\curl\lib">
       <UniqueIdentifier>{9e26007a-666d-4d66-8b8a-eb2246c74ce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithm">
+      <UniqueIdentifier>{6eae6853-c1da-4f38-bd40-36c5f7373c16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PPOAC">
+      <UniqueIdentifier>{e0f3a5c6-9f47-4415-8c0e-e33adc620f3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

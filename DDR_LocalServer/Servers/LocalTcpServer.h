@@ -65,6 +65,7 @@ protected:
 
 	void DelayAddSessionType(eCltType type, std::string sname, std::shared_ptr<LocalServerTcpSession> sp);
 
+	std::mutex mTypeSessionMapMutex;
 	std::map<eCltType, std::shared_ptr<std::map<std::string, std::shared_ptr<LocalServerTcpSession>>>> m_TypeSessionMap;
 };
 

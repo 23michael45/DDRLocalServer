@@ -1,7 +1,7 @@
 #include "VirtualServerDispatcher.h"
 
-#include "../../../Shared/proto/BaseCmd.pb.h"
-#include "../Processors/LoginProcessor.h"
+#include "../../../Shared/proto/SimulationCmd.pb.h"
+#include "../Processors/DifferentialRPMProcessor.h"
 #include "VirtualTcpServer.h"
 
 using namespace DDRCommProto;
@@ -10,6 +10,8 @@ using namespace DDRFramework;
 VirtualServerDispatcher::VirtualServerDispatcher()
 {
 
+
+	RegisterProcessor(req, DifferentialRPM)
 
 
 }
