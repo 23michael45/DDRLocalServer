@@ -632,6 +632,24 @@
     <ClCompile Include="PPOAC\AutoPathGen.cpp">
       <Filter>PPOAC</Filter>
     </ClCompile>
+    <ClCompile Include="Processors\LaunchAMCProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="Processors\StartFromPoseProcessor.cpp">
+      <Filter>Processors</Filter>
+    </ClCompile>
+    <ClCompile Include="PPOAC\PPOACManager.cpp">
+      <Filter>PPOAC</Filter>
+    </ClCompile>
+    <ClCompile Include="Gadgets\ParamStorage.cpp">
+      <Filter>Gadgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Gadgets\OneFolder.cpp">
+      <Filter>Gadgets</Filter>
+    </ClCompile>
+    <ClCompile Include="Gadgets\OneParameter.cpp">
+      <Filter>Gadgets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Shared\src\Utility\CommonFunc.h">
@@ -1210,6 +1228,24 @@
     <ClInclude Include="PPOAC\PPOACInterface.h">
       <Filter>PPOAC</Filter>
     </ClInclude>
+    <ClInclude Include="Processors\LaunchAMCProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="Processors\StartFromPoseProcessor.h">
+      <Filter>Processors</Filter>
+    </ClInclude>
+    <ClInclude Include="PPOAC\PPOACManager.h">
+      <Filter>PPOAC</Filter>
+    </ClInclude>
+    <ClInclude Include="Gadgets\ParamStorage.h">
+      <Filter>Gadgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Gadgets\OneFolder.h">
+      <Filter>Gadgets</Filter>
+    </ClInclude>
+    <ClInclude Include="Gadgets\OneParameter.h">
+      <Filter>Gadgets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Shared">
@@ -1277,6 +1313,9 @@
     </Filter>
     <Filter Include="PPOAC">
       <UniqueIdentifier>{e0f3a5c6-9f47-4415-8c0e-e33adc620f3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gadgets">
+      <UniqueIdentifier>{c256ac6c-e456-4f3a-bf72-f6bf524cc821}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

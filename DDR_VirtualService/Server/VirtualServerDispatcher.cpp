@@ -2,6 +2,8 @@
 
 #include "../../../Shared/proto/SimulationCmd.pb.h"
 #include "../Processors/DifferentialRPMProcessor.h"
+#include "../Processors/StartFromPoseProcessor.h"
+#include "../Processors/LaunchAMCProcessor.h"
 #include "VirtualTcpServer.h"
 
 using namespace DDRCommProto;
@@ -12,6 +14,8 @@ VirtualServerDispatcher::VirtualServerDispatcher()
 
 
 	RegisterProcessor(req, DifferentialRPM)
+		RegisterProcessor(req, LaunchAMC)
+		RegisterProcessor(req, StartFromPose)
 
 
 }

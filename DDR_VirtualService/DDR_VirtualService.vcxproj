@@ -66,6 +66,7 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\libcurl.props" />
+    <Import Project="..\OpenCV_d.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -362,12 +363,18 @@
     <ClCompile Include="Client\LocalClientDispatcher.cpp" />
     <ClCompile Include="Client\LocalClientUdpDispatcher.cpp" />
     <ClCompile Include="Client\VirtualServiceTcpClient.cpp" />
+    <ClCompile Include="Gadgets\OneFolder.cpp" />
+    <ClCompile Include="Gadgets\OneParameter.cpp" />
+    <ClCompile Include="Gadgets\ParamStorage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PPOAC\AutoPathGen.cpp" />
+    <ClCompile Include="PPOAC\PPOACManager.cpp" />
     <ClCompile Include="Processors\DifferentialRPMProcessor.cpp" />
     <ClCompile Include="Processors\FileAddressProcessor.cpp" />
+    <ClCompile Include="Processors\LaunchAMCProcessor.cpp" />
     <ClCompile Include="Processors\LocalClientUdpProcessor.cpp" />
     <ClCompile Include="Processors\LoginProcessor.cpp" />
+    <ClCompile Include="Processors\StartFromPoseProcessor.cpp" />
     <ClCompile Include="Server\VirtualServerDispatcher.cpp" />
     <ClCompile Include="Server\VirtualTcpServer.cpp" />
   </ItemGroup>
@@ -555,13 +562,19 @@
     <ClInclude Include="Client\LocalClientDispatcher.h" />
     <ClInclude Include="Client\LocalClientUdpDispatcher.h" />
     <ClInclude Include="Client\VirtualServiceTcpClient.h" />
+    <ClInclude Include="Gadgets\OneFolder.h" />
+    <ClInclude Include="Gadgets\OneParameter.h" />
+    <ClInclude Include="Gadgets\ParamStorage.h" />
     <ClInclude Include="PPOAC\AutoPathGen.h" />
     <ClInclude Include="PPOAC\PPOACFactory.h" />
     <ClInclude Include="PPOAC\PPOACInterface.h" />
+    <ClInclude Include="PPOAC\PPOACManager.h" />
     <ClInclude Include="Processors\DifferentialRPMProcessor.h" />
     <ClInclude Include="Processors\FileAddressProcessor.h" />
+    <ClInclude Include="Processors\LaunchAMCProcessor.h" />
     <ClInclude Include="Processors\LocalClientUdpProcessor.h" />
     <ClInclude Include="Processors\LoginProcessor.h" />
+    <ClInclude Include="Processors\StartFromPoseProcessor.h" />
     <ClInclude Include="Server\VirtualServerDispatcher.h" />
     <ClInclude Include="Server\VirtualTcpServer.h" />
   </ItemGroup>
