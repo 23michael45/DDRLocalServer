@@ -6,7 +6,7 @@
 #else
 #endif
 
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "src/Network/BaseMessageDispatcher.h"
 
 
 class LocalClientUdpDispatcher : public DDRFramework::BaseMessageDispatcher

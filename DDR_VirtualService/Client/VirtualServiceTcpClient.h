@@ -1,9 +1,9 @@
 #ifndef VirtualServiceTcpClient_h__
 #define VirtualServiceTcpClient_h__
 
-#include "../../../Shared/src/Network/TcpClientBase.h"
-#include "../../../Shared/src/Utility/Singleton.h"
-#include "../../../Shared/src/Utility/Timer.hpp"
+#include "src/Network/TcpClientBase.h"
+#include "src/Utility/Singleton.h"
+#include "src/Utility/Timer.hpp"
 
 using namespace DDRFramework;
 class VirtualServiceTcpClient : public TcpClientBase 

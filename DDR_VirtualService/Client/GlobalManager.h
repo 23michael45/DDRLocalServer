@@ -1,12 +1,12 @@
 #ifndef GlobalManager_h__
 #define GlobalManager_h__
 
-#include "../../../Shared/src/Utility/XmlLoader.h"
-#include "../../../Shared/src/Network/UdpSocketBase.h"
-#include "../../../Shared/src/Network/TcpClientBase.h"
-#include "../../../Shared/src/Utility/Singleton.h"
-#include "../../../Shared/src/Utility/LocalizationLoader.h"
-#include "../../../Shared/src/Utility/GlobalManagerBase.h"
+#include "src/Utility/XmlLoader.h"
+#include "src/Network/UdpSocketBase.h"
+#include "src/Network/TcpClientBase.h"
+#include "src/Utility/Singleton.h"
+#include "src/Utility/LocalizationLoader.h"
+#include "src/Utility/GlobalManagerBase.h"
 #include "VirtualServiceTcpClient.h"
 #include "../Server/VirtualTcpServer.h"
 using namespace DDRFramework;

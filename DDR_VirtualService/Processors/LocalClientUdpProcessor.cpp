@@ -1,9 +1,9 @@
 #include "LocalClientUdpProcessor.h"
 #include <memory>
-#include "../../../Shared/src/Utility/DDRMacro.h"
-#include "../../../Shared/src/Utility/CommonFunc.h"
-#include "../../../Shared/src/Network/HttpServer.h"
-#include "../../../Shared/thirdparty/asio/include/asio.hpp"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/CommonFunc.h"
+#include "src/Network/HttpServer.h"
+#include "thirdparty/asio/include/asio.hpp"
 #include "../Client/GlobalManager.h"
 #include "../Client/HttpFileServer.h"
 

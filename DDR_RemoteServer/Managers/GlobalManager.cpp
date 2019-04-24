@@ -1,15 +1,15 @@
 #include "GlobalManager.h"
 
 
-#include "../../../Shared/src/Utility/XmlLoader.h"
-#include "../../../Shared/src/Utility/CommonFunc.h"
+#include "src/Utility/XmlLoader.h"
+#include "src/Utility/CommonFunc.h"
 #include <thread>
 #include <chrono>
 #include <iostream>
 #include <fstream>
 
-#include "../../../Shared/proto/BaseCmd.pb.h"
-#include "../../../Shared/thirdparty/cpp-sqlite3/cppsqlite3.h"
+#include "proto/BaseCmd.pb.h"
+#include "thirdparty/cpp-sqlite3/cppsqlite3.h"
 using namespace DDRCommProto;
 using namespace std;
 

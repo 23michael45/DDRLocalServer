@@ -1,6 +1,6 @@
 #include "VirtualServerDispatcher.h"
 
-#include "../../../Shared/proto/SimulationCmd.pb.h"
+#include "proto/SimulationCmd.pb.h"
 #include "../Processors/DifferentialRPMProcessor.h"
 #include "../Processors/StartFromPoseProcessor.h"
 #include "../Processors/LaunchAMCProcessor.h"

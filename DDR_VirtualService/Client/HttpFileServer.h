@@ -6,8 +6,8 @@
 #include <filesystem>
 #include <vector>
 #include <string>
-#include "../../../Shared/src/Utility/Singleton.h"
-#include "../../../Shared/src/Network/HttpServer.h"
+#include "src/Utility/Singleton.h"
+#include "src/Network/HttpServer.h"
 
 using namespace DDRFramework;
 

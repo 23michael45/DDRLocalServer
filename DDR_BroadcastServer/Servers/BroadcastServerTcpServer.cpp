@@ -1,11 +1,11 @@
 #include "BroadcastServerTcpServer.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
-#include "../../../Shared/src/Network/MessageSerializer.h"
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "src/Network/TcpSocketContainer.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/BaseMessageDispatcher.h"
 #include "BroadcastServerDispatcher.h"
 
-#include "../../../Shared/src/Utility/XmlLoader.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
+#include "src/Utility/XmlLoader.h"
+#include "src/Network/TcpSocketContainer.h"
 
 
 

@@ -1,6 +1,6 @@
 #include "BroadcastServerDispatcher.h"
 
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "../Processors/RemoteServerListProcessor.h"
 
 using namespace DDRCommProto;

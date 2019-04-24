@@ -3,8 +3,8 @@
 
 
 
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
-#include "../../../shared/src/Network/BaseSocketContainer.h"
+#include "src/Network/BaseMessageDispatcher.h"
+#include "src/Network/BaseSocketContainer.h"
 
 
 class VirtualServerDispatcher : public DDRFramework::BaseMessageDispatcher

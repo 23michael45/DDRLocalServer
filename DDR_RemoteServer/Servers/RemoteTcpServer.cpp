@@ -1,14 +1,14 @@
 #include "RemoteTcpServer.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
-#include "../../../Shared/src/Network/MessageSerializer.h"
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "src/Network/TcpSocketContainer.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/BaseMessageDispatcher.h"
 #include "RemoteServerDispatcher.h"
 #include "RemoteServerHeadRuleRouter.h"
 #include "../Managers/GlobalManager.h"
 #include "../Managers/StreamProxyManager.h"
 
-#include "../../../Shared/src/Utility/XmlLoader.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
+#include "src/Utility/XmlLoader.h"
+#include "src/Network/TcpSocketContainer.h"
 #include "../Behaviors/BaseClientBehavior.h"
 
 

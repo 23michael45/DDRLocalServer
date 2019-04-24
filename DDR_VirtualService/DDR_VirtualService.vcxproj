@@ -95,7 +95,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;%(AdditionalIncludeDirectories);$(ProjectDir)include;$(ProjectDir);$(ProjectDir)../../Shared/Thirdparty/portaudio/src/common;$(ProjectDir)../../Shared/Thirdparty/portaudio/src/os/win;$(ProjectDir)../../Shared/Thirdparty/portaudio/include;$(ProjectDir)../../Shared/Thirdparty/portaudio/src/hostapi/ASIOSDK/common;$(ProjectDir)../../Shared/Thirdparty/portaudio/src/hostapi/ASIOSDK/host;$(ProjectDir)../../Shared/Thirdparty/portaudio/src/hostapi/ASIOSDK/host/pc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)../../Shared/;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;%(AdditionalIncludeDirectories);$(ProjectDir)include;$(ProjectDir);$(ProjectDir)../../Shared/Thirdparty/portaudio/src/common;$(ProjectDir)../../Shared/Thirdparty/portaudio/src/os/win;$(ProjectDir)../../Shared/Thirdparty/portaudio/include;$(ProjectDir)../../Shared/Thirdparty/portaudio/src/hostapi/ASIOSDK/common;$(ProjectDir)../../Shared/Thirdparty/portaudio/src/hostapi/ASIOSDK/host;$(ProjectDir)../../Shared/Thirdparty/portaudio/src/hostapi/ASIOSDK/host/pc</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,7 +150,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)../../Shared/Thirdparty/;$(ProjectDir)../../Shared/Thirdparty/curl/include;$(ProjectDir)../../Shared/Thirdparty/curl/;$(ProjectDir)../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../Shared/Thirdparty/python/PC;$(ProjectDir)../../Shared/Thirdparty/python/include;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)../../Shared/;$(ProjectDir)../../Shared/Thirdparty/curl/include;$(ProjectDir)../../Shared/Thirdparty/curl/;$(ProjectDir)../../Shared/Thirdparty/curl-asio/include;$(ProjectDir)../../Shared/Thirdparty/curl/lib;$(ProjectDir)../../Shared/Thirdparty/tinyxml;$(ProjectDir)../../Shared/Thirdparty/protobuf/src;$(ProjectDir)../../Shared/Thirdparty/asio/include;$(ProjectDir)../../Shared/Thirdparty/jsoncpp/include;$(ProjectDir)../../Shared/Thirdparty/cppfs/include;$(ProjectDir)../../Shared/Thirdparty/python/PC;$(ProjectDir)../../Shared/Thirdparty/python/include;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

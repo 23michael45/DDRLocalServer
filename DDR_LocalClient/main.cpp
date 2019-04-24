@@ -1,13 +1,13 @@
-#include "../../Shared/src/Network/MessageSerializer.h"
-#include "../../Shared/src/Network/TcpServerBase.h"
-#include "../../Shared/src/Network/TcpClientBase.h"
-#include "../../Shared/src/Network/HttpClient.h"
-#include "../../Shared/proto/BaseCmd.pb.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/TcpServerBase.h"
+#include "src/Network/TcpClientBase.h"
+#include "src/Network/HttpClient.h"
+#include "proto/BaseCmd.pb.h"
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/message.h>
-#include "../../Shared/src/Utility/DDRMacro.h"
+#include "src/Utility/DDRMacro.h"
 
-#include "../../Shared/src/Utility/MiniDump.h"
+#include "src/Utility/MiniDump.h"
 #include "Client/LocalClientUdpDispatcher.h"
 #include <thread>
 #include <chrono>
@@ -20,7 +20,7 @@
 #include <vector>
 #include <iterator>
 
-#include "../../../Shared/src/Utility/CommonFunc.h"
+#include "src/Utility/CommonFunc.h"
 #ifdef _WINDOWS
 #include <Windows.h>
 #include "cppfs/windows/LocalFileSystem.h"
@@ -30,7 +30,7 @@
 #include "opencv2/opencv.hpp"
 #include "opencv2/imgproc.hpp"
 
-#include "../../Shared/src/Utility/PythonDebugTools.h"
+#include "src/Utility/PythonDebugTools.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;

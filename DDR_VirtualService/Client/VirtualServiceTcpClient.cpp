@@ -1,14 +1,14 @@
 #include "VirtualServiceTcpClient.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
-#include "../../../Shared/src/Network/MessageSerializer.h"
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "src/Network/TcpSocketContainer.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/BaseMessageDispatcher.h"
 #include "Client/LocalClientDispatcher.h"
 #include "Client/LocalClientUdpDispatcher.h"
 
 #include "Client/HttpFileServer.h"
 
 
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "../Client/GlobalManager.h"
 using namespace DDRCommProto;
 

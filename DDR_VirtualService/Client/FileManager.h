@@ -4,8 +4,8 @@
 #include <filesystem>
 #include <vector>
 #include <string>
-#include "../../../Shared/src/Utility/Singleton.h"
-#include "../../../Shared/src/Utility/FileManagerBase.h"
+#include "src/Utility/Singleton.h"
+#include "src/Utility/FileManagerBase.h"
 
 using namespace DDRFramework;
 

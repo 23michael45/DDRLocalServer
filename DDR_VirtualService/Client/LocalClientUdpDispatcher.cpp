@@ -1,6 +1,6 @@
 #include "LocalClientUdpDispatcher.h"
 #include "../Processors/LocalClientUdpProcessor.h"
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "../Processors/LoginProcessor.h"
 
 

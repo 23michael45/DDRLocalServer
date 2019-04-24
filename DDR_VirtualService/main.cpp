@@ -1,11 +1,11 @@
 #include<iostream>
-#include "../../Shared/src/Network/MessageSerializer.h"
-#include "../../Shared/src/Network/TcpServerBase.h"
-#include "../../Shared/src/Network/TcpClientBase.h"
-#include "../../Shared/src/Network/HttpServer.h"
-#include "../../Shared/proto/BaseCmd.pb.h"
-#include "../../Shared/src/Utility/DDRMacro.h"
-#include "../../Shared/src/Utility/CommonFunc.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/TcpServerBase.h"
+#include "src/Network/TcpClientBase.h"
+#include "src/Network/HttpServer.h"
+#include "proto/BaseCmd.pb.h"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/CommonFunc.h"
 #include "Client/LocalClientUdpDispatcher.h"
 #include <thread>
 #include <chrono>
@@ -13,14 +13,14 @@
 #include "Client/GlobalManager.h"
 #include <functional>
 #include <regex>
-#include "../../../Shared/thirdparty/cppfs/include/cppfs/windows/LocalFileSystem.h"
+#include "thirdparty/cppfs/include/cppfs/windows/LocalFileSystem.h"
 
-#include "../../Shared/src/Utility/AudioCodec.h"
+#include "src/Utility/AudioCodec.h"
 #include "Client/HttpFileServer.h"
 
-#include "../../Shared/src/Utility/MiniDump.h"
+#include "src/Utility/MiniDump.h"
 #include "Client/FileManager.h"
-#include "../../Shared/proto/SimulationCmd.pb.h"
+#include "proto/SimulationCmd.pb.h"
 
 
 using namespace DDRFramework;

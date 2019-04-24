@@ -1,5 +1,5 @@
 #include "LocalClientDispatcher.h"
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 
 #ifdef QT_PRECOMPILED_HEADER
 #include "LoginProcessor.h"

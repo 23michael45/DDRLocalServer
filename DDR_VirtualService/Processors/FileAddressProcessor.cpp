@@ -1,13 +1,13 @@
 #include <memory>
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "FileAddressProcessor.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
-#include "../../../Shared/src/Utility/Logger.h"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/Logger.h"
 #include "../Client/GlobalManager.h"
 #include "../Client/FileManager.h"
 #include <regex>
 #include "../Client/HttpFileServer.h"
-#include "../../../Shared/src/Utility/CommonFunc.h"
+#include "src/Utility/CommonFunc.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;

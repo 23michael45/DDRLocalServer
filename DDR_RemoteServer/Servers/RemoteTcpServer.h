@@ -2,8 +2,8 @@
 #define RemoteTcpServer_h__
 
 
-#include "../../../Shared/src/Network/TcpServerBase.h"
-#include "../../../Shared/src/Utility/Singleton.h"
+#include "src/Network/TcpServerBase.h"
+#include "src/Utility/Singleton.h"
 
 #include "../../proto/RemoteCmd.pb.h"
 using namespace DDRFramework;

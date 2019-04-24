@@ -7,12 +7,12 @@
     #include "AudioTcpClient.h"
 #endif
 
-#include "../../../Shared/src/Network/UdpSocketBase.h"
-#include "../../../Shared/src/Network/TcpClientBase.h"
-#include "../../../Shared/src/Utility/Singleton.h"
+#include "src/Network/UdpSocketBase.h"
+#include "src/Network/TcpClientBase.h"
+#include "src/Utility/Singleton.h"
 #include "LocalTcpClient.h"
-#include "../../../Shared/src/Utility/LocalizationLoader.h"
-#include "../../../Shared/src/Utility/GlobalManagerBase.h"
+#include "src/Utility/LocalizationLoader.h"
+#include "src/Utility/GlobalManagerBase.h"
 
 using namespace DDRFramework;
 class GlobalManager : public DDRFramework::CSingleton<GlobalManager> , public GlobalManagerClientBase

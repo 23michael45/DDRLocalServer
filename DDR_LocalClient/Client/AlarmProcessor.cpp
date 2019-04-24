@@ -3,9 +3,9 @@
 #include "AlarmProcessor.h"
 #include "GlobalManager.h"
 #include <memory>
-#include "../../../Shared/proto/BaseCmd.pb.h"
-#include "../../../Shared/src/Utility/DDRMacro.h"
-#include "../../../Shared/src/Utility/Logger.h"
+#include "proto/BaseCmd.pb.h"
+#include "src/Utility/DDRMacro.h"
+#include "src/Utility/Logger.h"
 
 using namespace DDRFramework;
 using namespace DDRCommProto;

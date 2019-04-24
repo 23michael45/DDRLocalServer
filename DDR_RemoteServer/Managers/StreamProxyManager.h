@@ -2,12 +2,12 @@
 #define StreamProxyConfigManager_h__
 
 
-#include "../../../Shared/src/Utility/XmlLoader.h"
-#include "../../../Shared/src/Utility/Singleton.h"
+#include "src/Utility/XmlLoader.h"
+#include "src/Utility/Singleton.h"
 
-#include "../../../Shared/src/Network/TcpServerBase.h"
-#include "../../../Shared/proto/RemoteCmd.pb.h"
-#include "eventpp/eventdispatcher.h"
+#include "src/Network/TcpServerBase.h"
+#include "proto/RemoteCmd.pb.h"
+#include "thirdparty/eventpp/eventdispatcher.h"
 
 using namespace DDRCommProto;
 using namespace DDRFramework;

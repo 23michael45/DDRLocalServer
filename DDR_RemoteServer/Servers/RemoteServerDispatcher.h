@@ -2,7 +2,7 @@
 #define RemoteServerDispatcher_h__
 
 
-#include "../../../Shared/src/Network/BaseMessageDispatcher.h"
+#include "src/Network/BaseMessageDispatcher.h"
 
 
 class RemoteServerDispatcher : public DDRFramework::BaseMessageDispatcher

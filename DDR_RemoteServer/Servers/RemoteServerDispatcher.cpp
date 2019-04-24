@@ -1,6 +1,6 @@
 #include "RemoteServerDispatcher.h"
 
-#include "../../../Shared/proto/BaseCmd.pb.h"
+#include "proto/BaseCmd.pb.h"
 #include "../Processors/RemoteServerListProcessor.h"
 #include "../Processors/RemoteLoginProcessor.h"
 #include "../Processors/SelectLSProcessor.h"

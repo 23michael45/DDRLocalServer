@@ -2,9 +2,9 @@
 #define FileAddressProcessor_h__
 
 
-#include "../../../Shared/src/Network/MessageSerializer.h"
-#include "../../../Shared/src/Network/BaseProcessor.h"
-#include "../../../Shared/src/Network/HttpClient.h"
+#include "src/Network/MessageSerializer.h"
+#include "src/Network/BaseProcessor.h"
+#include "src/Network/HttpClient.h"
 
 
 using namespace DDRFramework;

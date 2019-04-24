@@ -7,9 +7,9 @@
 #endif
 
 
-#include "../../../Shared/proto/BaseCmd.pb.h"
-#include "../../../Shared/src/Network/BaseProcessor.h"
-#include "../../../Shared/src/Network/TcpSocketContainer.h"
+#include "proto/BaseCmd.pb.h"
+#include "src/Network/BaseProcessor.h"
+#include "src/Network/TcpSocketContainer.h"
 
 using namespace DDRCommProto;
 

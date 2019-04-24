@@ -4,10 +4,10 @@
 
 #ifdef QT_PRECOMPILED_HEADER
 #else
-#include "../../../Shared/src/Utility/AudioCodec.h"
-#include "../../../Shared/src/Network/TcpClientBase.h"
-#include "../../../Shared/src/Utility/Singleton.h"
-#include "../../../Shared/src/Utility/Timer.hpp"
+#include "src/Utility/AudioCodec.h"
+#include "src/Network/TcpClientBase.h"
+#include "src/Utility/Singleton.h"
+#include "src/Utility/Timer.hpp"
 
 using namespace DDRFramework;
 
